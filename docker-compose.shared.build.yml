@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  base:
+    build:
+      context: ./lyra
+      dockerfile: Dockerfile
+      target: base
+  redis:
+    build:
+      context: ./lyra
+      dockerfile: Dockerfile
+      target: redis
+  flower:
+    build:
+      context: ./lyra
+      dockerfile: Dockerfile
+      target: flower

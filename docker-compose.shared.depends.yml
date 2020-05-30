@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  base:
+    depends_on:
+      - redis
+  flower:
+    depends_on:
+      - redis
