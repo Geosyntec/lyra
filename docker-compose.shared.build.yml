@@ -1,10 +1,15 @@
 version: '3.7'
 services:
-  base:
+  lyra:
     build:
       context: ./lyra
       dockerfile: Dockerfile
-      target: base
+      target: lyra
+  lyra-tests:
+    build:
+      context: ./lyra
+      dockerfile: Dockerfile
+      target: lyra-tests
   redis:
     build:
       context: ./lyra
