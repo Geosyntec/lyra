@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  lyra:
+    volumes:
+      - ./lyra/lyra:/lyra/lyra
+
+  lyra-tests:
+    volumes:
+      - ./lyra/lyra:/lyra/lyra

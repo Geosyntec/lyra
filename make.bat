@@ -57,6 +57,10 @@ goto :eof
 scripts\clean.bat
 goto :eof
 
+:dev-server
+docker-compose run -p 8080:80 lyra bash /start-reload.sh
+goto :eof
+
 :restart
 docker-compose restart redis celeryworker
 goto :eof
