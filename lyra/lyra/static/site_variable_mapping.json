@@ -1,0 +1,397 @@
+{
+  "site_variable_mapping": {
+    "AGUACHINON_TORO": {
+      "Rainfall-11.50": "11.50",
+      "Discharge-262.00": "262.00"
+    },
+    "ALAMEDA": {
+      "Rainfall-11.50": "11.50",
+      "Discharge-262.01": "262.01"
+    },
+    "ALISO_JERONIMO": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.01": "262.01"
+    },
+    "ALISO_STP": {
+      "Discharge-262.00": "262.00"
+    },
+    "ANAHEIM_BARBER": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.00": "262.00"
+    },
+    "ANGELUS": {
+      "Rainfall-11.50": "11.50"
+    },
+    "ARROYO_TRABUCO": {
+      "Discharge-262.00": "262.00"
+    },
+    "BEE": {
+      "Rainfall-11.50": "11.50"
+    },
+    "BOLSACHICA": {
+      "Discharge-262.00": "262.00"
+    },
+    "BONITA": {
+      "Discharge-262.00": "262.00"
+    },
+    "BREA": {
+      "Rainfall-11.00": "11.00"
+    },
+    "BREAOLINDA": {
+      "Rainfall-11.00": "11.00"
+    },
+    "BREA_DAM": {
+      "Rainfall-11.02": "11.02"
+    },
+    "BUENA": {
+      "Rainfall-11.00": "11.00"
+    },
+    "CARBON_CREEK": {
+      "Rainfall-11.50": "11.50",
+      "Discharge-262.00": "262.00"
+    },
+    "CARBON_CYN_DAM": {
+      "Rainfall-11.50": "11.50"
+    },
+    "CARBON_CYN_GIL": {
+      "Rainfall-11.02": "11.02"
+    },
+    "CARBON_CYN_WORK": {
+      "Rainfall-11.02": "11.02"
+    },
+    "CENTRAL_IRVINE": {
+      "Rainfall-11.50": "11.50",
+      "Discharge-262.00": "262.00"
+    },
+    "CHINO": {
+      "Rainfall-11.50": "11.50"
+    },
+    "CORONA": {
+      "Rainfall-11.00": "11.00"
+    },
+    "COSTAMESA": {
+      "Rainfall-11.00": "11.00"
+    },
+    "COSTAMESA_CH": {
+      "Rainfall-11.51": "11.51",
+      "Discharge-262.00": "262.00"
+    },
+    "COSTAMESA_CMWD": {
+      "Rainfall-11.00": "11.00"
+    },
+    "COTODECAZA": {
+      "Rainfall-11.50": "11.50"
+    },
+    "COYOTE_CREEK": {
+      "Discharge-262.00": "262.00"
+    },
+    "CYPRESS": {
+      "Rainfall-11.50": "11.50"
+    },
+    "DANAPOINT": {
+      "Rainfall-11.00": "11.00"
+    },
+    "EASTGARDEN": {
+      "Rainfall-11.50": "11.50",
+      "Discharge-262.00": "262.00"
+    },
+    "ELCARISO": {
+      "Rainfall-11.00": "11.00"
+    },
+    "ELMODENA": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.00": "262.00"
+    },
+    "ELTORO": {
+      "Rainfall-11.00": "11.00"
+    },
+    "FULLERTON_AP": {
+      "Rainfall-11.50": "11.50"
+    },
+    "FULLERTON_BEACH": {
+      "Rainfall-11.00": "11.00"
+    },
+    "FULLERTON_DAM": {
+      "Rainfall-11.50": "11.50"
+    },
+    "FULLERTON_RES": {
+      "Rainfall-11.00": "11.00"
+    },
+    "FULLERTON_RICH": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.00": "262.00"
+    },
+    "FULLERTON_VLLYV": {
+      "Rainfall-11.50": "11.50",
+      "Discharge-262.00": "262.00"
+    },
+    "GARDENGROVE": {
+      "Rainfall-11.50": "11.50"
+    },
+    "GARDENGROVEFIRE": {
+      "Rainfall-11.00": "11.00"
+    },
+    "GAVILANHILLS": {
+      "Rainfall-11.50": "11.50"
+    },
+    "GILBERT": {
+      "Rainfall-11.00": "11.00"
+    },
+    "GLASSELL": {
+      "Rainfall-11.00": "11.00"
+    },
+    "HARBOR_EDINGER": {
+      "Rainfall-11.50": "11.50"
+    },
+    "HASTERBASIN": {
+      "Rainfall-11.00": "11.00"
+    },
+    "HICKS_CYN": {
+      "Rainfall-11.50": "11.50"
+    },
+    "HOLY_JIM_CYN": {
+      "Rainfall-11.50": "11.50"
+    },
+    "HORNO_OUT": {
+      "Discharge-262.00": "262.00"
+    },
+    "HUNTINGTON": {
+      "Rainfall-11.00": "11.00"
+    },
+    "IRVINELAKE": {
+      "Rainfall-11.50": "11.50"
+    },
+    "IRVINE_JEFFREY": {
+      "Rainfall-11.00": "11.00"
+    },
+    "J01P27": {
+      "Discharge-262.00": "262.00"
+    },
+    "KATELLAYARD": {
+      "Rainfall-11.00": "11.00"
+    },
+    "LACOUAQUE": {
+      "Rainfall-11.00": "11.00"
+    },
+    "LAGUNABEACH": {
+      "Rainfall-11.00": "11.00"
+    },
+    "LAGUNA_AUDUBON": {
+      "Rainfall-11.00": "11.00"
+    },
+    "LAGUNA_CYN_RPTR": {
+      "Rainfall-11.50": "11.50"
+    },
+    "LAGUNA_NIGUEL": {
+      "Rainfall-11.00": "11.00"
+    },
+    "LAGUNA_TREAT": {
+      "Rainfall-11.01": "11.01"
+    },
+    "LAGUNA_WOODLAND": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.01": "262.01"
+    },
+    "LAMBERT": {
+      "Rainfall-11.00": "11.00"
+    },
+    "LANE": {
+      "Discharge-262.00": "262.00"
+    },
+    "LOMARIDGE": {
+      "Rainfall-11.00": "11.00"
+    },
+    "LOSALAMITOS": {
+      "Rainfall-11.01": "11.01"
+    },
+    "LOWEROSO": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.00": "262.00"
+    },
+    "LOWERSILVERADO": {
+      "Rainfall-11.00": "11.00"
+    },
+    "MARSHBURN": {
+      "Rainfall-11.50": "11.50",
+      "Discharge-262.00": "262.00"
+    },
+    "MILLER": {
+      "Rainfall-11.00": "11.00"
+    },
+    "MODJESKA_CANYON": {
+      "Rainfall-11.00": "11.00"
+    },
+    "MOULTON_PEAK": {
+      "Rainfall-11.50": "11.50"
+    },
+    "NEWPORTBEACH": {
+      "Rainfall-11.00": "11.00"
+    },
+    "NEWPORT_COAST": {
+      "Rainfall-11.50": "11.50"
+    },
+    "OAKFLAT": {
+      "Rainfall-11.00": "11.00"
+    },
+    "OCEANINSTITUTE": {
+      "Rainfall-11.50": "11.50"
+    },
+    "OCEANVIEW": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.01": "262.01"
+    },
+    "ORANGE": {
+      "Rainfall-11.01": "11.01"
+    },
+    "ORANGE_RES": {
+      "Rainfall-11.02": "11.02"
+    },
+    "OSO_CROWN": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.01": "262.01"
+    },
+    "PALISADES": {
+      "Rainfall-11.00": "11.00"
+    },
+    "PETERS": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.01": "262.01"
+    },
+    "PICO": {
+      "Rainfall-11.00": "11.00"
+    },
+    "PORTOLA": {
+      "Rainfall-11.50": "11.50"
+    },
+    "PRADODAM": {
+      "Rainfall-11.50": "11.50"
+    },
+    "PRADO_DAM": {
+      "Rainfall-11.02": "11.02"
+    },
+    "PRADO_OUTFLOW": {
+      "Rainfall-11.00": "11.00"
+    },
+    "PRIMADESHECHA": {
+      "Discharge-262.01": "262.01"
+    },
+    "RIVERSIDE": {
+      "Rainfall-11.50": "11.50"
+    },
+    "ROSSMORE": {
+      "Rainfall-11.50": "11.50"
+    },
+    "SANANTONIO": {
+      "Rainfall-11.50": "11.50"
+    },
+    "SANDCANYON": {
+      "Rainfall-11.00": "11.00"
+    },
+    "SANDCANYON_CH": {
+      "Rainfall-11.50": "11.50",
+      "Discharge-262.00": "262.00"
+    },
+    "SANDIEGO_CAMPUS": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.00": "262.00"
+    },
+    "SANDIEGO_CULVER": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.00": "262.00"
+    },
+    "SANJUAN_CAP": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.00": "262.00"
+    },
+    "SANJUAN_GUARD": {
+      "Rainfall-11.00": "11.00"
+    },
+    "SANTAANA_DELHI": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.00": "262.00"
+    },
+    "SANTAANA_ENG": {
+      "Rainfall-11.00": "11.00"
+    },
+    "SANTANA": {
+      "Rainfall-11.00": "11.00"
+    },
+    "SANTIAGOPEAK": {
+      "Rainfall-11.00": "11.00"
+    },
+    "SANTIAGO_ANA": {
+      "Rainfall-11.00": "11.00"
+    },
+    "SANTIAGO_DAM": {
+      "Rainfall-11.02": "11.02"
+    },
+    "SANTIAGO_E08": {
+      "Rainfall-11.00": "11.00"
+    },
+    "SARADAR": {
+      "Rainfall-11.50": "11.50"
+    },
+    "SD_CULVER_1196": {
+      "Discharge-262.01": "262.01"
+    },
+    "SEALBEACH": {
+      "Rainfall-11.00": "11.00"
+    },
+    "SEGUNDADESHECA": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.01": "262.01"
+    },
+    "SILVERADO_RS": {
+      "Rainfall-11.02": "11.02"
+    },
+    "SULPHURCREEK": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.01": "262.01"
+    },
+    "TRABUCO": {
+      "Rainfall-11.00": "11.00"
+    },
+    "TRABUCO_CANYON": {
+      "Rainfall-11.02": "11.02"
+    },
+    "TUCKER": {
+      "Rainfall-11.00": "11.00"
+    },
+    "TUSTIN": {
+      "Rainfall-11.00": "11.00"
+    },
+    "TUSTIN_I2": {
+      "Rainfall-11.00": "11.00"
+    },
+    "UEGARDEN": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.00": "262.00"
+    },
+    "UPPERALISO": {
+      "Rainfall-11.50": "11.50"
+    },
+    "UPPEROSO": {
+      "Rainfall-11.50": "11.50"
+    },
+    "UPPERSILVERADO": {
+      "Rainfall-11.50": "11.50"
+    },
+    "UPPER_HARDING": {
+      "Rainfall-11.50": "11.50"
+    },
+    "VILLAPARK": {
+      "Rainfall-11.00": "11.00",
+      "Discharge-262.01": "262.01"
+    },
+    "WESTMINSTER": {
+      "Rainfall-11.50": "11.50",
+      "Discharge-262.01": "262.01"
+    },
+    "YORBA_PARK": {
+      "Rainfall-11.50": "11.50"
+    },
+    "YORBA_RESERVOIR": {
+      "Rainfall-11.00": "11.00"
+    }
+  }
+}
