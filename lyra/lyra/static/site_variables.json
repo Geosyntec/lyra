@@ -1,0 +1,4784 @@
+{
+  "site_variables": [
+    {
+      "period_end": "20150518050041",
+      "period_start": "20080922142536",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "AGUACHINON_TORO",
+      "preferred": true
+    },
+    {
+      "period_end": "20170701224500",
+      "period_start": "20120101000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "AGUACHINON_TORO",
+      "preferred": false
+    },
+    {
+      "period_end": "20150518050041",
+      "period_start": "20020408161214",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "AGUACHINON_TORO",
+      "preferred": false
+    },
+    {
+      "period_end": "20180701224500",
+      "period_start": "20040701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "AGUACHINON_TORO",
+      "preferred": true
+    },
+    {
+      "period_end": "20180630000000",
+      "period_start": "20120101000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "AGUACHINON_TORO",
+      "preferred": false
+    },
+    {
+      "period_end": "20120407013000",
+      "period_start": "20101118000000",
+      "subdesc": "",
+      "variable": "851.00",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "AGUACHINON_TORO",
+      "preferred": false
+    },
+    {
+      "period_end": "20120318100000",
+      "period_start": "20101020095000",
+      "subdesc": "Download",
+      "variable": "851.05",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "AGUACHINON_TORO",
+      "preferred": false
+    },
+    {
+      "period_end": "20181130110000",
+      "period_start": "20080107121750",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ALAMEDA",
+      "preferred": true
+    },
+    {
+      "period_end": "20090112122800",
+      "period_start": "19930701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ALAMEDA",
+      "preferred": false
+    },
+    {
+      "period_end": "20181130110000",
+      "period_start": "20080108002233",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ALAMEDA",
+      "preferred": false
+    },
+    {
+      "period_end": "20080701000000",
+      "period_start": "19930701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "ALAMEDA",
+      "preferred": true
+    },
+    {
+      "period_end": "20050620145610",
+      "period_start": "19910701132410",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ALISO_JERONIMO",
+      "preferred": true
+    },
+    {
+      "period_end": "20190618031935",
+      "period_start": "19890701172840",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ALISO_JERONIMO",
+      "preferred": false
+    },
+    {
+      "period_end": "20101007094850",
+      "period_start": "19920722132900",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ALISO_JERONIMO",
+      "preferred": false
+    },
+    {
+      "period_end": "20101007094850",
+      "period_start": "19930928031820",
+      "subdesc": "ALERT QA",
+      "variable": "11.52",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ALISO_JERONIMO",
+      "preferred": false
+    },
+    {
+      "period_end": "20150701000000",
+      "period_start": "19900701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ALISO_JERONIMO",
+      "preferred": false
+    },
+    {
+      "period_end": "20190618031935",
+      "period_start": "20031224125750",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ALISO_JERONIMO",
+      "preferred": false
+    },
+    {
+      "period_end": "20150417071000",
+      "period_start": "20140701000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "ALISO_JERONIMO",
+      "preferred": false
+    },
+    {
+      "period_end": "20150701000000",
+      "period_start": "19900701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "ALISO_JERONIMO",
+      "preferred": true
+    },
+    {
+      "period_end": "20190327084500",
+      "period_start": "20020701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ALISO_STP",
+      "preferred": false
+    },
+    {
+      "period_end": "20190621081500",
+      "period_start": "20020228133259",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ALISO_STP",
+      "preferred": false
+    },
+    {
+      "period_end": "20160322130000",
+      "period_start": "20040317055000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "ALISO_STP",
+      "preferred": false
+    },
+    {
+      "period_end": "20190327084500",
+      "period_start": "20130701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "ALISO_STP",
+      "preferred": true
+    },
+    {
+      "period_end": "20190701000000",
+      "period_start": "20020701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "ALISO_STP",
+      "preferred": false
+    },
+    {
+      "period_end": "20190327084500",
+      "period_start": "20150701000000",
+      "subdesc": "",
+      "variable": "273.00",
+      "units": "Acre-Feet",
+      "name": "Volume",
+      "site": "ALISO_STP",
+      "preferred": false
+    },
+    {
+      "period_end": "20060911075620",
+      "period_start": "19950725134830",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ANAHEIM_BARBER",
+      "preferred": true
+    },
+    {
+      "period_end": "20190123120000",
+      "period_start": "19900313125811",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ANAHEIM_BARBER",
+      "preferred": false
+    },
+    {
+      "period_end": "20120930230800",
+      "period_start": "19950725134830",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ANAHEIM_BARBER",
+      "preferred": false
+    },
+    {
+      "period_end": "20120930230800",
+      "period_start": "19950725134830",
+      "subdesc": "ALERT QA",
+      "variable": "11.52",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ANAHEIM_BARBER",
+      "preferred": false
+    },
+    {
+      "period_end": "20170720094000",
+      "period_start": "19900701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ANAHEIM_BARBER",
+      "preferred": false
+    },
+    {
+      "period_end": "20190123120000",
+      "period_start": "20010222065801",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ANAHEIM_BARBER",
+      "preferred": false
+    },
+    {
+      "period_end": "20160728065000",
+      "period_start": "20080701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "ANAHEIM_BARBER",
+      "preferred": true
+    },
+    {
+      "period_end": "20160701000000",
+      "period_start": "19900701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "ANAHEIM_BARBER",
+      "preferred": false
+    },
+    {
+      "period_end": "20170720094000",
+      "period_start": "20061205094500",
+      "subdesc": "",
+      "variable": "300.00",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "ANAHEIM_BARBER",
+      "preferred": false
+    },
+    {
+      "period_end": "20170720094000",
+      "period_start": "20061205094500",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "ANAHEIM_BARBER",
+      "preferred": false
+    },
+    {
+      "period_end": "20140407132010",
+      "period_start": "19900101021935",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ANGELUS",
+      "preferred": true
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "20140630230000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ARROYO_TRABUCO",
+      "preferred": false
+    },
+    {
+      "period_end": "20181001000000",
+      "period_start": "20040701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "ARROYO_TRABUCO",
+      "preferred": true
+    },
+    {
+      "period_end": "20181001000000",
+      "period_start": "20140701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "ARROYO_TRABUCO",
+      "preferred": false
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "20040701000000",
+      "subdesc": "",
+      "variable": "273.00",
+      "units": "Acre-Feet",
+      "name": "Volume",
+      "site": "ARROYO_TRABUCO",
+      "preferred": false
+    },
+    {
+      "period_end": "20190516090000",
+      "period_start": "19960507111705",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "BEE",
+      "preferred": true
+    },
+    {
+      "period_end": "20140209223654",
+      "period_start": "20091102113141",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "BEE",
+      "preferred": false
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "19910701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "BOLSACHICA",
+      "preferred": false
+    },
+    {
+      "period_end": "20170928034500",
+      "period_start": "20030316001221",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "BOLSACHICA",
+      "preferred": false
+    },
+    {
+      "period_end": "20140421084000",
+      "period_start": "20090608000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "BOLSACHICA",
+      "preferred": false
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "20100701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "BOLSACHICA",
+      "preferred": true
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "19910701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "BOLSACHICA",
+      "preferred": false
+    },
+    {
+      "period_end": "20070208193807",
+      "period_start": "20041101225820",
+      "subdesc": "ALERT transmitted",
+      "variable": "235.50",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "BONDPITS",
+      "preferred": false
+    },
+    {
+      "period_end": "20180701224500",
+      "period_start": "20120101000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "BONITA",
+      "preferred": false
+    },
+    {
+      "period_end": "20121126040951",
+      "period_start": "20040630075019",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "BONITA",
+      "preferred": false
+    },
+    {
+      "period_end": "20180701224500",
+      "period_start": "20040719141500",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "BONITA",
+      "preferred": true
+    },
+    {
+      "period_end": "20180630000000",
+      "period_start": "20040701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "BONITA",
+      "preferred": false
+    },
+    {
+      "period_end": "20120508073000",
+      "period_start": "20071101000000",
+      "subdesc": "",
+      "variable": "851.00",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "BONITA",
+      "preferred": false
+    },
+    {
+      "period_end": "20120705102000",
+      "period_start": "20010108151500",
+      "subdesc": "Download",
+      "variable": "851.05",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "BONITA",
+      "preferred": false
+    },
+    {
+      "period_end": "20080916095110",
+      "period_start": "19910701030300",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "BREA",
+      "preferred": true
+    },
+    {
+      "period_end": "20190206060000",
+      "period_start": "19890701183153",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "BREA",
+      "preferred": false
+    },
+    {
+      "period_end": "20100126180000",
+      "period_start": "19480701010000",
+      "subdesc": "National weather Service",
+      "variable": "11.02",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "BREA_DAM",
+      "preferred": true
+    },
+    {
+      "period_end": "20130312045700",
+      "period_start": "20040824025505",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "BREA_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20061004040211",
+      "period_start": "20040824025606",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "BREA_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20130308045600",
+      "period_start": "20050130105804",
+      "subdesc": "ALERT download",
+      "variable": "232.51",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "BREA_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20130312045700",
+      "period_start": "20060929002844",
+      "subdesc": "ALERT transmitted",
+      "variable": "235.50",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "BREA_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20061127075939",
+      "period_start": "20060928001343",
+      "subdesc": "ALERT download",
+      "variable": "235.51",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "BREA_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20050721065930",
+      "period_start": "20041208223710",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "BREAOLINDA",
+      "preferred": true
+    },
+    {
+      "period_end": "20190206060000",
+      "period_start": "19960605100050",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "BREAOLINDA",
+      "preferred": false
+    },
+    {
+      "period_end": "20081118233318",
+      "period_start": "20040630064600",
+      "subdesc": "ALERT transmitted",
+      "variable": "121.50",
+      "units": "Feet",
+      "name": "Tide Level",
+      "site": "BROOKHURST",
+      "preferred": false
+    },
+    {
+      "period_end": "20200130000000",
+      "period_start": "20100511074304",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "BUENA",
+      "preferred": true
+    },
+    {
+      "period_end": "20100511080000",
+      "period_start": "19260701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "BUENA",
+      "preferred": false
+    },
+    {
+      "period_end": "20190123120000",
+      "period_start": "20060313115924",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CARBON_CREEK",
+      "preferred": true
+    },
+    {
+      "period_end": "20170725101500",
+      "period_start": "20051110114000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "CARBON_CREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20110624173000",
+      "period_start": "20100207011500",
+      "subdesc": "Download",
+      "variable": "232.05",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "CARBON_CREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190123121500",
+      "period_start": "20060314115929",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "CARBON_CREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20100106114500",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "CARBON_CREEK",
+      "preferred": true
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20051111000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "CARBON_CREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20170725101500",
+      "period_start": "20051110114000",
+      "subdesc": "",
+      "variable": "300.00",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "CARBON_CREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20170725101500",
+      "period_start": "20051110114000",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "CARBON_CREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707045329",
+      "period_start": "20040824035407",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CARBON_CYN_DAM",
+      "preferred": true
+    },
+    {
+      "period_end": "20070402050229",
+      "period_start": "20040824035508",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "CARBON_CYN_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707041828",
+      "period_start": "20040825031532",
+      "subdesc": "ALERT download",
+      "variable": "232.51",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "CARBON_CYN_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707045330",
+      "period_start": "20070327091839",
+      "subdesc": "ALERT transmitted",
+      "variable": "235.50",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "CARBON_CYN_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20090601000000",
+      "period_start": "19550701000000",
+      "subdesc": "National weather Service",
+      "variable": "11.02",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CARBON_CYN_GIL",
+      "preferred": true
+    },
+    {
+      "period_end": "20010601000000",
+      "period_start": "19490901000000",
+      "subdesc": "National weather Service",
+      "variable": "11.02",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CARBON_CYN_WORK",
+      "preferred": true
+    },
+    {
+      "period_end": "20141230121719",
+      "period_start": "20111204235640",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CENTRAL_IRVINE",
+      "preferred": true
+    },
+    {
+      "period_end": "20170731125000",
+      "period_start": "20060622080400",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "CENTRAL_IRVINE",
+      "preferred": false
+    },
+    {
+      "period_end": "20151108121105",
+      "period_start": "20071229000304",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "CENTRAL_IRVINE",
+      "preferred": false
+    },
+    {
+      "period_end": "20111027091000",
+      "period_start": "20090602213500",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "CENTRAL_IRVINE",
+      "preferred": false
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20100108114500",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "CENTRAL_IRVINE",
+      "preferred": true
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20050701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "CENTRAL_IRVINE",
+      "preferred": false
+    },
+    {
+      "period_end": "20100107113500",
+      "period_start": "20051122155000",
+      "subdesc": "",
+      "variable": "300.00",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "CENTRAL_IRVINE",
+      "preferred": false
+    },
+    {
+      "period_end": "20170731000000",
+      "period_start": "20051122155000",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "CENTRAL_IRVINE",
+      "preferred": false
+    },
+    {
+      "period_end": "20060520152052",
+      "period_start": "20050516130148",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CHINO",
+      "preferred": true
+    },
+    {
+      "period_end": "20061203133333",
+      "period_start": "20020822065118",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "CHINO",
+      "preferred": false
+    },
+    {
+      "period_end": "20190725055733",
+      "period_start": "20050623133556",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CORONA",
+      "preferred": true
+    },
+    {
+      "period_end": "20050623133556",
+      "period_start": "19590701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CORONA",
+      "preferred": false
+    },
+    {
+      "period_end": "20181211110000",
+      "period_start": "19890701164655",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CORONA",
+      "preferred": false
+    },
+    {
+      "period_end": "20111103084600",
+      "period_start": "20000831000410",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CORONA",
+      "preferred": false
+    },
+    {
+      "period_end": "20190807120000",
+      "period_start": "20050623141255",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "COSTAMESA",
+      "preferred": true
+    },
+    {
+      "period_end": "20050623141254",
+      "period_start": "19550701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "COSTAMESA",
+      "preferred": false
+    },
+    {
+      "period_end": "20181211110000",
+      "period_start": "19900503122705",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "COSTAMESA",
+      "preferred": false
+    },
+    {
+      "period_end": "20091007033600",
+      "period_start": "19910701224940",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "COSTAMESA_CH",
+      "preferred": true
+    },
+    {
+      "period_end": "20190522114500",
+      "period_start": "20000831112500",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "COSTAMESA_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20150729125000",
+      "period_start": "20090701000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "COSTAMESA_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20190522114500",
+      "period_start": "20150701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "COSTAMESA_CH",
+      "preferred": true
+    },
+    {
+      "period_end": "20190701000000",
+      "period_start": "20020701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "COSTAMESA_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20060914000000",
+      "period_start": "20060720000000",
+      "subdesc": "Flume",
+      "variable": "262.03",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "COSTAMESA_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20180323121500",
+      "period_start": "20180108120000",
+      "subdesc": "",
+      "variable": "273.00",
+      "units": "Acre-Feet",
+      "name": "Volume",
+      "site": "COSTAMESA_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20190522114500",
+      "period_start": "20080507073500",
+      "subdesc": "",
+      "variable": "300.00",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "COSTAMESA_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20190522114500",
+      "period_start": "20080507073500",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "COSTAMESA_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20200115120000",
+      "period_start": "20100623000000",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "COSTAMESA_CMWD",
+      "preferred": true
+    },
+    {
+      "period_end": "20150630080000",
+      "period_start": "19780701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "COSTAMESA_CMWD",
+      "preferred": false
+    },
+    {
+      "period_end": "20190521140000",
+      "period_start": "19931001091907",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "COTODECAZA",
+      "preferred": true
+    },
+    {
+      "period_end": "20050727232220",
+      "period_start": "19940804124930",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "COTODECAZA",
+      "preferred": false
+    },
+    {
+      "period_end": "20190828073000",
+      "period_start": "20051019143000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "COYOTE_CREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20180307030000",
+      "period_start": "20060701000543",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "COYOTE_CREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190701000000",
+      "period_start": "20100113141500",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "COYOTE_CREEK",
+      "preferred": true
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "20050701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "COYOTE_CREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190828073000",
+      "period_start": "20060718081500",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "COYOTE_CREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20081104071220",
+      "period_start": "19961030060718",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "CYPRESS",
+      "preferred": true
+    },
+    {
+      "period_end": "20080115085824",
+      "period_start": "19900101011613",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "CYPRESS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190806120000",
+      "period_start": "20140107120000",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "DANAPOINT",
+      "preferred": true
+    },
+    {
+      "period_end": "20200317130000",
+      "period_start": "20080506205220",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "EASTGARDEN",
+      "preferred": true
+    },
+    {
+      "period_end": "20090107012530",
+      "period_start": "20050608020420",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "EASTGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "20190826082500",
+      "period_start": "20061026190113",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "EASTGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "20200317140000",
+      "period_start": "20081028130607",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "EASTGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "20150818122000",
+      "period_start": "20090701000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "EASTGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "20190826082500",
+      "period_start": "20141124131500",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "EASTGARDEN",
+      "preferred": true
+    },
+    {
+      "period_end": "20190825135000",
+      "period_start": "19900701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "EASTGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "19990907015810",
+      "period_start": "19920603000020",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ELCARISO",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521130000",
+      "period_start": "19900606112733",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ELCARISO",
+      "preferred": false
+    },
+    {
+      "period_end": "20050621083800",
+      "period_start": "19911027061200",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ELMODENA",
+      "preferred": true
+    },
+    {
+      "period_end": "20190516090000",
+      "period_start": "19890718121608",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ELMODENA",
+      "preferred": false
+    },
+    {
+      "period_end": "20091007231010",
+      "period_start": "19981110143940",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ELMODENA",
+      "preferred": false
+    },
+    {
+      "period_end": "20091007231010",
+      "period_start": "19981110143940",
+      "subdesc": "ALERT QA",
+      "variable": "11.52",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ELMODENA",
+      "preferred": false
+    },
+    {
+      "period_end": "20180717091500",
+      "period_start": "19900701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ELMODENA",
+      "preferred": false
+    },
+    {
+      "period_end": "20190516090000",
+      "period_start": "20031031121208",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ELMODENA",
+      "preferred": false
+    },
+    {
+      "period_end": "20150701000000",
+      "period_start": "20140701000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "ELMODENA",
+      "preferred": false
+    },
+    {
+      "period_end": "20180717091500",
+      "period_start": "20080701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "ELMODENA",
+      "preferred": true
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "19900701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "ELMODENA",
+      "preferred": false
+    },
+    {
+      "period_end": "20180717091500",
+      "period_start": "20060907151500",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "ELMODENA",
+      "preferred": false
+    },
+    {
+      "period_end": "20190730000000",
+      "period_start": "20061114101205",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ELTORO",
+      "preferred": true
+    },
+    {
+      "period_end": "20061114101205",
+      "period_start": "19640701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ELTORO",
+      "preferred": false
+    },
+    {
+      "period_end": "20150917021358",
+      "period_start": "19900124135401",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_AP",
+      "preferred": true
+    },
+    {
+      "period_end": "20070925011650",
+      "period_start": "19920709004720",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_AP",
+      "preferred": false
+    },
+    {
+      "period_end": "19990616104050",
+      "period_start": "19951129191030",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_BEACH",
+      "preferred": true
+    },
+    {
+      "period_end": "20200318140000",
+      "period_start": "20031028113505",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_BEACH",
+      "preferred": false
+    },
+    {
+      "period_end": "20200318140000",
+      "period_start": "20031028113504",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "FULLERTON_BEACH",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707010921",
+      "period_start": "20040824000528",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_DAM",
+      "preferred": true
+    },
+    {
+      "period_end": "20070402075735",
+      "period_start": "20040824000628",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "FULLERTON_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707065303",
+      "period_start": "20040823095556",
+      "subdesc": "ALERT download",
+      "variable": "232.51",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "FULLERTON_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707010921",
+      "period_start": "20040824000628",
+      "subdesc": "ALERT transmitted",
+      "variable": "235.50",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "FULLERTON_DAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20200219000000",
+      "period_start": "20100219212219",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_RES",
+      "preferred": true
+    },
+    {
+      "period_end": "20100701080000",
+      "period_start": "19310701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_RES",
+      "preferred": false
+    },
+    {
+      "period_end": "20040806095300",
+      "period_start": "19920708152300",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_RICH",
+      "preferred": true
+    },
+    {
+      "period_end": "20181212070000",
+      "period_start": "19890701132315",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_RICH",
+      "preferred": false
+    },
+    {
+      "period_end": "20090114004410",
+      "period_start": "20071003215850",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_RICH",
+      "preferred": false
+    },
+    {
+      "period_end": "20121022072628",
+      "period_start": "19970620003810",
+      "subdesc": "ALERT QA",
+      "variable": "11.52",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_RICH",
+      "preferred": false
+    },
+    {
+      "period_end": "20160712123000",
+      "period_start": "19900701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "FULLERTON_RICH",
+      "preferred": false
+    },
+    {
+      "period_end": "20181212063000",
+      "period_start": "20051017102547",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "FULLERTON_RICH",
+      "preferred": false
+    },
+    {
+      "period_end": "20110723181000",
+      "period_start": "20090701000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "FULLERTON_RICH",
+      "preferred": false
+    },
+    {
+      "period_end": "20160712123000",
+      "period_start": "20120601000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "FULLERTON_RICH",
+      "preferred": true
+    },
+    {
+      "period_end": "20160701000000",
+      "period_start": "19900701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "FULLERTON_RICH",
+      "preferred": false
+    },
+    {
+      "period_end": "20180307020000",
+      "period_start": "20150909123102",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "FULLERTON_VLLYV",
+      "preferred": true
+    },
+    {
+      "period_end": "20190701000000",
+      "period_start": "20100105000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "FULLERTON_VLLYV",
+      "preferred": false
+    },
+    {
+      "period_end": "20180307034500",
+      "period_start": "20150909123102",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "FULLERTON_VLLYV",
+      "preferred": false
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20100105151500",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "FULLERTON_VLLYV",
+      "preferred": false
+    },
+    {
+      "period_end": "20190701000000",
+      "period_start": "20100106000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "FULLERTON_VLLYV",
+      "preferred": true
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20090701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "FULLERTON_VLLYV",
+      "preferred": false
+    },
+    {
+      "period_end": "20080623160000",
+      "period_start": "20080623155959",
+      "subdesc": "",
+      "variable": "300.00",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "FULLERTON_VLLYV",
+      "preferred": false
+    },
+    {
+      "period_end": "20111020120500",
+      "period_start": "20080623160000",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "FULLERTON_VLLYV",
+      "preferred": false
+    },
+    {
+      "period_end": "20181212070000",
+      "period_start": "19900721205448",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "GARDENGROVE",
+      "preferred": true
+    },
+    {
+      "period_end": "20100902020900",
+      "period_start": "19910701104010",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "GARDENGROVE",
+      "preferred": false
+    },
+    {
+      "period_end": "20190730120000",
+      "period_start": "20050317080000",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "GARDENGROVEFIRE",
+      "preferred": true
+    },
+    {
+      "period_end": "20050316080000",
+      "period_start": "19850701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "GARDENGROVEFIRE",
+      "preferred": false
+    },
+    {
+      "period_end": "20180124110000",
+      "period_start": "20171107000000",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "GARDENGROVEFIRE",
+      "preferred": false
+    },
+    {
+      "period_end": "20070423031150",
+      "period_start": "20020901081133",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "GAVILANHILLS",
+      "preferred": true
+    },
+    {
+      "period_end": "20040226200551",
+      "period_start": "19910701074910",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "GILBERT",
+      "preferred": true
+    },
+    {
+      "period_end": "20150917012702",
+      "period_start": "19900719100147",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "GILBERT",
+      "preferred": false
+    },
+    {
+      "period_end": "20190912032624",
+      "period_start": "20101001091220",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "GLASSELL",
+      "preferred": true
+    },
+    {
+      "period_end": "20181227002725",
+      "period_start": "20171101093626",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227002725",
+      "period_start": "20171101093626",
+      "subdesc": "",
+      "variable": "300.00",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227112626",
+      "period_start": "20171101003726",
+      "subdesc": "ALERT transmitted",
+      "variable": "401.50",
+      "units": "Degrees Fahrenheit",
+      "name": "Dry Bulb Temperature",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227112626",
+      "period_start": "20171101103226",
+      "subdesc": "ALERT transmitted",
+      "variable": "430.50",
+      "units": "Percent",
+      "name": "Humidity",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227113626",
+      "period_start": "20171101103526",
+      "subdesc": "",
+      "variable": "442.21",
+      "units": "",
+      "name": "Soil Moisture Percentage",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227113626",
+      "period_start": "20171101103526",
+      "subdesc": "",
+      "variable": "442.22",
+      "units": "",
+      "name": "Soil Moisture Percentage",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227113626",
+      "period_start": "20171101213625",
+      "subdesc": "",
+      "variable": "442.23",
+      "units": "",
+      "name": "Soil Moisture Percentage",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227113626",
+      "period_start": "20171101213625",
+      "subdesc": "",
+      "variable": "442.24",
+      "units": "",
+      "name": "Soil Moisture Percentage",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227113726",
+      "period_start": "20171101103226",
+      "subdesc": "ALERT transmitted",
+      "variable": "500.50",
+      "units": "Degrees",
+      "name": "Wind Direction",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227113726",
+      "period_start": "20171101103226",
+      "subdesc": "",
+      "variable": "511.00",
+      "units": "Miles per Hour",
+      "name": "Wind Speed",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227112626",
+      "period_start": "20171101103625",
+      "subdesc": "ALERT transmitted",
+      "variable": "551.50",
+      "units": "Millibar",
+      "name": "Station Level Pressure (mbar)",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20181227112626",
+      "period_start": "20171101103625",
+      "subdesc": "ALERT transmitted",
+      "variable": "750.50",
+      "units": "Watts/Square Metre",
+      "name": "Solar Radiation Intensity",
+      "site": "GLASSELL",
+      "preferred": false
+    },
+    {
+      "period_end": "20081104072648",
+      "period_start": "19961021044444",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "HARBOR_EDINGER",
+      "preferred": true
+    },
+    {
+      "period_end": "20070813111532",
+      "period_start": "19961021061446",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "HARBOR_EDINGER",
+      "preferred": false
+    },
+    {
+      "period_end": "20200130000000",
+      "period_start": "20141130105607",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "HASTERBASIN",
+      "preferred": true
+    },
+    {
+      "period_end": "20180913120000",
+      "period_start": "20071205122005",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "HICKS_CYN",
+      "preferred": true
+    },
+    {
+      "period_end": "20200305120000",
+      "period_start": "20181023011143",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "HOLY_JIM_CYN",
+      "preferred": true
+    },
+    {
+      "period_end": "20151008101500",
+      "period_start": "20150428000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "HORNO_OUT",
+      "preferred": false
+    },
+    {
+      "period_end": "20190114090000",
+      "period_start": "20150428000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "HORNO_OUT",
+      "preferred": true
+    },
+    {
+      "period_end": "20190808000000",
+      "period_start": "20110905030910",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "HUNTINGTON",
+      "preferred": true
+    },
+    {
+      "period_end": "20080501042217",
+      "period_start": "19970415085007",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "HUNTINGTON",
+      "preferred": false
+    },
+    {
+      "period_end": "20190928144155",
+      "period_start": "20100630000000",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "IRVINE_JEFFREY",
+      "preferred": true
+    },
+    {
+      "period_end": "20200305140000",
+      "period_start": "20080923125325",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "IRVINELAKE",
+      "preferred": true
+    },
+    {
+      "period_end": "20050501000000",
+      "period_start": "20050203000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "IRVINELAKE",
+      "preferred": false
+    },
+    {
+      "period_end": "20050501000000",
+      "period_start": "20050203000000",
+      "subdesc": "ALERT transmitted",
+      "variable": "233.50",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "IRVINELAKE",
+      "preferred": false
+    },
+    {
+      "period_end": "20030630235500",
+      "period_start": "20020701000000",
+      "subdesc": "",
+      "variable": "235.00",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "IRVINELAKE",
+      "preferred": false
+    },
+    {
+      "period_end": "20200305140000",
+      "period_start": "20040707044017",
+      "subdesc": "ALERT transmitted",
+      "variable": "235.50",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "IRVINELAKE",
+      "preferred": false
+    },
+    {
+      "period_end": "20151229103000",
+      "period_start": "20151105110500",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "J01P27",
+      "preferred": false
+    },
+    {
+      "period_end": "20151229102500",
+      "period_start": "20151105110500",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "J01P27",
+      "preferred": false
+    },
+    {
+      "period_end": "20151229102500",
+      "period_start": "20151105110500",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "J01P27",
+      "preferred": true
+    },
+    {
+      "period_end": "20160701000000",
+      "period_start": "20150701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "J01P27",
+      "preferred": false
+    },
+    {
+      "period_end": "20050607221130",
+      "period_start": "19911110154730",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "KATELLAYARD",
+      "preferred": true
+    },
+    {
+      "period_end": "20081029092636",
+      "period_start": "19890701102721",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "KATELLAYARD",
+      "preferred": false
+    },
+    {
+      "period_end": "20080925135910",
+      "period_start": "19910507001630",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LACOUAQUE",
+      "preferred": true
+    },
+    {
+      "period_end": "20170815191218",
+      "period_start": "19900501103234",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LACOUAQUE",
+      "preferred": false
+    },
+    {
+      "period_end": "20050713000110",
+      "period_start": "19940315005250",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNA_AUDUBON",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521140000",
+      "period_start": "19891229014829",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNA_AUDUBON",
+      "preferred": false
+    },
+    {
+      "period_end": "20101103032311",
+      "period_start": "19920403144426",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "LAGUNA_AUDUBON",
+      "preferred": false
+    },
+    {
+      "period_end": "20090706101845",
+      "period_start": "20071016055732",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNA_CYN_RPTR",
+      "preferred": true
+    },
+    {
+      "period_end": "20180803000000",
+      "period_start": "19910701031020",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNA_NIGUEL",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521140000",
+      "period_start": "19910530225931",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNA_NIGUEL",
+      "preferred": false
+    },
+    {
+      "period_end": "20100701080000",
+      "period_start": "19280701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNA_TREAT",
+      "preferred": true
+    },
+    {
+      "period_end": "20081002102220",
+      "period_start": "19960122053520",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521122459",
+      "period_start": "19900130154241",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": false
+    },
+    {
+      "period_end": "20111215111600",
+      "period_start": "19990803135940",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": false
+    },
+    {
+      "period_end": "20101013125400",
+      "period_start": "19990803135940",
+      "subdesc": "ALERT QA",
+      "variable": "11.52",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": false
+    },
+    {
+      "period_end": "20120701000000",
+      "period_start": "19900701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": false
+    },
+    {
+      "period_end": "20190521122459",
+      "period_start": "19950401002417",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": false
+    },
+    {
+      "period_end": "20120630235500",
+      "period_start": "20090701000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": false
+    },
+    {
+      "period_end": "20120701000000",
+      "period_start": "19900701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": true
+    },
+    {
+      "period_end": "20120701000000",
+      "period_start": "20051130143000",
+      "subdesc": "",
+      "variable": "300.00",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": false
+    },
+    {
+      "period_end": "20120701000000",
+      "period_start": "20051130143000",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": false
+    },
+    {
+      "period_end": "20190814120000",
+      "period_start": "20100629075819",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAGUNABEACH",
+      "preferred": true
+    },
+    {
+      "period_end": "20050713100720",
+      "period_start": "19910701121450",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAMBERT",
+      "preferred": true
+    },
+    {
+      "period_end": "20071129071425",
+      "period_start": "19890701093846",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LAMBERT",
+      "preferred": false
+    },
+    {
+      "period_end": "20170810073500",
+      "period_start": "20050614134000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "LANE",
+      "preferred": false
+    },
+    {
+      "period_end": "20121105000000",
+      "period_start": "20120523163000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "LANE",
+      "preferred": false
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20140701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "LANE",
+      "preferred": true
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20040701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "LANE",
+      "preferred": false
+    },
+    {
+      "period_end": "20030827014110",
+      "period_start": "20030316014110",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LOMARIDGE",
+      "preferred": true
+    },
+    {
+      "period_end": "20160406200125",
+      "period_start": "20000215101714",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LOMARIDGE",
+      "preferred": false
+    },
+    {
+      "period_end": "20160406051706",
+      "period_start": "20000612155755",
+      "subdesc": "ALERT transmitted",
+      "variable": "511.50",
+      "units": "Miles per Hour",
+      "name": "Wind Speed",
+      "site": "LOMARIDGE",
+      "preferred": false
+    },
+    {
+      "period_end": "20070701080000",
+      "period_start": "19580701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LOSALAMITOS",
+      "preferred": true
+    },
+    {
+      "period_end": "20081104072247",
+      "period_start": "19930302140132",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LOSALAMITOS",
+      "preferred": false
+    },
+    {
+      "period_end": "20071113073427",
+      "period_start": "19930302140132",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "LOSALAMITOS",
+      "preferred": false
+    },
+    {
+      "period_end": "20030807081710",
+      "period_start": "19990428232740",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LOWEROSO",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521130000",
+      "period_start": "20011114140336",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LOWEROSO",
+      "preferred": false
+    },
+    {
+      "period_end": "20170718104000",
+      "period_start": "20000701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "LOWEROSO",
+      "preferred": false
+    },
+    {
+      "period_end": "20190520210936",
+      "period_start": "20040630132341",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "LOWEROSO",
+      "preferred": false
+    },
+    {
+      "period_end": "20160218123500",
+      "period_start": "20150701000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "LOWEROSO",
+      "preferred": false
+    },
+    {
+      "period_end": "20170718104000",
+      "period_start": "20100701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "LOWEROSO",
+      "preferred": true
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "19990701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "LOWEROSO",
+      "preferred": false
+    },
+    {
+      "period_end": "20040126024520",
+      "period_start": "19910701002350",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LOWERSILVERADO",
+      "preferred": true
+    },
+    {
+      "period_end": "20200305140000",
+      "period_start": "19910116122943",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LOWERSILVERADO",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707064153",
+      "period_start": "20021126024600",
+      "subdesc": "ALERT transmitted",
+      "variable": "121.50",
+      "units": "Feet",
+      "name": "Tide Level",
+      "site": "MAGNOLIA",
+      "preferred": false
+    },
+    {
+      "period_end": "20130422050429",
+      "period_start": "20040630142618",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "MARSHBURN",
+      "preferred": true
+    },
+    {
+      "period_end": "20130422050429",
+      "period_start": "20020813051804",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "MARSHBURN",
+      "preferred": false
+    },
+    {
+      "period_end": "20120630224500",
+      "period_start": "20080930230000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "MARSHBURN",
+      "preferred": true
+    },
+    {
+      "period_end": "20120701000000",
+      "period_start": "20081101000000",
+      "subdesc": "",
+      "variable": "851.00",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "MARSHBURN",
+      "preferred": false
+    },
+    {
+      "period_end": "20120621083000",
+      "period_start": "20021220073000",
+      "subdesc": "Download",
+      "variable": "851.05",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "MARSHBURN",
+      "preferred": false
+    },
+    {
+      "period_end": "20040814024900",
+      "period_start": "19911220171200",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "MILLER",
+      "preferred": true
+    },
+    {
+      "period_end": "20090707023347",
+      "period_start": "19890701082836",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "MILLER",
+      "preferred": false
+    },
+    {
+      "period_end": "20070402043158",
+      "period_start": "20020717090935",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "MILLER",
+      "preferred": false
+    },
+    {
+      "period_end": "20090604153603",
+      "period_start": "20020717090935",
+      "subdesc": "ALERT transmitted",
+      "variable": "235.50",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "MILLER",
+      "preferred": false
+    },
+    {
+      "period_end": "20040818103250",
+      "period_start": "19910701030610",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "MODJESKA_CANYON",
+      "preferred": true
+    },
+    {
+      "period_end": "20190618110000",
+      "period_start": "19970130173429",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "MODJESKA_CANYON",
+      "preferred": false
+    },
+    {
+      "period_end": "20190618110000",
+      "period_start": "20071015055227",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "MOULTON_PEAK",
+      "preferred": true
+    },
+    {
+      "period_end": "20190618091104",
+      "period_start": "20080124235900",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "NEWPORT_COAST",
+      "preferred": true
+    },
+    {
+      "period_end": "20190618105657",
+      "period_start": "20080124235900",
+      "subdesc": "ALERT transmitted",
+      "variable": "401.50",
+      "units": "Degrees Fahrenheit",
+      "name": "Dry Bulb Temperature",
+      "site": "NEWPORT_COAST",
+      "preferred": false
+    },
+    {
+      "period_end": "20190618111815",
+      "period_start": "20080124235900",
+      "subdesc": "ALERT transmitted",
+      "variable": "511.50",
+      "units": "Miles per Hour",
+      "name": "Wind Speed",
+      "site": "NEWPORT_COAST",
+      "preferred": false
+    },
+    {
+      "period_end": "20190321123917",
+      "period_start": "20100630000000",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "NEWPORTBEACH",
+      "preferred": true
+    },
+    {
+      "period_end": "20100630080000",
+      "period_start": "19210701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "NEWPORTBEACH",
+      "preferred": false
+    },
+    {
+      "period_end": "19970109111410",
+      "period_start": "19910701102910",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "OAKFLAT",
+      "preferred": true
+    },
+    {
+      "period_end": "20030330065120",
+      "period_start": "19960114235342",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "OAKFLAT",
+      "preferred": false
+    },
+    {
+      "period_end": "20200305080051",
+      "period_start": "20171107114451",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "OCEANINSTITUTE",
+      "preferred": true
+    },
+    {
+      "period_end": "20200305085551",
+      "period_start": "20171107153551",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "OCEANINSTITUTE",
+      "preferred": false
+    },
+    {
+      "period_end": "20200305040051",
+      "period_start": "20171107114451",
+      "subdesc": "",
+      "variable": "300.00",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "OCEANINSTITUTE",
+      "preferred": false
+    },
+    {
+      "period_end": "20200305085551",
+      "period_start": "20171105125351",
+      "subdesc": "ALERT transmitted",
+      "variable": "401.50",
+      "units": "Degrees Fahrenheit",
+      "name": "Dry Bulb Temperature",
+      "site": "OCEANINSTITUTE",
+      "preferred": false
+    },
+    {
+      "period_end": "20200305080051",
+      "period_start": "20180307083251",
+      "subdesc": "ALERT transmitted",
+      "variable": "430.50",
+      "units": "Percent",
+      "name": "Humidity",
+      "site": "OCEANINSTITUTE",
+      "preferred": false
+    },
+    {
+      "period_end": "20200305084551",
+      "period_start": "20171105153051",
+      "subdesc": "ALERT transmitted",
+      "variable": "500.50",
+      "units": "Degrees",
+      "name": "Wind Direction",
+      "site": "OCEANINSTITUTE",
+      "preferred": false
+    },
+    {
+      "period_end": "20200305084551",
+      "period_start": "20171105153051",
+      "subdesc": "ALERT transmitted",
+      "variable": "511.50",
+      "units": "Miles per Hour",
+      "name": "Wind Speed",
+      "site": "OCEANINSTITUTE",
+      "preferred": false
+    },
+    {
+      "period_end": "20200305080051",
+      "period_start": "20180307090051",
+      "subdesc": "ALERT transmitted",
+      "variable": "551.50",
+      "units": "Millibar",
+      "name": "Station Level Pressure (mbar)",
+      "site": "OCEANINSTITUTE",
+      "preferred": false
+    },
+    {
+      "period_end": "20060831075730",
+      "period_start": "19970813013020",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "OCEANVIEW",
+      "preferred": true
+    },
+    {
+      "period_end": "20090707063454",
+      "period_start": "19931001083717",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "OCEANVIEW",
+      "preferred": false
+    },
+    {
+      "period_end": "20070701000000",
+      "period_start": "19940701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "OCEANVIEW",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707063454",
+      "period_start": "20040909190243",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "OCEANVIEW",
+      "preferred": false
+    },
+    {
+      "period_end": "20070701000000",
+      "period_start": "19940701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "OCEANVIEW",
+      "preferred": true
+    },
+    {
+      "period_end": "20130630080000",
+      "period_start": "19280701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ORANGE",
+      "preferred": true
+    },
+    {
+      "period_end": "20090601000000",
+      "period_start": "19480701000000",
+      "subdesc": "National weather Service",
+      "variable": "11.02",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ORANGE_RES",
+      "preferred": true
+    },
+    {
+      "period_end": "20050712080210",
+      "period_start": "19940715022510",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "OSO_CROWN",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521140000",
+      "period_start": "19890701080748",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "OSO_CROWN",
+      "preferred": false
+    },
+    {
+      "period_end": "20030630235500",
+      "period_start": "19910701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "OSO_CROWN",
+      "preferred": false
+    },
+    {
+      "period_end": "20070206081244",
+      "period_start": "20030107120832",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "OSO_CROWN",
+      "preferred": false
+    },
+    {
+      "period_end": "20030701000000",
+      "period_start": "19910701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "OSO_CROWN",
+      "preferred": true
+    },
+    {
+      "period_end": "20190805120000",
+      "period_start": "20100630000000",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PALISADES",
+      "preferred": true
+    },
+    {
+      "period_end": "20100630080000",
+      "period_start": "19650701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PALISADES",
+      "preferred": false
+    },
+    {
+      "period_end": "20040810025510",
+      "period_start": "19920213235230",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PETERS",
+      "preferred": true
+    },
+    {
+      "period_end": "20190516090000",
+      "period_start": "19890701130006",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PETERS",
+      "preferred": false
+    },
+    {
+      "period_end": "20040810025510",
+      "period_start": "20020726140110",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PETERS",
+      "preferred": false
+    },
+    {
+      "period_end": "20040810025510",
+      "period_start": "20020726140110",
+      "subdesc": "ALERT QA",
+      "variable": "11.52",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PETERS",
+      "preferred": false
+    },
+    {
+      "period_end": "20180811032500",
+      "period_start": "19900701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "PETERS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190516090000",
+      "period_start": "20031224135651",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "PETERS",
+      "preferred": false
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "19900701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "PETERS",
+      "preferred": true
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20040701000000",
+      "subdesc": "",
+      "variable": "851.00",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "PETERS",
+      "preferred": false
+    },
+    {
+      "period_end": "20170628081000",
+      "period_start": "19990706100500",
+      "subdesc": "Download",
+      "variable": "851.05",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "PETERS",
+      "preferred": false
+    },
+    {
+      "period_end": "20030919214120",
+      "period_start": "19940714134640",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PICO",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521083648",
+      "period_start": "19930121103332",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PICO",
+      "preferred": false
+    },
+    {
+      "period_end": "20170927211216",
+      "period_start": "19890701122419",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PORTOLA",
+      "preferred": true
+    },
+    {
+      "period_end": "20080929122910",
+      "period_start": "19910701124810",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PORTOLA",
+      "preferred": false
+    },
+    {
+      "period_end": "20090601000000",
+      "period_start": "19480701000000",
+      "subdesc": "National weather Service",
+      "variable": "11.02",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PRADO_DAM",
+      "preferred": true
+    },
+    {
+      "period_end": "20030615134720",
+      "period_start": "19940706111220",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PRADO_OUTFLOW",
+      "preferred": true
+    },
+    {
+      "period_end": "20050504074720",
+      "period_start": "19890701091831",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PRADO_OUTFLOW",
+      "preferred": false
+    },
+    {
+      "period_end": "20050323030243",
+      "period_start": "19900101075503",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "PRADO_OUTFLOW",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707065603",
+      "period_start": "20050111133227",
+      "subdesc": "ALERT download",
+      "variable": "232.51",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "PRADO_OUTFLOW",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707065533",
+      "period_start": "20040630070453",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "PRADODAM",
+      "preferred": true
+    },
+    {
+      "period_end": "20070402070333",
+      "period_start": "20040630070553",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "PRADODAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707065533",
+      "period_start": "20040630070553",
+      "subdesc": "ALERT transmitted",
+      "variable": "235.50",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "PRADODAM",
+      "preferred": false
+    },
+    {
+      "period_end": "20150716104500",
+      "period_start": "20000830000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "PRIMADESHECHA",
+      "preferred": false
+    },
+    {
+      "period_end": "20110718132000",
+      "period_start": "20090620075000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "PRIMADESHECHA",
+      "preferred": false
+    },
+    {
+      "period_end": "20120701000000",
+      "period_start": "20040701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "PRIMADESHECHA",
+      "preferred": true
+    },
+    {
+      "period_end": "20120126151000",
+      "period_start": "20111216141500",
+      "subdesc": "",
+      "variable": "300.00",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "PRIMADESHECHA",
+      "preferred": false
+    },
+    {
+      "period_end": "20141015000000",
+      "period_start": "20111216141500",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "PRIMADESHECHA",
+      "preferred": false
+    },
+    {
+      "period_end": "20071021202837",
+      "period_start": "20071021082149",
+      "subdesc": "ALERT transmitted",
+      "variable": "235.50",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "RAYMOND",
+      "preferred": false
+    },
+    {
+      "period_end": "20070907105318",
+      "period_start": "19890701133447",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "RIVERSIDE",
+      "preferred": true
+    },
+    {
+      "period_end": "20060118230052",
+      "period_start": "20020918130304",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "ROSSMORE",
+      "preferred": true
+    },
+    {
+      "period_end": "20040414235307",
+      "period_start": "20021011101045",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "ROSSMORE",
+      "preferred": false
+    },
+    {
+      "period_end": "20060119060055",
+      "period_start": "20050526132310",
+      "subdesc": "ALERT transmitted",
+      "variable": "511.50",
+      "units": "Miles per Hour",
+      "name": "Wind Speed",
+      "site": "ROSSMORE",
+      "preferred": false
+    },
+    {
+      "period_end": "20150603112000",
+      "period_start": "20150414011000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SALTCRK",
+      "preferred": false
+    },
+    {
+      "period_end": "20090706213511",
+      "period_start": "19890701134546",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANANTONIO",
+      "preferred": true
+    },
+    {
+      "period_end": "20050713003030",
+      "period_start": "19890413204930",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANDCANYON",
+      "preferred": true
+    },
+    {
+      "period_end": "20190516090000",
+      "period_start": "19890701204818",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANDCANYON",
+      "preferred": false
+    },
+    {
+      "period_end": "20120925191504",
+      "period_start": "20010621160912",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANDCANYON_CH",
+      "preferred": true
+    },
+    {
+      "period_end": "20121126040136",
+      "period_start": "20040630144221",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANDCANYON_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20110630224500",
+      "period_start": "20071104121500",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SANDCANYON_CH",
+      "preferred": true
+    },
+    {
+      "period_end": "20050930000000",
+      "period_start": "20040701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SANDCANYON_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20110408013000",
+      "period_start": "20071101000000",
+      "subdesc": "",
+      "variable": "851.00",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "SANDCANYON_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20110629120500",
+      "period_start": "20010108160000",
+      "subdesc": "Download",
+      "variable": "851.05",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "SANDCANYON_CH",
+      "preferred": false
+    },
+    {
+      "period_end": "20050601090640",
+      "period_start": "19910701105720",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": true
+    },
+    {
+      "period_end": "20190516090000",
+      "period_start": "19900327232602",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20111115122620",
+      "period_start": "19980825131040",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20091007171350",
+      "period_start": "19980825131040",
+      "subdesc": "ALERT QA",
+      "variable": "11.52",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20180710210000",
+      "period_start": "19910701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190516090000",
+      "period_start": "20030731054210",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20140701123500",
+      "period_start": "20120701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": true
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "19890701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190516090000",
+      "period_start": "20180911102632",
+      "subdesc": "ALERT transmitted",
+      "variable": "300.50",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190502164500",
+      "period_start": "20180531060900",
+      "subdesc": "ALERT transmitted",
+      "variable": "450.50",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190123152500",
+      "period_start": "20180531060900",
+      "subdesc": "ALERT transmitted",
+      "variable": "551.50",
+      "units": "Millibar",
+      "name": "Station Level Pressure (mbar)",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190502164500",
+      "period_start": "20180531060900",
+      "subdesc": "ALERT transmitted",
+      "variable": "800.50",
+      "units": "Milligrams/Litre",
+      "name": "Salinity (Total Dissolved Salts)",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20160920102500",
+      "period_start": "20121023104000",
+      "subdesc": "",
+      "variable": "810.00",
+      "units": "NTU",
+      "name": "Turbidity",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190502164500",
+      "period_start": "20180531060900",
+      "subdesc": "ALERT transmitted",
+      "variable": "810.50",
+      "units": "NTU",
+      "name": "Turbidity",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20181221051500",
+      "period_start": "20180531060900",
+      "subdesc": "ALERT transmitted",
+      "variable": "821.50",
+      "units": "MicroSiemens/Cm",
+      "name": "Conductivity",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20040701000000",
+      "subdesc": "",
+      "variable": "851.00",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20170628105000",
+      "period_start": "20040701134000",
+      "subdesc": "Download",
+      "variable": "851.05",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190330140500",
+      "period_start": "20180531060900",
+      "subdesc": "ALERT transmitted",
+      "variable": "2100.50",
+      "units": "pH units",
+      "name": "pH",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190502164500",
+      "period_start": "20180531060900",
+      "subdesc": "ALERT transmitted",
+      "variable": "2102.50",
+      "units": "Millivolts",
+      "name": "Oxygen Reductn Pot (REDOX)",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190502164500",
+      "period_start": "20180531060900",
+      "subdesc": "ALERT transmitted",
+      "variable": "2169.50",
+      "units": "Milligrams/Litre",
+      "name": "Total Dissolved Solids (calc)",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190502164500",
+      "period_start": "20180531060900",
+      "subdesc": "ALERT transmitted",
+      "variable": "2172.50",
+      "units": "Milligrams/Litre",
+      "name": "Total Suspended Solids",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20190502164500",
+      "period_start": "20180531060900",
+      "subdesc": "ALERT transmitted",
+      "variable": "2351.50",
+      "units": "Milligrams/Litre",
+      "name": "Oxygen (Dissolved)",
+      "site": "SANDIEGO_CAMPUS",
+      "preferred": false
+    },
+    {
+      "period_end": "20050621065920",
+      "period_start": "19930302145130",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANDIEGO_CULVER",
+      "preferred": true
+    },
+    {
+      "period_end": "20170927195944",
+      "period_start": "19900426115423",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANDIEGO_CULVER",
+      "preferred": false
+    },
+    {
+      "period_end": "20091007115530",
+      "period_start": "20010719015920",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANDIEGO_CULVER",
+      "preferred": false
+    },
+    {
+      "period_end": "20180708104500",
+      "period_start": "19910701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANDIEGO_CULVER",
+      "preferred": false
+    },
+    {
+      "period_end": "20170928013541",
+      "period_start": "20040630134659",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANDIEGO_CULVER",
+      "preferred": false
+    },
+    {
+      "period_end": "20140701115000",
+      "period_start": "20100701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SANDIEGO_CULVER",
+      "preferred": true
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "19910701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SANDIEGO_CULVER",
+      "preferred": false
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20040701000000",
+      "subdesc": "",
+      "variable": "851.00",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "SANDIEGO_CULVER",
+      "preferred": false
+    },
+    {
+      "period_end": "20170628084000",
+      "period_start": "19990706102000",
+      "subdesc": "Download",
+      "variable": "851.05",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "SANDIEGO_CULVER",
+      "preferred": false
+    },
+    {
+      "period_end": "20030926013950",
+      "period_start": "19941026123540",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANJUAN_CAP",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521094131",
+      "period_start": "19890701174610",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANJUAN_CAP",
+      "preferred": false
+    },
+    {
+      "period_end": "20111220101510",
+      "period_start": "20101013221200",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANJUAN_CAP",
+      "preferred": false
+    },
+    {
+      "period_end": "20180701224500",
+      "period_start": "20130630230000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANJUAN_CAP",
+      "preferred": false
+    },
+    {
+      "period_end": "20190521094131",
+      "period_start": "19930301015444",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANJUAN_CAP",
+      "preferred": false
+    },
+    {
+      "period_end": "20181001000000",
+      "period_start": "20040701000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SANJUAN_CAP",
+      "preferred": true
+    },
+    {
+      "period_end": "20181001000000",
+      "period_start": "20100101000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SANJUAN_CAP",
+      "preferred": false
+    },
+    {
+      "period_end": "20050707213700",
+      "period_start": "19941025222920",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANJUAN_GUARD",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521034529",
+      "period_start": "19890701105220",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANJUAN_GUARD",
+      "preferred": false
+    },
+    {
+      "period_end": "20050622093130",
+      "period_start": "19941220095700",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTAANA_DELHI",
+      "preferred": true
+    },
+    {
+      "period_end": "20190123110039",
+      "period_start": "19891012142612",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20091007063600",
+      "period_start": "19960711224250",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20091007063600",
+      "period_start": "19960711224250",
+      "subdesc": "ALERT QA",
+      "variable": "11.52",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20180821103500",
+      "period_start": "19910701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20190123110039",
+      "period_start": "20040630104430",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20150710091000",
+      "period_start": "20140701000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20151027092500",
+      "period_start": "20101224231500",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SANTAANA_DELHI",
+      "preferred": true
+    },
+    {
+      "period_end": "20180701000000",
+      "period_start": "19910701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20111108092000",
+      "period_start": "20070701000000",
+      "subdesc": "",
+      "variable": "300.00",
+      "units": "Volts",
+      "name": "Logger Battery Voltage",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20111108092000",
+      "period_start": "20070701000000",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20121224231000",
+      "period_start": "20040701000000",
+      "subdesc": "",
+      "variable": "851.00",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20130702083500",
+      "period_start": "20040701145000",
+      "subdesc": "Download",
+      "variable": "851.05",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "SANTAANA_DELHI",
+      "preferred": false
+    },
+    {
+      "period_end": "20030925094130",
+      "period_start": "19930112104940",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTAANA_ENG",
+      "preferred": true
+    },
+    {
+      "period_end": "20190313140000",
+      "period_start": "19890705094442",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTAANA_ENG",
+      "preferred": false
+    },
+    {
+      "period_end": "20200131000000",
+      "period_start": "20100219214551",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTANA",
+      "preferred": true
+    },
+    {
+      "period_end": "20170630080000",
+      "period_start": "19080701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTANA",
+      "preferred": false
+    },
+    {
+      "period_end": "20050722004720",
+      "period_start": "19971113042130",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTIAGO_ANA",
+      "preferred": true
+    },
+    {
+      "period_end": "20160112210507",
+      "period_start": "19971112155027",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTIAGO_ANA",
+      "preferred": false
+    },
+    {
+      "period_end": "20151231123319",
+      "period_start": "20040912121555",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANTIAGO_ANA",
+      "preferred": false
+    },
+    {
+      "period_end": "20010601000000",
+      "period_start": "19480701000000",
+      "subdesc": "National weather Service",
+      "variable": "11.02",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTIAGO_DAM",
+      "preferred": true
+    },
+    {
+      "period_end": "20030306022300",
+      "period_start": "19930125230200",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTIAGO_E08",
+      "preferred": true
+    },
+    {
+      "period_end": "20181101120000",
+      "period_start": "19931001002943",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTIAGO_E08",
+      "preferred": false
+    },
+    {
+      "period_end": "20180124083107",
+      "period_start": "19930114141855",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SANTIAGO_E08",
+      "preferred": false
+    },
+    {
+      "period_end": "20190129120000",
+      "period_start": "19910701001150",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTIAGOPEAK",
+      "preferred": true
+    },
+    {
+      "period_end": "20150630080000",
+      "period_start": "19490701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTIAGOPEAK",
+      "preferred": false
+    },
+    {
+      "period_end": "20030204095500",
+      "period_start": "19940713171840",
+      "subdesc": "National weather Service",
+      "variable": "11.02",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTIAGOPEAK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190222120000",
+      "period_start": "19970412135101",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTIAGOPEAK",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707033227",
+      "period_start": "19890701175749",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SANTIAGOPEAK",
+      "preferred": false
+    },
+    {
+      "period_end": "20030204080520",
+      "period_start": "19981020224230",
+      "subdesc": "",
+      "variable": "12.00",
+      "units": "Inches",
+      "name": "Snow Melt",
+      "site": "SANTIAGOPEAK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190205080000",
+      "period_start": "19980115125440",
+      "subdesc": "ALERT transmitted",
+      "variable": "12.50",
+      "units": "Inches",
+      "name": "Snow Melt",
+      "site": "SANTIAGOPEAK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190411080000",
+      "period_start": "19960402155327",
+      "subdesc": "ALERT transmitted",
+      "variable": "401.50",
+      "units": "Degrees Fahrenheit",
+      "name": "Dry Bulb Temperature",
+      "site": "SANTIAGOPEAK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190222120000",
+      "period_start": "19970430103657",
+      "subdesc": "ALERT transmitted",
+      "variable": "511.50",
+      "units": "Miles per Hour",
+      "name": "Wind Speed",
+      "site": "SANTIAGOPEAK",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707005814",
+      "period_start": "20040630131209",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SARADAR",
+      "preferred": true
+    },
+    {
+      "period_end": "20090707055416",
+      "period_start": "20040630070309",
+      "subdesc": "ALERT transmitted",
+      "variable": "401.50",
+      "units": "Degrees Fahrenheit",
+      "name": "Dry Bulb Temperature",
+      "site": "SARADAR",
+      "preferred": false
+    },
+    {
+      "period_end": "20090707065416",
+      "period_start": "20050301070758",
+      "subdesc": "ALERT transmitted",
+      "variable": "511.50",
+      "units": "Miles per Hour",
+      "name": "Wind Speed",
+      "site": "SARADAR",
+      "preferred": false
+    },
+    {
+      "period_end": "20150910091000",
+      "period_start": "20140226135500",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SD_CULVER_1196",
+      "preferred": false
+    },
+    {
+      "period_end": "20150910091000",
+      "period_start": "20140701000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "SD_CULVER_1196",
+      "preferred": false
+    },
+    {
+      "period_end": "20150701000000",
+      "period_start": "20140701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SD_CULVER_1196",
+      "preferred": true
+    },
+    {
+      "period_end": "20141218100000",
+      "period_start": "20141207000000",
+      "subdesc": "",
+      "variable": "851.00",
+      "units": "Milligrams/Litre",
+      "name": "Sediment Concentration",
+      "site": "SD_CULVER_1196",
+      "preferred": false
+    },
+    {
+      "period_end": "20190808000000",
+      "period_start": "20150407120000",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SEALBEACH",
+      "preferred": true
+    },
+    {
+      "period_end": "20190123120000",
+      "period_start": "19891214173238",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SEALBEACH",
+      "preferred": false
+    },
+    {
+      "period_end": "20070526061324",
+      "period_start": "19970402074012",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SEALBEACH",
+      "preferred": false
+    },
+    {
+      "period_end": "20081002204510",
+      "period_start": "19940715005220",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SEGUNDADESHECA",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521050827",
+      "period_start": "19930121083508",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SEGUNDADESHECA",
+      "preferred": false
+    },
+    {
+      "period_end": "20120702073500",
+      "period_start": "20000126073000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SEGUNDADESHECA",
+      "preferred": false
+    },
+    {
+      "period_end": "20120701000000",
+      "period_start": "20040701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SEGUNDADESHECA",
+      "preferred": true
+    },
+    {
+      "period_end": "20061011023258",
+      "period_start": "20040630121459",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SEVENOAKS",
+      "preferred": false
+    },
+    {
+      "period_end": "20061011030420",
+      "period_start": "20040630070653",
+      "subdesc": "ALERT download",
+      "variable": "232.51",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SEVENOAKS",
+      "preferred": false
+    },
+    {
+      "period_end": "20090706130917",
+      "period_start": "20061107114011",
+      "subdesc": "ALERT transmitted",
+      "variable": "235.50",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "SEVENOAKS",
+      "preferred": false
+    },
+    {
+      "period_end": "20080820141430",
+      "period_start": "20061107120158",
+      "subdesc": "ALERT download",
+      "variable": "235.51",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "SEVENOAKS",
+      "preferred": false
+    },
+    {
+      "period_end": "20090601000000",
+      "period_start": "19480701000000",
+      "subdesc": "National weather Service",
+      "variable": "11.02",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SILVERADO_RS",
+      "preferred": true
+    },
+    {
+      "period_end": "20071113072630",
+      "period_start": "19951101003625",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "SOUTHPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190730120000",
+      "period_start": "20041123105114",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SULPHURCREEK",
+      "preferred": true
+    },
+    {
+      "period_end": "20041123080000",
+      "period_start": "19740701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "SULPHURCREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20070701000000",
+      "period_start": "19960701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "SULPHURCREEK",
+      "preferred": true
+    },
+    {
+      "period_end": "20081201000000",
+      "period_start": "19770701000000",
+      "subdesc": "",
+      "variable": "700.00",
+      "units": "Millimetres",
+      "name": "Evaporation from a U.S. Class A Pan",
+      "site": "SULPHURCREEK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190730000000",
+      "period_start": "20100623000000",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "TRABUCO",
+      "preferred": true
+    },
+    {
+      "period_end": "20100630080000",
+      "period_start": "19690701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "TRABUCO",
+      "preferred": false
+    },
+    {
+      "period_end": "20080531000000",
+      "period_start": "19480701000000",
+      "subdesc": "National weather Service",
+      "variable": "11.02",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "TRABUCO_CANYON",
+      "preferred": true
+    },
+    {
+      "period_end": "20190402120000",
+      "period_start": "20041123124635",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "TUCKER",
+      "preferred": true
+    },
+    {
+      "period_end": "20190403053426",
+      "period_start": "20100630000000",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "TUSTIN",
+      "preferred": true
+    },
+    {
+      "period_end": "20100630080000",
+      "period_start": "18970701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "TUSTIN",
+      "preferred": false
+    },
+    {
+      "period_end": "20200219000000",
+      "period_start": "20190928012826",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "TUSTIN_I2",
+      "preferred": true
+    },
+    {
+      "period_end": "20060911162340",
+      "period_start": "19960712015750",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UEGARDEN",
+      "preferred": true
+    },
+    {
+      "period_end": "20110228070347",
+      "period_start": "19931013223353",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UEGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "20100929150110",
+      "period_start": "19970813025950",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UEGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "20100929150110",
+      "period_start": "19970813025950",
+      "subdesc": "ALERT QA",
+      "variable": "11.52",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UEGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "20170726134500",
+      "period_start": "19950630111500",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "UEGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "20121126053351",
+      "period_start": "20040630152432",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "UEGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "20170701000000",
+      "period_start": "20100101000000",
+      "subdesc": "",
+      "variable": "262.00",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "UEGARDEN",
+      "preferred": true
+    },
+    {
+      "period_end": "20160701000000",
+      "period_start": "19960701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "UEGARDEN",
+      "preferred": false
+    },
+    {
+      "period_end": "20200305120000",
+      "period_start": "20080102100020",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UPPER_HARDING",
+      "preferred": true
+    },
+    {
+      "period_end": "20190521140000",
+      "period_start": "19910620111119",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UPPERALISO",
+      "preferred": true
+    },
+    {
+      "period_end": "20030919000710",
+      "period_start": "19920721110820",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UPPERALISO",
+      "preferred": false
+    },
+    {
+      "period_end": "20190521140000",
+      "period_start": "19910628105940",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UPPEROSO",
+      "preferred": true
+    },
+    {
+      "period_end": "20080918005340",
+      "period_start": "19910701111210",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UPPEROSO",
+      "preferred": false
+    },
+    {
+      "period_end": "20181017110000",
+      "period_start": "19900511082141",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UPPERSILVERADO",
+      "preferred": true
+    },
+    {
+      "period_end": "20030204071030",
+      "period_start": "19940713135900",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "UPPERSILVERADO",
+      "preferred": false
+    },
+    {
+      "period_end": "20190731000000",
+      "period_start": "20070223112239",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "VILLAPARK",
+      "preferred": true
+    },
+    {
+      "period_end": "20150630080000",
+      "period_start": "19610701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "VILLAPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20050125073000",
+      "period_start": "19910109091500",
+      "subdesc": "Digitized",
+      "variable": "11.04",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "VILLAPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20170514160509",
+      "period_start": "19890701134909",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "VILLAPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20161127100000",
+      "period_start": "20040630090457",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "VILLAPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20060630000000",
+      "period_start": "19980701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "VILLAPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20061115032508",
+      "period_start": "20061010010140",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "VILLAPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20150414071214",
+      "period_start": "20040630090558",
+      "subdesc": "ALERT download",
+      "variable": "232.51",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "VILLAPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20060630000000",
+      "period_start": "20050701000000",
+      "subdesc": "",
+      "variable": "235.00",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "VILLAPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20170302154104",
+      "period_start": "20040630090557",
+      "subdesc": "ALERT transmitted",
+      "variable": "235.50",
+      "units": "feet",
+      "name": "Water Elevation",
+      "site": "VILLAPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20080701000000",
+      "period_start": "19910701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "VILLAPARK",
+      "preferred": true
+    },
+    {
+      "period_end": "20170515034649",
+      "period_start": "19910731153711",
+      "subdesc": "ALERT transmitted",
+      "variable": "511.50",
+      "units": "Miles per Hour",
+      "name": "Wind Speed",
+      "site": "VILLAPARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190123120000",
+      "period_start": "19890701124414",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "WESTMINSTER",
+      "preferred": true
+    },
+    {
+      "period_end": "20070630092510",
+      "period_start": "19940712171710",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "WESTMINSTER",
+      "preferred": false
+    },
+    {
+      "period_end": "20071003093730",
+      "period_start": "19970818114020",
+      "subdesc": "ALERT QA",
+      "variable": "11.52",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "WESTMINSTER",
+      "preferred": false
+    },
+    {
+      "period_end": "20150921085500",
+      "period_start": "19900701000000",
+      "subdesc": "",
+      "variable": "232.00",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "WESTMINSTER",
+      "preferred": false
+    },
+    {
+      "period_end": "20190123122000",
+      "period_start": "19950401090511",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "WESTMINSTER",
+      "preferred": false
+    },
+    {
+      "period_end": "20150921085500",
+      "period_start": "20090701000000",
+      "subdesc": "",
+      "variable": "233.00",
+      "units": "Feet",
+      "name": "Corrected Level",
+      "site": "WESTMINSTER",
+      "preferred": false
+    },
+    {
+      "period_end": "20160701000000",
+      "period_start": "19900701000000",
+      "subdesc": "Daily",
+      "variable": "262.01",
+      "units": "Cubic feet/second",
+      "name": "Discharge",
+      "site": "WESTMINSTER",
+      "preferred": true
+    },
+    {
+      "period_end": "20150211113500",
+      "period_start": "20120605110500",
+      "subdesc": "",
+      "variable": "450.00",
+      "units": "Degrees Celsius",
+      "name": "Water Temperature",
+      "site": "WESTMINSTER",
+      "preferred": false
+    },
+    {
+      "period_end": "20090706223732",
+      "period_start": "19890701125259",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "YORBA_PARK",
+      "preferred": true
+    },
+    {
+      "period_end": "20060809143030",
+      "period_start": "19910701092000",
+      "subdesc": "ALERT download",
+      "variable": "11.51",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "YORBA_PARK",
+      "preferred": false
+    },
+    {
+      "period_end": "20190815000000",
+      "period_start": "20041109143423",
+      "subdesc": "",
+      "variable": "11.00",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "YORBA_RESERVOIR",
+      "preferred": true
+    },
+    {
+      "period_end": "20041109143422",
+      "period_start": "19550701080000",
+      "subdesc": "Daily",
+      "variable": "11.01",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "YORBA_RESERVOIR",
+      "preferred": false
+    },
+    {
+      "period_end": "20170928030000",
+      "period_start": "19900508235247",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "YORBA_RESERVOIR",
+      "preferred": false
+    }
+  ]
+}
