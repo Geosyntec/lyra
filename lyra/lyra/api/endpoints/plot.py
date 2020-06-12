@@ -33,7 +33,7 @@ async def plot_trace(request: Request):
 
     kwargs["site_list"] = [kwargs.get("site", "ELTORO")]
     kwargs["var_list"] = [kwargs.get("variable", "11")]
-    kwargs["datasource"] = "A"
+    kwargs["datasource"] = kwargs.get("datasource", "A")
     kwargs["interval_multiplier"] = kwargs["multiplier"]
     kwargs["recent_points"] = None
 
@@ -60,8 +60,10 @@ async def plot_trace(request: Request):
             .assign(date=lambda df: pandas.to_datetime(df["t"], format="%Y%m%d%H%M%S"))
             .assign(values=lambda df: df.v.astype(float))
             .assign(label="-".join([site, var]))
+            .assign(_thin=lambda df: df['values'] - df['values'].shift(1) + df['values'].shift(-1) != 0.0)
+            .query('_thin')
+            .reindex(columns=['date', 'values', 'label'])
         )
-        # analyse this
 
         dfs.append(df)
 
@@ -75,14 +77,14 @@ async def plot_trace(request: Request):
 
     except MaxRowsError:
         chart_status = "FAILURE"
-        msg = "max data exceeded. Default max is 5000 data points"
+        msg += "max data exceeded. Default max is 5000 data points"
 
     response = {"spec": chart_spec, "chart_status": chart_status, "message": msg}
 
     return response
 
 
-def parse_datetime(date, time):
+def parse_datetime(date:str, time:str) -> str:
     date = date.replace("-", "").ljust(8, "0")
     time = time.replace(":", "").ljust(6, "0")
     return date + time
@@ -99,7 +101,7 @@ def make_chart(source):
     selectors = (
         alt.Chart(source)
         .mark_point()
-        .encode(x="date:T", opacity=alt.value(0),)
+        .encode(x="date:T", y="values:Q", opacity=alt.value(0),)
         .add_selection(nearest)
     )
 

@@ -265,37 +265,38 @@ async def get_variables_db_info(
 @router.get("/sites/variables/mapping", response_class=ORJSONResponse)
 async def get_site_variable_map():
 
-    promise = await get_variables(None, 'A', None)
+    promise = await get_variables(None, "A", None)
     vars_by_site = []
-    for blob in promise["_return"]['sites']:
-        site = blob['site']
-        for variable in blob['variables']:
-            variable['site']=site
+    for blob in promise["_return"]["sites"]:
+        site = blob["site"]
+        for variable in blob["variables"]:
+            variable["site"] = site
             vars_by_site.append(variable)
     variables = pandas.DataFrame(vars_by_site)
 
     use_vars = {
-        'Rainfall':{'agg':'tot'}, #hydstra codes, not pandas ones.
-        'Discharge':{'agg':"mean"}
+        "Rainfall": {"agg": "tot"},  # hydstra codes, not pandas ones.
+        "Discharge": {"agg": "mean"},
     }
     variables = variables.merge(
-        variables.query("name in @use_vars.keys()").groupby(["site", "name"]).variable
-        .min() # <-- use the minimum number as the 'preferred value for now. Just a WAG.'
+        variables.query("name in @use_vars.keys()")
+        .groupby(["site", "name"])
+        .variable.min()  # <-- use the minimum number as the 'preferred value for now. Just a WAG.'
         .reset_index()
         .assign(preferred=True)
-        .set_index(['site', 'name', 'variable'])['preferred'],
-        left_on=["site", "name", 'variable'],
+        .set_index(["site", "name", "variable"])["preferred"],
+        left_on=["site", "name", "variable"],
         right_index=True,
-        how='left',
-
+        how="left",
     ).fillna(False)
 
     mapping = (
-        variables
-        .query("preferred")
-        .assign(label = lambda df: df['name'] + "-"+df['variable'])
-        .groupby(['site'])
-        .apply(lambda x: x[['label','variable']].set_index('label').to_dict()['variable'])
+        variables.query("preferred")
+        .assign(label=lambda df: df["name"] + "-" + df["variable"])
+        .groupby(["site"])
+        .apply(
+            lambda x: x[["label", "variable"]].set_index("label").to_dict()["variable"]
+        )
     )
 
     return mapping

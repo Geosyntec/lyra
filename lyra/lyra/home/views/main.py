@@ -21,7 +21,7 @@ async def home(request: Request):
 async def timeseriesfunc(request: Request):
 
     sitelist_file = Path(lyra.__file__).parent / "static" / "site_list.json"
-    sitelist = json.loads(sitelist_file.read_text())['sites']
+    sitelist = json.loads(sitelist_file.read_text())["sites"]
 
     plot_function = "plot_trace"
     return templates.TemplateResponse(

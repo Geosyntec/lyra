@@ -16,6 +16,13 @@
         <input type="text" name ="variable" id="variable" value='11.00'>
         <label for="variable">Variable</label>
     </div>
+    <div >
+        <select id="datasource" name="datasource">
+            <option value="A">Archival (A)</option>
+            <option value="TELEMETRY">Provisional (Telemetry)</option>
+        </select>
+        <label for="datasource">Data Source</label>
+    </div>
     
     <div >
         <tr>
@@ -47,11 +54,14 @@
           <option value="mean">Average</option>
           <option value="max">Maximum</option>
           <option value="min">Minimum</option>
+          <!-- <option value="point">Data Point</option> -->
         </select>
         <label for="data_type">Aggregation Mode</label>
     </div>
     <div >
         <select id="interval" name="interval">
+          <!-- <option value="second">Second</option>
+          <option value="minute">Minute</option> -->
           <option value="hour">Hourly</option>
           <option value="day">Daily</option>
           <option value="month">Monthly</option>
