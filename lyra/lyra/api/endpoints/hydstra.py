@@ -8,7 +8,7 @@ import pandas
 # from celery.result import AsyncResult
 from fastapi import APIRouter, Body, Query
 from fastapi.requests import Request
-from fastapi.responses import ORJSONResponse
+from fastapi.responses import ORJSONResponse as JSONResponse
 from fastapi.templating import Jinja2Templates
 
 from pydantic import Field
@@ -22,7 +22,7 @@ router = APIRouter()
 
 
 @router.get(
-    "/sites", response_class=ORJSONResponse,
+    "/sites", response_class=JSONResponse,
 )
 async def get_site_list():
     get_site_list = {
@@ -35,10 +35,10 @@ async def get_site_list():
 
 
 @router.get(
-    "/sites/info", response_class=ORJSONResponse,
+    "/sites/info", response_class=JSONResponse,
 )
 @router.post(
-    "/sites/info", response_class=ORJSONResponse,
+    "/sites/info", response_class=JSONResponse,
 )
 async def get_sites_db_info(
     site: Optional[str] = Query(None, example="TRABUCO"),
@@ -65,7 +65,7 @@ async def get_sites_db_info(
 
 
 @router.get(
-    "/sites/{site}/info", response_class=ORJSONResponse,
+    "/sites/{site}/info", response_class=JSONResponse,
 )
 async def get_site_db_info(
     site: str,
@@ -89,7 +89,7 @@ async def get_site_db_info(
 
 
 @router.get(
-    "/sites/spatial", response_class=ORJSONResponse,
+    "/sites/spatial", response_class=JSONResponse,
 )
 async def get_site_geojson(
     site_list: Optional[List[str]] = Query(None),
@@ -128,7 +128,7 @@ async def get_site_geojson(
 
 
 @router.get(
-    "/sites/datasources", response_class=ORJSONResponse,
+    "/sites/datasources", response_class=JSONResponse,
 )
 async def get_datasources(
     site_list: Optional[List[str]] = Query(None),
@@ -151,7 +151,7 @@ async def get_datasources(
 
 
 @router.get(
-    "/sites/variables", response_class=ORJSONResponse,
+    "/sites/variables", response_class=JSONResponse,
 )
 async def get_variables(
     site_list: Optional[List[str]] = Query(None),
@@ -177,7 +177,7 @@ async def get_variables(
 
 
 @router.get(
-    "/sites/{site}/variables/{variable}", response_class=ORJSONResponse,
+    "/sites/{site}/variables/{variable}", response_class=JSONResponse,
 )
 async def get_site_variables(
     site: str, variable: Optional[str] = None, datasource: str = "A",
@@ -197,7 +197,7 @@ async def get_site_variables(
 
 
 @router.get(
-    "/sites/traces", response_class=ORJSONResponse,
+    "/sites/traces", response_class=JSONResponse,
 )
 async def get_trace(
     site_list: List[str] = Query(...),
@@ -240,10 +240,10 @@ async def get_trace(
 
 
 @router.get(
-    "/variables/info", response_class=ORJSONResponse,
+    "/variables/info", response_class=JSONResponse,
 )
 @router.post(
-    "/variables/info", response_class=ORJSONResponse,
+    "/variables/info", response_class=JSONResponse,
 )
 async def get_variables_db_info(
     return_type: Optional[hydstra_models.ReturnType] = "array",
@@ -262,7 +262,7 @@ async def get_variables_db_info(
     return await send_request(config.HYDSTRA_BASE_URL, payload=get_db_info)
 
 
-@router.get("/sites/variables/mapping", response_class=ORJSONResponse)
+@router.get("/sites/variables/mapping", response_class=JSONResponse)
 async def get_site_variable_map():
 
     promise = await get_variables(None, "A", None)

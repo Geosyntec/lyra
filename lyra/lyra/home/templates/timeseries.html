@@ -41,22 +41,18 @@
 {% block content %}
 <div class="dashboard">
 	<div class="db_title">
-		<h1>Timeseries Builder</h1>
+		<h1>Hydstra Timeseries</h1>
 	</div>
 	<div class='form_container'>
 	  {% include 'ts_form.html' %}
-	  
 	</div>
 	<div id='vis-timeseries'></div>
 	<div class='db_notes'>
 		<div id='form-notes'></div>
 		<div id='error_msgs' ></div>
 	</div>
-	
-
 </div>
 {% endblock %}
-
 
 {% block javascript %}
 {{ super() }}
@@ -108,13 +104,13 @@ form.addEventListener('submit', (evt) => {
 			spec = JSON.parse(data.spec)
 			updateVegaChart(spec, "vis-timeseries")
 			if (history.pushState) {
-				history.pushState({}, null,permalink);
+				history.pushState({}, null, permalink);
 			}
 
 		} else {
 			console.error(data)
 			err_div.innerHTML = (
-				'<div class="alert alert-error">'
+				'<div class="alert alert-danger">'
             	+ '<button type="button" class="close" data-dismiss="alert">&times;</button>'
             	+ "ERROR: no chart returned by service. "
             	+ data.message

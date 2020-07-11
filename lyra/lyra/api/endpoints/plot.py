@@ -60,9 +60,14 @@ async def plot_trace(request: Request):
             .assign(date=lambda df: pandas.to_datetime(df["t"], format="%Y%m%d%H%M%S"))
             .assign(values=lambda df: df.v.astype(float))
             .assign(label="-".join([site, var]))
-            .assign(_thin=lambda df: df['values'] - df['values'].shift(1) + df['values'].shift(-1) != 0.0)
-            .query('_thin')
-            .reindex(columns=['date', 'values', 'label'])
+            .assign(
+                _thin=lambda df: df["values"]
+                - df["values"].shift(1)
+                + df["values"].shift(-1)
+                != 0.0
+            )
+            .query("_thin")
+            .reindex(columns=["date", "values", "label"])
         )
 
         dfs.append(df)
@@ -84,7 +89,7 @@ async def plot_trace(request: Request):
     return response
 
 
-def parse_datetime(date:str, time:str) -> str:
+def parse_datetime(date: str, time: str) -> str:
     date = date.replace("-", "").ljust(8, "0")
     time = time.replace(":", "").ljust(6, "0")
     return date + time

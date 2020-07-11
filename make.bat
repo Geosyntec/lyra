@@ -12,6 +12,7 @@ if /i %1 == coverage goto :coverage
 if /i %1 == dev-server goto :dev-server
 if /i %1 == restart goto :restart
 if /i %1 == env goto :env
+if /i %1 == testcors goto :testcors
 
 :help
 echo Commands:
@@ -32,7 +33,7 @@ goto :eof
 :test
 call make clean
 call make restart
-docker-compose exec base pytest %2 %3 %4 %5 %6
+docker-compose exec lyra-tests pytest %2 %3 %4 %5 %6
 goto :eof
 
 :typecheck
@@ -44,13 +45,11 @@ goto :eof
 :develop
 call make clean
 scripts\build_dev.bat
-call docker-compose -f docker-stack.yml build
 goto :eof
 
 :prod
 call make clean
 scripts\build_prod.bat
-call docker-compose -f docker-stack.yml build
 goto :eof
 
 :up
@@ -70,9 +69,20 @@ docker-compose run -p 8080:80 lyra bash /start-reload.sh
 goto :eof
 
 :restart
-docker-compose restart redis celeryworker
+docker-compose restart redis
 goto :eof
 
 :env
 scripts\make_dev_env.bat
+goto :eof
+
+:testcors
+curl ^
+-H "Origin: http://example.com" ^
+-H "Access-Control-Request-Method: GET" ^
+-H "Access-Control-Request-Headers: X-Requested-With" ^
+-X OPTIONS --verbose ^
+localhost:8080/api/hydstra/sites/spatial
+rem https://swn-lyra-dev.azurewebsites.net/api/hydstra/sites/spatial
+
 goto :eof

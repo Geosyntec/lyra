@@ -28,3 +28,9 @@ async def timeseriesfunc(request: Request):
         "timeseries.html",
         {"request": request, "sitelist": sitelist, "plot_function": plot_function},
     )
+
+
+@router.get("/test_cors")
+async def test_corsfunc(request: Request):
+
+    return templates.TemplateResponse("test_cors.html", {"request": request})

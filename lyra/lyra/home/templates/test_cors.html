@@ -1,0 +1,91 @@
+{% extends "base.html" %} 
+{% block head %}
+{{ super() }}
+<style>
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  align-items:center;
+  justify-items: center;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="dashboard">
+    <div id='msgs'></div>
+    <div>
+      <h1>Test CORS</h1>
+      <div>This test bench works ONLY if you're serving this page from somewhere other than swn-lyra-dev, such as in a development environment. If you're visiting this page from the web, it's unlikely to serve as a good CORS test.</div>
+
+      <div>
+        <h3>Fetch Remote Resource from https://swn-lyra-dev.azurewebsites.net</h3>
+        <button class="btn btn-success" onClick="onClick('https://swn-lyra-dev.azurewebsites.net/api/hydstra/sites')">Get Sites</button>
+        <button class="btn btn-success" onClick="onClick('https://swn-lyra-dev.azurewebsites.net/api/hydstra/sites/spatial')">Get Sites GeoJSON</button>
+        <button class="btn btn-danger" onClick="onClick('https://swn-lyra-dev.azurewebsites.net/static/site_list.json')">Get Site List Static File</button>
+      </div>
+      <div>
+        <h3>Fetch Local Resource from "./"</h3>
+        <button class="btn btn-success" onClick="onClick('./api/hydstra/sites')">Get Sites</button>
+        <button class="btn btn-success" onClick="onClick('./api/hydstra/sites/spatial')">Get Sites GeoJSON</button>
+        <button class="btn btn-success" onClick="onClick('./static/site_list.json')">Get Local Site List Static File</button>
+      </div>
+      <div id="results"></div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+
+
+<script>
+
+function onClick(url) {
+      getJsonResponse(url)
+        .then( data => {
+          let results_div = document.getElementById('results')
+          let data_json = JSON.stringify(data, undefined, 2)
+          results_div.innerHTML = "<pre>" + data_json + "</pre>"
+          var msg_div = document.getElementById('msgs')
+          msg_div.innerHTML = ''
+          msg_div.innerHTML = (
+            '<div class="alert alert-success">'
+            + '<button type="button" class="close" data-dismiss="alert">&times;</button>'
+            + "SUCCESS"
+            + '</div>'
+          )
+        })
+        .catch(function(error) {
+          var msg_div = document.getElementById('msgs')
+          msg_div.innerHTML = ''
+          msg_div.innerHTML = (
+            '<div class="alert alert-danger">'
+            + '<button type="button" class="close" data-dismiss="alert">&times;</button>'
+            + error
+            + "<br>Check Console Log for additional information.</br>"
+            + '</div>'
+          )
+        })
+  } 
+
+
+async function getJsonResponse(url, method="GET") {
+
+  const response = await fetch(url, {method: method}
+    ).then( resp => {
+      if (resp.status == 200) {
+        return resp.json();
+      } else {
+        throw new Error('got back ' + resp.status);
+      }
+    }).then( data => {
+      return data
+    });
+    return response
+}
+
+</script>
+{% endblock %}

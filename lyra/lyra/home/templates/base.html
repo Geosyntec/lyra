@@ -6,12 +6,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('home/static', path='/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="./home/static/style.css">
 
   {% if title %}
     <title>{{ title }}</title>
   {% else %}
-    <title>Austin Orr</title>
+    <title>Lyra</title>
   {% endif %} 
   {% endblock %}
 </head>
@@ -20,9 +20,6 @@
 
   <div class="site">
     <div class="navigation">
-
-        <a class='nav-button' href="{{url_for('timeseriesfunc')}}">Timeseries Builder</a>
-
     </div>
     <div class="content">
       {% block content %} 

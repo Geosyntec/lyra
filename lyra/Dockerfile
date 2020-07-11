@@ -12,6 +12,7 @@ EXPOSE 5555
 USER nobody
 ENTRYPOINT ["flower"]
 
+
 FROM python:3.7-buster as builder
 RUN apt-get update -y \
   && apt-get install -y --no-install-recommends libspatialindex-dev \ 
@@ -83,8 +84,11 @@ COPY ./scripts/start.sh /start.sh
 RUN chmod +x /start.sh
 COPY ./scripts/start-reload.sh /start-reload.sh
 RUN chmod +x /start-reload.sh
+COPY ./scripts/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 EXPOSE 8888
 EXPOSE 80
+CMD ["bash", "/entrypoint.sh"]
 
 FROM core as lyra-tests
 COPY requirements_test.txt /requirements_test.txt

@@ -63,6 +63,7 @@ dump.rdb
 
 # docker stuff:
 docker-stack*
+deploy-stack*
 
 # Flask stuff:
 instance/

@@ -4,7 +4,12 @@
     {% if sitelist %}
         <select id="site" name="site">
             {% for site in sitelist %}
-                <option value={{ site }}>{{ site }}</option>
+                {% if site == "ELTORO" %}
+                    <option selected value={{ site }}>{{ site }}</option>
+                {% else %}
+                    <option value={{ site }}>{{ site }}</option>
+                {% endif %}
+            }
             {% endfor %}
         </select>
     {% else  %}
@@ -13,7 +18,7 @@
         <label for="site">Site</label>
     </div>
     <div >
-        <input type="text" name ="variable" id="variable" value='11.00'>
+        <input type="text" name ="variable" id="variable" value='11'>
         <label for="variable">Variable</label>
     </div>
     <div >
