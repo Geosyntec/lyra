@@ -13,6 +13,8 @@ if /i %1 == dev-server goto :dev-server
 if /i %1 == restart goto :restart
 if /i %1 == env goto :env
 if /i %1 == testcors goto :testcors
+if /i %1 == az-login goto :az-login
+if /i %1 == az-deploy goto :az-deploy
 
 :help
 echo Commands:
@@ -84,5 +86,14 @@ curl ^
 -X OPTIONS --verbose ^
 localhost:8080/api/hydstra/sites/spatial
 rem https://swn-lyra-dev.azurewebsites.net/api/hydstra/sites/spatial
+goto :eof
 
+:az-login
+bash scripts/login.sh
+goto :eof
+
+:az-deploy
+call make az-login
+call make prod
+docker-compose push
 goto :eof
