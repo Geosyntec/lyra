@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 import lyra
 from lyra.api import api_router
 from lyra.home import home_router
+from lyra.core.config import settings
 
 
 app = FastAPI(title="lyra", version=lyra.__version__)
@@ -17,12 +18,11 @@ app.include_router(home_router)
 app.mount("/static", StaticFiles(directory="lyra/static"), name="static")
 app.mount("/home/static", StaticFiles(directory="lyra/home/static"), name="home/static")
 
-origins = ["*"]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=settings.ALLOW_CORS_ORIGINS,
+    allow_origin_regex=settings.ALLOW_CORS_ORIGIN_REGEX,
+    allow_credentials=False,
+    allow_methods=["GET", "OPTIONS", "POST"],
     allow_headers=["*"],
 )

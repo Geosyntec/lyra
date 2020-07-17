@@ -5,6 +5,11 @@ services:
       context: ./lyra
       dockerfile: Dockerfile
       target: lyra
+  celeryworker:
+    build:
+      context: ./lyra
+      dockerfile: Dockerfile
+      target: celeryworker
   lyra-tests:
     build:
       context: ./lyra

@@ -52,8 +52,7 @@ def site_variable_map(variables: pandas.DataFrame):
     return {"site_variable_mapping": mapping.to_dict()}
 
 
-if __name__ == "__main__":
-
+def main():
     cur_dir = Path(__file__).parent
 
     static_dir = cur_dir.parent / "static"
@@ -69,3 +68,7 @@ if __name__ == "__main__":
     with open(static_dir / "site_list.json", "w") as f:
         sitelist_response = asyncio.run(hydstra.get_site_list())
         json.dump(sitelist_response["_return"], f, indent=2)
+
+
+if __name__ == "__main__":
+    main()

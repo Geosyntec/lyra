@@ -87,7 +87,7 @@ const form = document.getElementById('ts-form');
 form.addEventListener('submit', (evt) => {
   	evt.preventDefault();
 
-  	const url = formToUrl("{{ url_for( plot_function ) }}", form);
+  	const url = formToUrl("{{ plot_function_url }}", form);
   	const permalink = formToUrl(window.location.href.split('?')[0], form);
   	var form_notes = document.getElementById('form-notes');
   	form_notes.textContent = ('permalink: ' + permalink);

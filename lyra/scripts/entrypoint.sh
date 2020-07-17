@@ -1,6 +1,6 @@
 set -e
 
-if [ "$LYRA_ENVIRONMENT" == "PRODUCTION" ] ; then
+if [ "$LYRA_DEPLOY_ENVIRONMENT" == "AZURE" ] ; then
 	bash /start.sh
 else
 	echo "run program manually"

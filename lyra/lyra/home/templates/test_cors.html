@@ -5,18 +5,30 @@
 
 .dashboard {
   display: grid;
-  grid-template-columns: 50px 1fr 50px;
-  align-items:center;
-  justify-items: center;
+  grid-template-rows: 75px, 1fr;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.tests {
+  display: grid;
+  grid-template-columns:  1fr ;
+}
+
+.messages {
+  height:75px;
 }
 
 </style>
 {% endblock %}
 
 {% block content %}
+
   <div class="dashboard">
-    <div id='msgs'></div>
-    <div>
+    <div class="messages" id='msgs'></div>
+    
+    <div class='tests'>
+      <div>
       <h1>Test CORS</h1>
       <div>This test bench works ONLY if you're serving this page from somewhere other than swn-lyra-dev, such as in a development environment. If you're visiting this page from the web, it's unlikely to serve as a good CORS test.</div>
 
@@ -28,11 +40,12 @@
       </div>
       <div>
         <h3>Fetch Local Resource from "./"</h3>
-        <button class="btn btn-success" onClick="onClick('./api/hydstra/sites')">Get Sites</button>
+        <button class="btn btn-success" onClick="onClick('http://127.0.0.1:8080/api/hydstra/sites')">Get Sites</button>
         <button class="btn btn-success" onClick="onClick('./api/hydstra/sites/spatial')">Get Sites GeoJSON</button>
         <button class="btn btn-success" onClick="onClick('./static/site_list.json')">Get Local Site List Static File</button>
       </div>
       <div id="results"></div>
+    </div>
     </div>
   </div>
 {% endblock %}

@@ -4,6 +4,8 @@ services:
     image: swnappdocker.azurecr.io/swn/redis
   lyra:
     image: swnappdocker.azurecr.io/swn/lyra
+  celeryworker:
+    image: swnappdocker.azurecr.io/swn/celeryworker
   lyra-tests:
     image: swnappdocker.azurecr.io/swn/lyra-tests
   flower:

@@ -1,6 +1,7 @@
 @ECHO off    
 if /i "%1" == "" goto :help
 if /i %1 == help goto :help
+if /i %1 == build goto :build
 if /i %1 == clean goto :clean
 if /i %1 == test goto :test
 if /i %1 == develop goto :develop
@@ -13,6 +14,7 @@ if /i %1 == dev-server goto :dev-server
 if /i %1 == restart goto :restart
 if /i %1 == env goto :env
 if /i %1 == testcors goto :testcors
+if /i %1 == testget goto :testget
 if /i %1 == az-login goto :az-login
 if /i %1 == az-deploy goto :az-deploy
 
@@ -32,6 +34,10 @@ echo Usage:
 echo $make [command]
 goto :eof
 
+:build
+docker-compose -f docker-stack.yml build
+goto :eof
+
 :test
 call make clean
 call make restart
@@ -46,12 +52,14 @@ goto :eof
 
 :develop
 call make clean
-scripts\build_dev.bat
+call scripts\build_dev.bat
+call make build
 goto :eof
 
 :prod
 call make clean
-scripts\build_prod.bat
+call scripts\build_prod.bat
+call make build
 goto :eof
 
 :up
@@ -63,7 +71,7 @@ docker-compose down -v
 goto :eof
 
 :clean
-scripts\clean.bat
+call scripts\clean.bat
 goto :eof
 
 :dev-server
@@ -71,7 +79,7 @@ docker-compose run -p 8080:80 lyra bash /start-reload.sh
 goto :eof
 
 :restart
-docker-compose restart redis
+docker-compose restart redis celeryworker
 goto :eof
 
 :env
@@ -80,11 +88,27 @@ goto :eof
 
 :testcors
 curl ^
--H "Origin: http://example.com" ^
+-H "Origin: http://localhost:8880" ^
 -H "Access-Control-Request-Method: GET" ^
--H "Access-Control-Request-Headers: X-Requested-With" ^
 -X OPTIONS --verbose ^
-localhost:8080/api/hydstra/sites/spatial
+localhost:8010/api/hydstra/sites
+rem -H "Access-Control-Request-Headers: X-Requested-With" ^
+rem https://swn-lyra-dev.azurewebsites.net/plot/trace
+rem localhost:8080/api/hydstra/sites
+rem localhost:8080/api/hydstra/sites/spatial
+rem https://swn-lyra-dev.azurewebsites.net/api/hydstra/sites/spatial
+goto :eof
+
+:testget
+curl ^
+-X GET --verbose ^
+https://swn-lyra-dev.azurewebsites.net/api/hydstra/sites
+rem localhost:8080/api/hydstra/sites
+rem -H "Origin: http://localhost:8880" ^
+rem "http://localhost:8080/api/plot/trace?site=ELTORO^&variable=11^&datasource=A^&start_date=2010-01-01^&start_time=00:00:00^&end_date=2015-01-01^&end_time=00:00:00^&data_type=tot^&interval=hour^&multiplier=1"
+rem https://swn-lyra-dev.azurewebsites.net/plot/trace
+rem localhost:8080/api/hydstra/sites
+rem localhost:8080/api/hydstra/sites/spatial
 rem https://swn-lyra-dev.azurewebsites.net/api/hydstra/sites/spatial
 goto :eof
 

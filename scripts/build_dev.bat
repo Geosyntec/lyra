@@ -9,5 +9,3 @@ call docker-compose ^
 -f docker-compose.dev.volumes.yml ^
 -f docker-compose.dev.ports.yml ^
 config > docker-stack.yml
-
-docker-compose -f docker-stack.yml build

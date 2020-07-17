@@ -23,10 +23,10 @@ async def timeseriesfunc(request: Request):
     sitelist_file = Path(lyra.__file__).parent / "static" / "site_list.json"
     sitelist = json.loads(sitelist_file.read_text())["sites"]
 
-    plot_function = "plot_trace"
+    plot_function_url = "./api/plot/trace"
     return templates.TemplateResponse(
         "timeseries.html",
-        {"request": request, "sitelist": sitelist, "plot_function": plot_function},
+        {"request": request, "sitelist": sitelist, "plot_function_url": plot_function_url},
     )
 
 

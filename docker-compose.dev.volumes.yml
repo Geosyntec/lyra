@@ -3,7 +3,9 @@ services:
   lyra:
     volumes:
       - ./lyra/lyra:/lyra/lyra
-
+  celeryworker:
+    volumes:
+      - ./lyra/lyra:/lyra/lyra
   lyra-tests:
     volumes:
       - ./lyra/lyra:/lyra/lyra

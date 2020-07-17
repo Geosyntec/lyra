@@ -70,6 +70,13 @@ WORKDIR /lyra
 ENV PYTHONPATH=/lyra
 
 
+FROM core as celeryworker
+ENV C_FORCE_ROOT=1
+COPY ./scripts/run-worker.sh /run-worker.sh
+RUN chmod +x /run-worker.sh
+CMD ["bash", "/run-worker.sh"]
+
+
 FROM core as lyra
 COPY --from=builder /serve /serve
 COPY requirements_server.txt /requirements_server.txt

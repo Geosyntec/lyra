@@ -17,13 +17,26 @@ from fastapi.templating import Jinja2Templates
 
 from lyra.core import config
 from lyra.api.endpoints.hydstra import get_trace
+from lyra.models import hydstra_models
 
 
 router = APIRouter()
 
 
 @router.get("/trace", response_class=ORJSONResponse)
-async def plot_trace(request: Request):
+async def plot_trace(
+    request: Request,
+    # site: str,
+    # start_time: str,
+    # var_list: List[str],
+    # interval: hydstra_models.Interval = Query(...),
+    # datasource: str = Query(...),
+    # end_time: str = Query(...),
+    # data_type: hydstra_models.DataType = Query(...),
+    # interval_multiplier: int = 1,
+    # recent_points: Optional[int] = None,
+
+    ):
 
     kwargs = dict(request.query_params)
     for d in ["start_date", "end_date"]:
@@ -34,7 +47,7 @@ async def plot_trace(request: Request):
     kwargs["site_list"] = [kwargs.get("site", "ELTORO")]
     kwargs["var_list"] = [kwargs.get("variable", "11")]
     kwargs["datasource"] = kwargs.get("datasource", "A")
-    kwargs["interval_multiplier"] = kwargs["multiplier"]
+    kwargs["interval_multiplier"] = kwargs.get("multiplier", "1")
     kwargs["recent_points"] = None
 
     chart_spec = None

@@ -1,5 +1,4 @@
 
-call scripts/build_prod.bat
 
 call docker-compose ^
 -f docker-compose.shared.env.yml ^
