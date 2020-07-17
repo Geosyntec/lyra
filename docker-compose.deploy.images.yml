@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  redis:
+    image: swnappdocker.azurecr.io/swn/redis
+  lyra:
+    image: swnappdocker.azurecr.io/swn/lyra
+  celeryworker:
+    image: swnappdocker.azurecr.io/swn/celeryworker
+  lyra-tests:
+    image: swnappdocker.azurecr.io/swn/lyra-tests
+  flower:
+    image: swnappdocker.azurecr.io/swn/flower

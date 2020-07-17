@@ -3,6 +3,15 @@ services:
   lyra:
     depends_on:
       - redis
+      - celeryworker
+  celeryworker:
+    depends_on: 
+      - redis
+  lyra-tests:
+    depends_on:
+      - redis
+      - celeryworker
   flower:
     depends_on:
       - redis
+      - celeryworker

@@ -1,20 +1,16 @@
 from typing import Any, Dict, List, Optional, Union
 
-# import requests
 import orjson
 import aiohttp
 import pandas
 
-# from celery.result import AsyncResult
 from fastapi import APIRouter, Body, Query
 from fastapi.requests import Request
-from fastapi.responses import ORJSONResponse
+from fastapi.responses import ORJSONResponse as JSONResponse
 from fastapi.templating import Jinja2Templates
 
-from pydantic import Field
-
-from lyra.api.models import hydstra_models
-from lyra.core import config
+from lyra.models import hydstra_models
+from lyra.core.config import settings
 from lyra.core.async_requests import send_request
 
 
@@ -22,7 +18,7 @@ router = APIRouter()
 
 
 @router.get(
-    "/sites", response_class=ORJSONResponse,
+    "/sites", response_class=JSONResponse,
 )
 async def get_site_list():
     get_site_list = {
@@ -31,14 +27,14 @@ async def get_site_list():
         "params": {"site_list": "TSFILES(DSOURCES(tscARCHIVE))"},
     }
 
-    return await send_request(config.HYDSTRA_BASE_URL, payload=get_site_list)
+    return await send_request(settings.HYDSTRA_BASE_URL, payload=get_site_list)
 
 
 @router.get(
-    "/sites/info", response_class=ORJSONResponse,
+    "/sites/info", response_class=JSONResponse,
 )
 @router.post(
-    "/sites/info", response_class=ORJSONResponse,
+    "/sites/info", response_class=JSONResponse,
 )
 async def get_sites_db_info(
     site: Optional[str] = Query(None, example="TRABUCO"),
@@ -61,11 +57,11 @@ async def get_sites_db_info(
     if field_list is not None:
         get_db_info["params"]["field_list"] = field_list  # pass as array
 
-    return await send_request(config.HYDSTRA_BASE_URL, payload=get_db_info)
+    return await send_request(settings.HYDSTRA_BASE_URL, payload=get_db_info)
 
 
 @router.get(
-    "/sites/{site}/info", response_class=ORJSONResponse,
+    "/sites/{site}/info", response_class=JSONResponse,
 )
 async def get_site_db_info(
     site: str,
@@ -85,11 +81,11 @@ async def get_site_db_info(
     if field_list is not None:
         get_db_info["params"]["field_list"] = field_list  # pass as array
 
-    return await send_request(config.HYDSTRA_BASE_URL, payload=get_db_info)
+    return await send_request(settings.HYDSTRA_BASE_URL, payload=get_db_info)
 
 
 @router.get(
-    "/sites/spatial", response_class=ORJSONResponse,
+    "/sites/spatial", response_class=JSONResponse,
 )
 async def get_site_geojson(
     site_list: Optional[List[str]] = Query(None),
@@ -124,11 +120,11 @@ async def get_site_geojson(
         },
     }
 
-    return await send_request(config.HYDSTRA_BASE_URL, payload=get_site_geojson)
+    return await send_request(settings.HYDSTRA_BASE_URL, payload=get_site_geojson)
 
 
 @router.get(
-    "/sites/datasources", response_class=ORJSONResponse,
+    "/sites/datasources", response_class=JSONResponse,
 )
 async def get_datasources(
     site_list: Optional[List[str]] = Query(None),
@@ -147,11 +143,13 @@ async def get_datasources(
     if ts_classes is not None:
         get_datasources_by_site["params"]["ts_classes"] = ",".join(ts_classes)
 
-    return await send_request(config.HYDSTRA_BASE_URL, payload=get_datasources_by_site)
+    return await send_request(
+        settings.HYDSTRA_BASE_URL, payload=get_datasources_by_site
+    )
 
 
 @router.get(
-    "/sites/variables", response_class=ORJSONResponse,
+    "/sites/variables", response_class=JSONResponse,
 )
 async def get_variables(
     site_list: Optional[List[str]] = Query(None),
@@ -173,11 +171,11 @@ async def get_variables(
         },
     }
 
-    return await send_request(config.HYDSTRA_BASE_URL, payload=get_variable_list)
+    return await send_request(settings.HYDSTRA_BASE_URL, payload=get_variable_list)
 
 
 @router.get(
-    "/sites/{site}/variables/{variable}", response_class=ORJSONResponse,
+    "/sites/{site}/variables/{variable}", response_class=JSONResponse,
 )
 async def get_site_variables(
     site: str, variable: Optional[str] = None, datasource: str = "A",
@@ -193,11 +191,11 @@ async def get_site_variables(
         },
     }
 
-    return await send_request(config.HYDSTRA_BASE_URL, payload=get_variable_list)
+    return await send_request(settings.HYDSTRA_BASE_URL, payload=get_variable_list)
 
 
 @router.get(
-    "/sites/traces", response_class=ORJSONResponse,
+    "/sites/traces", response_class=JSONResponse,
 )
 async def get_trace(
     site_list: List[str] = Query(...),
@@ -207,9 +205,9 @@ async def get_trace(
     datasource: str = Query(...),
     end_time: str = Query(...),
     data_type: hydstra_models.DataType = Query(...),
-    interval_multiplier: int = Query(1),
-    recent_points: Optional[int] = Query(None),
-    **kwargs,
+    interval_multiplier: int = 1,
+    recent_points: Optional[int] = None,
+    **kwargs: Optional[Dict[str, Any]],
 ):
 
     ts_trace = {
@@ -236,14 +234,14 @@ async def get_trace(
         },
     }
 
-    return await send_request(config.HYDSTRA_BASE_URL, payload=ts_trace)
+    return await send_request(settings.HYDSTRA_BASE_URL, payload=ts_trace)
 
 
 @router.get(
-    "/variables/info", response_class=ORJSONResponse,
+    "/variables/info", response_class=JSONResponse,
 )
 @router.post(
-    "/variables/info", response_class=ORJSONResponse,
+    "/variables/info", response_class=JSONResponse,
 )
 async def get_variables_db_info(
     return_type: Optional[hydstra_models.ReturnType] = "array",
@@ -259,10 +257,10 @@ async def get_variables_db_info(
         },
     }
 
-    return await send_request(config.HYDSTRA_BASE_URL, payload=get_db_info)
+    return await send_request(settings.HYDSTRA_BASE_URL, payload=get_db_info)
 
 
-@router.get("/sites/variables/mapping", response_class=ORJSONResponse)
+@router.get("/sites/variables/mapping", response_class=JSONResponse)
 async def get_site_variable_map():
 
     promise = await get_variables(None, "A", None)

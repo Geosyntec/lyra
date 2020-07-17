@@ -17,13 +17,26 @@ from fastapi.templating import Jinja2Templates
 
 from lyra.core import config
 from lyra.api.endpoints.hydstra import get_trace
+from lyra.models import hydstra_models
 
 
 router = APIRouter()
 
 
 @router.get("/trace", response_class=ORJSONResponse)
-async def plot_trace(request: Request):
+async def plot_trace(
+    request: Request,
+    # site: str,
+    # start_time: str,
+    # var_list: List[str],
+    # interval: hydstra_models.Interval = Query(...),
+    # datasource: str = Query(...),
+    # end_time: str = Query(...),
+    # data_type: hydstra_models.DataType = Query(...),
+    # interval_multiplier: int = 1,
+    # recent_points: Optional[int] = None,
+
+    ):
 
     kwargs = dict(request.query_params)
     for d in ["start_date", "end_date"]:
@@ -34,7 +47,7 @@ async def plot_trace(request: Request):
     kwargs["site_list"] = [kwargs.get("site", "ELTORO")]
     kwargs["var_list"] = [kwargs.get("variable", "11")]
     kwargs["datasource"] = kwargs.get("datasource", "A")
-    kwargs["interval_multiplier"] = kwargs["multiplier"]
+    kwargs["interval_multiplier"] = kwargs.get("multiplier", "1")
     kwargs["recent_points"] = None
 
     chart_spec = None
@@ -60,9 +73,14 @@ async def plot_trace(request: Request):
             .assign(date=lambda df: pandas.to_datetime(df["t"], format="%Y%m%d%H%M%S"))
             .assign(values=lambda df: df.v.astype(float))
             .assign(label="-".join([site, var]))
-            .assign(_thin=lambda df: df['values'] - df['values'].shift(1) + df['values'].shift(-1) != 0.0)
-            .query('_thin')
-            .reindex(columns=['date', 'values', 'label'])
+            .assign(
+                _thin=lambda df: df["values"]
+                - df["values"].shift(1)
+                + df["values"].shift(-1)
+                != 0.0
+            )
+            .query("_thin")
+            .reindex(columns=["date", "values", "label"])
         )
 
         dfs.append(df)
@@ -84,7 +102,7 @@ async def plot_trace(request: Request):
     return response
 
 
-def parse_datetime(date:str, time:str) -> str:
+def parse_datetime(date: str, time: str) -> str:
     date = date.replace("-", "").ljust(8, "0")
     time = time.replace(":", "").ljust(6, "0")
     return date + time

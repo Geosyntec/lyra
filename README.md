@@ -1,5 +1,9 @@
-# Lyra
-A constellation of data analysis services displayed via `vega` and `altair`.
+<p align="center">
+	<img src="/lyra/lyra/static/lyra_logo.svg" alt="lyra" height=125px>
+</p>
+<p align="center">
+    <em>A constellation of data analysis services displayed via `vega` and `altair`.</em>
+</p>
 
 ## Getting Started
 
