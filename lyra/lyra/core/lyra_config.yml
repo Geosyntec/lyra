@@ -1,0 +1,13 @@
+mnwd:
+  dt_metrics:
+    fields:
+      - variable: overall_daily_est_outdoor_budget_overage_per_irrig_area
+        units: "ccf/acre"
+      - variable: overall_daily_est_outdoor_budget_overage_sum
+        units: ccf
+      - variable: overall_is_in_rebate_program_sum
+        units: count
+      - variable: overall_rebate_participation_fraction
+        units: "count/count"
+      - variable: overall_MeterID_count
+        units: count

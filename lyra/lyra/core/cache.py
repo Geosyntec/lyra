@@ -9,15 +9,23 @@ logger = logging.getLogger(__name__)
 
 redis_cache = redis.Redis(host="redis", port=6379, db=9)
 
-try:  # pragma: no cover
-    # It's ok if redis isn't up, we'll fall back to an lru_cache if we can only
-    # use the main process. If redis is available, let's flush the cache to start
-    # fresh.
-    if redis_cache.ping():
-        redis_cache.flushdb()
-        logger.debug("flushed redis function cache")
-except redis.ConnectionError:  # pragma: no cover
-    pass
+CAN_CACHE = False
+
+
+def flush():
+
+    try:  # pragma: no cover
+        # It's ok if redis isn't up, we'll fall back to an lru_cache if we can only
+        # use the main process. If redis is available, let's flush the cache to start
+        # fresh.
+        if redis_cache.ping():
+            redis_cache.flushdb()
+            logger.debug("flushed redis function cache")
+    except redis.ConnectionError:  # pragma: no cover
+        pass
+
+
+flush()
 
 
 def rcache(**rkwargs):
@@ -30,9 +38,11 @@ def rcache(**rkwargs):
         def memoizer(*args, **kwargs):
             sorted_kwargs = {k: kwargs[k] for k in sorted(kwargs.keys())}
 
+            logger.info("cached call: " + obj.__name__ + str(args) + str(sorted_kwargs))
+
             # hashing the key may not be necessary, but it keeps the server-side filepaths hidden
             key = hashlib.sha1(
-                (str(args) + str(sorted_kwargs)).encode("utf-8")
+                (obj.__name__ + str(args) + str(sorted_kwargs)).encode("utf-8")
             ).hexdigest()
 
             if cache.get(key) is None:
@@ -68,8 +78,10 @@ def get_cache_decorator():
     The point of the no_cache fallback is to make development easier.
     In production and even in CI this should use the redis cache.
     """
+    global CAN_CACHE
     try:
         if redis_cache.ping():
+            CAN_CACHE = True
             return rcache
         else:  # pragma: no cover
             return no_cache

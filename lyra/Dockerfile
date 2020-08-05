@@ -15,8 +15,9 @@ ENTRYPOINT ["flower"]
 
 FROM python:3.7-buster as builder
 RUN apt-get update -y \
-  && apt-get install -y --no-install-recommends libspatialindex-dev \ 
-  && rm -rf /var/lib/apt/lists/*
+  && apt-get install -y --no-install-recommends gcc g++ unixodbc-dev libspatialindex-dev \ 
+  && rm -rf /var/lib/apt/lists/* \
+  && apt-get clean
 COPY requirements.txt /requirements.txt
 COPY requirements_test.txt /requirements_test.txt
 COPY requirements_server.txt /requirements_server.txt
@@ -56,8 +57,13 @@ RUN mkdir /serve \
 FROM python:3.7-slim-buster as core
 COPY --from=builder /core /core
 COPY requirements.txt /requirements.txt
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends graphviz=2.40.1-6 \ 
+RUN apt-get update -y \
+  && apt-get install -y curl gnupg2 \ 
+  && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+  && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+  && rm -rf /var/lib/apt/lists/* 
+RUN apt-get update -y \
+  && ACCEPT_EULA=y apt-get install -y --no-install-recommends graphviz=2.40.1-6 libspatialindex-dev unixodbc msodbcsql17 mssql-tools \ 
   && rm -rf /var/lib/apt/lists/* \ 
   && pip install \
     --no-index \
@@ -91,11 +97,9 @@ COPY ./scripts/start.sh /start.sh
 RUN chmod +x /start.sh
 COPY ./scripts/start-reload.sh /start-reload.sh
 RUN chmod +x /start-reload.sh
-COPY ./scripts/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 EXPOSE 8888
 EXPOSE 80
-CMD ["bash", "/entrypoint.sh"]
+
 
 FROM core as lyra-tests
 COPY requirements_test.txt /requirements_test.txt

@@ -1,14 +1,43 @@
+from typing import List
 from pathlib import Path
 import json
 import pandas
 import asyncio
+import datetime
 
-from lyra.api.endpoints import hydstra
+# from lyra.api.endpoints.hydstra import get_variables, get_site_list
+from lyra.core.async_requests import send_request
+from lyra.core.config import settings
 
 
-def site_preferred_variables():
+def get_site_list():
+    site_list = {
+        "function": "get_site_list",
+        "version": 1,
+        "params": {"site_list": "TSFILES(DSOURCES(tscARCHIVE))"},
+    }
 
-    promise = asyncio.run(hydstra.get_variables(None, "A", None))
+    return asyncio.run(send_request(settings.HYDSTRA_BASE_URL, payload=site_list))[
+        "_return"
+    ]
+
+
+def site_preferred_variables(site_list: List[str]):
+    get_variable_list = {
+        "function": "get_variable_list",
+        "version": 1,
+        "params": {
+            "site_list": ",".join(
+                site_list
+            ),  # TODO: this is required, call site list first.
+            "datasource": "A",
+            "var_filter": None,
+        },
+    }
+
+    promise = asyncio.run(
+        send_request(settings.HYDSTRA_BASE_URL, payload=get_variable_list)
+    )
     vars_by_site = []
 
     for blob in promise["_return"]["sites"]:
@@ -55,19 +84,24 @@ def site_variable_map(variables: pandas.DataFrame):
 def main():
     cur_dir = Path(__file__).parent
 
+    ts = datetime.datetime.utcnow().isoformat()
+
     static_dir = cur_dir.parent / "static"
 
-    variables = site_preferred_variables()
+    site_list = get_site_list()
+    site_list["ts"] = ts
+    with open(static_dir / "site_list.json", "w") as f:
+        json.dump(site_list, f, indent=2)
+
+    variables = site_preferred_variables(site_list=site_list["sites"])
+    variables["ts"] = ts
     with open(static_dir / "site_variables.json", "w") as f:
         json.dump({"site_variables": variables.to_dict("records")}, f, indent=2)
 
     site_var_mapping = site_variable_map(variables)
+    site_var_mapping["ts"] = ts
     with open(static_dir / "site_variable_mapping.json", "w") as f:
         json.dump(site_var_mapping, f, indent=2)
-
-    with open(static_dir / "site_list.json", "w") as f:
-        sitelist_response = asyncio.run(hydstra.get_site_list())
-        json.dump(sitelist_response["_return"], f, indent=2)
 
 
 if __name__ == "__main__":

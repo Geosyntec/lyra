@@ -20,23 +20,22 @@ from lyra.api.endpoints.hydstra import get_trace
 from lyra.models import hydstra_models
 
 
-router = APIRouter()
+router = APIRouter(default_response_class=ORJSONResponse)
 
 
-@router.get("/trace", response_class=ORJSONResponse)
+@router.get("/trace")
 async def plot_trace(
     request: Request,
-    # site: str,
-    # start_time: str,
-    # var_list: List[str],
-    # interval: hydstra_models.Interval = Query(...),
-    # datasource: str = Query(...),
-    # end_time: str = Query(...),
-    # data_type: hydstra_models.DataType = Query(...),
-    # interval_multiplier: int = 1,
-    # recent_points: Optional[int] = None,
-
-    ):
+    site: str,
+    start_date: str,
+    variable: List[str] = Query(...),
+    interval: hydstra_models.Interval = Query(...),
+    datasource: str = Query(...),
+    end_date: str = Query(...),
+    data_type: hydstra_models.DataType = Query(...),
+    interval_multiplier: int = 1,
+    recent_points: Optional[int] = None,
+):
 
     kwargs = dict(request.query_params)
     for d in ["start_date", "end_date"]:

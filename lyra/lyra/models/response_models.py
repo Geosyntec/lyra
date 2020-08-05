@@ -7,6 +7,7 @@ from pydantic import BaseModel
 class JSONAPIResponse(BaseModel):
     status: str = "SUCCESS"
     data: Optional[Any] = None
+    errors = []
 
 
 class ForegroundTaskJSONResponse(JSONAPIResponse):

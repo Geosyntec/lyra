@@ -5,21 +5,34 @@ from typing_extensions import Literal
 
 from pydantic import AnyHttpUrl, BaseSettings, validator
 
-import lyra
+from lyra.core.io import load_cfg
 
 
 class Settings(BaseSettings):
     # API_V1_STR: str = "/api/v1"
+    ADMIN_USERNAME: str = ""
     SECRET_KEY: str = secrets.token_urlsafe(32)
+    # 60 minutes * 24 hours * 8 days = 8 days
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
 
     MNWD_FTP_USERNAME: str = ""
     MNWD_FTP_PASSWORD: str = ""
     MNWD_FTP_LOCATION: str = ""
+    MNWD_FTP_DIRECTORY: str = ""
 
+    AZURE_DATABASE_SERVER: str = ""
+    AZURE_DATABASE_PORT: int = 9999
+    AZURE_DATABASE_CONNECTION_TIMEOUT: int = 5
+    AZURE_DATABASE_NAME: str = ""
+    AZURE_DATABASE_USERNAME: str = ""
+    AZURE_DATABASE_PASSWORD: str = ""
 
-    # 60 minutes * 24 hours * 8 days = 8 days
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
+    AZURE_STORAGE_ACCOUNT_NAME: str = ""
+    AZURE_STORAGE_ACCOUNT_KEY: str = ""
+    AZURE_STORAGE_SHARE_NAME: str = ""
+
     FORCE_FOREGROUND: bool = False
+    FORCE_TASK_SCHEDULER_TO_FIVE_MINUTE_INTERVAL: bool = False
 
     HYDSTRA_BASE_URL: str = ""
 
@@ -42,7 +55,15 @@ class Settings(BaseSettings):
 
     class Config:
         env_prefix = "LYRA_"
-        env_file = Path(lyra.__file__).absolute().parent.parent.parent.parent.parent / '.env'
+        env_file = (
+            Path(__file__).absolute().resolve().parent.parent.parent.parent / ".env"
+        )
+        extra = "allow"
+
+    def update(self, other: dict):
+        for key, value in other.items():
+            setattr(self, key, value)
 
 
 settings = Settings()
+config = load_cfg(Path(__file__).parent / "lyra_config.yml")

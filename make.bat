@@ -58,6 +58,7 @@ goto :eof
 
 :prod
 call make clean
+call bash scripts/write_version.sh
 call scripts\build_prod.bat
 call make build
 goto :eof
@@ -75,7 +76,7 @@ call scripts\clean.bat
 goto :eof
 
 :dev-server
-docker-compose run -p 8080:80 lyra bash /start-reload.sh
+docker-compose run -p 8080:80 -e LOG_LEVEL=debug lyra bash /start-reload.sh
 goto :eof
 
 :restart
@@ -118,6 +119,13 @@ goto :eof
 
 :az-deploy
 call make az-login
+set LYRA_VERSION=
+echo image tag: %LYRA_VERSION%
 call make prod
-docker-compose push
+docker-compose -f docker-stack.yml push
+set /p LYRA_VERSION=<VERSION
+echo image tag: %LYRA_VERSION%
+call make prod
+docker-compose -f docker-stack.yml push
+call scripts\az_deploy.bat
 goto :eof
