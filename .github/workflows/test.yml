@@ -24,7 +24,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: build stack
-        run:  bash ./scripts/build_dev.sh
+        run: | 
+        chmod +x ./scripts/build_dev.sh
+        ./scripts/build_dev.sh
               
       - name: build dev
         run: docker-compose -f docker-stack.yml build
