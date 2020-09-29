@@ -40,6 +40,13 @@ def nocache():
 
 
 @pytest.fixture
+def clearcache():
+    cache.flush()
+    yield
+
+
+
+@pytest.fixture
 def mock_rsb_geo_bytestring(monkeypatch):
     monkeypatch.setattr(azure_fs, "get_file_as_bytestring", utils._rsb_geo_file_binary)
 
