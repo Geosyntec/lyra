@@ -31,6 +31,6 @@ jobs:
           COMPOSE_FILE: docker-stack.yml
         run: |
           docker-compose up -d lyra-tests
-          docker-compose exec lyra-tests pytest -sv -m "not integration"
+          docker-compose exec -t lyra-tests pytest -sv -m "not integration"
        
         
