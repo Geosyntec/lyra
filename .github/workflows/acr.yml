@@ -4,10 +4,13 @@ name: ACR
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the develop branch
-on:
-  release:
-    types:
-      - created
+on: 
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'image tag'     
+        required: true
+        default: 'latest'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,5 +29,5 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
       - run: |
           docker pull ${{ secrets.ACR_SERVER }}/swn/lyra-tests:latest
-          docker run -d --name lyra-tests ${{ secrets.ACR_SERVER }}/swn/lyra-tests:latest
-          docker exec lyra-tests ls -a
+          docker run -d --name lyra-tests ${{ secrets.ACR_SERVER }}/swn/lyra-tests:${{ github.event.inputs.tag }}
+          docker exec lyra-tests pytest -sv
