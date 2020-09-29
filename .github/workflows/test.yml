@@ -16,6 +16,8 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+      COMPOSE_FILE: docker-stack.yml
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -24,13 +26,19 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: build stack
-        run: bash ./scripts/build_dev.sh
+        run: |
+          bash ./scripts/build_dev.sh
+          docker-compose up -d lyra-tests
               
       - name: run tests
-        env:
-          COMPOSE_FILE: docker-stack.yml
+        run: docker-compose exec -T lyra-tests coverage run --branch -m pytest -sv -m "not integration"
+          
+      - name: coverage
         run: |
-          docker-compose up -d lyra-tests
-          docker-compose exec -T lyra-tests pytest -sv -m "not integration"
-       
-        
+          docker-compose exec -T lyra-tests coverage report -mi
+          docker-compose exec -T lyra-tests coverage xml
+          docker-compose exec -T lyra-tests cat coverage.xml > coverage.xml
+          docker-compose exec -T lyra-tests cat .coverage > .coverage
+
+      - name: upload coverage
+        uses: codecov/codecov-action@v1
