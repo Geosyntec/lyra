@@ -27,11 +27,10 @@ jobs:
         run: bash ./scripts/build_dev.sh
               
       - name: build dev
-        run: docker-compose -f docker-stack.yml build
-        
-      - name: build dev
-        run: docker-compose up -d
-      
+        run: |
+        docker-compose -f docker-stack.yml build
+        docker-compose up -d lyra-tests
+             
       - name: run tests
-        run: docker-compose exec lyra-tests coverage run -m pytest -xv
+        run: docker-compose exec lyra-tests pytest -sv -m "not integration"
         
