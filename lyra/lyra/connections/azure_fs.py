@@ -2,7 +2,6 @@ import io
 import logging
 from pathlib import Path
 from typing import Optional
-import json
 
 from azure.core.exceptions import ResourceExistsError
 from azure.storage.fileshare import ShareClient, ShareFileClient
@@ -59,6 +58,7 @@ def make_azure_fileclient(
 
 def get_file_object(filepath, share=None):
     file_client = make_azure_fileclient(filepath, share=share)
+    logger.info(f"retrieving {filepath} from azure...")
     data = file_client.download_file()
     file = io.BytesIO()
     data.readinto(file)
@@ -66,15 +66,16 @@ def get_file_object(filepath, share=None):
     return file
 
 
-def put_file_object(fileobj_src, filepath_dest, share=None):
+def put_file_object(fileobj_src, filepath_dest, share=None):  # pragma: no cover
     fileobj_src.seek(0)
     file_client = make_azure_fileclient(filepath_dest, share=share)
+    logger.info(f"uploading {filepath_dest} to azure...")
     file_client.upload_file(fileobj_src)
     logger.info("upload completed")
     return
 
 
-@cache_decorator(ex=3600 * 24)  # expires in 24 hours
-def get_file_as_bytestring(filepath):
-    file = get_file_object(filepath, share=None)
+@cache_decorator(ex=None)  # expires only when cache is flushed.
+def get_file_as_bytestring(filepath, share=None):
+    file = get_file_object(filepath, share=share)
     return file.read()

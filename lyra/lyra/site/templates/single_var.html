@@ -1,0 +1,256 @@
+{% extends "base.html" %} 
+{% block head %}
+{{ super() }}
+<style>
+.error {
+    color: red;
+}
+
+.dashboard {
+	display: grid;
+	grid-template-columns: 2fr 3fr;
+	grid-template-rows: 1fr 5fr 2fr;
+	align-items:center;
+	justify-items: center;
+}
+
+.db_title {
+	grid-column: 1 / -1;
+}
+
+.form_container {
+	justify-self:end;
+}
+
+.db_notes {
+	grid-column: 1 / -1;
+}
+
+#form-notes {
+	font-size: 8pt;
+	font-style: italic;
+}
+
+</style>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.8.1"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+	<div class="db_title">
+		<h1>Timeseries</h1>
+	</div>
+	<div class='form_container'>
+	  {% include 'single_var_form.html' %}
+	</div>
+	<div id='vis-timeseries'></div>
+	<div class='db_notes'>
+		<div id='form-notes'></div>
+		<div id='error_msgs' ></div>
+	</div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{{ super() }}
+<script>
+
+const variables = {{ site_vars | tojson | safe }}
+
+function setVariable() {
+	const site = document.getElementById('sites')
+	const var_info = variables[site.options[site.selectedIndex].text]
+	const new_vars = Object.keys(var_info)
+
+	let variable_options = document.getElementById('variable')
+	while (variable_options.firstChild) {
+        variable_options.removeChild(variable_options.firstChild);
+    }
+	for (let key of new_vars){
+	    let opt = document.createElement('option');
+	    opt.value = key;
+	    opt.innerHTML = var_info[key]['name'];
+	    variable_options.appendChild(opt);
+	}
+}
+
+setVariable();
+
+(new URL(window.location.href)).searchParams.forEach((x, y) =>
+    document.getElementById(y).value = x)
+
+function updateVegaChart(spec, id) {
+	// TODO: clear plot on submit to indicate that it's out of date.
+	
+	(function(vegaEmbed) {
+	      
+	      var embedOpt = {"mode": "vega-lite"};
+
+	      function showError(el, error){
+	          el.innerHTML = (
+	          	'<div class="error" style="color:red;">'
+				+ '<p>JavaScript Error: ' + error.message + '</p>'
+				+ "<p>This usually means there's a typo in your chart specification. "
+				+ "See the javascript console for the full traceback.</p>"
+				+ '</div>'
+			  );
+	          throw error;
+	      }
+	      const el = document.getElementById(id);
+	      vegaEmbed("#"+id, spec, embedOpt)
+	        .catch(error => showError(el, error));
+	    })(vegaEmbed);
+}
+
+const form = document.getElementById('ts-form');
+
+
+const wrapper = $(".add_site");
+const add_button = $(".add_site_button");
+
+let site_picker_html = `<select id="sites" name="sites">`
+for (let site in variables) {
+	if (site == "ELTORO") {
+		site_picker_html += `<option selected value=${site}>${site}</option>`
+	} else {
+		site_picker_html += `<option value=${site}>${site}</option>`
+	}
+}
+site_picker_html += `</select><label for="sites">Site</label>`
+
+
+$(add_button).click(function(e) {
+    e.preventDefault();
+    $(wrapper).append(`
+<div>
+	<hr>
+	<div>
+        ${site_picker_html}
+    </div>
+    <div >
+        <select  name="agg_methods">
+          <option value="tot">Total</option>
+          <option value="mean">Average</option>
+          <option value="max">Maximum</option>
+          <option value="min">Minimum</option>
+        </select>
+        <label for="agg_methods">Aggregation Mode</label>
+    </div>
+    <div >
+        <select  name="intervals">
+          <option value="hour">Hourly</option>
+          <option value="day">Daily</option>
+          <option value="month">Monthly</option>
+          <option value="year">Yearly</option>
+        </select>
+        <label for="intervals">Interval</label>
+    </div>
+    <a href="#" class="delete">Delete</a></div>
+</div>
+    
+    `); //add input box
+});
+
+$(wrapper).on("click", ".delete", function(e) {
+    e.preventDefault();
+    $(this).parent('div').remove();
+})
+
+form.addEventListener('submit', (evt) => {
+  	evt.preventDefault();
+
+  	const url = formToUrl("{{ plot_function_url }}", form);
+  	const permalink = formToUrl(window.location.href.split('?')[0], form);
+  	var form_notes = document.getElementById('form-notes');
+  	form_notes.textContent = ('permalink: ' + permalink);
+  	let el = document.getElementById("vis-timeseries");
+	if (!(el === null)) {
+		el.innerHTML = "";
+	}
+
+	getJsonResponse(url).then( response => {
+		var err_div = document.getElementById('error_msgs')
+		err_div.innerHTML = ''
+
+		let spec = getNested( response, 'data', 'spec')
+		let msg = getNested( response, 'data', 'message')
+		let msg422 = getNested( response, 'detail')
+		
+		if (spec) {
+			updateVegaChart(spec, "vis-timeseries")
+			if (history.pushState) {
+				history.pushState({}, null, permalink);
+			}
+
+		} else if (msg422) {
+			console.error(response)
+			err_div.innerHTML = (
+				'<div class="alert alert-danger">'
+            	+ '<button type="button" class="close" data-dismiss="alert">&times;</button>'
+            	+ "ERROR: no chart returned by service. "
+            	+ msg422[0]['msg']
+        		+ '</div>'
+			)
+			return
+		} else {
+			console.error(response)
+			err_div.innerHTML = (
+				'<div class="alert alert-danger">'
+            	+ '<button type="button" class="close" data-dismiss="alert">&times;</button>'
+            	+ "ERROR: no chart returned by service. "
+            	+ msg
+        		+ '</div>'
+			)
+			return
+		}
+
+		if (msg) {
+			console.warn(response)
+			err_div.innerHTML = (
+				'<div class="alert alert-warning">'
+            	+ '<button type="button" class="close" data-dismiss="alert">&times;</button>'
+            	+ msg
+        		+ '</div>'
+			)
+		}
+
+	})
+  
+});
+
+
+function getNested(obj, ...args) {
+  return args.reduce((obj, level) => obj && obj[level], obj)
+}
+
+function formToUrl(url, form) {
+	const formData = new FormData(form);
+  	const params = new URLSearchParams(formData);
+
+	return url + "?" + params.toString()
+}
+
+
+async function getJsonResponse(url) {
+
+	const response = await fetch(url, {method: 'GET'}
+		).then( resp => {
+  		if (resp.status == 200) {
+  			return resp.json();
+  		} else if (resp.status == 422) {
+  			return resp.json()
+  		} else {
+  			throw new Error('got back ' + resp.json());
+  		}
+  	}).then( data => {
+  		return data
+  	});
+  	return response
+
+}
+	
+</script>
+{% endblock %}

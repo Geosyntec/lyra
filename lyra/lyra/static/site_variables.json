@@ -9,7 +9,7 @@
       "name": "Rainfall",
       "site": "AGUACHINON_TORO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701224500",
@@ -20,7 +20,7 @@
       "name": "Raw Level",
       "site": "AGUACHINON_TORO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150518050041",
@@ -31,7 +31,7 @@
       "name": "Raw Level",
       "site": "AGUACHINON_TORO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701224500",
@@ -42,7 +42,7 @@
       "name": "Discharge",
       "site": "AGUACHINON_TORO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180630000000",
@@ -53,7 +53,7 @@
       "name": "Discharge",
       "site": "AGUACHINON_TORO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120407013000",
@@ -64,7 +64,7 @@
       "name": "Sediment Concentration",
       "site": "AGUACHINON_TORO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120318100000",
@@ -75,10 +75,10 @@
       "name": "Sediment Concentration",
       "site": "AGUACHINON_TORO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181130110000",
+      "period_end": "20200925070000",
       "period_start": "20080107121750",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -86,7 +86,7 @@
       "name": "Rainfall",
       "site": "ALAMEDA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20090112122800",
@@ -97,10 +97,10 @@
       "name": "Raw Level",
       "site": "ALAMEDA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181130110000",
+      "period_end": "20200925120000",
       "period_start": "20080108002233",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -108,7 +108,7 @@
       "name": "Raw Level",
       "site": "ALAMEDA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20080701000000",
@@ -119,7 +119,7 @@
       "name": "Discharge",
       "site": "ALAMEDA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050620145610",
@@ -130,10 +130,10 @@
       "name": "Rainfall",
       "site": "ALISO_JERONIMO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190618031935",
+      "period_end": "20200925070000",
       "period_start": "19890701172840",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -141,7 +141,7 @@
       "name": "Rainfall",
       "site": "ALISO_JERONIMO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20101007094850",
@@ -152,7 +152,7 @@
       "name": "Rainfall",
       "site": "ALISO_JERONIMO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20101007094850",
@@ -163,7 +163,7 @@
       "name": "Rainfall",
       "site": "ALISO_JERONIMO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150701000000",
@@ -174,10 +174,10 @@
       "name": "Raw Level",
       "site": "ALISO_JERONIMO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190618031935",
+      "period_end": "20200925120000",
       "period_start": "20031224125750",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -185,7 +185,7 @@
       "name": "Raw Level",
       "site": "ALISO_JERONIMO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150417071000",
@@ -196,7 +196,7 @@
       "name": "Corrected Level",
       "site": "ALISO_JERONIMO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150701000000",
@@ -207,7 +207,7 @@
       "name": "Discharge",
       "site": "ALISO_JERONIMO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190327084500",
@@ -218,10 +218,10 @@
       "name": "Raw Level",
       "site": "ALISO_STP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190621081500",
+      "period_end": "20200925120500",
       "period_start": "20020228133259",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -229,7 +229,7 @@
       "name": "Raw Level",
       "site": "ALISO_STP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160322130000",
@@ -240,7 +240,7 @@
       "name": "Corrected Level",
       "site": "ALISO_STP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190327084500",
@@ -251,7 +251,7 @@
       "name": "Discharge",
       "site": "ALISO_STP",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190701000000",
@@ -262,7 +262,7 @@
       "name": "Discharge",
       "site": "ALISO_STP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190327084500",
@@ -273,7 +273,7 @@
       "name": "Volume",
       "site": "ALISO_STP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20060911075620",
@@ -284,10 +284,10 @@
       "name": "Rainfall",
       "site": "ANAHEIM_BARBER",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190123120000",
+      "period_end": "20200925120000",
       "period_start": "19900313125811",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -295,7 +295,7 @@
       "name": "Rainfall",
       "site": "ANAHEIM_BARBER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120930230800",
@@ -306,7 +306,7 @@
       "name": "Rainfall",
       "site": "ANAHEIM_BARBER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120930230800",
@@ -317,7 +317,7 @@
       "name": "Rainfall",
       "site": "ANAHEIM_BARBER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170720094000",
@@ -328,10 +328,10 @@
       "name": "Raw Level",
       "site": "ANAHEIM_BARBER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190123120000",
+      "period_end": "20200925120000",
       "period_start": "20010222065801",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -339,7 +339,7 @@
       "name": "Raw Level",
       "site": "ANAHEIM_BARBER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160728065000",
@@ -350,7 +350,7 @@
       "name": "Discharge",
       "site": "ANAHEIM_BARBER",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160701000000",
@@ -361,7 +361,7 @@
       "name": "Discharge",
       "site": "ANAHEIM_BARBER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170720094000",
@@ -372,7 +372,7 @@
       "name": "Logger Battery Voltage",
       "site": "ANAHEIM_BARBER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170720094000",
@@ -383,10 +383,10 @@
       "name": "Water Temperature",
       "site": "ANAHEIM_BARBER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20140407132010",
+      "period_end": "20200925075338",
       "period_start": "19900101021935",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -394,7 +394,7 @@
       "name": "Rainfall",
       "site": "ANGELUS",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -405,7 +405,7 @@
       "name": "Raw Level",
       "site": "ARROYO_TRABUCO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20181001000000",
@@ -416,7 +416,7 @@
       "name": "Discharge",
       "site": "ARROYO_TRABUCO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20181001000000",
@@ -427,7 +427,7 @@
       "name": "Discharge",
       "site": "ARROYO_TRABUCO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -438,10 +438,10 @@
       "name": "Volume",
       "site": "ARROYO_TRABUCO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190516090000",
+      "period_end": "20200925120000",
       "period_start": "19960507111705",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -449,7 +449,7 @@
       "name": "Rainfall",
       "site": "BEE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20140209223654",
@@ -460,7 +460,7 @@
       "name": "Rainfall",
       "site": "BEE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -471,10 +471,10 @@
       "name": "Raw Level",
       "site": "BOLSACHICA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20170928034500",
+      "period_end": "20200925120721",
       "period_start": "20030316001221",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -482,7 +482,7 @@
       "name": "Raw Level",
       "site": "BOLSACHICA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20140421084000",
@@ -493,7 +493,7 @@
       "name": "Corrected Level",
       "site": "BOLSACHICA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -504,7 +504,7 @@
       "name": "Discharge",
       "site": "BOLSACHICA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -515,7 +515,7 @@
       "name": "Discharge",
       "site": "BOLSACHICA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070208193807",
@@ -526,7 +526,7 @@
       "name": "Water Elevation",
       "site": "BONDPITS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701224500",
@@ -537,10 +537,10 @@
       "name": "Raw Level",
       "site": "BONITA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20121126040951",
+      "period_end": "20200925050023",
       "period_start": "20040630075019",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -548,7 +548,7 @@
       "name": "Raw Level",
       "site": "BONITA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701224500",
@@ -559,7 +559,7 @@
       "name": "Discharge",
       "site": "BONITA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180630000000",
@@ -570,7 +570,7 @@
       "name": "Discharge",
       "site": "BONITA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120508073000",
@@ -581,7 +581,7 @@
       "name": "Sediment Concentration",
       "site": "BONITA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120705102000",
@@ -592,7 +592,7 @@
       "name": "Sediment Concentration",
       "site": "BONITA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20080916095110",
@@ -603,10 +603,10 @@
       "name": "Rainfall",
       "site": "BREA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190206060000",
+      "period_end": "20200925070000",
       "period_start": "19890701183153",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -614,7 +614,7 @@
       "name": "Rainfall",
       "site": "BREA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100126180000",
@@ -625,10 +625,10 @@
       "name": "Rainfall",
       "site": "BREA_DAM",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20130312045700",
+      "period_end": "20191118143000",
       "period_start": "20040824025505",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -636,7 +636,7 @@
       "name": "Rainfall",
       "site": "BREA_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20061004040211",
@@ -647,10 +647,10 @@
       "name": "Raw Level",
       "site": "BREA_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20130308045600",
+      "period_end": "20191118143000",
       "period_start": "20050130105804",
       "subdesc": "ALERT download",
       "variable": "232.51",
@@ -658,10 +658,10 @@
       "name": "Raw Level",
       "site": "BREA_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20130312045700",
+      "period_end": "20191118143000",
       "period_start": "20060929002844",
       "subdesc": "ALERT transmitted",
       "variable": "235.50",
@@ -669,7 +669,7 @@
       "name": "Water Elevation",
       "site": "BREA_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20061127075939",
@@ -680,7 +680,7 @@
       "name": "Water Elevation",
       "site": "BREA_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050721065930",
@@ -691,10 +691,10 @@
       "name": "Rainfall",
       "site": "BREAOLINDA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190206060000",
+      "period_end": "20200925070000",
       "period_start": "19960605100050",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -702,10 +702,10 @@
       "name": "Rainfall",
       "site": "BREAOLINDA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20081118233318",
+      "period_end": "20190803213721",
       "period_start": "20040630064600",
       "subdesc": "ALERT transmitted",
       "variable": "121.50",
@@ -713,7 +713,7 @@
       "name": "Tide Level",
       "site": "BROOKHURST",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20200130000000",
@@ -724,7 +724,7 @@
       "name": "Rainfall",
       "site": "BUENA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100511080000",
@@ -735,10 +735,10 @@
       "name": "Rainfall",
       "site": "BUENA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190123120000",
+      "period_end": "20200925120000",
       "period_start": "20060313115924",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -746,7 +746,7 @@
       "name": "Rainfall",
       "site": "CARBON_CREEK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170725101500",
@@ -757,7 +757,7 @@
       "name": "Raw Level",
       "site": "CARBON_CREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20110624173000",
@@ -768,10 +768,10 @@
       "name": "Raw Level",
       "site": "CARBON_CREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190123121500",
+      "period_end": "20200925120430",
       "period_start": "20060314115929",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -779,7 +779,7 @@
       "name": "Raw Level",
       "site": "CARBON_CREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -790,7 +790,7 @@
       "name": "Discharge",
       "site": "CARBON_CREEK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -801,7 +801,7 @@
       "name": "Discharge",
       "site": "CARBON_CREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170725101500",
@@ -812,7 +812,7 @@
       "name": "Logger Battery Voltage",
       "site": "CARBON_CREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170725101500",
@@ -823,10 +823,10 @@
       "name": "Water Temperature",
       "site": "CARBON_CREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707045329",
+      "period_end": "20191118140000",
       "period_start": "20040824035407",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -834,7 +834,7 @@
       "name": "Rainfall",
       "site": "CARBON_CYN_DAM",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070402050229",
@@ -845,10 +845,10 @@
       "name": "Raw Level",
       "site": "CARBON_CYN_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707041828",
+      "period_end": "20191118143000",
       "period_start": "20040825031532",
       "subdesc": "ALERT download",
       "variable": "232.51",
@@ -856,10 +856,10 @@
       "name": "Raw Level",
       "site": "CARBON_CYN_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707045330",
+      "period_end": "20191118140000",
       "period_start": "20070327091839",
       "subdesc": "ALERT transmitted",
       "variable": "235.50",
@@ -867,7 +867,7 @@
       "name": "Water Elevation",
       "site": "CARBON_CYN_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20090601000000",
@@ -878,7 +878,7 @@
       "name": "Rainfall",
       "site": "CARBON_CYN_GIL",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20010601000000",
@@ -889,10 +889,10 @@
       "name": "Rainfall",
       "site": "CARBON_CYN_WORK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20141230121719",
+      "period_end": "20180730190013",
       "period_start": "20111204235640",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -900,7 +900,7 @@
       "name": "Rainfall",
       "site": "CENTRAL_IRVINE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170731125000",
@@ -911,10 +911,10 @@
       "name": "Raw Level",
       "site": "CENTRAL_IRVINE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20151108121105",
+      "period_end": "20200925120100",
       "period_start": "20071229000304",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -922,7 +922,7 @@
       "name": "Raw Level",
       "site": "CENTRAL_IRVINE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20111027091000",
@@ -933,7 +933,7 @@
       "name": "Corrected Level",
       "site": "CENTRAL_IRVINE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -944,7 +944,7 @@
       "name": "Discharge",
       "site": "CENTRAL_IRVINE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -955,7 +955,7 @@
       "name": "Discharge",
       "site": "CENTRAL_IRVINE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100107113500",
@@ -966,7 +966,7 @@
       "name": "Logger Battery Voltage",
       "site": "CENTRAL_IRVINE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170731000000",
@@ -977,7 +977,7 @@
       "name": "Water Temperature",
       "site": "CENTRAL_IRVINE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20060520152052",
@@ -988,7 +988,7 @@
       "name": "Rainfall",
       "site": "CHINO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20061203133333",
@@ -999,7 +999,7 @@
       "name": "Raw Level",
       "site": "CHINO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190725055733",
@@ -1010,7 +1010,7 @@
       "name": "Rainfall",
       "site": "CORONA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050623133556",
@@ -1021,10 +1021,10 @@
       "name": "Rainfall",
       "site": "CORONA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181211110000",
+      "period_end": "20200925120000",
       "period_start": "19890701164655",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1032,7 +1032,7 @@
       "name": "Rainfall",
       "site": "CORONA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20111103084600",
@@ -1043,7 +1043,7 @@
       "name": "Rainfall",
       "site": "CORONA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190807120000",
@@ -1054,7 +1054,7 @@
       "name": "Rainfall",
       "site": "COSTAMESA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050623141254",
@@ -1065,10 +1065,10 @@
       "name": "Rainfall",
       "site": "COSTAMESA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181211110000",
+      "period_end": "20200925120000",
       "period_start": "19900503122705",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1076,7 +1076,7 @@
       "name": "Rainfall",
       "site": "COSTAMESA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20091007033600",
@@ -1087,7 +1087,7 @@
       "name": "Rainfall",
       "site": "COSTAMESA_CH",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190522114500",
@@ -1098,7 +1098,7 @@
       "name": "Raw Level",
       "site": "COSTAMESA_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150729125000",
@@ -1109,7 +1109,7 @@
       "name": "Corrected Level",
       "site": "COSTAMESA_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190522114500",
@@ -1120,7 +1120,7 @@
       "name": "Discharge",
       "site": "COSTAMESA_CH",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190701000000",
@@ -1131,7 +1131,7 @@
       "name": "Discharge",
       "site": "COSTAMESA_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20060914000000",
@@ -1142,7 +1142,7 @@
       "name": "Discharge",
       "site": "COSTAMESA_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180323121500",
@@ -1153,7 +1153,7 @@
       "name": "Volume",
       "site": "COSTAMESA_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190522114500",
@@ -1164,7 +1164,7 @@
       "name": "Logger Battery Voltage",
       "site": "COSTAMESA_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190522114500",
@@ -1175,7 +1175,7 @@
       "name": "Water Temperature",
       "site": "COSTAMESA_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20200115120000",
@@ -1186,7 +1186,7 @@
       "name": "Rainfall",
       "site": "COSTAMESA_CMWD",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150630080000",
@@ -1197,10 +1197,10 @@
       "name": "Rainfall",
       "site": "COSTAMESA_CMWD",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521140000",
+      "period_end": "20200925120000",
       "period_start": "19931001091907",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1208,7 +1208,7 @@
       "name": "Rainfall",
       "site": "COTODECAZA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050727232220",
@@ -1219,7 +1219,7 @@
       "name": "Rainfall",
       "site": "COTODECAZA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190828073000",
@@ -1230,10 +1230,10 @@
       "name": "Raw Level",
       "site": "COYOTE_CREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20180307030000",
+      "period_end": "20200925120000",
       "period_start": "20060701000543",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -1241,7 +1241,7 @@
       "name": "Raw Level",
       "site": "COYOTE_CREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190701000000",
@@ -1252,7 +1252,7 @@
       "name": "Discharge",
       "site": "COYOTE_CREEK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -1263,7 +1263,7 @@
       "name": "Discharge",
       "site": "COYOTE_CREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190828073000",
@@ -1274,7 +1274,7 @@
       "name": "Water Temperature",
       "site": "COYOTE_CREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20081104071220",
@@ -1285,7 +1285,7 @@
       "name": "Rainfall",
       "site": "CYPRESS",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20080115085824",
@@ -1296,7 +1296,7 @@
       "name": "Raw Level",
       "site": "CYPRESS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190806120000",
@@ -1307,10 +1307,10 @@
       "name": "Rainfall",
       "site": "DANAPOINT",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200317130000",
+      "period_end": "20200925070000",
       "period_start": "20080506205220",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1318,7 +1318,7 @@
       "name": "Rainfall",
       "site": "EASTGARDEN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20090107012530",
@@ -1329,7 +1329,7 @@
       "name": "Rainfall",
       "site": "EASTGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190826082500",
@@ -1340,10 +1340,10 @@
       "name": "Raw Level",
       "site": "EASTGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200317140000",
+      "period_end": "20200925120000",
       "period_start": "20081028130607",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -1351,7 +1351,7 @@
       "name": "Raw Level",
       "site": "EASTGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150818122000",
@@ -1362,7 +1362,7 @@
       "name": "Corrected Level",
       "site": "EASTGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190826082500",
@@ -1373,7 +1373,7 @@
       "name": "Discharge",
       "site": "EASTGARDEN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190825135000",
@@ -1384,7 +1384,7 @@
       "name": "Discharge",
       "site": "EASTGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "19990907015810",
@@ -1395,10 +1395,10 @@
       "name": "Rainfall",
       "site": "ELCARISO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521130000",
+      "period_end": "20200925010000",
       "period_start": "19900606112733",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1406,7 +1406,7 @@
       "name": "Rainfall",
       "site": "ELCARISO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050621083800",
@@ -1417,10 +1417,10 @@
       "name": "Rainfall",
       "site": "ELMODENA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190516090000",
+      "period_end": "20200925120000",
       "period_start": "19890718121608",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1428,7 +1428,7 @@
       "name": "Rainfall",
       "site": "ELMODENA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20091007231010",
@@ -1439,7 +1439,7 @@
       "name": "Rainfall",
       "site": "ELMODENA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20091007231010",
@@ -1450,7 +1450,7 @@
       "name": "Rainfall",
       "site": "ELMODENA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180717091500",
@@ -1461,10 +1461,10 @@
       "name": "Raw Level",
       "site": "ELMODENA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190516090000",
+      "period_end": "20200925120000",
       "period_start": "20031031121208",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -1472,7 +1472,7 @@
       "name": "Raw Level",
       "site": "ELMODENA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150701000000",
@@ -1483,7 +1483,7 @@
       "name": "Corrected Level",
       "site": "ELMODENA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180717091500",
@@ -1494,7 +1494,7 @@
       "name": "Discharge",
       "site": "ELMODENA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -1505,7 +1505,7 @@
       "name": "Discharge",
       "site": "ELMODENA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180717091500",
@@ -1516,7 +1516,7 @@
       "name": "Water Temperature",
       "site": "ELMODENA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190730000000",
@@ -1527,7 +1527,7 @@
       "name": "Rainfall",
       "site": "ELTORO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20061114101205",
@@ -1538,10 +1538,10 @@
       "name": "Rainfall",
       "site": "ELTORO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20150917021358",
+      "period_end": "20200925070000",
       "period_start": "19900124135401",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1549,7 +1549,7 @@
       "name": "Rainfall",
       "site": "FULLERTON_AP",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070925011650",
@@ -1560,7 +1560,7 @@
       "name": "Rainfall",
       "site": "FULLERTON_AP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "19990616104050",
@@ -1571,10 +1571,10 @@
       "name": "Rainfall",
       "site": "FULLERTON_BEACH",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200318140000",
+      "period_end": "20200925070000",
       "period_start": "20031028113505",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1582,10 +1582,10 @@
       "name": "Rainfall",
       "site": "FULLERTON_BEACH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200318140000",
+      "period_end": "20200925120000",
       "period_start": "20031028113504",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -1593,10 +1593,10 @@
       "name": "Raw Level",
       "site": "FULLERTON_BEACH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707010921",
+      "period_end": "20191118140000",
       "period_start": "20040824000528",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1604,7 +1604,7 @@
       "name": "Rainfall",
       "site": "FULLERTON_DAM",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070402075735",
@@ -1615,10 +1615,10 @@
       "name": "Raw Level",
       "site": "FULLERTON_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707065303",
+      "period_end": "20191118143000",
       "period_start": "20040823095556",
       "subdesc": "ALERT download",
       "variable": "232.51",
@@ -1626,10 +1626,10 @@
       "name": "Raw Level",
       "site": "FULLERTON_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707010921",
+      "period_end": "20191118140000",
       "period_start": "20040824000628",
       "subdesc": "ALERT transmitted",
       "variable": "235.50",
@@ -1637,7 +1637,7 @@
       "name": "Water Elevation",
       "site": "FULLERTON_DAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20200219000000",
@@ -1648,7 +1648,7 @@
       "name": "Rainfall",
       "site": "FULLERTON_RES",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100701080000",
@@ -1659,7 +1659,7 @@
       "name": "Rainfall",
       "site": "FULLERTON_RES",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20040806095300",
@@ -1670,10 +1670,10 @@
       "name": "Rainfall",
       "site": "FULLERTON_RICH",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181212070000",
+      "period_end": "20200925070000",
       "period_start": "19890701132315",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1681,7 +1681,7 @@
       "name": "Rainfall",
       "site": "FULLERTON_RICH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20090114004410",
@@ -1692,7 +1692,7 @@
       "name": "Rainfall",
       "site": "FULLERTON_RICH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20121022072628",
@@ -1703,7 +1703,7 @@
       "name": "Rainfall",
       "site": "FULLERTON_RICH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160712123000",
@@ -1714,10 +1714,10 @@
       "name": "Raw Level",
       "site": "FULLERTON_RICH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181212063000",
+      "period_end": "20191118143000",
       "period_start": "20051017102547",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -1725,7 +1725,7 @@
       "name": "Raw Level",
       "site": "FULLERTON_RICH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20110723181000",
@@ -1736,7 +1736,7 @@
       "name": "Corrected Level",
       "site": "FULLERTON_RICH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160712123000",
@@ -1747,7 +1747,7 @@
       "name": "Discharge",
       "site": "FULLERTON_RICH",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160701000000",
@@ -1758,10 +1758,10 @@
       "name": "Discharge",
       "site": "FULLERTON_RICH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20180307020000",
+      "period_end": "20200925070000",
       "period_start": "20150909123102",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1769,7 +1769,7 @@
       "name": "Rainfall",
       "site": "FULLERTON_VLLYV",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190701000000",
@@ -1780,10 +1780,10 @@
       "name": "Raw Level",
       "site": "FULLERTON_VLLYV",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20180307034500",
+      "period_end": "20200925120000",
       "period_start": "20150909123102",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -1791,7 +1791,7 @@
       "name": "Raw Level",
       "site": "FULLERTON_VLLYV",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -1802,7 +1802,7 @@
       "name": "Corrected Level",
       "site": "FULLERTON_VLLYV",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190701000000",
@@ -1813,7 +1813,7 @@
       "name": "Discharge",
       "site": "FULLERTON_VLLYV",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -1824,7 +1824,7 @@
       "name": "Discharge",
       "site": "FULLERTON_VLLYV",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20080623160000",
@@ -1835,7 +1835,7 @@
       "name": "Logger Battery Voltage",
       "site": "FULLERTON_VLLYV",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20111020120500",
@@ -1846,10 +1846,10 @@
       "name": "Water Temperature",
       "site": "FULLERTON_VLLYV",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181212070000",
+      "period_end": "20200925070000",
       "period_start": "19900721205448",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1857,7 +1857,7 @@
       "name": "Rainfall",
       "site": "GARDENGROVE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100902020900",
@@ -1868,7 +1868,7 @@
       "name": "Rainfall",
       "site": "GARDENGROVE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190730120000",
@@ -1879,7 +1879,7 @@
       "name": "Rainfall",
       "site": "GARDENGROVEFIRE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050316080000",
@@ -1890,7 +1890,7 @@
       "name": "Rainfall",
       "site": "GARDENGROVEFIRE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180124110000",
@@ -1901,7 +1901,7 @@
       "name": "Rainfall",
       "site": "GARDENGROVEFIRE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070423031150",
@@ -1912,7 +1912,7 @@
       "name": "Rainfall",
       "site": "GAVILANHILLS",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20040226200551",
@@ -1923,10 +1923,10 @@
       "name": "Rainfall",
       "site": "GILBERT",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20150917012702",
+      "period_end": "20200921010000",
       "period_start": "19900719100147",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1934,7 +1934,7 @@
       "name": "Rainfall",
       "site": "GILBERT",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190912032624",
@@ -1945,10 +1945,10 @@
       "name": "Rainfall",
       "site": "GLASSELL",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227002725",
+      "period_end": "20200925055125",
       "period_start": "20171101093626",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -1956,10 +1956,10 @@
       "name": "Rainfall",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227002725",
+      "period_end": "20200925055125",
       "period_start": "20171101093626",
       "subdesc": "",
       "variable": "300.00",
@@ -1967,10 +1967,10 @@
       "name": "Logger Battery Voltage",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227112626",
+      "period_end": "20200925120626",
       "period_start": "20171101003726",
       "subdesc": "ALERT transmitted",
       "variable": "401.50",
@@ -1978,10 +1978,10 @@
       "name": "Dry Bulb Temperature",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227112626",
+      "period_end": "20200925115126",
       "period_start": "20171101103226",
       "subdesc": "ALERT transmitted",
       "variable": "430.50",
@@ -1989,10 +1989,10 @@
       "name": "Humidity",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227113626",
+      "period_end": "20200925120626",
       "period_start": "20171101103526",
       "subdesc": "",
       "variable": "442.21",
@@ -2000,10 +2000,10 @@
       "name": "Soil Moisture Percentage",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227113626",
+      "period_end": "20200925120626",
       "period_start": "20171101103526",
       "subdesc": "",
       "variable": "442.22",
@@ -2011,10 +2011,10 @@
       "name": "Soil Moisture Percentage",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227113626",
+      "period_end": "20200925120626",
       "period_start": "20171101213625",
       "subdesc": "",
       "variable": "442.23",
@@ -2022,10 +2022,10 @@
       "name": "Soil Moisture Percentage",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227113626",
+      "period_end": "20200925120626",
       "period_start": "20171101213625",
       "subdesc": "",
       "variable": "442.24",
@@ -2033,10 +2033,10 @@
       "name": "Soil Moisture Percentage",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227113726",
+      "period_end": "20200925120626",
       "period_start": "20171101103226",
       "subdesc": "ALERT transmitted",
       "variable": "500.50",
@@ -2044,10 +2044,10 @@
       "name": "Wind Direction",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227113726",
+      "period_end": "20200925120626",
       "period_start": "20171101103226",
       "subdesc": "",
       "variable": "511.00",
@@ -2055,10 +2055,10 @@
       "name": "Wind Speed",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227112626",
+      "period_end": "20200925115126",
       "period_start": "20171101103625",
       "subdesc": "ALERT transmitted",
       "variable": "551.50",
@@ -2066,10 +2066,10 @@
       "name": "Station Level Pressure (mbar)",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181227112626",
+      "period_end": "20200925120626",
       "period_start": "20171101103625",
       "subdesc": "ALERT transmitted",
       "variable": "750.50",
@@ -2077,7 +2077,7 @@
       "name": "Solar Radiation Intensity",
       "site": "GLASSELL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20081104072648",
@@ -2088,7 +2088,7 @@
       "name": "Rainfall",
       "site": "HARBOR_EDINGER",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070813111532",
@@ -2099,7 +2099,7 @@
       "name": "Raw Level",
       "site": "HARBOR_EDINGER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20200130000000",
@@ -2110,10 +2110,10 @@
       "name": "Rainfall",
       "site": "HASTERBASIN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20180913120000",
+      "period_end": "20200925120000",
       "period_start": "20071205122005",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2121,10 +2121,10 @@
       "name": "Rainfall",
       "site": "HICKS_CYN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305120000",
+      "period_end": "20200925070000",
       "period_start": "20181023011143",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2132,7 +2132,7 @@
       "name": "Rainfall",
       "site": "HOLY_JIM_CYN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20151008101500",
@@ -2143,7 +2143,7 @@
       "name": "Raw Level",
       "site": "HORNO_OUT",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190114090000",
@@ -2154,7 +2154,7 @@
       "name": "Discharge",
       "site": "HORNO_OUT",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190808000000",
@@ -2165,10 +2165,10 @@
       "name": "Rainfall",
       "site": "HUNTINGTON",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20080501042217",
+      "period_end": "20200925120000",
       "period_start": "19970415085007",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2176,7 +2176,7 @@
       "name": "Rainfall",
       "site": "HUNTINGTON",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190928144155",
@@ -2187,10 +2187,10 @@
       "name": "Rainfall",
       "site": "IRVINE_JEFFREY",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305140000",
+      "period_end": "20200925070000",
       "period_start": "20080923125325",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2198,7 +2198,7 @@
       "name": "Rainfall",
       "site": "IRVINELAKE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050501000000",
@@ -2209,7 +2209,7 @@
       "name": "Corrected Level",
       "site": "IRVINELAKE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050501000000",
@@ -2220,7 +2220,7 @@
       "name": "Corrected Level",
       "site": "IRVINELAKE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030630235500",
@@ -2231,10 +2231,10 @@
       "name": "Water Elevation",
       "site": "IRVINELAKE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305140000",
+      "period_end": "20200925120000",
       "period_start": "20040707044017",
       "subdesc": "ALERT transmitted",
       "variable": "235.50",
@@ -2242,7 +2242,7 @@
       "name": "Water Elevation",
       "site": "IRVINELAKE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20151229103000",
@@ -2253,7 +2253,7 @@
       "name": "Raw Level",
       "site": "J01P27",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20151229102500",
@@ -2264,7 +2264,7 @@
       "name": "Corrected Level",
       "site": "J01P27",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20151229102500",
@@ -2275,7 +2275,7 @@
       "name": "Discharge",
       "site": "J01P27",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160701000000",
@@ -2286,7 +2286,7 @@
       "name": "Discharge",
       "site": "J01P27",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050607221130",
@@ -2297,7 +2297,7 @@
       "name": "Rainfall",
       "site": "KATELLAYARD",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20081029092636",
@@ -2308,7 +2308,7 @@
       "name": "Rainfall",
       "site": "KATELLAYARD",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20080925135910",
@@ -2319,7 +2319,7 @@
       "name": "Rainfall",
       "site": "LACOUAQUE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170815191218",
@@ -2330,7 +2330,7 @@
       "name": "Rainfall",
       "site": "LACOUAQUE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050713000110",
@@ -2341,10 +2341,10 @@
       "name": "Rainfall",
       "site": "LAGUNA_AUDUBON",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521140000",
+      "period_end": "20200925120000",
       "period_start": "19891229014829",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2352,7 +2352,7 @@
       "name": "Rainfall",
       "site": "LAGUNA_AUDUBON",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20101103032311",
@@ -2363,10 +2363,10 @@
       "name": "Raw Level",
       "site": "LAGUNA_AUDUBON",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090706101845",
+      "period_end": "20200925120000",
       "period_start": "20071016055732",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2374,7 +2374,7 @@
       "name": "Rainfall",
       "site": "LAGUNA_CYN_RPTR",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180803000000",
@@ -2385,10 +2385,10 @@
       "name": "Rainfall",
       "site": "LAGUNA_NIGUEL",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521140000",
+      "period_end": "20200924190000",
       "period_start": "19910530225931",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2396,7 +2396,7 @@
       "name": "Rainfall",
       "site": "LAGUNA_NIGUEL",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100701080000",
@@ -2407,7 +2407,7 @@
       "name": "Rainfall",
       "site": "LAGUNA_TREAT",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20081002102220",
@@ -2418,10 +2418,10 @@
       "name": "Rainfall",
       "site": "LAGUNA_WOODLAND",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521122459",
+      "period_end": "20200925070000",
       "period_start": "19900130154241",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2429,7 +2429,7 @@
       "name": "Rainfall",
       "site": "LAGUNA_WOODLAND",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20111215111600",
@@ -2440,7 +2440,7 @@
       "name": "Rainfall",
       "site": "LAGUNA_WOODLAND",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20101013125400",
@@ -2451,7 +2451,7 @@
       "name": "Rainfall",
       "site": "LAGUNA_WOODLAND",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120701000000",
@@ -2462,10 +2462,10 @@
       "name": "Raw Level",
       "site": "LAGUNA_WOODLAND",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521122459",
+      "period_end": "20200925120000",
       "period_start": "19950401002417",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -2473,7 +2473,18 @@
       "name": "Raw Level",
       "site": "LAGUNA_WOODLAND",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
+    },
+    {
+      "period_end": "20200925120000",
+      "period_start": "20200711071500",
+      "subdesc": "ALERT download",
+      "variable": "232.51",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "LAGUNA_WOODLAND",
+      "preferred": false,
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120630235500",
@@ -2484,7 +2495,7 @@
       "name": "Corrected Level",
       "site": "LAGUNA_WOODLAND",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120701000000",
@@ -2495,7 +2506,7 @@
       "name": "Discharge",
       "site": "LAGUNA_WOODLAND",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120701000000",
@@ -2506,7 +2517,7 @@
       "name": "Logger Battery Voltage",
       "site": "LAGUNA_WOODLAND",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120701000000",
@@ -2517,7 +2528,7 @@
       "name": "Water Temperature",
       "site": "LAGUNA_WOODLAND",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190814120000",
@@ -2528,7 +2539,7 @@
       "name": "Rainfall",
       "site": "LAGUNABEACH",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050713100720",
@@ -2539,7 +2550,7 @@
       "name": "Rainfall",
       "site": "LAMBERT",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20071129071425",
@@ -2550,7 +2561,18 @@
       "name": "Rainfall",
       "site": "LAMBERT",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
+    },
+    {
+      "period_end": "20200925110716",
+      "period_start": "20171102224708",
+      "subdesc": "ALERT transmitted",
+      "variable": "11.50",
+      "units": "Inches",
+      "name": "Rainfall",
+      "site": "LANE",
+      "preferred": true,
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170810073500",
@@ -2561,7 +2583,18 @@
       "name": "Raw Level",
       "site": "LANE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
+    },
+    {
+      "period_end": "20200925110716",
+      "period_start": "20171102224708",
+      "subdesc": "ALERT transmitted",
+      "variable": "232.50",
+      "units": "Feet",
+      "name": "Raw Level",
+      "site": "LANE",
+      "preferred": false,
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20121105000000",
@@ -2572,7 +2605,7 @@
       "name": "Corrected Level",
       "site": "LANE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -2583,7 +2616,7 @@
       "name": "Discharge",
       "site": "LANE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -2594,7 +2627,7 @@
       "name": "Discharge",
       "site": "LANE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030827014110",
@@ -2605,10 +2638,10 @@
       "name": "Rainfall",
       "site": "LOMARIDGE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20160406200125",
+      "period_end": "20200925120000",
       "period_start": "20000215101714",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2616,10 +2649,10 @@
       "name": "Rainfall",
       "site": "LOMARIDGE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20160406051706",
+      "period_end": "20191226030000",
       "period_start": "20000612155755",
       "subdesc": "ALERT transmitted",
       "variable": "511.50",
@@ -2627,7 +2660,7 @@
       "name": "Wind Speed",
       "site": "LOMARIDGE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070701080000",
@@ -2638,7 +2671,7 @@
       "name": "Rainfall",
       "site": "LOSALAMITOS",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20081104072247",
@@ -2649,7 +2682,7 @@
       "name": "Rainfall",
       "site": "LOSALAMITOS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20071113073427",
@@ -2660,7 +2693,7 @@
       "name": "Raw Level",
       "site": "LOSALAMITOS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030807081710",
@@ -2671,10 +2704,10 @@
       "name": "Rainfall",
       "site": "LOWEROSO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521130000",
+      "period_end": "20200925070000",
       "period_start": "20011114140336",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2682,7 +2715,7 @@
       "name": "Rainfall",
       "site": "LOWEROSO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170718104000",
@@ -2693,10 +2726,10 @@
       "name": "Raw Level",
       "site": "LOWEROSO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190520210936",
+      "period_end": "20200925120000",
       "period_start": "20040630132341",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -2704,7 +2737,7 @@
       "name": "Raw Level",
       "site": "LOWEROSO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160218123500",
@@ -2715,7 +2748,7 @@
       "name": "Corrected Level",
       "site": "LOWEROSO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170718104000",
@@ -2726,7 +2759,7 @@
       "name": "Discharge",
       "site": "LOWEROSO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -2737,7 +2770,7 @@
       "name": "Discharge",
       "site": "LOWEROSO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20040126024520",
@@ -2748,10 +2781,10 @@
       "name": "Rainfall",
       "site": "LOWERSILVERADO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305140000",
+      "period_end": "20200925070000",
       "period_start": "19910116122943",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2759,10 +2792,10 @@
       "name": "Rainfall",
       "site": "LOWERSILVERADO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707064153",
+      "period_end": "20181018082701",
       "period_start": "20021126024600",
       "subdesc": "ALERT transmitted",
       "variable": "121.50",
@@ -2770,7 +2803,7 @@
       "name": "Tide Level",
       "site": "MAGNOLIA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20130422050429",
@@ -2781,7 +2814,7 @@
       "name": "Rainfall",
       "site": "MARSHBURN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20130422050429",
@@ -2792,7 +2825,7 @@
       "name": "Raw Level",
       "site": "MARSHBURN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120630224500",
@@ -2803,7 +2836,7 @@
       "name": "Discharge",
       "site": "MARSHBURN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120701000000",
@@ -2814,7 +2847,7 @@
       "name": "Sediment Concentration",
       "site": "MARSHBURN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120621083000",
@@ -2825,7 +2858,7 @@
       "name": "Sediment Concentration",
       "site": "MARSHBURN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20040814024900",
@@ -2836,10 +2869,10 @@
       "name": "Rainfall",
       "site": "MILLER",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707023347",
+      "period_end": "20200925061607",
       "period_start": "19890701082836",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2847,7 +2880,7 @@
       "name": "Rainfall",
       "site": "MILLER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070402043158",
@@ -2858,10 +2891,10 @@
       "name": "Raw Level",
       "site": "MILLER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090604153603",
+      "period_end": "20200208183707",
       "period_start": "20020717090935",
       "subdesc": "ALERT transmitted",
       "variable": "235.50",
@@ -2869,7 +2902,7 @@
       "name": "Water Elevation",
       "site": "MILLER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20040818103250",
@@ -2880,10 +2913,10 @@
       "name": "Rainfall",
       "site": "MODJESKA_CANYON",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190618110000",
+      "period_end": "20200925070000",
       "period_start": "19970130173429",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2891,10 +2924,10 @@
       "name": "Rainfall",
       "site": "MODJESKA_CANYON",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190618110000",
+      "period_end": "20200925120000",
       "period_start": "20071015055227",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2902,10 +2935,10 @@
       "name": "Rainfall",
       "site": "MOULTON_PEAK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190618091104",
+      "period_end": "20200925002302",
       "period_start": "20080124235900",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2913,10 +2946,10 @@
       "name": "Rainfall",
       "site": "NEWPORT_COAST",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190618105657",
+      "period_end": "20200925115118",
       "period_start": "20080124235900",
       "subdesc": "ALERT transmitted",
       "variable": "401.50",
@@ -2924,10 +2957,10 @@
       "name": "Dry Bulb Temperature",
       "site": "NEWPORT_COAST",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190618111815",
+      "period_end": "20200925120707",
       "period_start": "20080124235900",
       "subdesc": "ALERT transmitted",
       "variable": "511.50",
@@ -2935,7 +2968,7 @@
       "name": "Wind Speed",
       "site": "NEWPORT_COAST",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190321123917",
@@ -2946,7 +2979,7 @@
       "name": "Rainfall",
       "site": "NEWPORTBEACH",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100630080000",
@@ -2957,7 +2990,7 @@
       "name": "Rainfall",
       "site": "NEWPORTBEACH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "19970109111410",
@@ -2968,7 +3001,7 @@
       "name": "Rainfall",
       "site": "OAKFLAT",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030330065120",
@@ -2979,10 +3012,10 @@
       "name": "Rainfall",
       "site": "OAKFLAT",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305080051",
+      "period_end": "20200925120051",
       "period_start": "20171107114451",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -2990,10 +3023,10 @@
       "name": "Rainfall",
       "site": "OCEANINSTITUTE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305085551",
+      "period_end": "20200925120051",
       "period_start": "20171107153551",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -3001,10 +3034,10 @@
       "name": "Raw Level",
       "site": "OCEANINSTITUTE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305040051",
+      "period_end": "20200925050052",
       "period_start": "20171107114451",
       "subdesc": "",
       "variable": "300.00",
@@ -3012,10 +3045,10 @@
       "name": "Logger Battery Voltage",
       "site": "OCEANINSTITUTE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305085551",
+      "period_end": "20200925120051",
       "period_start": "20171105125351",
       "subdesc": "ALERT transmitted",
       "variable": "401.50",
@@ -3023,10 +3056,10 @@
       "name": "Dry Bulb Temperature",
       "site": "OCEANINSTITUTE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305080051",
+      "period_end": "20200925120051",
       "period_start": "20180307083251",
       "subdesc": "ALERT transmitted",
       "variable": "430.50",
@@ -3034,10 +3067,10 @@
       "name": "Humidity",
       "site": "OCEANINSTITUTE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305084551",
+      "period_end": "20200925120051",
       "period_start": "20171105153051",
       "subdesc": "ALERT transmitted",
       "variable": "500.50",
@@ -3045,10 +3078,10 @@
       "name": "Wind Direction",
       "site": "OCEANINSTITUTE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305084551",
+      "period_end": "20200925120051",
       "period_start": "20171105153051",
       "subdesc": "ALERT transmitted",
       "variable": "511.50",
@@ -3056,10 +3089,10 @@
       "name": "Wind Speed",
       "site": "OCEANINSTITUTE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305080051",
+      "period_end": "20200925120051",
       "period_start": "20180307090051",
       "subdesc": "ALERT transmitted",
       "variable": "551.50",
@@ -3067,7 +3100,7 @@
       "name": "Station Level Pressure (mbar)",
       "site": "OCEANINSTITUTE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20060831075730",
@@ -3078,10 +3111,10 @@
       "name": "Rainfall",
       "site": "OCEANVIEW",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707063454",
+      "period_end": "20200925120000",
       "period_start": "19931001083717",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -3089,7 +3122,7 @@
       "name": "Rainfall",
       "site": "OCEANVIEW",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070701000000",
@@ -3100,10 +3133,10 @@
       "name": "Raw Level",
       "site": "OCEANVIEW",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707063454",
+      "period_end": "20200925120000",
       "period_start": "20040909190243",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -3111,7 +3144,7 @@
       "name": "Raw Level",
       "site": "OCEANVIEW",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070701000000",
@@ -3122,7 +3155,7 @@
       "name": "Discharge",
       "site": "OCEANVIEW",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20130630080000",
@@ -3133,7 +3166,7 @@
       "name": "Rainfall",
       "site": "ORANGE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20090601000000",
@@ -3144,7 +3177,7 @@
       "name": "Rainfall",
       "site": "ORANGE_RES",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050712080210",
@@ -3155,10 +3188,10 @@
       "name": "Rainfall",
       "site": "OSO_CROWN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521140000",
+      "period_end": "20200925120000",
       "period_start": "19890701080748",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -3166,7 +3199,7 @@
       "name": "Rainfall",
       "site": "OSO_CROWN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030630235500",
@@ -3177,7 +3210,7 @@
       "name": "Raw Level",
       "site": "OSO_CROWN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070206081244",
@@ -3188,7 +3221,7 @@
       "name": "Raw Level",
       "site": "OSO_CROWN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030701000000",
@@ -3199,7 +3232,7 @@
       "name": "Discharge",
       "site": "OSO_CROWN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190805120000",
@@ -3210,7 +3243,7 @@
       "name": "Rainfall",
       "site": "PALISADES",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100630080000",
@@ -3221,7 +3254,7 @@
       "name": "Rainfall",
       "site": "PALISADES",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20040810025510",
@@ -3232,10 +3265,10 @@
       "name": "Rainfall",
       "site": "PETERS",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190516090000",
+      "period_end": "20200925070000",
       "period_start": "19890701130006",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -3243,7 +3276,7 @@
       "name": "Rainfall",
       "site": "PETERS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20040810025510",
@@ -3254,7 +3287,7 @@
       "name": "Rainfall",
       "site": "PETERS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20040810025510",
@@ -3265,7 +3298,7 @@
       "name": "Rainfall",
       "site": "PETERS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180811032500",
@@ -3276,10 +3309,10 @@
       "name": "Raw Level",
       "site": "PETERS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190516090000",
+      "period_end": "20200925120000",
       "period_start": "20031224135651",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -3287,7 +3320,7 @@
       "name": "Raw Level",
       "site": "PETERS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -3298,7 +3331,7 @@
       "name": "Discharge",
       "site": "PETERS",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -3309,7 +3342,7 @@
       "name": "Sediment Concentration",
       "site": "PETERS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170628081000",
@@ -3320,7 +3353,7 @@
       "name": "Sediment Concentration",
       "site": "PETERS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030919214120",
@@ -3331,10 +3364,10 @@
       "name": "Rainfall",
       "site": "PICO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521083648",
+      "period_end": "20200925070000",
       "period_start": "19930121103332",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -3342,10 +3375,10 @@
       "name": "Rainfall",
       "site": "PICO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20170927211216",
+      "period_end": "20191128210429",
       "period_start": "19890701122419",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -3353,7 +3386,7 @@
       "name": "Rainfall",
       "site": "PORTOLA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20080929122910",
@@ -3364,7 +3397,7 @@
       "name": "Rainfall",
       "site": "PORTOLA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20090601000000",
@@ -3375,7 +3408,7 @@
       "name": "Rainfall",
       "site": "PRADO_DAM",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030615134720",
@@ -3386,7 +3419,7 @@
       "name": "Rainfall",
       "site": "PRADO_OUTFLOW",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050504074720",
@@ -3397,7 +3430,7 @@
       "name": "Rainfall",
       "site": "PRADO_OUTFLOW",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050323030243",
@@ -3408,10 +3441,10 @@
       "name": "Raw Level",
       "site": "PRADO_OUTFLOW",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707065603",
+      "period_end": "20191118084500",
       "period_start": "20050111133227",
       "subdesc": "ALERT download",
       "variable": "232.51",
@@ -3419,10 +3452,10 @@
       "name": "Raw Level",
       "site": "PRADO_OUTFLOW",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707065533",
+      "period_end": "20191118140000",
       "period_start": "20040630070453",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -3430,7 +3463,7 @@
       "name": "Rainfall",
       "site": "PRADODAM",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070402070333",
@@ -3441,10 +3474,10 @@
       "name": "Raw Level",
       "site": "PRADODAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707065533",
+      "period_end": "20191118140000",
       "period_start": "20040630070553",
       "subdesc": "ALERT transmitted",
       "variable": "235.50",
@@ -3452,7 +3485,7 @@
       "name": "Water Elevation",
       "site": "PRADODAM",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150716104500",
@@ -3463,7 +3496,7 @@
       "name": "Raw Level",
       "site": "PRIMADESHECHA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20110718132000",
@@ -3474,7 +3507,7 @@
       "name": "Corrected Level",
       "site": "PRIMADESHECHA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120701000000",
@@ -3485,7 +3518,7 @@
       "name": "Discharge",
       "site": "PRIMADESHECHA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120126151000",
@@ -3496,7 +3529,7 @@
       "name": "Logger Battery Voltage",
       "site": "PRIMADESHECHA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20141015000000",
@@ -3507,10 +3540,10 @@
       "name": "Water Temperature",
       "site": "PRIMADESHECHA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20071021202837",
+      "period_end": "20200925113218",
       "period_start": "20071021082149",
       "subdesc": "ALERT transmitted",
       "variable": "235.50",
@@ -3518,7 +3551,7 @@
       "name": "Water Elevation",
       "site": "RAYMOND",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070907105318",
@@ -3529,7 +3562,7 @@
       "name": "Rainfall",
       "site": "RIVERSIDE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20060118230052",
@@ -3540,7 +3573,7 @@
       "name": "Rainfall",
       "site": "ROSSMORE",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20040414235307",
@@ -3551,7 +3584,7 @@
       "name": "Raw Level",
       "site": "ROSSMORE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20060119060055",
@@ -3562,7 +3595,7 @@
       "name": "Wind Speed",
       "site": "ROSSMORE",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150603112000",
@@ -3573,10 +3606,10 @@
       "name": "Raw Level",
       "site": "SALTCRK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090706213511",
+      "period_end": "20200925033224",
       "period_start": "19890701134546",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -3584,7 +3617,7 @@
       "name": "Rainfall",
       "site": "SANANTONIO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050713003030",
@@ -3595,10 +3628,10 @@
       "name": "Rainfall",
       "site": "SANDCANYON",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190516090000",
+      "period_end": "20200909000000",
       "period_start": "19890701204818",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -3606,7 +3639,7 @@
       "name": "Rainfall",
       "site": "SANDCANYON",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120925191504",
@@ -3617,7 +3650,7 @@
       "name": "Rainfall",
       "site": "SANDCANYON_CH",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20121126040136",
@@ -3628,7 +3661,7 @@
       "name": "Raw Level",
       "site": "SANDCANYON_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20110630224500",
@@ -3639,7 +3672,7 @@
       "name": "Discharge",
       "site": "SANDCANYON_CH",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050930000000",
@@ -3650,7 +3683,7 @@
       "name": "Discharge",
       "site": "SANDCANYON_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20110408013000",
@@ -3661,7 +3694,7 @@
       "name": "Sediment Concentration",
       "site": "SANDCANYON_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20110629120500",
@@ -3672,7 +3705,7 @@
       "name": "Sediment Concentration",
       "site": "SANDCANYON_CH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050601090640",
@@ -3683,10 +3716,10 @@
       "name": "Rainfall",
       "site": "SANDIEGO_CAMPUS",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190516090000",
+      "period_end": "20200925120000",
       "period_start": "19900327232602",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -3694,7 +3727,7 @@
       "name": "Rainfall",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20111115122620",
@@ -3705,7 +3738,7 @@
       "name": "Rainfall",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20091007171350",
@@ -3716,7 +3749,7 @@
       "name": "Rainfall",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180710210000",
@@ -3727,10 +3760,10 @@
       "name": "Raw Level",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190516090000",
+      "period_end": "20200925120500",
       "period_start": "20030731054210",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -3738,7 +3771,7 @@
       "name": "Raw Level",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20140701123500",
@@ -3749,7 +3782,7 @@
       "name": "Discharge",
       "site": "SANDIEGO_CAMPUS",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -3760,10 +3793,10 @@
       "name": "Discharge",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190516090000",
+      "period_end": "20200925120000",
       "period_start": "20180911102632",
       "subdesc": "ALERT transmitted",
       "variable": "300.50",
@@ -3771,10 +3804,10 @@
       "name": "Logger Battery Voltage",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190502164500",
+      "period_end": "20200925120500",
       "period_start": "20180531060900",
       "subdesc": "ALERT transmitted",
       "variable": "450.50",
@@ -3782,7 +3815,7 @@
       "name": "Water Temperature",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190123152500",
@@ -3793,10 +3826,10 @@
       "name": "Station Level Pressure (mbar)",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190502164500",
+      "period_end": "20200925120500",
       "period_start": "20180531060900",
       "subdesc": "ALERT transmitted",
       "variable": "800.50",
@@ -3804,7 +3837,7 @@
       "name": "Salinity (Total Dissolved Salts)",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160920102500",
@@ -3815,10 +3848,10 @@
       "name": "Turbidity",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190502164500",
+      "period_end": "20200925120500",
       "period_start": "20180531060900",
       "subdesc": "ALERT transmitted",
       "variable": "810.50",
@@ -3826,10 +3859,10 @@
       "name": "Turbidity",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181221051500",
+      "period_end": "20200925120500",
       "period_start": "20180531060900",
       "subdesc": "ALERT transmitted",
       "variable": "821.50",
@@ -3837,7 +3870,7 @@
       "name": "Conductivity",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -3848,7 +3881,7 @@
       "name": "Sediment Concentration",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170628105000",
@@ -3859,10 +3892,10 @@
       "name": "Sediment Concentration",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190330140500",
+      "period_end": "20200925120500",
       "period_start": "20180531060900",
       "subdesc": "ALERT transmitted",
       "variable": "2100.50",
@@ -3870,10 +3903,10 @@
       "name": "pH",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190502164500",
+      "period_end": "20200925120500",
       "period_start": "20180531060900",
       "subdesc": "ALERT transmitted",
       "variable": "2102.50",
@@ -3881,10 +3914,10 @@
       "name": "Oxygen Reductn Pot (REDOX)",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190502164500",
+      "period_end": "20200925120500",
       "period_start": "20180531060900",
       "subdesc": "ALERT transmitted",
       "variable": "2169.50",
@@ -3892,10 +3925,10 @@
       "name": "Total Dissolved Solids (calc)",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190502164500",
+      "period_end": "20200925120500",
       "period_start": "20180531060900",
       "subdesc": "ALERT transmitted",
       "variable": "2172.50",
@@ -3903,10 +3936,10 @@
       "name": "Total Suspended Solids",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190502164500",
+      "period_end": "20200925120500",
       "period_start": "20180531060900",
       "subdesc": "ALERT transmitted",
       "variable": "2351.50",
@@ -3914,7 +3947,7 @@
       "name": "Oxygen (Dissolved)",
       "site": "SANDIEGO_CAMPUS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050621065920",
@@ -3925,10 +3958,10 @@
       "name": "Rainfall",
       "site": "SANDIEGO_CULVER",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20170927195944",
+      "period_end": "20200925120000",
       "period_start": "19900426115423",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -3936,7 +3969,7 @@
       "name": "Rainfall",
       "site": "SANDIEGO_CULVER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20091007115530",
@@ -3947,7 +3980,7 @@
       "name": "Rainfall",
       "site": "SANDIEGO_CULVER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180708104500",
@@ -3958,10 +3991,10 @@
       "name": "Raw Level",
       "site": "SANDIEGO_CULVER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20170928013541",
+      "period_end": "20200925120000",
       "period_start": "20040630134659",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -3969,7 +4002,7 @@
       "name": "Raw Level",
       "site": "SANDIEGO_CULVER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20140701115000",
@@ -3980,7 +4013,7 @@
       "name": "Discharge",
       "site": "SANDIEGO_CULVER",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -3991,7 +4024,7 @@
       "name": "Discharge",
       "site": "SANDIEGO_CULVER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -4002,7 +4035,7 @@
       "name": "Sediment Concentration",
       "site": "SANDIEGO_CULVER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170628084000",
@@ -4013,7 +4046,7 @@
       "name": "Sediment Concentration",
       "site": "SANDIEGO_CULVER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030926013950",
@@ -4024,10 +4057,10 @@
       "name": "Rainfall",
       "site": "SANJUAN_CAP",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521094131",
+      "period_end": "20200722091841",
       "period_start": "19890701174610",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4035,7 +4068,7 @@
       "name": "Rainfall",
       "site": "SANJUAN_CAP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20111220101510",
@@ -4046,7 +4079,7 @@
       "name": "Rainfall",
       "site": "SANJUAN_CAP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701224500",
@@ -4057,10 +4090,10 @@
       "name": "Raw Level",
       "site": "SANJUAN_CAP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521094131",
+      "period_end": "20200722091841",
       "period_start": "19930301015444",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -4068,7 +4101,7 @@
       "name": "Raw Level",
       "site": "SANJUAN_CAP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20181001000000",
@@ -4079,7 +4112,7 @@
       "name": "Discharge",
       "site": "SANJUAN_CAP",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20181001000000",
@@ -4090,7 +4123,7 @@
       "name": "Discharge",
       "site": "SANJUAN_CAP",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050707213700",
@@ -4101,10 +4134,10 @@
       "name": "Rainfall",
       "site": "SANJUAN_GUARD",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521034529",
+      "period_end": "20200722033906",
       "period_start": "19890701105220",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4112,7 +4145,7 @@
       "name": "Rainfall",
       "site": "SANJUAN_GUARD",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050622093130",
@@ -4123,10 +4156,10 @@
       "name": "Rainfall",
       "site": "SANTAANA_DELHI",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190123110039",
+      "period_end": "20200925070000",
       "period_start": "19891012142612",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4134,7 +4167,7 @@
       "name": "Rainfall",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20091007063600",
@@ -4145,7 +4178,7 @@
       "name": "Rainfall",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20091007063600",
@@ -4156,7 +4189,7 @@
       "name": "Rainfall",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180821103500",
@@ -4167,10 +4200,10 @@
       "name": "Raw Level",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190123110039",
+      "period_end": "20200117110000",
       "period_start": "20040630104430",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -4178,7 +4211,7 @@
       "name": "Raw Level",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150710091000",
@@ -4189,7 +4222,7 @@
       "name": "Corrected Level",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20151027092500",
@@ -4200,7 +4233,7 @@
       "name": "Discharge",
       "site": "SANTAANA_DELHI",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180701000000",
@@ -4211,7 +4244,7 @@
       "name": "Discharge",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20111108092000",
@@ -4222,7 +4255,7 @@
       "name": "Logger Battery Voltage",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20111108092000",
@@ -4233,7 +4266,7 @@
       "name": "Water Temperature",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20121224231000",
@@ -4244,7 +4277,7 @@
       "name": "Sediment Concentration",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20130702083500",
@@ -4255,7 +4288,7 @@
       "name": "Sediment Concentration",
       "site": "SANTAANA_DELHI",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030925094130",
@@ -4266,10 +4299,10 @@
       "name": "Rainfall",
       "site": "SANTAANA_ENG",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190313140000",
+      "period_end": "20191001140000",
       "period_start": "19890705094442",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4277,7 +4310,7 @@
       "name": "Rainfall",
       "site": "SANTAANA_ENG",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20200131000000",
@@ -4288,7 +4321,7 @@
       "name": "Rainfall",
       "site": "SANTANA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170630080000",
@@ -4299,7 +4332,7 @@
       "name": "Rainfall",
       "site": "SANTANA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050722004720",
@@ -4310,10 +4343,10 @@
       "name": "Rainfall",
       "site": "SANTIAGO_ANA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20160112210507",
+      "period_end": "20200724115322",
       "period_start": "19971112155027",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4321,10 +4354,10 @@
       "name": "Rainfall",
       "site": "SANTIAGO_ANA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20151231123319",
+      "period_end": "20180910151247",
       "period_start": "20040912121555",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -4332,7 +4365,7 @@
       "name": "Raw Level",
       "site": "SANTIAGO_ANA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20010601000000",
@@ -4343,7 +4376,7 @@
       "name": "Rainfall",
       "site": "SANTIAGO_DAM",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030306022300",
@@ -4354,10 +4387,10 @@
       "name": "Rainfall",
       "site": "SANTIAGO_E08",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181101120000",
+      "period_end": "20200925070000",
       "period_start": "19931001002943",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4365,7 +4398,7 @@
       "name": "Rainfall",
       "site": "SANTIAGO_E08",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20180124083107",
@@ -4376,7 +4409,7 @@
       "name": "Raw Level",
       "site": "SANTIAGO_E08",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190129120000",
@@ -4387,7 +4420,7 @@
       "name": "Rainfall",
       "site": "SANTIAGOPEAK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150630080000",
@@ -4398,7 +4431,7 @@
       "name": "Rainfall",
       "site": "SANTIAGOPEAK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030204095500",
@@ -4409,10 +4442,10 @@
       "name": "Rainfall",
       "site": "SANTIAGOPEAK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190222120000",
+      "period_end": "20200924150000",
       "period_start": "19970412135101",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4420,7 +4453,7 @@
       "name": "Rainfall",
       "site": "SANTIAGOPEAK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20090707033227",
@@ -4431,7 +4464,7 @@
       "name": "Rainfall",
       "site": "SANTIAGOPEAK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030204080520",
@@ -4442,7 +4475,7 @@
       "name": "Snow Melt",
       "site": "SANTIAGOPEAK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190205080000",
@@ -4453,10 +4486,10 @@
       "name": "Snow Melt",
       "site": "SANTIAGOPEAK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190411080000",
+      "period_end": "20200924152000",
       "period_start": "19960402155327",
       "subdesc": "ALERT transmitted",
       "variable": "401.50",
@@ -4464,10 +4497,10 @@
       "name": "Dry Bulb Temperature",
       "site": "SANTIAGOPEAK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190222120000",
+      "period_end": "20200924151000",
       "period_start": "19970430103657",
       "subdesc": "ALERT transmitted",
       "variable": "511.50",
@@ -4475,10 +4508,10 @@
       "name": "Wind Speed",
       "site": "SANTIAGOPEAK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707005814",
+      "period_end": "20190617125930",
       "period_start": "20040630131209",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4486,10 +4519,10 @@
       "name": "Rainfall",
       "site": "SARADAR",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707055416",
+      "period_end": "20190709035539",
       "period_start": "20040630070309",
       "subdesc": "ALERT transmitted",
       "variable": "401.50",
@@ -4497,10 +4530,10 @@
       "name": "Dry Bulb Temperature",
       "site": "SARADAR",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090707065416",
+      "period_end": "20190709065538",
       "period_start": "20050301070758",
       "subdesc": "ALERT transmitted",
       "variable": "511.50",
@@ -4508,7 +4541,7 @@
       "name": "Wind Speed",
       "site": "SARADAR",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150910091000",
@@ -4519,7 +4552,7 @@
       "name": "Raw Level",
       "site": "SD_CULVER_1196",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150910091000",
@@ -4530,7 +4563,7 @@
       "name": "Corrected Level",
       "site": "SD_CULVER_1196",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150701000000",
@@ -4541,7 +4574,7 @@
       "name": "Discharge",
       "site": "SD_CULVER_1196",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20141218100000",
@@ -4552,7 +4585,7 @@
       "name": "Sediment Concentration",
       "site": "SD_CULVER_1196",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190808000000",
@@ -4563,10 +4596,10 @@
       "name": "Rainfall",
       "site": "SEALBEACH",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190123120000",
+      "period_end": "20200925120000",
       "period_start": "19891214173238",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4574,7 +4607,7 @@
       "name": "Rainfall",
       "site": "SEALBEACH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070526061324",
@@ -4585,7 +4618,7 @@
       "name": "Raw Level",
       "site": "SEALBEACH",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20081002204510",
@@ -4596,10 +4629,10 @@
       "name": "Rainfall",
       "site": "SEGUNDADESHECA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521050827",
+      "period_end": "20200925070000",
       "period_start": "19930121083508",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4607,7 +4640,7 @@
       "name": "Rainfall",
       "site": "SEGUNDADESHECA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120702073500",
@@ -4618,7 +4651,7 @@
       "name": "Raw Level",
       "site": "SEGUNDADESHECA",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20120701000000",
@@ -4629,7 +4662,7 @@
       "name": "Discharge",
       "site": "SEGUNDADESHECA",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20061011023258",
@@ -4640,7 +4673,7 @@
       "name": "Raw Level",
       "site": "SEVENOAKS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20061011030420",
@@ -4651,10 +4684,10 @@
       "name": "Raw Level",
       "site": "SEVENOAKS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090706130917",
+      "period_end": "20191014220000",
       "period_start": "20061107114011",
       "subdesc": "ALERT transmitted",
       "variable": "235.50",
@@ -4662,7 +4695,7 @@
       "name": "Water Elevation",
       "site": "SEVENOAKS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20080820141430",
@@ -4673,7 +4706,7 @@
       "name": "Water Elevation",
       "site": "SEVENOAKS",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20090601000000",
@@ -4684,7 +4717,7 @@
       "name": "Rainfall",
       "site": "SILVERADO_RS",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20071113072630",
@@ -4695,7 +4728,7 @@
       "name": "Raw Level",
       "site": "SOUTHPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190730120000",
@@ -4706,7 +4739,7 @@
       "name": "Rainfall",
       "site": "SULPHURCREEK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20041123080000",
@@ -4717,7 +4750,7 @@
       "name": "Rainfall",
       "site": "SULPHURCREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070701000000",
@@ -4728,7 +4761,7 @@
       "name": "Discharge",
       "site": "SULPHURCREEK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20081201000000",
@@ -4739,7 +4772,7 @@
       "name": "Evaporation from a U.S. Class A Pan",
       "site": "SULPHURCREEK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190730000000",
@@ -4750,7 +4783,7 @@
       "name": "Rainfall",
       "site": "TRABUCO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100630080000",
@@ -4761,7 +4794,7 @@
       "name": "Rainfall",
       "site": "TRABUCO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20080531000000",
@@ -4772,7 +4805,7 @@
       "name": "Rainfall",
       "site": "TRABUCO_CANYON",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190402120000",
@@ -4783,7 +4816,7 @@
       "name": "Rainfall",
       "site": "TUCKER",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190403053426",
@@ -4794,7 +4827,7 @@
       "name": "Rainfall",
       "site": "TUSTIN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100630080000",
@@ -4805,7 +4838,7 @@
       "name": "Rainfall",
       "site": "TUSTIN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20200617000000",
@@ -4816,7 +4849,7 @@
       "name": "Rainfall",
       "site": "TUSTIN_I2",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20060911162340",
@@ -4827,10 +4860,10 @@
       "name": "Rainfall",
       "site": "UEGARDEN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20110228070347",
+      "period_end": "20200925070000",
       "period_start": "19931013223353",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4838,7 +4871,7 @@
       "name": "Rainfall",
       "site": "UEGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100929150110",
@@ -4849,7 +4882,7 @@
       "name": "Rainfall",
       "site": "UEGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20100929150110",
@@ -4860,7 +4893,7 @@
       "name": "Rainfall",
       "site": "UEGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170726134500",
@@ -4871,10 +4904,10 @@
       "name": "Raw Level",
       "site": "UEGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20121126053351",
+      "period_end": "20200925120000",
       "period_start": "20040630152432",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -4882,7 +4915,7 @@
       "name": "Raw Level",
       "site": "UEGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20170701000000",
@@ -4893,7 +4926,7 @@
       "name": "Discharge",
       "site": "UEGARDEN",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160701000000",
@@ -4904,10 +4937,10 @@
       "name": "Discharge",
       "site": "UEGARDEN",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20200305120000",
+      "period_end": "20200925010000",
       "period_start": "20080102100020",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4915,10 +4948,10 @@
       "name": "Rainfall",
       "site": "UPPER_HARDING",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521140000",
+      "period_end": "20200925120000",
       "period_start": "19910620111119",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4926,7 +4959,7 @@
       "name": "Rainfall",
       "site": "UPPERALISO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030919000710",
@@ -4937,10 +4970,10 @@
       "name": "Rainfall",
       "site": "UPPERALISO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190521140000",
+      "period_end": "20200925120000",
       "period_start": "19910628105940",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4948,7 +4981,7 @@
       "name": "Rainfall",
       "site": "UPPEROSO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20080918005340",
@@ -4959,10 +4992,10 @@
       "name": "Rainfall",
       "site": "UPPEROSO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20181017110000",
+      "period_end": "20200925120000",
       "period_start": "19900511082141",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -4970,7 +5003,7 @@
       "name": "Rainfall",
       "site": "UPPERSILVERADO",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20030204071030",
@@ -4981,7 +5014,7 @@
       "name": "Rainfall",
       "site": "UPPERSILVERADO",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190731000000",
@@ -4992,7 +5025,7 @@
       "name": "Rainfall",
       "site": "VILLAPARK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150630080000",
@@ -5003,7 +5036,7 @@
       "name": "Rainfall",
       "site": "VILLAPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20050125073000",
@@ -5014,10 +5047,10 @@
       "name": "Rainfall",
       "site": "VILLAPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20170514160509",
+      "period_end": "20200925070000",
       "period_start": "19890701134909",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -5025,10 +5058,10 @@
       "name": "Rainfall",
       "site": "VILLAPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20161127100000",
+      "period_end": "20191014213000",
       "period_start": "20040630090457",
       "subdesc": "ALERT download",
       "variable": "11.51",
@@ -5036,7 +5069,7 @@
       "name": "Rainfall",
       "site": "VILLAPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20060630000000",
@@ -5047,7 +5080,7 @@
       "name": "Raw Level",
       "site": "VILLAPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20061115032508",
@@ -5058,10 +5091,10 @@
       "name": "Raw Level",
       "site": "VILLAPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20150414071214",
+      "period_end": "20191014213000",
       "period_start": "20040630090558",
       "subdesc": "ALERT download",
       "variable": "232.51",
@@ -5069,7 +5102,7 @@
       "name": "Raw Level",
       "site": "VILLAPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20060630000000",
@@ -5080,10 +5113,10 @@
       "name": "Water Elevation",
       "site": "VILLAPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20170302154104",
+      "period_end": "20200122044242",
       "period_start": "20040630090557",
       "subdesc": "ALERT transmitted",
       "variable": "235.50",
@@ -5091,7 +5124,7 @@
       "name": "Water Elevation",
       "site": "VILLAPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20080701000000",
@@ -5102,10 +5135,10 @@
       "name": "Discharge",
       "site": "VILLAPARK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20170515034649",
+      "period_end": "20171010160612",
       "period_start": "19910731153711",
       "subdesc": "ALERT transmitted",
       "variable": "511.50",
@@ -5113,10 +5146,10 @@
       "name": "Wind Speed",
       "site": "VILLAPARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190123120000",
+      "period_end": "20200925120000",
       "period_start": "19890701124414",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -5124,7 +5157,7 @@
       "name": "Rainfall",
       "site": "WESTMINSTER",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20070630092510",
@@ -5135,7 +5168,7 @@
       "name": "Rainfall",
       "site": "WESTMINSTER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20071003093730",
@@ -5146,7 +5179,7 @@
       "name": "Rainfall",
       "site": "WESTMINSTER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150921085500",
@@ -5157,10 +5190,10 @@
       "name": "Raw Level",
       "site": "WESTMINSTER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20190123122000",
+      "period_end": "20200925120000",
       "period_start": "19950401090511",
       "subdesc": "ALERT transmitted",
       "variable": "232.50",
@@ -5168,7 +5201,7 @@
       "name": "Raw Level",
       "site": "WESTMINSTER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150921085500",
@@ -5179,7 +5212,7 @@
       "name": "Corrected Level",
       "site": "WESTMINSTER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20160701000000",
@@ -5190,7 +5223,7 @@
       "name": "Discharge",
       "site": "WESTMINSTER",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20150211113500",
@@ -5201,10 +5234,10 @@
       "name": "Water Temperature",
       "site": "WESTMINSTER",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20090706223732",
+      "period_end": "20200724135157",
       "period_start": "19890701125259",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -5212,7 +5245,7 @@
       "name": "Rainfall",
       "site": "YORBA_PARK",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20060809143030",
@@ -5223,7 +5256,7 @@
       "name": "Rainfall",
       "site": "YORBA_PARK",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20190815000000",
@@ -5234,7 +5267,7 @@
       "name": "Rainfall",
       "site": "YORBA_RESERVOIR",
       "preferred": true,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
       "period_end": "20041109143422",
@@ -5245,10 +5278,10 @@
       "name": "Rainfall",
       "site": "YORBA_RESERVOIR",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     },
     {
-      "period_end": "20170928030000",
+      "period_end": "20200925070000",
       "period_start": "19900508235247",
       "subdesc": "ALERT transmitted",
       "variable": "11.50",
@@ -5256,7 +5289,7 @@
       "name": "Rainfall",
       "site": "YORBA_RESERVOIR",
       "preferred": false,
-      "ts": "2020-08-04T17:07:47.468158"
+      "ts": "2020-09-25T19:28:09.681535"
     }
   ]
 }

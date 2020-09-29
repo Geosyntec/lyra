@@ -2,12 +2,33 @@ from typing import Any, Optional, Dict
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.openapi.docs import (
+    get_redoc_html,
+    get_swagger_ui_html,
+)
 
 import lyra
 
 
 def create_app(settings_override: Optional[Dict[str, Any]] = None):
-    app = FastAPI(title="lyra", version=lyra.__version__)
+    app = FastAPI(title="lyra", version=lyra.__version__, docs_url=None, redoc_url=None)
+
+    @app.get("/docs", include_in_schema=False)
+    async def custom_swagger_ui_html():
+        return get_swagger_ui_html(
+            openapi_url=str(app.openapi_url),
+            title=app.title + " - Swagger UI",
+            oauth2_redirect_url=app.swagger_ui_oauth2_redirect_url,
+            swagger_favicon_url="/static/logo/lyra_logo_icon.ico",
+        )
+
+    @app.get("/redoc", include_in_schema=False)
+    async def redoc_html():
+        return get_redoc_html(
+            openapi_url=str(app.openapi_url),
+            title=app.title + " - ReDoc",
+            redoc_favicon_url="/static/logo/lyra_logo_icon.ico",
+        )
 
     from lyra.api import api_router
     from lyra.site import site_router

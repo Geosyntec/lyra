@@ -1,25 +1,39 @@
-from typing import Any, Dict, Optional, Union
-import asyncio
+import itertools
+from typing import Any, Dict, List, Optional, Union
 
+import asyncio
 from celery.canvas import Signature
-from celery.exceptions import TimeoutError
 from celery.result import AsyncResult
-from fastapi import APIRouter, Request
+from fastapi import Depends, Request, Query
+from fastapi.responses import JSONResponse
 import pandas
 
-from lyra.core.config import settings
 from lyra.models.response_models import (
     CeleryTaskJSONResponse,
     ForegroundTaskJSONResponse,
 )
 
+from lyra.core import security
+
+
+class RawJSONResponse(JSONResponse):
+    def render(self, content: bytes) -> bytes:
+        return content
+
 
 async def wait_a_sec_and_see_if_we_can_return_some_data(
-    task: AsyncResult, timeout: float = 0.2, inc: float = 0.05
+    task: AsyncResult, timeout: Optional[float] = None
 ) -> Optional[Dict[str, Any]]:
+    if timeout is None:
+        timeout = 0.1
+
+    _max_timeout = 10  # seconds
+    timeout = min(timeout, _max_timeout)  # prevent long timeout requests.
+
     t = 0
+    inc = 0.05  # check back every inc seconds
     while t < timeout:
-        if task.successful():
+        if task.ready():  # exit even if the task failed
             return
         else:
             t += inc
@@ -27,11 +41,36 @@ async def wait_a_sec_and_see_if_we_can_return_some_data(
 
 
 def run_task_kwargs(
-    request: Request, force_foreground: Optional[bool] = None, timeout: float = 0.2
+    request: Request,
+    force_foreground: Optional[bool] = Query(
+        None, description="requires admin authentication else has no effect"
+    ),
+    timeout: Optional[float] = Query(
+        None, description="serverside async polling up to 10 seconds"
+    ),
+    is_admininstrator: bool = Depends(security.is_admin),
 ):
-    if force_foreground is None:
-        force_foreground = settings.FORCE_FOREGROUND
-    return dict(request=request, force_foreground=force_foreground, timeout=timeout)
+    rsp = dict(request=request)
+    auth_msg = []
+
+    rsp["force_foreground"] = request.app.settings.FORCE_FOREGROUND
+
+    if force_foreground is not None:
+        if is_admininstrator:
+            rsp["force_foreground"] = force_foreground
+        else:
+            auth_msg.append(
+                "Argument Ignored Error: User not authenticated for arg `force_foreground`"
+            )
+
+    # allow timeout to simplify API polling requirements. Max timeout is set in the
+    # wait and see function above.
+    rsp["timeout"] = timeout
+
+    if auth_msg:
+        rsp["errors"] = auth_msg
+
+    return rsp
 
 
 async def run_task(
@@ -39,11 +78,15 @@ async def run_task(
     get_route: Optional[str] = None,
     request: Optional[Request] = None,
     force_foreground: Optional[bool] = False,
-    timeout: float = 0.2,
+    timeout: Optional[float] = None,
+    errors: Optional[List[str]] = None,
 ):
 
     if force_foreground:
-        return ForegroundTaskJSONResponse(data=task())
+        result = task()
+        if isinstance(result, str):  # return the response directly.
+            return RawJSONResponse(result.encode())
+        return ForegroundTaskJSONResponse(data=result, errors=errors)
 
     else:
         result = None
@@ -54,9 +97,6 @@ async def run_task(
                 task, timeout=timeout
             )
 
-        if task.successful():
-            result = task.result
-
         if request:
             result_route = str(request.url)
             if get_route:
@@ -66,12 +106,48 @@ async def run_task(
             if get_route:
                 result_route = get_route
 
+        if task.successful():
+            result = task.result
+            if isinstance(result, str):  # return the response directly.
+                result = result.encode()
+                return RawJSONResponse(result)
+
         return CeleryTaskJSONResponse(
-            data=result, status=task.status, task_id=task.id, result_route=result_route,
+            data=result,
+            status=task.status,
+            task_id=task.id,
+            result_route=result_route,
+            errors=errors,
         )
 
 
 def to_categorical_lookup(df, variable):
     cat = pandas.Categorical(df[variable])
     df[variable] = cat.codes
-    return df, pandas.DataFrame({variable: cat.categories})
+    return (
+        df,
+        pandas.DataFrame(
+            {"variable": range(len(cat.categories)), "variable_name": cat.categories}
+        ),
+    )
+
+
+def infer_freq(index):
+    """If no frequency, use min difference in index timestamp to guess.
+
+    Parameters
+    ----------
+    index : pandas.Series.index or pandas.DataFrame.index
+
+    """
+    if not index.is_all_dates:
+        raise ValueError("must be a datetime index")
+
+    freq = pandas.infer_freq(index)
+    if freq is None:
+        freq = index.to_series().diff().min()
+    return freq
+
+
+def flatten_expand_list(ls: List[str]):
+    return list(itertools.chain.from_iterable([s.split(",") for s in ls]))

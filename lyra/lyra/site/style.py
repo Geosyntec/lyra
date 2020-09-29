@@ -30,4 +30,5 @@ def render_in_jupyter_notebook_css_style(df):
         # header cell properties
         dict(selector="th", props=[("font-size", "100%"), ("text-align", "center")]),
     ]
-    return (df.style.set_table_styles(styles)).render()
+
+    return df.style.set_table_styles(styles).render()

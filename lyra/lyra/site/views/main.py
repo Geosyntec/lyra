@@ -1,10 +1,11 @@
+from typing import List, Optional
 from pathlib import Path
+from urllib.parse import urlencode
 import json
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Query
 from fastapi.templating import Jinja2Templates
 
-from lyra.api.endpoints import hydstra
 import lyra
 
 router = APIRouter()
@@ -35,6 +36,23 @@ async def timeseriesfunc(request: Request):
     )
 
 
+@router.get("/single_variable", tags=["demo"])
+async def site_single_variable(request: Request):
+
+    sitelist_file = Path(lyra.__file__).parent / "static" / "preferred_variables.json"
+    site_vars = json.loads(sitelist_file.read_text())
+
+    plot_function_url = "./api/plot/single_variable"
+    return templates.TemplateResponse(
+        "single_var.html",
+        {
+            "request": request,
+            "site_vars": site_vars,
+            "plot_function_url": plot_function_url,
+        },
+    )
+
+
 @router.get("/test_cors")
 async def test_corsfunc(request: Request):
 
@@ -43,9 +61,37 @@ async def test_corsfunc(request: Request):
 
 @router.get("/map", tags=["demo"])
 async def get_map(
-    request: Request, toposimplify: float = 0.0001, topoquantize: float = 1e6
+    request: Request,
+    xmin: Optional[float] = None,
+    ymin: Optional[float] = None,
+    xmax: Optional[float] = None,
+    ymax: Optional[float] = None,
+    watersheds: Optional[List[str]] = Query(None),
+    catchidns: Optional[List[str]] = Query(None),
+    toposimplify: float = 0.0001,
+    topoquantize: float = 1e6,
 ):
-    topo_url = f"./api/mnwd/spatial/rsb_json?f=topojson&timeout=120&toposimplify={toposimplify}&topoquantize={topoquantize}"
+
+    params = dict(
+        xmin=xmin,
+        ymin=ymin,
+        xmax=xmax,
+        ymax=ymax,
+        watersheds=watersheds,
+        catchidns=catchidns,
+        toposimplify=toposimplify,
+        topoquantize=topoquantize,
+    )
+
+    params = {k: v for k, v in params.items() if v is not None}
+
+    topo_url = f"./api/regional_subbasins/spatial?f=topojson&timeout=120"
+    geo_url = f"./api/regional_subbasins/spatial?f=geojson&timeout=120"
+
+    if params:
+        topo_url += "&" + urlencode(params, doseq=True)
+        geo_url += "&" + urlencode(params, doseq=True)
+
     return templates.TemplateResponse(
-        "map.html", {"request": request, "topo_url": topo_url}
+        "map.html", {"request": request, "topo_url": topo_url, "geo_url": geo_url}
     )

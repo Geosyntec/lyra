@@ -1,0 +1,75 @@
+<form action="/single_variable" id="ts-form" method="get" enctype="text/plain">
+    
+    <div >
+        <select id="variable" name="variable"></select>
+        <label for="variable">Variable</label>
+    </div>   
+    <div >
+        <tr>
+            <td>
+                <input type="date" name ="start_date" id="start_date" value="2010-01-01"/>
+                <label for="start_date">Start date</label>
+            </td>
+        </tr>
+    </div>
+    <div >
+        <tr>
+            <td>
+                <input type="date" name ="end_date" id="end_date" value="2015-01-01"/>
+                <label for="end_date">End date</label>
+            </td>
+        </tr>
+    </div>
+    
+    <div class="add_site">
+
+        <div>
+            <hr>
+            <div>
+            {% if site_vars %}
+                <select id="sites" name="sites" onchange="setVariable()">
+                    {% for site in site_vars %}
+                        {% if site == "ELTORO" %}
+                            <option selected value={{ site }}>{{ site }}</option>
+                        {% else %}
+                            <option value={{ site }}>{{ site }}</option>
+                        {% endif %}
+                    }
+                    {% endfor %}
+                </select>
+            {% else  %}
+                <input type="text" name ="sites" id="sites" value='ELTORO'>
+            {% endif %}
+                <label for="sites">Site</label>
+            </div>
+            <div >
+                <select id="agg_methods" name="agg_methods">
+                  <option value="tot">Total</option>
+                  <option value="mean">Average</option>
+                  <option value="max">Maximum</option>
+                  <option value="min">Minimum</option>
+                  <!-- <option value="point">Point</option> -->
+                </select>
+                <label for="agg_methods">Aggregation Mode</label>
+            </div>
+            <div >
+                <select id='intervals' name="intervals">
+                  <option value="hour">Hourly</option>
+                  <option value="day">Daily</option>
+                  <option value="month">Monthly</option>
+                  <option value="year">Yearly</option>
+                </select>
+                <label for="intervals">Interval</label>
+            </div>
+        </div>
+        
+    </div>
+    <button class="add_site_button" type="button">Add Site&nbsp+</button>
+    
+
+    <div>
+        <hr>
+        <button type="submit">submit</button>
+    </div>
+
+</form>

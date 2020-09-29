@@ -1,16 +1,15 @@
-from typing import Any, Dict, List, Optional, Type, Union
 from textwrap import dedent
 
-from fastapi import APIRouter, Depends, HTTPException, status, Request, Query
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import ORJSONResponse, HTMLResponse
 import pandas
+from sqlalchemy import sql, select, desc, text
 
-from lyra.api.security import authenticate_admin_access
+from lyra.core import security
+from lyra.core import cache
 from lyra.connections import database
 from lyra.models.response_models import ForegroundTaskJSONResponse
 from lyra.site.style import render_in_jupyter_notebook_css_style
-from lyra.core.cache import redis_cache
 
 
 router = APIRouter(default_response_class=ORJSONResponse)
@@ -18,11 +17,10 @@ router = APIRouter(default_response_class=ORJSONResponse)
 
 @router.get(
     "/tables",
-    tags=["admin"],
-    dependencies=[Depends(authenticate_admin_access)],
+    dependencies=[Depends(security.authenticate_admin_access)],
     response_model=ForegroundTaskJSONResponse,
 )
-def get_tables(r: Request):
+async def get_table_names(r: Request):
     tables = []
     response = {}
     try:
@@ -37,29 +35,25 @@ def get_tables(r: Request):
 
 @router.get(
     "/tables/{table}",
-    tags=["admin"],
-    dependencies=[Depends(authenticate_admin_access)],
+    dependencies=[Depends(security.authenticate_admin_access)],
     response_model=ForegroundTaskJSONResponse,
 )
-def get_tables(
+async def get_table_content(
     table: str, limit_to: int = 25, ascending: bool = False, f: str = "json",
 ):
     data = {}
     response = {}
 
     try:
-        qry = dedent(
-            f"""\
-        select
-            top (?) *
-        from [{table}]
-        order by
-            id {"ASC" if ascending else "DESC"}
-        """
-        )
+        table = sql.table(table)
+        order_by = text("id")
+        if not ascending:
+            order_by = desc(order_by)
+
+        s = select([table, "*"]).limit(limit_to).order_by(order_by)
 
         with database.engine.begin() as conn:
-            df = pandas.read_sql(qry, params=(limit_to,), con=conn,)
+            df = pandas.read_sql(s, con=conn)
 
     except Exception as e:
         response["status"] = "FAILURE"
@@ -76,20 +70,26 @@ def get_tables(
 
 @router.get(
     "/clear_cache",
-    tags=["admin"],
-    dependencies=[Depends(authenticate_admin_access)],
+    dependencies=[Depends(security.authenticate_admin_access)],
     response_model=ForegroundTaskJSONResponse,
 )
-async def clear_cache():
+async def clear_cache():  # pragma: no cover
     cleared = False
-    try:  # pragma: no cover
-        # if redis is available, let's flush the cache to start
-        # fresh.
-        if redis_cache.ping():
-            redis_cache.flushdb()
-            cleared = True
-
-    except:  # pragma: no cover
+    try:
+        cache.flush()
+        cleared = True
+    except Exception as e:
         pass
 
     return {"data": {"cleared": cleared}}
+
+
+@router.get(
+    "/toggle_cache",
+    dependencies=[Depends(security.authenticate_admin_access)],
+    response_model=ForegroundTaskJSONResponse,
+)
+async def toggle_cache(enabled: bool = True):
+    cache.use_cache(enabled)
+
+    return {"data": {"ENABLE_REDIS_CACHE": enabled}}

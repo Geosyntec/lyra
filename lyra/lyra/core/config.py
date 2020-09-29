@@ -1,7 +1,10 @@
 from pathlib import Path
 import secrets
-from typing import Any, List, Optional, Union
+from typing import List, Optional, Union
 from typing_extensions import Literal
+import importlib.resources as pkg_resources
+import json
+import yaml
 
 from pydantic import AnyHttpUrl, BaseSettings, validator
 
@@ -26,6 +29,10 @@ class Settings(BaseSettings):
     AZURE_DATABASE_NAME: str = ""
     AZURE_DATABASE_USERNAME: str = ""
     AZURE_DATABASE_PASSWORD: str = ""
+    AZURE_DATABASE_READONLY_USERNAME: str = ""
+    AZURE_DATABASE_READONLY_PASSWORD: str = ""
+    AZURE_DATABASE_WRITEONLY_USERNAME: str = ""
+    AZURE_DATABASE_WRITEONLY_PASSWORD: str = ""
 
     AZURE_STORAGE_ACCOUNT_NAME: str = ""
     AZURE_STORAGE_ACCOUNT_KEY: str = ""
@@ -66,4 +73,17 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-config = load_cfg(Path(__file__).parent / "lyra_config.yml")
+# config = load_cfg(Path(__file__).parent / "lyra_config.yml")
+
+
+def config():
+    cfg = yaml.safe_load(pkg_resources.read_text("lyra.core", "lyra_config.yml"))
+
+    preferred_variables = json.loads(
+        pkg_resources.read_text("lyra.static", "preferred_variables.json")
+    )
+    # sitelist = json.loads(sitelist_file.read_text())["sites"]
+
+    cfg["preferred_variables"] = preferred_variables
+
+    return cfg

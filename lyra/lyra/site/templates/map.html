@@ -1,5 +1,5 @@
   <!DOCTYPE html>
-  <!-- http://bl.ocks.org/hpfast/2fb8de57c356d8c45ce511189eec5d6a -->
+  <!-- adapted from: http://bl.ocks.org/hpfast/2fb8de57c356d8c45ce511189eec5d6a -->
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -69,6 +69,7 @@
       //create an empty geojson layer
       //with a style and a popup on click
       var geojson = L.topoJson(null, {
+        interactive: false,
         style: function(feature){
           return {
             color: "#000",
@@ -78,9 +79,9 @@
             fillOpacity: 0.2
           }
         },
-        onEachFeature: function(feature, layer) {
-          layer.bindPopup('<p>'+feature.properties.name+'</p>')
-        }
+        // onEachFeature: function(feature, layer) {
+        //   layer.bindPopup('<p>'+feature.properties.CatchIDN+'</p>')
+        // }
       }).addTo(map);
 
       var tjson = L.topoJson(null, {
@@ -94,24 +95,22 @@
           }
         },
         onEachFeature: function(feature, layer) {
-          layer.bindPopup('<p>'+feature.properties.name+'</p>')
+          layer.bindPopup('<p>'+`CatchIDN: ${feature.properties.CatchIDN}`+'</p>')
         }
       }).addTo(map);
 
-
-      //fill: #317581;
       //define a function to get and parse geojson from URL
       async function getGeoData(url) {
         let response = await fetch(url);
         let data = await response.json();
-        console.log(data)
         return data;
       }
       
       //fetch the geojson and add it to our geojson layer
       var topo_url = "{{ topo_url }}" || ""
+      var geo_url = "{{ geo_url }}" || ""
       getGeoData(topo_url).then(data => tjson.addData(data['data']));
-      getGeoData("./api/mnwd/spatial/rsb_json?f=geojson&timeout=120").then(data => geojson.addData(data['data']));
+      getGeoData(geo_url).then(data => geojson.addData(data['data']));
     </script>
   </body>
 </html>

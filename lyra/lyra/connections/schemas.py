@@ -1,8 +1,7 @@
 from sqlalchemy import Column, DateTime, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
 
-from lyra.connections.database import database_engine
+# from sqlalchemy.orm import relationship
 
 
 Base = declarative_base()
@@ -39,7 +38,8 @@ class DTMetricsCategories(Base):
     __tablename__ = "DTMetricsCategories"
 
     id = Column(Integer, primary_key=True)
-    variable = Column(String)
+    variable = Column(Integer, index=True)
+    variable_name = Column(String)
     # metrics = relationship("DTMetrics", backref='DTMetricsCategories')
 
 
@@ -48,6 +48,6 @@ def init_all(engine):
         Base.metadata.create_all(conn)
 
 
-def drop_all(table_name, engine):
-    with engine.begin() as conn:
-        conn.execute(f"DROP TABLE {table_name}")
+def drop_all_records(table_name, conn):
+    # with engine.begin() as conn:
+    conn.execute(f"delete from {table_name}")

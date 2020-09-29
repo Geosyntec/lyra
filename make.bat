@@ -13,6 +13,7 @@ if /i %1 == coverage goto :coverage
 if /i %1 == dev-server goto :dev-server
 if /i %1 == restart goto :restart
 if /i %1 == env goto :env
+if /i %1 == testauth goto :testauth
 if /i %1 == testcors goto :testcors
 if /i %1 == testget goto :testget
 if /i %1 == az-login goto :az-login
@@ -76,6 +77,7 @@ call scripts\clean.bat
 goto :eof
 
 :dev-server
+call scripts\build_dev.bat
 docker-compose run -p 8080:80 -e LOG_LEVEL=debug lyra bash /start-reload.sh
 goto :eof
 
@@ -85,6 +87,18 @@ goto :eof
 
 :env
 scripts\make_dev_env.bat
+goto :eof
+
+:testauth
+curl ^
+-H "Origin: http://localhost:8880" ^
+--verbose ^
+localhost:8080/api/regional_subbasins/24/upstream?force_foreground=true
+rem -H "Access-Control-Request-Headers: X-Requested-With" ^
+rem https://swn-lyra-dev.azurewebsites.net/plot/trace
+rem localhost:8080/api/hydstra/sites
+rem localhost:8080/api/hydstra/sites/spatial
+rem https://swn-lyra-dev.azurewebsites.net/api/hydstra/sites/spatial
 goto :eof
 
 :testcors

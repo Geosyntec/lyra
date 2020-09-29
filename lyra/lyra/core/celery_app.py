@@ -8,8 +8,6 @@ CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND", "redis://localhost:63
 
 celery_app = Celery("tasks", backend=CELERY_RESULT_BACKEND, broker=CELERY_BROKER_URL)
 
-celery_app.conf.timezone = "US/Pacific"
-
 celery_app.conf.update(
     task_serializer="json",
     accept_content=["json"],  # Ignore other content
@@ -42,24 +40,26 @@ celery_app.conf.beat_schedule = {
     #     "schedule": 3 * 60,
     #     "args": (16, 16),
     # },
-    "update-static-references": {
-        "task": "lyra.bg_worker.background_build_static_references",
-        # daily at midnight
-        "schedule": crontab(minute=0, hour=0),
-    },
+    # "update-static-references": { ## this task has no effect when run in background in v0.1.16
+    #     "task": "lyra.bg_worker.background_build_static_references",
+    #     # daily at midnight
+    #     "schedule": crontab(minute=0, hour=0),
+    # },
     "update-drooltool-database": {
         "task": "lyra.bg_worker.background_update_drooltool_database",
         # daily at midnight
-        "schedule": crontab(minute=0, hour=0),
-        # on the 10th of each month
-        # "schedule": crontab( minute=0, hour=0, day_of_month=10),
+        # "schedule": crontab(minute=0, hour=0),
+        # on the 12th of each month
+        "schedule": crontab(minute=0, hour=0, day_of_month=12),
     },
     "update-drooltool-rsb_geo": {
         "task": "lyra.bg_worker.background_update_rsb_geojson",
         # daily at midnight
-        "schedule": crontab(minute=0, hour=0),
-        # on the 10th of each month
-        # "schedule": crontab(minute=0, hour=0, day_of_month=10),
+        # "schedule": crontab(minute=0, hour=0),
+        # on the 12th of each month
+        "schedule": crontab(minute=0, hour=0, day_of_month=12),
     },
 }
-celery_app.conf.timezone = "UTC"
+
+# celery_app.conf.timezone = "UTC"
+celery_app.conf.timezone = "US/Pacific"

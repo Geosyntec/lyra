@@ -5,7 +5,7 @@
 set -e
 
 # If there's a prestart.sh script in the /lyra directory, run it before starting
-PRE_START_PATH=/lyra/lyra/prestart.sh
+PRE_START_PATH=/lyra/lyra/prestart-worker.sh
 echo "Checking for script in $PRE_START_PATH"
 if [ -f $PRE_START_PATH ] ; then
     echo "Running script $PRE_START_PATH"
