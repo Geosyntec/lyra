@@ -1,5 +1,5 @@
 
-set COMPOSE_FILE=docker-stack.yml
+rem set COMPOSE_FILE=docker-stack.yml
 
 call docker-compose ^
 -f docker-compose.shared.build.yml ^
