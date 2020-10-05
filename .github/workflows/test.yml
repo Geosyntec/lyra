@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: 3.7
       - name: Install Linters
-        run: pip install -r lyra/requirements_test.txt
+        run: pip install -r lyra/requirements.txt -r lyra/requirements_test.txt
       - name: Run Linters
         run: bash scripts/lint.sh 
   test:
