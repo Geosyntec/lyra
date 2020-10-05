@@ -28,17 +28,20 @@ jobs:
       - name: Get Release Tags
         env: 
           TAG: ${{ github.event.inputs.tag }}
-          LIBTAG: $(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
+#           LIBTAG: $(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
       
-      - name: Check Release Tags (true)
-        if: contains(env.TAG, env.LIBTAG)
-        run: |
-          echo "$LIBTAG is in $TAG"
+#       - name: Check Release Tags (true)
+#         if: contains(env.TAG, env.LIBTAG)
+#         run: |
+#           echo "$LIBTAG is in $TAG"
       
-      - name: Check Release Tags (false)
-        if: ! contains(env.TAG, env.LIBTAG)
-        run: |
-          echo "$LIBTAG is not in $TAG"
+#       - name: Check Release Tags (false)
+#         if: ! contains(env.TAG, env.LIBTAG)
+#         run: |
+#           echo "$LIBTAG is not in $TAG"
+          
+          
+          
 #       - uses: azure/docker-login@v1
 #         with:
 #           login-server: ${{ secrets.ACR_SERVER }}
