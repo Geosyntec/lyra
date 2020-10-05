@@ -4,8 +4,7 @@ name: Push Release
 # events but only for the develop branch
 on: 
   release:
-    types:
-      - created
+    types: [created, edited]
         
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
