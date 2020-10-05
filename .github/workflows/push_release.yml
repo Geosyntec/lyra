@@ -17,18 +17,18 @@ jobs:
       - name: Get Release Tags
         run: |
           LIBTAG=$(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
-          echo libtag="$LIBTAG"
-          echo "::set-env name=libtag::$LIBTAG"
-
+          echo "libtag=$LIBTAG" >> $GITHUB_ENV
+      - name: Print Release Tags 
+        run: echo ${{ github.event.release.name }}, $libtag 
       - name: Check Release Tags 
-        if: false == contains(github.event.release.name , env.libtag)
+        if: false == contains(github.event.release.name, $libtag)
         run: exit 1
 
-      - uses: azure/docker-login@v1
-        with:
-          login-server: ${{ secrets.ACR_SERVER }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
+#       - uses: azure/docker-login@v1
+#         with:
+#           login-server: ${{ secrets.ACR_SERVER }}
+#           username: ${{ secrets.ACR_USERNAME }}
+#           password: ${{ secrets.ACR_PASSWORD }}
       
-      - name: Build & Push Images
-        run: bash ./scripts/push_release.sh
+#       - name: Build & Push Images
+#         run: bash ./scripts/push_release.sh
