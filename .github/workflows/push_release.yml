@@ -21,7 +21,7 @@ jobs:
       - name: Print Release Tags 
         run: echo ${{ github.event.release.name }}, $libtag 
       - name: Check Release Tags 
-        if: false == contains(github.event.release.name, $libtag)
+        if: false == contains(github.event.release.name, env.libtag)
         run: exit 1
 
 #       - uses: azure/docker-login@v1
