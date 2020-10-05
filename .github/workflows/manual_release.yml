@@ -28,7 +28,10 @@ jobs:
       - name: Get Release Tags
         env: 
           TAG: ${{ github.event.inputs.tag }}
-          LIBTAG: $(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
+        run: |
+          export LIBTAG=$(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
+          echo "$TAG", "$LIBTAG"
+      - name: check persist env var
         run: echo "$TAG", "$LIBTAG"
           
       
