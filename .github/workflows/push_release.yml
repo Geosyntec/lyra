@@ -19,9 +19,9 @@ jobs:
           LIBTAG=$(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
           echo "libtag=$LIBTAG" >> $GITHUB_ENV
       - name: Print Release Tags 
-        run: echo ${{ github.event.release.name }}, $libtag 
+        run: echo ${{ github.event.release.tag_name }}, $libtag 
       - name: Check Release Tags 
-        if: false == contains(github.event.release.name, env.libtag)
+        if: false == contains(github.event.release.tag_name, env.libtag)
         run: exit 1
 
 #       - uses: azure/docker-login@v1
