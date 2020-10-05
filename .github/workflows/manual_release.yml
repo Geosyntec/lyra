@@ -21,10 +21,7 @@ jobs:
 
       - name: Build & Push Images
         run: |
-          docker -v
-          docker-compose -v
-          manual_tag=-m${{ github.event.inputs.tag }}
-          bash scripts/build_prod.sh -t $manual_tag
-          cat docker-stack$manual_tag.yml
-          docker-compose -f docker-stack$manual_tag.yml push
+          tag=-m${{ github.event.inputs.tag }}
+          bash ./scripts/build_prod.sh -t $tag
+          docker-compose -f docker-stack$tag.yml push
           
