@@ -13,21 +13,29 @@ jobs:
 
     steps:     
       - uses: actions/checkout@v2
-      - name: Get Release Tags
+      
+      - name: Get Version
         run: |
           LIBTAG=$(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
           echo "libtag=$LIBTAG" >> $GITHUB_ENV
+      
       - name: Print Release Tags 
         run: echo ${{ github.event.release.tag_name }}, $libtag 
-      - name: Check Release Tags 
-        if: false == contains(github.event.release.tag_name, env.libtag)
-        run: exit 1
-
-#       - uses: azure/docker-login@v1
-#         with:
-#           login-server: ${{ secrets.ACR_SERVER }}
-#           username: ${{ secrets.ACR_USERNAME }}
-#           password: ${{ secrets.ACR_PASSWORD }}
       
-#       - name: Build & Push Images
-#         run: bash ./scripts/push_release.sh
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.ACR_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      
+      - name: Push Versioned Image and Update Latest
+        if: contains(github.event.release.tag_name, env.libtag)
+        run: bash ./scripts/push_release.sh
+
+      - name: Push Tagged Release Image 
+        if: false == contains(github.event.release.tag_name, env.libtag)
+        run: |
+          tag=${{ github.event.release.tag_name }}
+          bash ./scripts/build_prod.sh -t $tag
+          docker-compose -f docker-stack$tag.yml push
+          
