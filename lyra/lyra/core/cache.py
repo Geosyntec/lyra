@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 redis_cache = redis.Redis(host="redis", port=6379, db=9)
+_global_cache = {}
 
 CAN_CACHE = False
 
@@ -24,12 +25,14 @@ def flush():  # pragma: no cover
         pass
 
 
-def use_cache(state: bool = True):  # pragma: no cover
+def use_cache(state: bool = True) -> None:  # pragma: no cover
+    global _global_cache
     try:
         if redis_cache.ping():
             redis_cache.set("CACHE_ENDABLED", orjson.dumps(state))
             logger.debug("flushed redis function cache")
     except redis.ConnectionError:
+        _global_cache["CACHE_ENDABLED"] = orjson.dumps(state)
         pass
 
 
@@ -107,11 +110,40 @@ def rcache(**rkwargs):
     return _rcache
 
 
-def no_cache(**rkwargs):  # pragma: no cover
+def mem_cache(**rkwargs):  # pragma: no cover
+    as_response = rkwargs.pop("as_response", False)
+    ex = None
+
     def _rcache(obj):
+        cache = _global_cache
+
         @functools.wraps(obj)
         def memoizer(*args, **kwargs):
-            return obj(*args, **kwargs)
+            cache_enabled = orjson.loads(cache.get("CACHE_ENDABLED") or b"true")
+            if not cache_enabled:
+                return _get_result(obj, ex, as_response, cache_enabled, *args, **kwargs)
+            sorted_kwargs = {k: kwargs[k] for k in sorted(kwargs.keys())}
+
+            logger.info("cached call: " + obj.__name__ + str(args) + str(sorted_kwargs))
+
+            # hashing the key may not be necessary, but it keeps the server-side filepaths hidden
+            key = hashlib.sha256(
+                (obj.__name__ + str(args) + str(sorted_kwargs)).encode("utf-8")
+            ).hexdigest()
+
+            if cache.get(key) is None:
+                logger.debug(f"mem_cache cache miss {key}")
+
+                result = _get_result(
+                    obj, ex, as_response, cache_enabled, *args, **kwargs
+                )
+
+                cache[key] = result
+
+            else:
+                logger.debug(f"mem_cache hit cache {key}")
+
+            return cache.get(key)
 
         return memoizer
 
@@ -131,9 +163,9 @@ def get_cache_decorator():
             CAN_CACHE = True
             return rcache
         else:  # pragma: no cover
-            return no_cache
+            return mem_cache
     except redis.ConnectionError:  # pragma: no cover
-        return no_cache
+        return mem_cache
 
 
 cache_decorator = get_cache_decorator()

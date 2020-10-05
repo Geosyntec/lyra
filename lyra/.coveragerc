@@ -1,0 +1,9 @@
+# .coveragerc to control coverage.py
+[run]
+source = lyra
+branch = True
+
+[report]
+include = lyra/*.py
+ignore_errors = True
+skip_empty = True

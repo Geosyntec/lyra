@@ -1,9 +1,9 @@
 from copy import deepcopy
+
 import pytest
 
-from lyra.core import security
 from lyra.connections import database
-from lyra.core import config
+from lyra.core import config, security
 
 
 @pytest.mark.integration
@@ -35,6 +35,7 @@ def test_dt_metrics_no_cache(client_no_cache):
     ), "should have errors since we aren't authorized."
 
 
+@pytest.mark.integration
 def test_dt_metrics_no_cache_engine(monkeypatch, client_no_cache, data_engine):
     client = client_no_cache
 
@@ -61,6 +62,7 @@ def test_dt_metrics_no_cache_engine(monkeypatch, client_no_cache, data_engine):
         assert row[k] == v
 
 
+@pytest.mark.integration
 def test_dt_metrics_no_cache_engine_no_admin(
     monkeypatch, client_no_cache_foreground, data_engine
 ):

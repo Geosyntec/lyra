@@ -1,5 +1,5 @@
-from typing import Optional, List, Tuple
 from io import StringIO
+from typing import List, Optional, Tuple
 
 import geopandas
 import orjson
@@ -55,7 +55,6 @@ def _rsb_geojson_bytestring(
     bbox: Optional[Tuple[float, float, float, float]] = None,
     watersheds: Optional[List[str]] = None,
     catchidns: Optional[List[str]] = None,
-    **kwargs,
 ) -> bytes:
     data = azure_fs.get_file_as_bytestring(
         "mnwd/drooltool/spatial/rsb_geo_4326_latest.json"
@@ -82,7 +81,6 @@ def _rsb_topojson_bytestring(
     catchidns: Optional[List[str]] = None,
     toposimplify: Optional[float] = None,
     topoquantize: Optional[float] = None,
-    **kwargs,
 ) -> bytes:
 
     data = _rsb_geojson_bytestring(
@@ -95,9 +93,7 @@ def _rsb_topojson_bytestring(
     if topoquantize is None:  # pragma: no cover
         topoquantize = 1e6
 
-    topo = topojson.Topology(
-        gdf, toposimplify=toposimplify, topoquantize=topoquantize, **kwargs
-    )
+    topo = topojson.Topology(gdf, toposimplify=toposimplify, topoquantize=topoquantize)
     return topo.to_json().encode()
 
 
@@ -146,7 +142,6 @@ def rsb_spatial(
             catchidns=catchidns,
             toposimplify=toposimplify,
             topoquantize=topoquantize,
-            **kwargs,
         )
     else:
         raise ValueError(f"Unknown output format: `{f}`")

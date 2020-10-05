@@ -1,12 +1,11 @@
 from typing import Any, Dict
+
 from fastapi import APIRouter, Depends
 from fastapi.responses import ORJSONResponse
 
 from lyra.core.celery_app import celery_app
-
 from lyra.core.utils import run_task, run_task_kwargs
 from lyra.models.response_models import JSONAPIResponse
-
 
 router = APIRouter(default_response_class=ORJSONResponse)
 

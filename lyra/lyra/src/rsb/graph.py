@@ -1,11 +1,12 @@
 from typing import Optional
+
 import geopandas
 import networkx
 import orjson
 
 from lyra.connections import azure_fs
 from lyra.core.cache import cache_decorator
-from lyra.src.network.algorithms import trace_upstream, trace_downstream
+from lyra.src.network.algorithms import trace_downstream, trace_upstream
 from lyra.src.network.utils import graph_from_df
 
 

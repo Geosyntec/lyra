@@ -4,13 +4,17 @@ import pytest
 from lyra.src.mnwd import spatial
 
 
-def test_rsb_geojson(nocache, mock_rsb_geo_bytestring):
+def test_rsb_geojson(
+    nocache, mock_rsb_geo_bytestring,
+):
     rsb = spatial.rsb_geojson()
     features = rsb["features"]
     assert len(features) == 10
 
 
-def test_rsb_topojson(nocache, mock_rsb_geo_bytestring):
+def test_rsb_topojson(
+    nocache, mock_rsb_geo_bytestring,
+):
     rsb = spatial.rsb_topojson()
     features = rsb["objects"]["data"]["geometries"]
     assert len(features) == 10
@@ -19,7 +23,9 @@ def test_rsb_topojson(nocache, mock_rsb_geo_bytestring):
 @pytest.mark.parametrize("catchidns", [None, [10], [214, 328]])
 @pytest.mark.parametrize("watersheds", [None, "Aliso"])
 @pytest.mark.parametrize("format", ["topojson", "geojson", "error"])
-def test_rsb_spatial(nocache, mock_rsb_geo_bytestring, format, catchidns, watersheds):
+def test_rsb_spatial(
+    nocache, mock_rsb_geo_bytestring, format, catchidns, watersheds,
+):
     if format == "error":
         with pytest.raises(ValueError):
             rsb = spatial.rsb_spatial(

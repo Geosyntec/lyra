@@ -6,23 +6,20 @@ from typing import Optional
 from azure.core.exceptions import ResourceExistsError
 from azure.storage.fileshare import ShareClient, ShareFileClient
 
-from lyra.core.config import settings
 from lyra.core.cache import cache_decorator
-
+from lyra.core.config import settings
 
 logger = logging.getLogger(__name__)
 
 
 def get_share(
-    acount_name=settings.AZURE_STORAGE_ACCOUNT_NAME,
+    account_url=settings.AZURE_STORAGE_ACCOUNT_URL,
     share_name=settings.AZURE_STORAGE_SHARE_NAME,
     credential=settings.AZURE_STORAGE_ACCOUNT_KEY,
 ):
 
     share = ShareClient(
-        account_url=f"https://{acount_name}.file.core.windows.net",
-        share_name=share_name,
-        credential=credential,
+        account_url=account_url, share_name=share_name, credential=credential,
     )
 
     return share
@@ -34,11 +31,11 @@ def make_azure_fileclient(
     """Create full path to `filepath` even if it doesn't exist on the share yet.
 
     This iterates through the file path from bottom to top (where our file is),
-    eg.: make_azure_fileclient(mnwd\database\arbitrarily\nested\test.csv)
+    eg.: make_azure_fileclient(mnwd/database/arbitrarily/nested/test.csv)
     mnwd
-    mnwd\database
-    mnwd\database\arbitrarily
-    mnwd\database\arbitrarily\nested
+    mnwd/database
+    mnwd/database/arbitrarily
+    mnwd/database/arbitrarily/nested
     """
     if share is None:
         share = get_share()  # get default share

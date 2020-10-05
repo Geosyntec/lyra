@@ -5,9 +5,7 @@ from fastapi.responses import ORJSONResponse
 
 from lyra.models import hydstra_models
 from lyra.models.response_models import HydstraJSONResponse
-
 from lyra.src import hydstra
-
 
 router = APIRouter(default_response_class=ORJSONResponse)
 

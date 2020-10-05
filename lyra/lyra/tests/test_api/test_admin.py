@@ -1,7 +1,6 @@
 import pytest
 
-from lyra.core import security
-from lyra.core import cache
+from lyra.core import cache, security
 
 
 def mockflush():

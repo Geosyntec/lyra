@@ -13,7 +13,7 @@ class RawJSONResponse(ORJSONResponse):
 
 class JSONAPIResponse(BaseModel):
     status: str = "SUCCESS"
-    process_type = "foreground"
+    process_type: str = "foreground"
     data: Optional[Any] = None
     errors: Optional[List[str]] = None
     task_id: Optional[str] = None
@@ -36,7 +36,7 @@ class HydstraJSONResponse(JSONAPIResponse):
 
 
 class CachedJSONResponse(JSONAPIResponse):
-    process_type = "cached"
+    process_type: str = "cached"
     expires_after: int  # expressed in seconds
     ts: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
 

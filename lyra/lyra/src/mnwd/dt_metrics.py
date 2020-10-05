@@ -1,5 +1,5 @@
-from typing import List, Optional
 from textwrap import dedent
+from typing import List, Optional
 
 import orjson
 import pandas

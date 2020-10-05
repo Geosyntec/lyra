@@ -1,12 +1,12 @@
-from pathlib import Path
-import secrets
-from typing import List, Optional, Union
-from typing_extensions import Literal
 import importlib.resources as pkg_resources
 import json
-import yaml
+import secrets
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
 
+import yaml
 from pydantic import AnyHttpUrl, BaseSettings, validator
+from typing_extensions import Literal
 
 from lyra.core.io import load_cfg
 
@@ -37,6 +37,15 @@ class Settings(BaseSettings):
     AZURE_STORAGE_ACCOUNT_NAME: str = ""
     AZURE_STORAGE_ACCOUNT_KEY: str = ""
     AZURE_STORAGE_SHARE_NAME: str = ""
+    AZURE_STORAGE_ACCOUNT_URL: str = ""
+
+    @validator("AZURE_STORAGE_ACCOUNT_URL")
+    def azure_account_url(cls, v: str, values: Dict[str, Any]) -> Any:
+        if v:
+            return v
+        return (
+            f"https://{values.get('AZURE_STORAGE_ACCOUNT_NAME')}.file.core.windows.net"
+        )
 
     FORCE_FOREGROUND: bool = False
     FORCE_TASK_SCHEDULER_TO_FIVE_MINUTE_INTERVAL: bool = False
@@ -62,22 +71,22 @@ class Settings(BaseSettings):
 
     class Config:
         env_prefix = "LYRA_"
-        env_file = (
-            Path(__file__).absolute().resolve().parent.parent.parent.parent / ".env"
-        )
+        with pkg_resources.path("lyra", ".env") as p:
+            env_file = p
         extra = "allow"
 
-    def update(self, other: dict):
+    def update(self, other: dict) -> None:
         for key, value in other.items():
             setattr(self, key, value)
 
 
 settings = Settings()
-# config = load_cfg(Path(__file__).parent / "lyra_config.yml")
 
 
 def config():
-    cfg = yaml.safe_load(pkg_resources.read_text("lyra.core", "lyra_config.yml"))
+    with pkg_resources.path("lyra.core", "lyra_config.yml") as p:
+        # cfg = load_cfg(p)
+        cfg = yaml.safe_load(p.read_text())
 
     preferred_variables = json.loads(
         pkg_resources.read_text("lyra.static", "preferred_variables.json")

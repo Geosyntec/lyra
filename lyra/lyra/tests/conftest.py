@@ -2,9 +2,9 @@ import importlib
 
 import pytest
 
-from lyra.connections import database, schemas, azure_fs
-from lyra.src.mnwd import helper
+from lyra.connections import azure_fs, database, schemas
 from lyra.core import cache
+from lyra.src.mnwd import helper
 from lyra.tests import utils
 
 
@@ -12,6 +12,12 @@ def pytest_configure(config):
     config.addinivalue_line(
         "markers", "integration: mark test as requireing a data connection"
     )
+
+
+@pytest.fixture
+def reconnect_engine():
+    database.reconnect_engine(database.engine)
+    yield
 
 
 @pytest.fixture
@@ -24,10 +30,12 @@ def empty_engine():
 
 @pytest.fixture
 def data_engine():
+    print("building engine...", end="")
     engine = database.create_engine("sqlite:///")
     schemas.init_all(engine)
     file = importlib.resources.open_text("lyra.tests.data", "test_dt_metrics.csv")
     helper.set_drooltool_database_with_file(engine, file=file)
+    print("done.")
 
     yield engine
 
@@ -43,7 +51,6 @@ def nocache():
 def clearcache():
     cache.flush()
     yield
-
 
 
 @pytest.fixture

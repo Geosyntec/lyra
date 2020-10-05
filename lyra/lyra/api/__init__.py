@@ -3,7 +3,6 @@ from fastapi import APIRouter, Depends
 from lyra.api.endpoints import admin, bg_tasks, dt_metrics, hydstra, plot, rsb, tasks
 from lyra.core.security import authenticate_admin_access
 
-
 api_router = APIRouter()
 api_router.include_router(admin.router, prefix="/admin", tags=["auth", "admin"])
 api_router.include_router(

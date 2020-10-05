@@ -3,13 +3,12 @@ from typing import List, Optional
 from lyra.connections.database import engine, reconnect_engine
 from lyra.core.cache import cache_decorator
 from lyra.core.config import config
-from lyra.src.mnwd import spatial, dt_metrics
+from lyra.src.mnwd import dt_metrics, spatial
 from lyra.src.mnwd.helper import (
     fetch_and_refresh_drooltool_metrics_file,
     fetch_and_refresh_oc_rsb_geojson_file,
     set_drooltool_database_with_file,
 )
-
 
 ## Scheduled jobs and updates
 ## --------------------------

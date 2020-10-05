@@ -1,10 +1,11 @@
-from typing import List
-from pathlib import Path
-import json
-import pandas
 import asyncio
 import datetime
+import json
 import logging
+from pathlib import Path
+from typing import Any, Dict, List
+
+import pandas
 
 from lyra.core.async_requests import send_request
 from lyra.core.config import settings
@@ -13,18 +14,20 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def get_site_list():
+def get_site_list() -> Dict[str, Any]:
     site_list = {
         "function": "get_site_list",
         "version": 1,
         "params": {"site_list": "TSFILES(DSOURCES(tscARCHIVE))"},
     }
 
-    rsp = asyncio.run(send_request(settings.HYDSTRA_BASE_URL, payload=site_list))
-    return rsp["_return"]
+    response = asyncio.run(send_request(settings.HYDSTRA_BASE_URL, payload=site_list))
+    result: Dict[str, Any] = response["_return"]
+
+    return result
 
 
-def site_preferred_variables(site_list: List[str]):
+def site_preferred_variables(site_list: List[str]) -> pandas.DataFrame:
     get_variable_list = {
         "function": "get_variable_list",
         "version": 1,
@@ -70,7 +73,7 @@ def site_preferred_variables(site_list: List[str]):
     return variables
 
 
-def site_variable_map(variables: pandas.DataFrame):
+def site_variable_map(variables: pandas.DataFrame) -> Dict[str, Any]:
     mapping = (
         variables.query("preferred")
         .assign(label=lambda df: df["name"] + "-" + df["variable"])

@@ -1,26 +1,24 @@
-import time
 import logging
+import time
 
-from lyra.core.celery_app import celery_app
 from lyra.core.cache import flush
+from lyra.core.celery_app import celery_app
 from lyra.core.errors import SQLQueryError
-
 from lyra.ops import startup
+from lyra.src.mnwd.tasks import (
+    dt_metrics_response,
+    rsb_data_response,
+    rsb_spatial_response,
+    update_drooltool_database,
+    update_rsb_geojson,
+)
+from lyra.src.rsb.tasks import (
+    rsb_downstream_trace_response,
+    rsb_upstream_trace_response,
+)
 
 # from lyra.tasks import build_static_references
 
-from lyra.src.mnwd.tasks import (
-    update_drooltool_database,
-    update_rsb_geojson,
-    rsb_spatial_response,
-    rsb_data_response,
-    dt_metrics_response,
-)
-
-from lyra.src.rsb.tasks import (
-    rsb_upstream_trace_response,
-    rsb_downstream_trace_response,
-)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

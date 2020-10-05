@@ -5,7 +5,6 @@ import yaml
 
 from lyra.core.cache import cache_decorator
 
-
 PathType = Union[Path, str]
 
 

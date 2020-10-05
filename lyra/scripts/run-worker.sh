@@ -13,5 +13,4 @@ if [ -f $PRE_START_PATH ] ; then
 else
     echo "There is no script $PRE_START_PATH"
 fi
-
-celery worker --app lyra.bg_worker -l info -c 4 -O fair -B
+celery --app lyra.bg_worker worker -l INFO -c 4 -O fair -B

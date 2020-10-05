@@ -1,9 +1,9 @@
-from typing import List, Optional
-from pathlib import Path
-from urllib.parse import urlencode
 import json
+from pathlib import Path
+from typing import List, Optional
+from urllib.parse import urlencode
 
-from fastapi import APIRouter, Request, Query
+from fastapi import APIRouter, Query, Request
 from fastapi.templating import Jinja2Templates
 
 import lyra

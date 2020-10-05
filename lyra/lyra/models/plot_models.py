@@ -1,8 +1,8 @@
 from typing import List, Optional
 
-from pydantic import BaseModel, validator, root_validator
-import pandas
 import orjson
+import pandas
+from pydantic import BaseModel, root_validator, validator
 
 from lyra.core.config import config
 from lyra.core.utils import flatten_expand_list

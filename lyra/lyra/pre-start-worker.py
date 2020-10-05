@@ -1,9 +1,8 @@
 import logging
 
-from lyra.core.config import settings
 from lyra.connections.database import engine, reconnect_engine
+from lyra.core.config import settings
 from lyra.ops import startup
-
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

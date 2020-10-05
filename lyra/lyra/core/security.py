@@ -5,7 +5,6 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 
 from lyra.core.config import settings
 
-
 security = HTTPBasic(auto_error=False)
 
 

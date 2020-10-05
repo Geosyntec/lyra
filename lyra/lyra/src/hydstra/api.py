@@ -1,6 +1,5 @@
 from typing import Any, Dict, List, Optional
 
-
 from lyra.core import async_requests
 from lyra.core.config import settings
 from lyra.models import hydstra_models
@@ -21,12 +20,14 @@ async def get_site_list():
 async def get_sites_db_info(
     site: Optional[str] = None,
     field_list: Optional[List[str]] = None,
-    return_type: Optional[hydstra_models.ReturnType] = "array",
+    return_type: Optional[hydstra_models.ReturnType] = None,
     filter_values: Optional[Dict[str, Any]] = None,
-):
+) -> Dict[str, Any]:
 
     if filter_values is None:  # pragma: no branch
         filter_values = {}
+    if return_type is None:
+        return_type = "array"
 
     get_db_info = {
         "function": "get_db_info",
@@ -52,7 +53,7 @@ async def get_site_db_info(
     site: str,
     return_type: Optional[hydstra_models.ReturnType] = "array",
     field_list: Optional[List[str]] = None,
-):
+) -> Dict[str, Any]:
     get_db_info = {
         "function": "get_db_info",
         "version": "3",
@@ -75,7 +76,7 @@ async def get_site_geojson(
     site_list: Optional[List[str]] = None,
     field_list: Optional[List[str]] = None,
     get_elev: Optional[int] = 0,
-):
+) -> Dict[str, Any]:
 
     if site_list is None:
         site_list_response = await get_site_list()
@@ -119,7 +120,7 @@ async def get_trace(
     varto: Optional[str] = None,
     varfrom: Optional[str] = None,
     **kwargs: Optional[Dict[str, Any]],
-):
+) -> Dict[str, Any]:
 
     ts_trace = {
         "function": "get_ts_traces",
@@ -160,7 +161,7 @@ async def get_trace(
 
 async def get_datasources(
     site_list: Optional[List[str]] = None, ts_classes: Optional[List[str]] = None,
-):
+) -> Dict[str, Any]:
     if site_list is None:
         site_list_response = await get_site_list()
         site_list = site_list_response["_return"]["sites"]
@@ -183,7 +184,7 @@ async def get_variables(
     site_list: Optional[List[str]] = None,
     datasource: str = "A",
     var_filter: Optional[List[str]] = None,
-):
+) -> Dict[str, Any]:
 
     if site_list is None:
         site_list_response = await get_site_list()
@@ -206,7 +207,7 @@ async def get_variables(
 
 async def get_site_variables(
     site: str, variable: Optional[str] = None, datasource: str = "A",
-):
+) -> Dict[str, Any]:
 
     get_variable_list = {
         "function": "get_variable_list",
@@ -226,7 +227,7 @@ async def get_site_variables(
 async def get_variables_db_info(
     return_type: Optional[hydstra_models.ReturnType] = "array",
     filter_values: Optional[Dict] = None,
-):
+) -> Dict[str, Any]:
 
     if filter_values is None:
         filter_values = {}

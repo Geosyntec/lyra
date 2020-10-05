@@ -1,7 +1,7 @@
 from typing import Optional
 
 from lyra.core.cache import cache_decorator
-from lyra.src.rsb.graph import rsb_upstream_trace, rsb_downstream_trace
+from lyra.src.rsb.graph import rsb_downstream_trace, rsb_upstream_trace
 
 
 @cache_decorator(ex=3600, as_response=True)  # expires in 6 hours

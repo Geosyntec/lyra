@@ -1,19 +1,18 @@
+import asyncio
 import itertools
 from typing import Any, Dict, List, Optional, Union
 
-import asyncio
+import pandas
 from celery.canvas import Signature
 from celery.result import AsyncResult
-from fastapi import Depends, Request, Query
+from fastapi import Depends, Query, Request
 from fastapi.responses import JSONResponse
-import pandas
 
+from lyra.core import security
 from lyra.models.response_models import (
     CeleryTaskJSONResponse,
     ForegroundTaskJSONResponse,
 )
-
-from lyra.core import security
 
 
 class RawJSONResponse(JSONResponse):
@@ -27,7 +26,7 @@ async def wait_a_sec_and_see_if_we_can_return_some_data(
     if timeout is None:
         timeout = 0.1
 
-    _max_timeout = 10  # seconds
+    _max_timeout = 120  # seconds
     timeout = min(timeout, _max_timeout)  # prevent long timeout requests.
 
     t = 0

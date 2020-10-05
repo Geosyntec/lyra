@@ -1,10 +1,10 @@
 import numpy
 import pandas
-import pytest
 import pydantic
+import pytest
 
-from lyra.src.viz import single_variable
 from lyra.src.timeseries import Timeseries
+from lyra.src.viz import single_variable
 
 
 def mock_timeseries(periods, freq):

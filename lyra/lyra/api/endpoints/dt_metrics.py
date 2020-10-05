@@ -1,10 +1,9 @@
 from typing import Any, Dict, List, Optional
 
-import pandas
 import orjson
-
-from fastapi import APIRouter, Query, Depends
-from fastapi.responses import ORJSONResponse, HTMLResponse
+import pandas
+from fastapi import APIRouter, Depends, Query
+from fastapi.responses import HTMLResponse, ORJSONResponse
 
 import lyra.bg_worker as bg
 from lyra.core.utils import (
@@ -12,11 +11,8 @@ from lyra.core.utils import (
     run_task_kwargs,
     wait_a_sec_and_see_if_we_can_return_some_data,
 )
+from lyra.models.response_models import DataResponseFormat, JSONAPIResponse
 from lyra.site.style import render_in_jupyter_notebook_css_style
-from lyra.models.response_models import (
-    JSONAPIResponse,
-    DataResponseFormat,
-)
 
 router = APIRouter(default_response_class=ORJSONResponse)
 

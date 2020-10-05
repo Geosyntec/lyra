@@ -1,11 +1,9 @@
-from typing import Any, Optional, Dict
+from typing import Any, Dict, Optional
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 from fastapi.staticfiles import StaticFiles
-from fastapi.openapi.docs import (
-    get_redoc_html,
-    get_swagger_ui_html,
-)
 
 import lyra
 
@@ -31,8 +29,8 @@ def create_app(settings_override: Optional[Dict[str, Any]] = None):
         )
 
     from lyra.api import api_router
-    from lyra.site import site_router
     from lyra.core.config import settings
+    from lyra.site import site_router
 
     app.include_router(api_router, prefix="/api")
     app.include_router(site_router)

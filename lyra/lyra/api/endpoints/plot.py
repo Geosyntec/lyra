@@ -1,20 +1,19 @@
+import json
 from typing import List, Optional
 from urllib.parse import urlencode
 
 import altair as alt
+import orjson
+import pandas
 from altair.utils.data import MaxRowsError
-from fastapi import APIRouter, Query, Request
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from fastapi.responses import ORJSONResponse, PlainTextResponse
 from fastapi.templating import Jinja2Templates
-from fastapi import Depends, HTTPException
-import orjson
-import json
-import pandas
 from pydantic import ValidationError
 
 from lyra.models import hydstra_models
-from lyra.models.response_models import ChartJSONResponse, RawJSONResponse
 from lyra.models.plot_models import SingleVarSpec
+from lyra.models.response_models import ChartJSONResponse, RawJSONResponse
 from lyra.src.hydstra.api import get_trace
 from lyra.src.hydstra.helper import to_hydstra_datetime
 from lyra.src.viz import single_variable

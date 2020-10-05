@@ -1,9 +1,9 @@
 import importlib
 
-import pytest
 import pandas
+import pytest
 
-from lyra.connections import database, schemas, azure_fs
+from lyra.connections import azure_fs, database, schemas
 from lyra.src.mnwd import helper
 
 

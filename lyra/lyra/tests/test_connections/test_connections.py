@@ -1,8 +1,6 @@
-from lyra.connections import database
-from lyra.connections import azure_fs
-from lyra.connections import ftp
-
 import pytest
+
+from lyra.connections import azure_fs, database, ftp
 
 
 @pytest.mark.integration

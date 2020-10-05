@@ -1,8 +1,7 @@
 import pytest
 
-from lyra.src.hydstra import api
-
 from lyra.core import async_requests
+from lyra.src.hydstra import api
 
 
 @pytest.fixture

@@ -1,5 +1,5 @@
 MAKEFLAGS += --silent
-.PHONY: clean clean-test clean-pyc clean-build restart test develop up down dev-server help
+.PHONY: clean clean-test clean-pyc clean-build restart test develop up down dev-server help build release
 .DEFAULT_GOAL := help
 define BROWSER_PYSCRIPT
 import os, webbrowser, sys
@@ -49,29 +49,33 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 	rm -fr .mypy_cache
 
+build: ## build the docker-stack.yml file
+	docker-compose -f docker-stack.yml build
+
 restart: ## restart the redis server and the background workers
-	docker-compose restart redis celeryworker
+	docker-compose -f docker-stack.yml restart redis celeryworker
 
 test: clean ## run tests quickly with the default Python
-	docker-compose exec nereid-tests pytest -xvv
+	bash scripts/test.sh -xsv
 
 coverage: clean restart ## check code coverage quickly with the default Python
-	docker-compose exec nereid-tests coverage run -m pytest -x
-	docker-compose exec nereid-tests coverage report -m
-# 	coverage html
-# 	$(BROWSER) htmlcov/index.html
+	docker-compose -f docker-stack.yml exec lyra-tests coverage run -m pytest -x
+	docker-compose -f docker-stack.yml exec lyra-tests coverage report -mi
 
 typecheck: clean ## run static type checker
-	mypy --config-file=nereid/mypy.ini nereid/nereid
+	mypy --config-file=lyra/mypy.ini lyra/lyra
 
 develop: clean ## build the development environment and launch containers in background
 	bash scripts/build_dev.sh
 	
 up: ## bring up the containers in '-d' mode 
-	docker-compose up -d
+	docker-compose -f docker-stack.yml up -d
 
 down: ## bring down the containers and detach volumes
-	docker-compose down -v
+	docker-compose -f docker-stack.yml down -v
 
-dev-server: ## start a development server that runs all tasks in foreground
-	docker-compose run -e NEREID_FORCE_FOREGROUND=1 -p 8080:80 nereid bash /start-reload.sh
+dev-server: ## start a development server
+	docker-compose -f docker-stack.yml run -p 8080:80 -e LOG_LEVEL=debug lyra bash /start-reload.sh
+
+release: ## push production images to registry
+	bash scripts/push_release.sh

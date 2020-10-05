@@ -18,6 +18,31 @@ def test_fetch_and_refresh_oc_rsb_geojson_file(mock_get_MNWD_file_obj_geo, file)
     assert helper.fetch_and_refresh_oc_rsb_geojson_file(file=file)
 
 
+# from lyra.core import cache
+# import time
+# import orjson
+
+
+# @cache.cache_decorator(ex=3600 * 6)  # expires in 6 hours
+# def cached_func(*args, **kwargs):
+#     print("sleeping...", end="")
+#     time.sleep(3)
+#     print("awake!")
+
+#     return orjson.dumps((args, kwargs))
+
+
+# @pytest.mark.parametrize("site", [1, 1, 1])
+# @pytest.mark.parametrize("param", [2, 2, 2])
+# def test_cached(
+#     nocache,
+#     # clearcache,
+#     site,
+#     param,
+# ):
+#     cached_func(site, param)
+
+
 @pytest.mark.parametrize("site", [23])
 @pytest.mark.parametrize(
     "variable",
@@ -29,7 +54,6 @@ def test_fetch_and_refresh_oc_rsb_geojson_file(mock_get_MNWD_file_obj_geo, file)
 @pytest.mark.parametrize("agg_method", ["sum", "mean"])
 def test_get_timeseries_from_dt_metrics(
     nocache,
-    clearcache,
     mock_rsb_geo_bytestring,
     data_engine,
     site,
@@ -65,7 +89,13 @@ def test_get_timeseries_from_dt_metrics(
 @pytest.mark.parametrize("end_date", ["2017-06-01", "2017-01-01"])
 @pytest.mark.parametrize("agg_method", ["sum", "mean"])
 def test_get_timeseries_from_dt_metrics_integration(
-    site, variable, start_date, end_date, agg_method, trace_upstream
+    # reconnect_engine,
+    site,
+    variable,
+    start_date,
+    end_date,
+    agg_method,
+    trace_upstream,
 ):
     kwargs = dict(
         site=site,

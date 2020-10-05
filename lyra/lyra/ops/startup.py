@@ -1,15 +1,14 @@
 import logging
 
 import pandas
-from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixed
 from azure.core.exceptions import ResourceNotFoundError
+from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixed
 
 import lyra.bg_worker as bg
-from lyra.core.cache import redis_cache
-from lyra.connections.schemas import init_all
 from lyra.connections.azure_fs import get_share
+from lyra.connections.schemas import init_all
+from lyra.core.cache import redis_cache
 from lyra.src.mnwd.tasks import update_drooltool_database
-from lyra.src.mnwd.dt_metrics import dt_metrics
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
