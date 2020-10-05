@@ -22,7 +22,7 @@ jobs:
       
       - name: Print Release Tags 
         run: |
-          echo release tagged: $rtag; source version: $libtag
+          echo "release tagged: $rtag; source version: $libtag"
       
       - uses: azure/docker-login@v1
         with:
