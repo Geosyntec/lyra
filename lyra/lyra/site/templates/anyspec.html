@@ -1,0 +1,120 @@
+{% extends "base.html" %} 
+{% block head %}
+{{ super() }}
+<style>
+
+.error {
+    color: red;
+}
+
+.dashboard {
+	display: grid;
+	/*grid-template-columns: 2fr 3fr;*/
+	grid-template-rows: 1fr 5fr 2fr;
+	align-items:center;
+	justify-items: center;
+}
+
+.db_title {
+	grid-column: 1 / -1;
+}
+
+.form_container {
+	justify-self:end;
+}
+
+.db_notes {
+	grid-column: 1 / -1;
+}
+
+#form-notes {
+	font-size: 8pt;
+	font-style: italic;
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+	<div class="db_title">
+		<h1>Timeseries</h1>
+	</div>
+
+	<div id='vis-timeseries'></div>
+	<div class='db_notes'>
+		<div id='form-notes'></div>
+		<div id='error_msgs' ></div>
+	</div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+
+{{ super() }}
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega@5"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-lite@4.8.1"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm//vega-embed@6"></script>
+<script>
+
+var response = {{ response | tojson | safe }}
+
+var err_div = document.getElementById('error_msgs')
+err_div.innerHTML = ''
+
+if (response.data.spec) {
+	spec = response.data.spec
+	updateVegaChart(spec, "vis-timeseries")
+	// if (history.pushState) {
+	// 	history.pushState({}, null, permalink);
+	// }
+
+} else {
+	console.error(response)
+	err_div.innerHTML = (
+		'<div class="alert alert-danger">'
+    	+ '<button type="button" class="close" data-dismiss="alert">&times;</button>'
+    	+ "ERROR: no chart returned by service. "
+    	+ response.data.message
+		+ '</div>'
+	)
+	
+}
+
+if (response.data.message) {
+	console.warn(response)
+	err_div.innerHTML = (
+		'<div class="alert alert-warning">'
+    	+ '<button type="button" class="close" data-dismiss="alert">&times;</button>'
+    	+ response.data.message
+		+ '</div>'
+	)
+}
+
+function updateVegaChart(spec, id) {
+	// TODO: clear plot on submit to indicate that it's out of date.
+	
+	(function(vegaEmbed) {
+	      
+	      var embedOpt = {"mode": "vega-lite"};
+
+	      function showError(el, error){
+	          el.innerHTML = (
+	          	'<div class="error" style="color:red;">'
+				+ '<p>JavaScript Error: ' + error.message + '</p>'
+				+ "<p>This usually means there's a typo in your chart specification. "
+				+ "See the javascript console for the full traceback.</p>"
+				+ '</div>'
+			  );
+	          throw error;
+	      }
+	      const el = document.getElementById(id);
+	      vegaEmbed("#"+id, spec, embedOpt)
+	        .catch(error => showError(el, error));
+	    })(vegaEmbed);
+}
+
+</script>
+{% endblock %}

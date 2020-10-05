@@ -13,6 +13,7 @@ if /i %1 == coverage goto :coverage
 if /i %1 == dev-server goto :dev-server
 if /i %1 == restart goto :restart
 if /i %1 == env goto :env
+if /i %1 == testauth goto :testauth
 if /i %1 == testcors goto :testcors
 if /i %1 == testget goto :testget
 if /i %1 == az-login goto :az-login
@@ -41,7 +42,8 @@ goto :eof
 :test
 call make clean
 call make restart
-docker-compose exec lyra-tests pytest %2 %3 %4 %5 %6
+for /f "tokens=1,* delims= " %%a in ("%*") do set ALL_BUT_FIRST=%%b
+docker-compose -f docker-stack.yml exec lyra-tests pytest %ALL_BUT_FIRST%
 goto :eof
 
 :typecheck
@@ -52,22 +54,20 @@ goto :eof
 
 :develop
 call make clean
-call scripts\build_dev.bat
-call make build
+call bash scripts/build_dev.sh
 goto :eof
 
 :prod
 call make clean
-call scripts\build_prod.bat
-call make build
+call bash scripts/build_prod.sh
 goto :eof
 
 :up
-docker-compose up -d
+docker-compose -f docker-stack.yml up -d
 goto :eof
 
 :down
-docker-compose down -v
+docker-compose -f docker-stack.yml down -v
 goto :eof
 
 :clean
@@ -75,15 +75,28 @@ call scripts\clean.bat
 goto :eof
 
 :dev-server
-docker-compose run -p 8080:80 lyra bash /start-reload.sh
+call scripts\build_dev.bat
+docker-compose -f docker-stack.yml run -p 8080:80 -e LOG_LEVEL=debug lyra bash /start-reload.sh
 goto :eof
 
 :restart
-docker-compose restart redis celeryworker
+docker-compose -f docker-stack.yml restart redis celeryworker
 goto :eof
 
 :env
 scripts\make_dev_env.bat
+goto :eof
+
+:testauth
+curl ^
+-H "Origin: http://localhost:8880" ^
+--verbose ^
+localhost:8080/api/regional_subbasins/24/upstream?force_foreground=true
+rem -H "Access-Control-Request-Headers: X-Requested-With" ^
+rem https://swn-lyra-dev.azurewebsites.net/plot/trace
+rem localhost:8080/api/hydstra/sites
+rem localhost:8080/api/hydstra/sites/spatial
+rem https://swn-lyra-dev.azurewebsites.net/api/hydstra/sites/spatial
 goto :eof
 
 :testcors
@@ -118,6 +131,13 @@ goto :eof
 
 :az-deploy
 call make az-login
+set LYRA_VERSION=
+echo image tag: %LYRA_VERSION%
 call make prod
-docker-compose push
+docker-compose -f docker-stack.yml push
+set /p LYRA_VERSION=<VERSION
+echo image tag: %LYRA_VERSION%
+call make prod
+docker-compose -f docker-stack.yml push
+call scripts\az_deploy.bat
 goto :eof

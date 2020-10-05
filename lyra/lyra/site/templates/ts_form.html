@@ -1,0 +1,87 @@
+<form action="/timeseries" id="ts-form" method="get" enctype="text/plain">
+    
+    <div >
+    {% if sitelist %}
+        <select id="site" name="site">
+            {% for site in sitelist %}
+                {% if site == "ELTORO" %}
+                    <option selected value={{ site }}>{{ site }}</option>
+                {% else %}
+                    <option value={{ site }}>{{ site }}</option>
+                {% endif %}
+            }
+            {% endfor %}
+        </select>
+    {% else  %}
+        <input type="text" name ="site" id="site" value='ELTORO'>
+    {% endif %}
+        <label for="site">Site</label>
+    </div>
+    <div >
+        <input type="text" name ="variable" id="variable" value='11'>
+        <label for="variable">Variable</label>
+    </div>
+    <div >
+        <select id="datasource" name="datasource">
+            <option value="PUBLISH">Published Data</option>
+            <option value="A">Archival (A)</option>
+            <option value="TELEMETRY">Provisional (Telemetry)</option>
+        </select>
+        <label for="datasource">Data Source</label>
+    </div>
+    
+    <div >
+        <tr>
+            <td>
+                <input type="date" name ="start_date" id="start_date" value="2010-01-01"/>
+                <label for="start_date">Start date</label>
+            </td>
+            <td>
+                <input type="time" name ="start_time" id="start_time" value="00:00:00"/>
+                <label for="start_time">Start time</label>
+            </td>
+        </tr>
+    </div>
+    <div >
+        <tr>
+            <td>
+                <input type="date" name ="end_date" id="end_date" value="2015-01-01"/>
+                <label for="end_date">End date</label>
+            </td>
+            <td>
+                <input type="time" name ="end_time" id="end_time" value="00:00:00"/>
+                <label for="end_time">End time</label>
+            </td>
+        </tr>
+    </div>
+    <div >
+        <select id="data_type" name="data_type">
+          <option value="tot">Total</option>
+          <option value="mean">Average</option>
+          <option value="max">Maximum</option>
+          <option value="min">Minimum</option>
+          <!-- <option value="point">Data Point</option> -->
+        </select>
+        <label for="data_type">Aggregation Mode</label>
+    </div>
+    <div >
+        <select id="interval" name="interval">
+          <!-- <option value="second">Second</option>
+          <option value="minute">Minute</option> -->
+          <option value="hour">Hourly</option>
+          <option value="day">Daily</option>
+          <option value="month">Monthly</option>
+          <option value="year">Yearly</option>
+        </select>
+        <label for="interval">Interval</label>
+    </div>
+    <div >
+        <input type="number" name ="multiplier" id="multiplier" value='1'>
+        <label for="multiplier">Interval Multiplier</label>
+    </div>
+
+    <div>
+        <button type="submit">submit</button>
+    </div>
+
+</form>

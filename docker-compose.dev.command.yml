@@ -1,0 +1,4 @@
+version: '3.7'
+services:
+  celeryworker:
+    command: bash -c "/lyra/lyra/prestart-worker.sh && celery --app lyra.bg_worker worker -l INFO -c 1"

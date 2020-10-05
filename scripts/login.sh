@@ -1,5 +1,5 @@
 #! /usr/bin/env sh
 
 set -e
-source .env
-az acr login --name $AZURE_CONTAINER_REGISTRY
+REG=$(grep AZURE_CONTAINER_REGISTRY lyra/lyra/.env | cut -d '=' -f2)
+az acr login --name $REG

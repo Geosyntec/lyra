@@ -1,0 +1,153 @@
+{
+  "ALISO_JERONIMO": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    },
+    "discharge": {
+      "name": "Discharge",
+      "varfrom": "232.50",
+      "varto": "262.00"
+    }
+  },
+  "ALISO_STP": {
+    "discharge": {
+      "name": "Discharge",
+      "varfrom": "232.50",
+      "varto": "262.00"
+    }
+  },
+  "ELTORO": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.00"
+    }
+  },
+  "J01P27": {
+    "discharge": {
+      "name": "Discharge",
+      "varfrom": "262.01"
+    }
+  },
+  "LAGUNABEACH": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.00"
+    }
+  },
+  "LAGUNA_AUDUBON": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    }
+  },
+  "LAGUNA_CYN_RPTR": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    }
+  },
+  "LAGUNA_NIGUEL": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    }
+  },
+  "LAGUNA_TREAT": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.01"
+    }
+  },
+  "LAGUNA_WOODLAND": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    },
+    "discharge": {
+      "name": "Discharge",
+      "varfrom": "232.50",
+      "varto": "262.00"
+    }
+  },
+  "LOWEROSO": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    },
+    "discharge": {
+      "name": "Discharge",
+      "varfrom": "232.50",
+      "varto": "262.00"
+    }
+  },
+  "MODJESKA_CANYON": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    }
+  },
+  "MOULTON_PEAK": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    }
+  },
+  "OSO_CROWN": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    },
+    "discharge": {
+      "name": "Discharge",
+      "varfrom": "232.50",
+      "varto": "262.00"
+    }
+  },
+  "SANTIAGO_E08": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    }
+  },
+  "SULPHURCREEK": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.00"
+    },
+    "discharge": {
+      "name": "Discharge",
+      "varfrom": "262.01"
+    }
+  },
+  "TRABUCO": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.00"
+    }
+  },
+  "TRABUCO_CANYON": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.02"
+    }
+  },
+  "TUCKER": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.00"
+    }
+  },
+  "UPPERALISO": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    }
+  },
+  "UPPEROSO": {
+    "rainfall": {
+      "name": "Rainfall",
+      "varfrom": "11.50"
+    }
+  }
+}

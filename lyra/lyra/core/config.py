@@ -1,25 +1,54 @@
-from pathlib import Path
+import importlib.resources as pkg_resources
+import json
 import secrets
-from typing import Any, List, Optional, Union
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
+
+import yaml
+from pydantic import AnyHttpUrl, BaseSettings, validator
 from typing_extensions import Literal
 
-from pydantic import AnyHttpUrl, BaseSettings, validator
-
-import lyra
+from lyra.core.io import load_cfg
 
 
 class Settings(BaseSettings):
     # API_V1_STR: str = "/api/v1"
+    ADMIN_USERNAME: str = ""
     SECRET_KEY: str = secrets.token_urlsafe(32)
+    # 60 minutes * 24 hours * 8 days = 8 days
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
 
     MNWD_FTP_USERNAME: str = ""
     MNWD_FTP_PASSWORD: str = ""
     MNWD_FTP_LOCATION: str = ""
+    MNWD_FTP_DIRECTORY: str = ""
 
+    AZURE_DATABASE_SERVER: str = ""
+    AZURE_DATABASE_PORT: int = 9999
+    AZURE_DATABASE_CONNECTION_TIMEOUT: int = 5
+    AZURE_DATABASE_NAME: str = ""
+    AZURE_DATABASE_USERNAME: str = ""
+    AZURE_DATABASE_PASSWORD: str = ""
+    AZURE_DATABASE_READONLY_USERNAME: str = ""
+    AZURE_DATABASE_READONLY_PASSWORD: str = ""
+    AZURE_DATABASE_WRITEONLY_USERNAME: str = ""
+    AZURE_DATABASE_WRITEONLY_PASSWORD: str = ""
 
-    # 60 minutes * 24 hours * 8 days = 8 days
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
+    AZURE_STORAGE_ACCOUNT_NAME: str = ""
+    AZURE_STORAGE_ACCOUNT_KEY: str = ""
+    AZURE_STORAGE_SHARE_NAME: str = ""
+    AZURE_STORAGE_ACCOUNT_URL: str = ""
+
+    @validator("AZURE_STORAGE_ACCOUNT_URL")
+    def azure_account_url(cls, v: str, values: Dict[str, Any]) -> Any:
+        if v:
+            return v
+        return (
+            f"https://{values.get('AZURE_STORAGE_ACCOUNT_NAME')}.file.core.windows.net"
+        )
+
     FORCE_FOREGROUND: bool = False
+    FORCE_TASK_SCHEDULER_TO_FIVE_MINUTE_INTERVAL: bool = False
 
     HYDSTRA_BASE_URL: str = ""
 
@@ -42,7 +71,31 @@ class Settings(BaseSettings):
 
     class Config:
         env_prefix = "LYRA_"
-        env_file = Path(lyra.__file__).absolute().parent.parent.parent.parent.parent / '.env'
+        try:
+            with pkg_resources.path("lyra", ".env") as p:
+                env_file = p
+        except FileNotFoundError:
+            pass
+        extra = "allow"
+
+    def update(self, other: dict) -> None:
+        for key, value in other.items():
+            setattr(self, key, value)
 
 
 settings = Settings()
+
+
+def config():
+    with pkg_resources.path("lyra.core", "lyra_config.yml") as p:
+        # cfg = load_cfg(p)
+        cfg = yaml.safe_load(p.read_text())
+
+    preferred_variables = json.loads(
+        pkg_resources.read_text("lyra.static", "preferred_variables.json")
+    )
+    # sitelist = json.loads(sitelist_file.read_text())["sites"]
+
+    cfg["preferred_variables"] = preferred_variables
+
+    return cfg

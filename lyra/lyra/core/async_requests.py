@@ -1,13 +1,15 @@
-from typing import Dict
+from typing import Any, Dict
 
-import orjson
 import aiohttp
+import orjson
 
 
-async def send_request(url: str, payload: Dict):
+async def send_request(url: str, payload: Dict) -> Dict[str, Any]:
     async with aiohttp.ClientSession(
         json_serialize=lambda x: orjson.dumps(x).decode()
     ) as session:
         async with session.post(url, json=payload) as response:
-            response = await response.json(loads=orjson.loads, content_type=None)
-    return response
+            result: Dict[str, Any] = await response.json(
+                loads=orjson.loads, content_type=None
+            )
+    return result

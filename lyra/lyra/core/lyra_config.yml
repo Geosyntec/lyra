@@ -1,0 +1,53 @@
+mnwd:
+  dt_metrics:
+    fields:
+      - variable: overall_daily_est_outdoor_budget_overage_per_irrig_area
+        units: "ccf/acre"
+      - variable: overall_daily_est_outdoor_budget_overage_sum
+        units: ccf
+      - variable: overall_is_in_rebate_program_sum
+        units: count
+      - variable: overall_rebate_participation_fraction
+        units: "count/count"
+      - variable: overall_MeterID_count
+        units: count
+variables:
+  rainfall:
+    name: Rainfall
+    variable: rainfall
+    source: hydstra
+    units: inches
+    allowed_aggregations:
+      - tot
+  discharge:
+    name: Discharge
+    variable: discharge
+    source: hydstra
+    units: cfs
+    allowed_aggregations: 
+      - mean
+      - max
+      - min
+  outfall_discharge:
+    name: Outfall Discharge
+    variable: unk
+    source: hydstra
+    units: cfs
+    allowed_aggregations: 
+      - mean
+      - max
+      - min
+  outfall_conductivity:
+    name: Outfall Discharge Conductivity
+    variable: unk
+    source: hydstra
+    units: mS
+    allowed_aggregations: 
+      - mean
+      - max
+      - min
+  urban_drool:
+    name: Estimated Urban Drool
+    variable: overall_daily_est_outdoor_budget_overage_sum
+    source: dt_metrics
+    units: ccf
