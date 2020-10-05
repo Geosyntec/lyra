@@ -25,9 +25,8 @@ jobs:
       
       - uses: actions/checkout@v2
       
-#       - name: Get Release Tags
-#         env: 
-#           TAG: ${{ github.event.inputs.tag }}
+      - name: Get Release Tags
+        run: echo ${{ github.event.inputs.tag }}
           
         
 #           LIBTAG: $(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
