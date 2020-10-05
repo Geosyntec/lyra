@@ -23,8 +23,8 @@ jobs:
         run: |
           docker -v
           docker-compose -v
-          tag=-m${{ github.event.inputs.tag }}
-          bash scripts/build_prod.sh -t $tag
-          cat docker-stack$tag.yml
-          docker-compose -f docker-stack$tag.yml push
+          manual_tag=-m${{ github.event.inputs.tag }}
+          bash scripts/build_prod.sh -t $manual_tag
+          cat docker-stack$manual_tag.yml
+          docker-compose -f docker-stack$manual_tag.yml push
           
