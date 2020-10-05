@@ -36,10 +36,10 @@ jobs:
         run: |
           echo "${{ env.libtag }} is in ${{ github.event.inputs.tag }}"
       
-      - name: Check Release Tags (false)
-        if: ! contains(github.event.inputs.tag, env.libtag)
-        run: |
-          echo "${{ env.libtag }} is not in ${{ github.event.inputs.tag }}"
+#       - name: Check Release Tags (false)
+#         if: ! contains(github.event.inputs.tag, env.libtag)
+#         run: |
+#           echo "${{ env.libtag }} is not in ${{ github.event.inputs.tag }}"
           
           
           
