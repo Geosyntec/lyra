@@ -1,53 +1,27 @@
-# This is a basic workflow to help you get started with Actions
+name: Manual Release
 
-name: "Manual Release"
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the develop branch
 on: 
   workflow_dispatch:
     inputs:
       tag:
         description: 'image tag'     
         required: true
-        default: 'latest'
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  release:
+  manual_release:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      
       - uses: actions/checkout@v2
-      
-      - name: Get Release Tags
+
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.ACR_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Build & Push Images
         run: |
-          LIBTAG=$(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
-          echo libtag="$LIBTAG"
-          echo "::set-env name=libtag::$LIBTAG"       
-      
-      - name: Check Release Tags (true)
-        if: contains(github.event.inputs.tag, env.libtag)
-        run: |
-          echo "${{ env.libtag }} is in ${{ github.event.inputs.tag }}"
-      
-      - name: Check Release Tags (false)
-        if: false == contains(github.event.inputs.tag, env.libtag)
-        run: |
-          echo "${{ env.libtag }} is not in ${{ github.event.inputs.tag }}"
+          tag=-m${{ github.event.inputs.tag }}
+          bash scripts/build_prod.sh -t $tag
+          docker-compose -f docker-stack$tag.yml push
           
-          
-          
-#       - uses: azure/docker-login@v1
-#         with:
-#           login-server: ${{ secrets.ACR_SERVER }}
-#           username: ${{ secrets.ACR_USERNAME }}
-#           password: ${{ secrets.ACR_PASSWORD }}
-      
-#       - name: Build & Push Images
-        #run: bash ./scripts/push_release.sh
