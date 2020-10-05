@@ -9,36 +9,26 @@ on:
         
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  release:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      
+    steps:     
       - uses: actions/checkout@v2
       - name: Get Release Tags
-        env: 
-          TAG: ${{ github.event.release.name }}
-          LIBTAG: $(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
-      - name: Check Release Tags (true)
-        if: contains(env.TAG, env.LIBTAG)
         run: |
-          echo "$LIBTAG is in $TAG"
-      - name: Check Release Tags (false)
-        if: ! contains(env.TAG, env.LIBTAG)
-        run: |
-          echo "$LIBTAG is not in $TAG"
-#       - uses: azure/docker-login@v1
-#         with:
-#           login-server: ${{ secrets.ACR_SERVER }}
-#           username: ${{ secrets.ACR_USERNAME }}
-#           password: ${{ secrets.ACR_PASSWORD }}
+          LIBTAG=$(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
+          echo libtag="$LIBTAG"
+          echo "::set-env name=libtag::$LIBTAG"
+
+      - name: Check Release Tags 
+        if: false == contains(github.event.release.name , env.libtag)
+        run: exit 1
+
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.ACR_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
       
-#       - name: Build & Push Images
-        #run: bash ./scripts/push_release.sh
+      - name: Build & Push Images
+        run: bash ./scripts/push_release.sh
