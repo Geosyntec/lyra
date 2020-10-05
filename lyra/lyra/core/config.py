@@ -71,8 +71,11 @@ class Settings(BaseSettings):
 
     class Config:
         env_prefix = "LYRA_"
-        with pkg_resources.path("lyra", ".env") as p:
-            env_file = p
+        try:
+            with pkg_resources.path("lyra", ".env") as p:
+                env_file = p
+        except FileNotFoundError:
+            pass
         extra = "allow"
 
     def update(self, other: dict) -> None:
