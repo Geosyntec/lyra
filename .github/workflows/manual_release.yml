@@ -21,19 +21,16 @@ jobs:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: |
-          echo "$TAG"
-          echo "$GITHUB_CONTEXT"
+        run: echo "$GITHUB_CONTEXT"
       
       - uses: actions/checkout@v2
       
       - name: Get Release Tags
         env: 
           TAG: ${{ github.event.inputs.tag }}
-        run: echo "$TAG"
+          LIBTAG: $(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
+        run: echo "$TAG", "$LIBTAG"
           
-        
-#           LIBTAG: $(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
       
 #       - name: Check Release Tags (true)
 #         if: contains(env.TAG, env.LIBTAG)
