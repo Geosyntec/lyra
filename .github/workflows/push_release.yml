@@ -1,6 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: ACR
+name: Push Release
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the develop branch
@@ -8,13 +6,7 @@ on:
   release:
     types:
       - created
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: 'image tag'     
-        required: true
-        default: 'latest'
-
+        
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -24,13 +16,29 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: azure/docker-login@v1
-        with:
-          login-server: ${{ secrets.ACR_SERVER }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
-      - run: |
-          docker pull ${{ secrets.ACR_SERVER }}/swn/lyra-tests:latest
-          docker run -d --name lyra-tests ${{ secrets.ACR_SERVER }}/swn/lyra-tests:${{ github.event.inputs.tag }}
-          docker exec lyra-tests pytest -sv -m "not integration"
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      
+      - uses: actions/checkout@v2
+      - name: Get Release Tags
+        env: 
+          TAG: ${{ github.event.release.name }}
+          LIBTAG: $(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
+      - name: Check Release Tags (true)
+        if: contains(env.TAG, env.LIBTAG)
+        run: |
+          echo "$LIBTAG is in $TAG"
+      - name: Check Release Tags (false)
+        if: ! contains(env.TAG, env.LIBTAG)
+        run: |
+          echo "$LIBTAG is not in $TAG"
+#       - uses: azure/docker-login@v1
+#         with:
+#           login-server: ${{ secrets.ACR_SERVER }}
+#           username: ${{ secrets.ACR_USERNAME }}
+#           password: ${{ secrets.ACR_PASSWORD }}
+      
+#       - name: Build & Push Images
+        #run: bash ./scripts/push_release.sh
