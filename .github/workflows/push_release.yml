@@ -20,15 +20,15 @@ jobs:
           echo libtag="$LIBTAG"
           echo "::set-env name=libtag::$LIBTAG"
 
-      - name: Check Release Tags 
-        if: false == contains(github.event.release.name , env.libtag)
-        run: exit 1
+#       - name: Check Release Tags 
+#         if: false == contains(github.event.release.name , env.libtag)
+#         run: exit 1
 
-      - uses: azure/docker-login@v1
-        with:
-          login-server: ${{ secrets.ACR_SERVER }}
-          username: ${{ secrets.ACR_USERNAME }}
-          password: ${{ secrets.ACR_PASSWORD }}
+#       - uses: azure/docker-login@v1
+#         with:
+#           login-server: ${{ secrets.ACR_SERVER }}
+#           username: ${{ secrets.ACR_USERNAME }}
+#           password: ${{ secrets.ACR_PASSWORD }}
       
-      - name: Build & Push Images
-        run: bash ./scripts/push_release.sh
+#       - name: Build & Push Images
+#         run: bash ./scripts/push_release.sh
