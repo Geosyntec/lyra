@@ -30,12 +30,12 @@ def empty_engine():
 
 @pytest.fixture
 def data_engine():
-    print("building engine...", end="")
     engine = database.create_engine("sqlite:///")
     schemas.init_all(engine)
-    file = importlib.resources.open_text("lyra.tests.data", "test_dt_metrics.csv")
-    helper.set_drooltool_database_with_file(engine, file=file)
-    print("done.")
+
+    with importlib.resources.path("lyra.tests.data", "test_dt_metrics.csv") as p:
+        filepath = p
+    helper.set_drooltool_database_with_file(engine, file=filepath)
 
     yield engine
 
@@ -66,6 +66,11 @@ def mock_get_MNWD_file_obj_metrics(monkeypatch):
 @pytest.fixture
 def mock_get_MNWD_file_obj_geo(monkeypatch):
     monkeypatch.setattr(helper, "get_MNWD_file_obj", utils._rsb_geo_file)
+
+
+@pytest.fixture()
+def mock_azure_get_dt_metrics_file_object(monkeypatch):
+    monkeypatch.setattr(azure_fs, "get_file_object", utils._dt_metrics_file)
 
 
 @pytest.fixture(autouse=True)

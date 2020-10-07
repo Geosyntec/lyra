@@ -15,6 +15,6 @@ router = APIRouter(default_response_class=ORJSONResponse)
 )
 async def get_task(
     task_id: str, kwargs: dict = Depends(run_task_kwargs)
-) -> Dict[str, Any]:
+) -> JSONAPIResponse:
     task = celery_app.AsyncResult(task_id)
     return await run_task(task, **kwargs)

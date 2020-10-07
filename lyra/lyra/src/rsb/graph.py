@@ -64,7 +64,7 @@ def rsb_upstream_trace(
     share: Optional[str] = None,
     source: Optional[str] = None,
     target: Optional[str] = None,
-):
+) -> bytes:
     gbytes = construct_rsb_graph_from_mnwd_geojson_bytestring(
         geojson_file=geojson_file, share=share, source=source, target=target
     )
@@ -81,7 +81,7 @@ def rsb_downstream_trace(
     share: Optional[str] = None,
     source: Optional[str] = None,
     target: Optional[str] = None,
-):
+) -> bytes:
     gbytes = construct_rsb_graph_from_mnwd_geojson_bytestring(
         geojson_file=geojson_file, share=share, source=source, target=target
     )

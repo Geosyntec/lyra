@@ -6,30 +6,26 @@ import pandas
 from celery.canvas import Signature
 from celery.result import AsyncResult
 from fastapi import Depends, Query, Request
-from fastapi.responses import JSONResponse
 
 from lyra.core import security
 from lyra.models.response_models import (
     CeleryTaskJSONResponse,
     ForegroundTaskJSONResponse,
+    JSONAPIResponse,
+    RawJSONResponse,
 )
-
-
-class RawJSONResponse(JSONResponse):
-    def render(self, content: bytes) -> bytes:
-        return content
 
 
 async def wait_a_sec_and_see_if_we_can_return_some_data(
     task: AsyncResult, timeout: Optional[float] = None
-) -> Optional[Dict[str, Any]]:
+) -> None:
     if timeout is None:
         timeout = 0.1
 
     _max_timeout = 120  # seconds
     timeout = min(timeout, _max_timeout)  # prevent long timeout requests.
 
-    t = 0
+    t = 0.0
     inc = 0.05  # check back every inc seconds
     while t < timeout:
         if task.ready():  # exit even if the task failed
@@ -37,6 +33,8 @@ async def wait_a_sec_and_see_if_we_can_return_some_data(
         else:
             t += inc
             await asyncio.sleep(inc)
+
+    return
 
 
 def run_task_kwargs(
@@ -48,8 +46,9 @@ def run_task_kwargs(
         None, description="serverside async polling up to 10 seconds"
     ),
     is_admininstrator: bool = Depends(security.is_admin),
-):
-    rsp = dict(request=request)
+) -> Dict[str, Any]:
+
+    rsp: Dict = dict(request=request)
     auth_msg = []
 
     rsp["force_foreground"] = request.app.settings.FORCE_FOREGROUND
@@ -79,13 +78,14 @@ async def run_task(
     force_foreground: Optional[bool] = False,
     timeout: Optional[float] = None,
     errors: Optional[List[str]] = None,
-):
+) -> JSONAPIResponse:
 
     if force_foreground:
         result = task()
         if isinstance(result, str):  # return the response directly.
-            return RawJSONResponse(result.encode())
-        return ForegroundTaskJSONResponse(data=result, errors=errors)
+            return RawJSONResponse(result.encode())  # type: ignore
+        else:
+            return ForegroundTaskJSONResponse(data=result, errors=errors)
 
     else:
         result = None
@@ -108,8 +108,7 @@ async def run_task(
         if task.successful():
             result = task.result
             if isinstance(result, str):  # return the response directly.
-                result = result.encode()
-                return RawJSONResponse(result)
+                return RawJSONResponse(result.encode())  # type: ignore
 
         return CeleryTaskJSONResponse(
             data=result,
@@ -148,5 +147,5 @@ def infer_freq(index):
     return freq
 
 
-def flatten_expand_list(ls: List[str]):
+def flatten_expand_list(ls: List[str]) -> List[str]:
     return list(itertools.chain.from_iterable([s.split(",") for s in ls]))

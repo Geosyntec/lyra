@@ -63,7 +63,7 @@ coverage: clean restart ## check code coverage quickly with the default Python
 	docker-compose -f docker-stack.yml exec lyra-tests coverage report -mi
 
 typecheck: clean ## run static type checker
-	mypy --config-file=lyra/mypy.ini lyra/lyra
+	mypy lyra/lyra
 
 develop: clean ## build the development environment and launch containers in background
 	bash scripts/build_dev.sh

@@ -1,5 +1,4 @@
-import json
-from typing import List, Optional
+from typing import Any, Dict, List, Optional, Union
 from urllib.parse import urlencode
 
 import altair as alt
@@ -7,18 +6,20 @@ import orjson
 import pandas
 from altair.utils.data import MaxRowsError
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
+from fastapi.encoders import jsonable_encoder
 from fastapi.responses import ORJSONResponse, PlainTextResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import ValidationError
 
 from lyra.models import hydstra_models
 from lyra.models.plot_models import SingleVarSpec
-from lyra.models.response_models import ChartJSONResponse, RawJSONResponse
+from lyra.models.response_models import ChartJSONResponse
 from lyra.src.hydstra.api import get_trace
 from lyra.src.hydstra.helper import to_hydstra_datetime
 from lyra.src.viz import single_variable
 
 alt.data_transformers.disable_max_rows()
+
 
 router = APIRouter(default_response_class=ORJSONResponse)
 templates = Jinja2Templates(directory="lyra/site/templates")
@@ -36,7 +37,7 @@ async def plot_trace(
     data_type: hydstra_models.DataType = Query(...),
     interval_multiplier: int = 1,
     recent_points: Optional[int] = None,
-):  # pragma: no cover
+) -> Dict:  # pragma: no cover
 
     kwargs = dict(request.query_params)
     for d in ["start_date", "end_date"]:
@@ -147,15 +148,15 @@ def single_var_spec_query(
     trace_upstreams: Optional[List[bool]] = Query(None),
     agg_methods: Optional[List[str]] = Query(None),
     string: Optional[str] = Query(None, alias="json"),
-):
+) -> SingleVarSpec:
 
     try:
         if string is not None:
             rsp = SingleVarSpec(**orjson.loads(string))
         else:
             rsp = SingleVarSpec(
-                variable=variable,
-                sites=sites,
+                variable=variable,  # type: ignore
+                sites=sites,  # type: ignore
                 start_date=start_date,
                 end_date=end_date,
                 intervals=intervals,
@@ -174,7 +175,7 @@ def plot_single_variable(
     request: Request,
     req: SingleVarSpec = Depends(single_var_spec_query),
     f: str = Query("json"),
-):
+) -> Dict:
 
     chart_spec = None
     chart_status = None
@@ -204,23 +205,21 @@ def plot_single_variable(
     response = {"data": chart_pkg}
 
     if f == "html":
-        return templates.TemplateResponse(
+        return templates.TemplateResponse(  # type: ignore
             "anyspec.html", {"request": request, "response": response,},
         )
 
     return response
 
 
-@router.get(
-    "/single_variable/data",
-    # response_class=RawJSONResponse
-)
+@router.get("/single_variable/data")
 def plot_single_variable_data(
     req: SingleVarSpec = Depends(single_var_spec_query), f: str = Query("json"),
-):
+) -> Union[ORJSONResponse, PlainTextResponse]:
     src = single_variable.make_source(**req.dict())
     if f == "csv":
         csv = single_variable.make_source_csv(src)
         return PlainTextResponse(csv)
     else:
-        return single_variable.make_source_json(src)
+        _json = jsonable_encoder(single_variable.make_source_json(src))
+        return ORJSONResponse(_json)

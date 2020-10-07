@@ -1,12 +1,14 @@
 import io
 import logging
 from pathlib import Path
-from typing import List, Optional
+from typing import IO, Any, List, Optional, Union
 
 import geopandas
 import numpy
 import orjson
 import pandas
+from azure.storage.fileshare import ShareClient
+from sqlalchemy.engine import Engine
 
 from lyra.connections import azure_fs, database, ftp
 from lyra.connections.schemas import drop_all_records
@@ -17,7 +19,9 @@ from lyra.src.rsb.graph import rsb_upstream_trace
 logger = logging.getLogger(__name__)
 
 
-def _dt_metrics_slim_tidy(df: pandas.DataFrame, fields: Optional[List[str]] = None):
+def _dt_metrics_slim_tidy(
+    df: pandas.DataFrame, fields: Optional[List[str]] = None
+) -> pandas.DataFrame:
 
     # df = pandas.read_csv(file, index_col=0).drop(columns=["date"])
     ix = ["CatchIDN", "Year", "Month"]
@@ -32,61 +36,66 @@ def _dt_metrics_slim_tidy(df: pandas.DataFrame, fields: Optional[List[str]] = No
     return df
 
 
-def get_MNWD_file_obj(slug: str):
+def get_MNWD_file_obj(slug: str) -> IO[bytes]:
     with ftp.mnwd_ftp() as conn:
         file = ftp.get_latest_file_as_object(conn, slug)
     return file
 
 
-def fetch_and_refresh_drooltool_metrics_file(file=None, share=None):
+def fetch_and_refresh_drooltool_metrics_file(
+    file: Optional[Union[str, Path, IO[bytes]]] = None,
+    share: Optional[ShareClient] = None,
+) -> bool:
     if file is None:
-        file = get_MNWD_file_obj("drooltool")
+        file_obj = get_MNWD_file_obj("drooltool")
     elif isinstance(file, (str, Path)):
-        file = open(file, "rb")
+        file_obj = open(file, "rb")
+        setattr(file_obj, "ftp_name", str(file))
+    else:
+        file_obj = file
 
-    logger.info(f"type: {str(type(file))}")
-
-    if not hasattr(file, "ftp_name"):
-        file.ftp_name = "test.csv"
-
-    azure_fs.put_file_object(
-        file, "mnwd/drooltool/database/drooltool_latest.csv", share=share
-    )
-    logger.info(f"{__file__} {file.ftp_name}")
+    fname = getattr(file_obj, "ftp_name", "test.json")
 
     azure_fs.put_file_object(
-        file, f"mnwd/drooltool/database/archive/{file.ftp_name}", share=share
+        file_obj, "mnwd/drooltool/database/drooltool_latest.csv", share=share
     )
-    logger.info(f"{__file__} {file.ftp_name} archived")
+    logger.info(f"{__file__} {fname}")
+
+    azure_fs.put_file_object(
+        file_obj, f"mnwd/drooltool/database/archive/{fname}", share=share
+    )
+    logger.info(f"{__file__} {fname} archived")
 
     return True
 
 
-def fetch_and_refresh_oc_rsb_geojson_file(file=None, share=None):
+def fetch_and_refresh_oc_rsb_geojson_file(
+    file: Optional[Union[str, Path, IO[bytes]]] = None,
+    share: Optional[ShareClient] = None,
+) -> bool:
     if file is None:
-        file = get_MNWD_file_obj("rsb_geo")
-
+        file_obj = get_MNWD_file_obj("rsb_geo")
     elif isinstance(file, (str, Path)):
-        file = open(file, "rb")
+        file_obj = open(file, "rb")
+        setattr(file_obj, "ftp_name", str(file))
+    else:
+        file_obj = file
 
-    logger.info(f"type: {str(type(file))}")
-
-    if not hasattr(file, "ftp_name"):
-        file.ftp_name = "unnamed.json"
-
-    azure_fs.put_file_object(
-        file, "mnwd/drooltool/spatial/rsb_geo_latest.json", share=share
-    )
-    logger.info(f"{__file__} {file.ftp_name}")
+    fname = getattr(file_obj, "ftp_name", "test.json")
 
     azure_fs.put_file_object(
-        file, f"mnwd/drooltool/spatial/archive/{file.ftp_name}", share=share
+        file_obj, "mnwd/drooltool/spatial/rsb_geo_latest.json", share=share
     )
-    logger.info(f"{__file__} {file.ftp_name} archived")
+    logger.info(f"{__file__} {fname}")
+
+    azure_fs.put_file_object(
+        file_obj, f"mnwd/drooltool/spatial/archive/{fname}", share=share
+    )
+    logger.info(f"{__file__} {fname} archived")
 
     # convert to epsg 4326
-    file.seek(0)
-    gdf = geopandas.read_file(file).to_crs("EPSG:4326")
+    file_obj.seek(0)
+    gdf = geopandas.read_file(file_obj).to_crs("EPSG:4326")
 
     file_4326 = io.BytesIO()
     file_4326.write(gdf.to_json().encode())
@@ -109,16 +118,24 @@ def fetch_and_refresh_oc_rsb_geojson_file(file=None, share=None):
 
 
 def set_drooltool_database_with_file(
-    engine, file=None, fields=None, share=None, chunksize=20000
-):
+    engine: Engine,
+    file: Optional[Union[str, Path, IO[bytes]]] = None,
+    fields: Optional[List[str]] = None,
+    share: Optional[ShareClient] = None,
+    chunksize: Optional[int] = 20000,
+) -> bool:
 
     if file is None:
-        file = azure_fs.get_file_object(
+        file_obj = azure_fs.get_file_object(
             "mnwd/drooltool/database/drooltool_latest.csv", share=share
         )
+    elif isinstance(file, (str, Path)):
+        file_obj = open(file, "rb")
+    else:
+        file_obj = file
 
     df = (
-        pandas.read_csv(file, index_col=0)
+        pandas.read_csv(file_obj, index_col=0)
         .drop(columns=["date"], errors="ignore")
         .pipe(_dt_metrics_slim_tidy, fields)
     )
@@ -126,7 +143,7 @@ def set_drooltool_database_with_file(
     df, cat = to_categorical_lookup(df, "variable")
     if chunksize is None:
         chunksize = len(df)
-    status_list = []
+    status_list: List[bool] = []
     with engine.begin() as conn:
 
         drop_all_records("DTMetrics", conn)
@@ -156,7 +173,7 @@ def set_drooltool_database_with_file(
 
             status_list.append(status1)
 
-        status2 = database.update_with_log(
+        status2: bool = database.update_with_log(
             cat,
             "DTMetricsCategories",
             conn,
@@ -179,9 +196,9 @@ def get_timeseries_from_dt_metrics(
     end_date: str = None,
     agg_method: str = "sum",
     trace_upstream: bool = False,
-    engine=None,
-    **kwargs,
-):
+    engine: Optional[Engine] = None,
+    **kwargs: Any,
+) -> pandas.DataFrame:
 
     catchidns = [site]
     if trace_upstream:
@@ -206,8 +223,8 @@ def get_timeseries_from_dt_metrics(
     )
 
     if start_date is not None:
-        df = df.loc[start_date:]
+        df = df.loc[start_date:]  # type: ignore
     if end_date is not None:
-        df = df.loc[:end_date]
+        df = df.loc[:end_date]  # type: ignore
 
     return df

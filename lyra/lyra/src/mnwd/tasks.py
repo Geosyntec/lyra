@@ -1,4 +1,8 @@
-from typing import List, Optional
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
+
+from azure.storage.fileshare import ShareClient
+from sqlalchemy.engine import Engine
 
 from lyra.connections.database import engine, reconnect_engine
 from lyra.core.cache import cache_decorator
@@ -15,8 +19,12 @@ from lyra.src.mnwd.helper import (
 
 
 def update_drooltool_database(
-    engine=engine, update: bool = True, file=None, fields_from_config=True, share=None
-):
+    engine: Engine = engine,
+    update: bool = True,
+    file: Optional[Union[str, Path]] = None,
+    fields_from_config: bool = True,
+    share: Optional[ShareClient] = None,
+) -> Dict:
 
     if update:
         fetch_and_refresh_drooltool_metrics_file(file=file, share=share)
@@ -39,7 +47,9 @@ def update_drooltool_database(
     return response
 
 
-def update_rsb_geojson(file=None, share=None):
+def update_rsb_geojson(
+    file: Optional[Union[str, Path]] = None, share: Optional[ShareClient] = None,
+) -> Dict:
     succeeded = fetch_and_refresh_oc_rsb_geojson_file(file=file, share=share)
     response = dict(taskname="update_rsb_geojson", succeeded=succeeded)
 
@@ -51,13 +61,15 @@ def update_rsb_geojson(file=None, share=None):
 
 
 @cache_decorator(ex=3600 * 6, as_response=True)  # expires in 6 hours
-def rsb_spatial_response(**kwargs) -> bytes:
-    return spatial.rsb_spatial(**kwargs)
+def rsb_spatial_response(**kwargs: Any) -> bytes:
+    result: bytes = spatial.rsb_spatial(**kwargs)
+    return result
 
 
 @cache_decorator(ex=3600 * 6, as_response=True)  # expires in 6 hours
-def rsb_data_response(**kwargs) -> bytes:
-    return spatial._rsb_data_bytestring(**kwargs)
+def rsb_data_response(**kwargs: Any) -> bytes:
+    result: bytes = spatial._rsb_data_bytestring(**kwargs)
+    return result
 
 
 @cache_decorator(ex=3600 * 6, as_response=True)  # expires in 6 hours
@@ -69,8 +81,7 @@ def dt_metrics_response(
     groupby: Optional[List[str]] = None,
     agg: Optional[str] = None,
 ) -> bytes:
-
-    return dt_metrics.dt_metrics(
+    result: bytes = dt_metrics.dt_metrics(
         catchidns=catchidns,
         variables=variables,
         years=years,
@@ -78,3 +89,4 @@ def dt_metrics_response(
         groupby=groupby,
         agg=agg,
     )
+    return result

@@ -1,5 +1,5 @@
 from io import StringIO
-from typing import List, Optional, Tuple
+from typing import Any, List, Optional, Tuple
 
 import geopandas
 import orjson
@@ -56,7 +56,7 @@ def _rsb_geojson_bytestring(
     watersheds: Optional[List[str]] = None,
     catchidns: Optional[List[str]] = None,
 ) -> bytes:
-    data = azure_fs.get_file_as_bytestring(
+    data: bytes = azure_fs.get_file_as_bytestring(
         "mnwd/drooltool/spatial/rsb_geo_4326_latest.json"
     )
 
@@ -67,16 +67,19 @@ def _rsb_geojson_bytestring(
         _filter_rsb_df, watersheds, catchidns
     )
 
-    return gdf.to_json().encode()
+    result: bytes = gdf.to_json().encode()
+
+    return result
 
 
-def rsb_geojson(**kwargs) -> dict:
-    return orjson.loads(_rsb_geojson_bytestring(**kwargs))
+def rsb_geojson(**kwargs: Any) -> dict:
+    rsp: dict = orjson.loads(_rsb_geojson_bytestring(**kwargs))
+    return rsp
 
 
 @cache_decorator(ex=3600 * 24)  # expires in 24 hours
 def _rsb_topojson_bytestring(
-    bbox=None,
+    bbox: Optional[Tuple[float, float, float, float]] = None,
     watersheds: Optional[List[str]] = None,
     catchidns: Optional[List[str]] = None,
     toposimplify: Optional[float] = None,
@@ -94,11 +97,13 @@ def _rsb_topojson_bytestring(
         topoquantize = 1e6
 
     topo = topojson.Topology(gdf, toposimplify=toposimplify, topoquantize=topoquantize)
-    return topo.to_json().encode()
+    result: bytes = topo.to_json().encode()
+    return result
 
 
 def rsb_topojson(**kwargs):
-    return orjson.loads(_rsb_topojson_bytestring(**kwargs))
+    rsp: dict = orjson.loads(_rsb_topojson_bytestring(**kwargs))
+    return rsp
 
 
 @cache_decorator(ex=3600 * 6)  # expires in 6 hours
@@ -112,7 +117,7 @@ def rsb_spatial(
     catchidns: Optional[List[str]] = None,
     toposimplify: Optional[float] = None,
     topoquantize: Optional[float] = None,
-    **kwargs,
+    **kwargs: Any,
 ) -> bytes:
 
     f = f or "topojson"
@@ -129,7 +134,7 @@ def rsb_spatial(
     if topoquantize is None:  # pragma: no branch
         topoquantize = 1e6
 
-    data = None
+    data: bytes = orjson.dumps(None)
     if f == "geojson":
         data = _rsb_geojson_bytestring(
             bbox=bbox, watersheds=watersheds, catchidns=catchidns,

@@ -1,16 +1,13 @@
-import importlib
-
 import pandas
-import pytest
 
-from lyra.connections import azure_fs, database, schemas
 from lyra.src.mnwd import helper
+from lyra.tests import utils
 
 
 def test_engine(empty_engine):
     engine = empty_engine
-    file = importlib.resources.open_text("lyra.tests.data", "test_dt_metrics.csv")
-    helper.set_drooltool_database_with_file(engine, file=file)
+
+    helper.set_drooltool_database_with_file(engine, file=utils._dt_metrics_file_path())
 
     df = pandas.read_sql("select * from DTMetrics limit 5", con=engine)
     assert len(df) == 5
@@ -19,14 +16,8 @@ def test_engine(empty_engine):
     assert len(df) == 2
 
 
-def test_engine_file_is_none(monkeypatch, empty_engine):
+def test_engine_file_is_none(mock_azure_get_dt_metrics_file_object, empty_engine):
     engine = empty_engine
-
-    def mock_get_file_object(*args, **kwargs):
-        file = importlib.resources.open_text("lyra.tests.data", "test_dt_metrics.csv")
-        return file
-
-    monkeypatch.setattr(azure_fs, "get_file_object", mock_get_file_object)
 
     helper.set_drooltool_database_with_file(engine, file=None)
 
@@ -37,14 +28,8 @@ def test_engine_file_is_none(monkeypatch, empty_engine):
     assert len(df) == 2
 
 
-def test_engine_has_data(monkeypatch, data_engine):
+def test_engine_has_data(mock_azure_get_dt_metrics_file_object, data_engine):
     engine = data_engine
-
-    def mock_get_file_object(*args, **kwargs):
-        file = importlib.resources.open_text("lyra.tests.data", "test_dt_metrics.csv")
-        return file
-
-    monkeypatch.setattr(azure_fs, "get_file_object", mock_get_file_object)
 
     helper.set_drooltool_database_with_file(engine, file=None)
 

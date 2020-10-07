@@ -1,13 +1,12 @@
-from typing import List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 import altair as alt
-import orjson
 import pandas
 
 from lyra.src.timeseries import Timeseries
 
 
-def expand_list(l, n, default):
+def expand_list(l: Optional[List[Any]], n: int, default: Any) -> List[Any]:
     if l is None:
         return [default] * n
 
@@ -16,7 +15,7 @@ def expand_list(l, n, default):
     return l
 
 
-def dispatch(**kwargs):
+def dispatch(**kwargs: Any) -> alt.TopLevelMixin:
     source = make_source(**kwargs)
     chart = make_plot(source.reindex(columns=["date", "value", "label"]))
     return chart
@@ -28,10 +27,10 @@ def make_source(
     start_date: Optional[str] = None,
     end_date: Optional[str] = None,
     intervals: Optional[List[str]] = None,
-    trace_upstreams: Optional[List[str]] = None,
+    trace_upstreams: Optional[List[bool]] = None,
     agg_methods: Optional[List[str]] = None,
-    **kwargs,
-):
+    **kwargs: Any,
+) -> pandas.DataFrame:
 
     if start_date is None:
         start_date = "2010-01-01"
@@ -79,12 +78,13 @@ def make_source(
     return source
 
 
-def make_source_json(source):
+def make_source_json(source: pandas.DataFrame) -> List[Dict[str, Any]]:
     source = source.reindex(columns=["date", "value", "label"])
-    return source.to_dict(orient="records")
+    result: List[Dict[str, Any]] = source.to_dict(orient="records")
+    return result
 
 
-def make_source_csv(source):
+def make_source_csv(source: pandas.DataFrame) -> str:
     site = ",".join(source["site"].unique())
     variable = ",".join(source["variable"].unique())
     csv = (
@@ -99,7 +99,7 @@ def make_source_csv(source):
     return pkg
 
 
-def make_plot(source):
+def make_plot(source: Union[str, pandas.DataFrame]) -> alt.TopLevelMixin:
 
     line = (
         alt.Chart(source).mark_line().encode(x="date:T", y="value:Q", color="label:N")
@@ -134,4 +134,6 @@ def make_plot(source):
         .transform_filter(nearest)
     )
 
-    return alt.layer(line, selectors, points, rules, text)
+    chart: alt.LayerChart = alt.layer(line, selectors, points, rules, text)
+
+    return chart

@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List, Optional
 from urllib.parse import urlencode
 
-from fastapi import APIRouter, Query, Request
+from fastapi import APIRouter, Query, Request, Response
 from fastapi.templating import Jinja2Templates
 
 import lyra
@@ -15,12 +15,12 @@ templates = Jinja2Templates(directory="lyra/site/templates")
 
 @router.get("/")
 @router.get("/home")
-async def home(request: Request):
+async def home(request: Request) -> Response:
     return templates.TemplateResponse("index.html", {"request": request})
 
 
 @router.get("/timeseries", tags=["demo"])
-async def timeseriesfunc(request: Request):
+async def timeseriesfunc(request: Request) -> Response:
 
     sitelist_file = Path(lyra.__file__).parent / "static" / "site_list.json"
     sitelist = json.loads(sitelist_file.read_text())["sites"]
@@ -37,7 +37,7 @@ async def timeseriesfunc(request: Request):
 
 
 @router.get("/single_variable", tags=["demo"])
-async def site_single_variable(request: Request):
+async def site_single_variable(request: Request) -> Response:
 
     sitelist_file = Path(lyra.__file__).parent / "static" / "preferred_variables.json"
     site_vars = json.loads(sitelist_file.read_text())
@@ -54,7 +54,7 @@ async def site_single_variable(request: Request):
 
 
 @router.get("/test_cors")
-async def test_corsfunc(request: Request):
+async def test_corsfunc(request: Request) -> Response:
 
     return templates.TemplateResponse("test_cors.html", {"request": request})
 
@@ -70,7 +70,7 @@ async def get_map(
     catchidns: Optional[List[str]] = Query(None),
     toposimplify: float = 0.0001,
     topoquantize: float = 1e6,
-):
+) -> Response:
 
     params = dict(
         xmin=xmin,
