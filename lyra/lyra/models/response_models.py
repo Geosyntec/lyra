@@ -2,11 +2,11 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from fastapi.responses import ORJSONResponse
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 
-class RawJSONResponse(ORJSONResponse):
+class RawJSONResponse(JSONResponse):
     def render(self, content: bytes) -> bytes:
         return content
 

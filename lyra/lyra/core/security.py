@@ -1,4 +1,5 @@
 import secrets
+from typing import Optional
 
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
@@ -8,7 +9,7 @@ from lyra.core.config import settings
 security = HTTPBasic(auto_error=False)
 
 
-def is_admin(credentials: HTTPBasicCredentials = Depends(security)):
+def is_admin(credentials: Optional[HTTPBasicCredentials] = Depends(security)) -> bool:
     if credentials is None:
         return False
 
@@ -20,7 +21,7 @@ def is_admin(credentials: HTTPBasicCredentials = Depends(security)):
     return correct_username and correct_password
 
 
-def authenticate_admin_access(is_administrator: bool = Depends(is_admin)):
+def authenticate_admin_access(is_administrator: bool = Depends(is_admin)) -> None:
 
     if is_administrator:
         return

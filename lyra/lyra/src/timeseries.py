@@ -1,4 +1,5 @@
 import asyncio
+from typing import Any
 
 import pandas
 
@@ -17,7 +18,7 @@ class Timeseries(object):
         trace_upstream: bool = False,
         start_date: str = None,  # "yyyy-mm-dd"
         end_date: str = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         self.site = site
         self.variable = variable
@@ -54,7 +55,7 @@ class Timeseries(object):
             )
         return self._timeseries_src
 
-    def _init_hydstra(self):
+    def _init_hydstra(self) -> pandas.Series:
         site_preferred_variables = self.cfg["preferred_variables"]
         varfrom = site_preferred_variables[self.site][self.variable]["varfrom"]
         varto = site_preferred_variables[self.site][self.variable].get("varto")
@@ -78,7 +79,7 @@ class Timeseries(object):
 
         return timeseries
 
-    def _init_dt_metrics(self):
+    def _init_dt_metrics(self) -> pandas.Series:
         variable = self.cfg["variables"][self.variable]["variable"]
         timeseries = get_timeseries_from_dt_metrics(
             variable,
@@ -91,7 +92,7 @@ class Timeseries(object):
         )
         return timeseries
 
-    def init_ts(self) -> None:
+    def init_ts(self) -> pandas.Series:
         source = self.variable_info.get("source")
 
         if source == "hydstra":

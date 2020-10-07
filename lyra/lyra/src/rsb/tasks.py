@@ -12,13 +12,14 @@ def rsb_upstream_trace_response(
     source: Optional[str] = None,
     target: Optional[str] = None,
 ) -> bytes:
-    return rsb_upstream_trace(
+    result: bytes = rsb_upstream_trace(
         catchidn=catchidn,
         geojson_file=geojson_file,
         share=share,
         source=source,
         target=target,
     )
+    return result
 
 
 @cache_decorator(ex=3600, as_response=True)  # expires in 6 hours
@@ -29,10 +30,11 @@ def rsb_downstream_trace_response(
     source: Optional[str] = None,
     target: Optional[str] = None,
 ) -> bytes:
-    return rsb_downstream_trace(
+    result: bytes = rsb_downstream_trace(
         catchidn=catchidn,
         geojson_file=geojson_file,
         share=share,
         source=source,
         target=target,
     )
+    return result

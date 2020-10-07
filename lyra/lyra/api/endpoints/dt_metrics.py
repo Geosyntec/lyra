@@ -21,7 +21,7 @@ router = APIRouter(default_response_class=ORJSONResponse)
     "/", response_model=JSONAPIResponse,
 )
 async def get_dt_metrics(
-    f: Optional[DataResponseFormat] = "json",
+    f: DataResponseFormat = DataResponseFormat.json,
     catchidns: Optional[List[int]] = Query(
         None, description="Filter by catchidn. Default includes all catchidns"
     ),
@@ -43,7 +43,7 @@ async def get_dt_metrics(
         description="Aggregation function. Default is None, which performs no aggregation. Use `sum/mean/max/min` or another builtin `pandas` agg function.",
     ),
     kwargs: dict = Depends(run_task_kwargs),
-):
+) -> JSONAPIResponse:
     task = bg.background_dt_metrics_response.s(
         catchidns=catchidns,
         variables=variables,
@@ -63,6 +63,6 @@ async def get_dt_metrics(
         if task.successful():
             data = orjson.loads(task.result)["data"]
             df = pandas.DataFrame(data)
-            return HTMLResponse(render_in_jupyter_notebook_css_style(df))
+            return HTMLResponse(render_in_jupyter_notebook_css_style(df))  # type: ignore
 
     return await run_task(task, get_route="get_task", **kwargs)

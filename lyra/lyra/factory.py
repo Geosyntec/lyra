@@ -5,10 +5,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 from fastapi.staticfiles import StaticFiles
 
-import lyra
 
+def create_app(settings_override: Optional[Dict[str, Any]] = None) -> FastAPI:
 
-def create_app(settings_override: Optional[Dict[str, Any]] = None):
+    import lyra
+    from lyra.api import api_router
+    from lyra.core.config import settings
+    from lyra.site import site_router
+
     app = FastAPI(title="lyra", version=lyra.__version__, docs_url=None, redoc_url=None)
 
     @app.get("/docs", include_in_schema=False)
@@ -28,10 +32,6 @@ def create_app(settings_override: Optional[Dict[str, Any]] = None):
             redoc_favicon_url="/static/logo/lyra_logo_icon.ico",
         )
 
-    from lyra.api import api_router
-    from lyra.core.config import settings
-    from lyra.site import site_router
-
     app.include_router(api_router, prefix="/api")
     app.include_router(site_router)
 
@@ -40,14 +40,17 @@ def create_app(settings_override: Optional[Dict[str, Any]] = None):
         "/site/static", StaticFiles(directory="lyra/site/static"), name="site/static"
     )
 
-    app.settings = settings
+    _settings = settings.copy()
+
     if settings_override is not None:
-        app.settings.update(settings_override)
+        _settings.update(settings_override)
+
+    setattr(app, "settings", _settings)
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=app.settings.ALLOW_CORS_ORIGINS,
-        allow_origin_regex=app.settings.ALLOW_CORS_ORIGIN_REGEX,
+        allow_origins=_settings.ALLOW_CORS_ORIGINS,
+        allow_origin_regex=_settings.ALLOW_CORS_ORIGIN_REGEX,
         allow_credentials=False,
         allow_methods=["GET", "OPTIONS", "POST"],
         allow_headers=["*"],

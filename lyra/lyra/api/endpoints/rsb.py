@@ -1,6 +1,5 @@
-from typing import Any, Dict, List, Optional
+from typing import List, Optional, Union
 
-import networkx
 import orjson
 import pandas
 from fastapi import APIRouter, Depends, Query
@@ -15,18 +14,16 @@ from lyra.core.utils import (
 from lyra.models.response_models import (
     DataResponseFormat,
     JSONAPIResponse,
-    ResponseFormat,
     SpatialResponseFormat,
 )
 from lyra.site.style import render_in_jupyter_notebook_css_style
-from lyra.src.network.algorithms import trace_downstream
 
 router = APIRouter(default_response_class=ORJSONResponse)
 
 
 @router.get("/spatial", tags=["spatial"], response_model=JSONAPIResponse)
 async def get_rsb_spatial(
-    f: Optional[SpatialResponseFormat] = "topojson",
+    f: Optional[SpatialResponseFormat] = SpatialResponseFormat.topojson,
     xmin: Optional[float] = None,
     ymin: Optional[float] = None,
     xmax: Optional[float] = None,
@@ -36,7 +33,7 @@ async def get_rsb_spatial(
     toposimplify: float = 0.0001,
     topoquantize: float = 1e6,
     kwargs: dict = Depends(run_task_kwargs),
-) -> Dict[str, Any]:
+) -> JSONAPIResponse:
     task = bg.background_rsb_json_response.s(
         f=f,
         xmin=xmin,
@@ -57,7 +54,7 @@ async def get_rsb_upstream(
         ..., description="Catchment from which to trace other upstream catchments."
     ),
     kwargs: dict = Depends(run_task_kwargs),
-):
+) -> JSONAPIResponse:
     task = bg.background_rsb_upstream_trace_response.s(catchidn=catchidn)
     return await run_task(task, get_route="get_task", **kwargs)
 
@@ -68,18 +65,18 @@ async def get_rsb_downstream(
         ..., description="Catchment from which to trace other downstream catchments."
     ),
     kwargs: dict = Depends(run_task_kwargs),
-):
+) -> JSONAPIResponse:
     task = bg.background_rsb_downstream_trace_response.s(catchidn=catchidn)
     return await run_task(task, get_route="get_task", **kwargs)
 
 
 @router.get("/", response_model=JSONAPIResponse)
 async def get_rsb_data(
-    f: Optional[DataResponseFormat] = "json",
+    f: Optional[DataResponseFormat] = DataResponseFormat.json,
     watersheds: Optional[List[str]] = Query(None),
     catchidns: Optional[List[str]] = Query(None),
     kwargs: dict = Depends(run_task_kwargs),
-):
+) -> JSONAPIResponse:
 
     task = bg.background_rsb_data_response.s(
         watersheds=watersheds, catchidns=catchidns,
@@ -95,6 +92,8 @@ async def get_rsb_data(
         if task.successful():
             data = orjson.loads(task.result)["data"]
             df = pandas.DataFrame(data)
-            return HTMLResponse(render_in_jupyter_notebook_css_style(df))
+            return HTMLResponse(  # type: ignore
+                render_in_jupyter_notebook_css_style(df)
+            )
 
     return await run_task(task, get_route="get_task", **kwargs)

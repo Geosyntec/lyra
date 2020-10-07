@@ -1,7 +1,7 @@
 import io
 import logging
 from pathlib import Path
-from typing import Optional
+from typing import IO, Optional
 
 from azure.core.exceptions import ResourceExistsError
 from azure.storage.fileshare import ShareClient, ShareFileClient
@@ -40,20 +40,20 @@ def make_azure_fileclient(
     if share is None:
         share = get_share()  # get default share
 
-    filepath = Path(filepath)
-    parents = list(filepath.parents)[:-1]  # don't need root '.'
+    fp = Path(filepath)
+    parents = list(fp.parents)[:-1]  # don't need root '.'
     for i, child in enumerate(reversed(parents)):
         try:
             _ = share.create_directory(str(child))
         except ResourceExistsError:
             pass
 
-    client = share.get_file_client(str(filepath))
+    client = share.get_file_client(str(fp))
 
     return client
 
 
-def get_file_object(filepath, share=None):
+def get_file_object(filepath: str, share: Optional[ShareClient] = None) -> IO[bytes]:
     file_client = make_azure_fileclient(filepath, share=share)
     logger.info(f"retrieving {filepath} from azure...")
     data = file_client.download_file()
@@ -63,7 +63,9 @@ def get_file_object(filepath, share=None):
     return file
 
 
-def put_file_object(fileobj_src, filepath_dest, share=None):  # pragma: no cover
+def put_file_object(
+    fileobj_src: IO[bytes], filepath_dest: str, share: Optional[ShareClient] = None
+) -> None:  # pragma: no cover
     fileobj_src.seek(0)
     file_client = make_azure_fileclient(filepath_dest, share=share)
     logger.info(f"uploading {filepath_dest} to azure...")
@@ -73,6 +75,6 @@ def put_file_object(fileobj_src, filepath_dest, share=None):  # pragma: no cover
 
 
 @cache_decorator(ex=None)  # expires only when cache is flushed.
-def get_file_as_bytestring(filepath, share=None):
+def get_file_as_bytestring(filepath: str, share: Optional[ShareClient] = None) -> bytes:
     file = get_file_object(filepath, share=share)
     return file.read()

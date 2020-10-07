@@ -1,5 +1,6 @@
 import ftplib
 import io
+from typing import IO, List, Optional
 
 from lyra.core.config import settings
 
@@ -37,7 +38,7 @@ def mnwd_ftp():
     return conn
 
 
-def get_file_object(ftp: ftplib.FTP, filename: str) -> io.BytesIO:
+def get_file_object(ftp: ftplib.FTP, filename: str) -> IO[bytes]:
     """returns the filename as an open bytes file object"""
     file = io.BytesIO()
     ftp.retrbinary("RETR " + filename, file.write)
@@ -46,20 +47,23 @@ def get_file_object(ftp: ftplib.FTP, filename: str) -> io.BytesIO:
     return file
 
 
-def get_latest_file_from_list(file_list: list, slug=None) -> str:
+def get_latest_file_from_list(file_list: List[str], slug: Optional[str] = None) -> str:
     if slug is None:  # pragma: no cover
         slug = ""
-    return sorted(filter(lambda x: slug in x.lower(), file_list)).pop()
+    s: str = slug
+    latest = sorted(filter(lambda x: s in x.lower(), file_list)).pop()
+    return latest
 
 
-def get_latest_filename_from_ftp(ftp: ftplib.FTP, slug=None) -> str:
+def get_latest_filename_from_ftp(ftp: ftplib.FTP, slug: Optional[str] = None) -> str:
     return get_latest_file_from_list(ftp.nlst(), slug)
 
 
-def get_latest_file_as_object(ftp: ftplib.FTP, fileslug: str) -> io.BytesIO:
+def get_latest_file_as_object(ftp: ftplib.FTP, fileslug: str) -> IO[bytes]:
 
     latest = get_latest_filename_from_ftp(ftp, fileslug)
     file = get_file_object(ftp, latest)
-    file.ftp_name = latest
+
+    setattr(file, "ftp_name", latest)
 
     return file

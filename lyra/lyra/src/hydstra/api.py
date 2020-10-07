@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from lyra.core import async_requests
 from lyra.core.config import settings
@@ -20,7 +20,7 @@ async def get_site_list():
 async def get_sites_db_info(
     site: Optional[str] = None,
     field_list: Optional[List[str]] = None,
-    return_type: Optional[hydstra_models.ReturnType] = None,
+    return_type: Optional[str] = None,
     filter_values: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
 
@@ -29,7 +29,7 @@ async def get_sites_db_info(
     if return_type is None:
         return_type = "array"
 
-    get_db_info = {
+    get_db_info: Dict = {
         "function": "get_db_info",
         "version": "3",
         "params": {
@@ -51,10 +51,14 @@ async def get_sites_db_info(
 
 async def get_site_db_info(
     site: str,
-    return_type: Optional[hydstra_models.ReturnType] = "array",
+    return_type: Optional[str] = None,
     field_list: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
-    get_db_info = {
+
+    if return_type is None:
+        return_type = "array"
+
+    get_db_info: Dict = {
         "function": "get_db_info",
         "version": "3",
         "params": {
@@ -116,13 +120,13 @@ async def get_trace(
     data_type: hydstra_models.DataType,
     interval_multiplier: int = 1,
     recent_points: Optional[int] = None,
-    var_list: Optional[List[str]] = None,
+    var_list: Optional[Union[str, List[str]]] = None,
     varto: Optional[str] = None,
     varfrom: Optional[str] = None,
     **kwargs: Optional[Dict[str, Any]],
 ) -> Dict[str, Any]:
 
-    ts_trace = {
+    ts_trace: Dict = {
         "function": "get_ts_traces",
         "version": 2,
         "params": {
@@ -166,7 +170,7 @@ async def get_datasources(
         site_list_response = await get_site_list()
         site_list = site_list_response["_return"]["sites"]
 
-    get_datasources_by_site = {
+    get_datasources_by_site: Dict = {
         "function": "get_datasources_by_site",
         "version": 1,
         "params": {"site_list": ",".join(site_list),},
@@ -225,12 +229,13 @@ async def get_site_variables(
 
 
 async def get_variables_db_info(
-    return_type: Optional[hydstra_models.ReturnType] = "array",
-    filter_values: Optional[Dict] = None,
+    return_type: Optional[str] = None, filter_values: Optional[Dict] = None,
 ) -> Dict[str, Any]:
 
     if filter_values is None:
         filter_values = {}
+    if return_type is None:
+        return_type = "array"
 
     get_db_info = {
         "function": "get_db_info",

@@ -1,5 +1,3 @@
-from typing import Any, Dict, Union
-
 from fastapi import APIRouter, Depends
 from fastapi.responses import ORJSONResponse
 
@@ -7,14 +5,7 @@ import lyra.bg_worker as bg
 from lyra.core.utils import run_task, run_task_kwargs
 from lyra.models.response_models import JSONAPIResponse
 
-#     ForegroundTaskJSONResponse,
-#     CeleryTaskJSONResponse,
-# )
-
-
 router = APIRouter(default_response_class=ORJSONResponse)
-
-# RunTaskResponse = Union[CeleryTaskJSONResponse, ForegroundTaskJSONResponse]
 
 ## This task has no effect when run on dev or on prod; only local where volumes are shared. v0.1.16
 # @router.post("/build_static_references", response_model=RunTaskResponse)
@@ -36,7 +27,7 @@ router = APIRouter(default_response_class=ORJSONResponse)
 @router.get("/update_drooltool_database", response_model=JSONAPIResponse)
 async def update_drooltool_database(
     update: bool = True, kwargs: dict = Depends(run_task_kwargs),
-) -> Dict[str, Any]:
+) -> JSONAPIResponse:
     task = bg.background_update_drooltool_database.s(update=update)
     return await run_task(task, get_route="get_task", **kwargs)
 
@@ -52,13 +43,13 @@ async def update_drooltool_database(
 @router.get("/update_rsb_geojson", response_model=JSONAPIResponse)
 async def update_rsb_geojson(
     kwargs: dict = Depends(run_task_kwargs),
-) -> Dict[str, Any]:
+) -> JSONAPIResponse:
     task = bg.background_update_rsb_geojson.s()
     return await run_task(task, get_route="get_task", **kwargs)
 
 
 @router.get("/refresh_cache", response_model=JSONAPIResponse)
-async def refresh_cache(kwargs: dict = Depends(run_task_kwargs),) -> Dict[str, Any]:
+async def refresh_cache(kwargs: dict = Depends(run_task_kwargs)) -> JSONAPIResponse:
     task = bg.background_refresh_cache.s()
     return await run_task(task, get_route="get_task", **kwargs)
 
