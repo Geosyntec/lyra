@@ -33,7 +33,6 @@ async def wait_a_sec_and_see_if_we_can_return_some_data(
         else:
             t += inc
             await asyncio.sleep(inc)
-
     return
 
 

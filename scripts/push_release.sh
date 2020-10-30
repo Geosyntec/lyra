@@ -3,7 +3,7 @@
 set -e
 
 # default is to tag the image with the full version.
-vtag=$(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
+tag=$(grep __version__ ./lyra/lyra/__init__.py | cut -d '=' -f2 | sed 's/"//g' | tr -d '[:space:]')
 
 while getopts t: flag
 do
@@ -11,7 +11,7 @@ do
     	# user override for image tag
     	# usage:
     	#~$ push_release.sh -t 1.3.0
-        t) tag=${OPTARG:-vtag};;
+        t) tag=${OPTARG};;
     esac
 done
 

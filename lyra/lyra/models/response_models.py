@@ -37,7 +37,7 @@ class HydstraJSONResponse(JSONAPIResponse):
 
 class CachedJSONResponse(JSONAPIResponse):
     process_type: str = "cached"
-    expires_after: int  # expressed in seconds
+    expires_after: Optional[int] = None  # expressed in seconds
     ts: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
 
 

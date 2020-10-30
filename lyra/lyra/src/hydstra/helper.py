@@ -1,7 +1,11 @@
+import logging
+
 import pandas
 
-from lyra.core.utils import infer_freq
+# from lyra.core.utils import infer_freq
 from lyra.src.hydstra import api
+
+logger = logging.getLogger(__name__)
 
 
 def to_hydstra_datetime(date: str, time: str = "") -> str:
@@ -70,4 +74,9 @@ async def get_site_variable_as_trace(
         datasource=datasource,
     )
 
-    return trace_json["_return"]["traces"][0]
+    if len(trace_json.get("_return", {}).get("traces", [])):
+
+        return trace_json["_return"]["traces"][0]
+    else:
+        logger.error(trace_json)
+        return trace_json
