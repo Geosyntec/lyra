@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def init() -> None:
+def init() -> None:  # pragma: no cover
 
     reconnect_engine(engine)
     logger.info(f"engine: {engine.url}\ntables: {engine.table_names()}")
@@ -17,11 +17,11 @@ def init() -> None:
         startup.get_redis_connection()
 
 
-def main() -> None:
+def main() -> None:  # pragma: no cover
     logger.info("Initializing service")
     init()
     logger.info("Service finished initializing")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

@@ -2,6 +2,7 @@
 [run]
 source = lyra
 branch = True
+omit = */pre-start*.py
 
 [report]
 include = lyra/*.py

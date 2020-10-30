@@ -19,6 +19,7 @@ class Interval(str, Enum):
 
 class DataType(str, Enum):
     tot = "tot"
+    sum = "tot"
     mean = "mean"
     maxmin = "maxmin"
     max = "max"

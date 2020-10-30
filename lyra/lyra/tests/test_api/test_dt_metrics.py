@@ -30,9 +30,7 @@ def test_dt_metrics_no_cache(client_no_cache):
     )
     assert response.status_code == 200
     data = response.json()
-    assert (
-        len(data.get("errors", [])) > 0
-    ), "should have errors since we aren't authorized."
+    assert data.get("errors"), f"should have errors since we aren't authorized.\n{data}"
 
 
 @pytest.mark.integration

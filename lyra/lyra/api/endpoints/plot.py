@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union
 from urllib.parse import urlencode
 
 import altair as alt
@@ -11,6 +11,7 @@ from fastapi.responses import ORJSONResponse, PlainTextResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import ValidationError
 
+from lyra.api.requests import LyraRoute
 from lyra.models import hydstra_models
 from lyra.models.plot_models import SingleVarSpec
 from lyra.models.response_models import ChartJSONResponse
@@ -20,8 +21,7 @@ from lyra.src.viz import single_variable
 
 alt.data_transformers.disable_max_rows()
 
-
-router = APIRouter(default_response_class=ORJSONResponse)
+router = APIRouter(route_class=LyraRoute, default_response_class=ORJSONResponse)
 templates = Jinja2Templates(directory="lyra/site/templates")
 
 
@@ -108,7 +108,7 @@ def make_chart(source):  # pragma: no cover
     line = alt.Chart(source).mark_line().encode(x="date:T", y="values:Q", color="label")
 
     nearest = alt.selection(
-        type="single", nearest=True, on="mouseover", fields=["date"], empty="none"
+        type="single", nearest=True, on="mouseover", fields=["date"], empty="none",
     )
 
     selectors = (
@@ -132,7 +132,7 @@ def make_chart(source):  # pragma: no cover
     rules = (
         alt.Chart(source)
         .mark_rule(color="gray")
-        .encode(x="date:T",)
+        .encode(alt.X("date:T"))
         .transform_filter(nearest)
     )
 

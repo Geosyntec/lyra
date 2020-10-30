@@ -91,7 +91,7 @@ def get_background_worker_connection():
         raise e
 
 
-def prime_cache():
+def prime_cache():  # pragma: no cover
     bg.background_rsb_json_response.apply_async()
     bg.background_rsb_data_response.apply_async()
     bg.background_dt_metrics_response.apply_async()

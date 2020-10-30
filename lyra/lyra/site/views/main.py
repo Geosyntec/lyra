@@ -7,8 +7,9 @@ from fastapi import APIRouter, Query, Request, Response
 from fastapi.templating import Jinja2Templates
 
 import lyra
+from lyra.api.requests import LyraRoute
 
-router = APIRouter()
+router = APIRouter(route_class=LyraRoute)
 
 templates = Jinja2Templates(directory="lyra/site/templates")
 
@@ -25,7 +26,7 @@ async def timeseriesfunc(request: Request) -> Response:
     sitelist_file = Path(lyra.__file__).parent / "static" / "site_list.json"
     sitelist = json.loads(sitelist_file.read_text())["sites"]
 
-    plot_function_url = "./api/plot/trace"
+    plot_function_url = request.url_for("plot_trace")
     return templates.TemplateResponse(
         "timeseries.html",
         {
@@ -42,7 +43,7 @@ async def site_single_variable(request: Request) -> Response:
     sitelist_file = Path(lyra.__file__).parent / "static" / "preferred_variables.json"
     site_vars = json.loads(sitelist_file.read_text())
 
-    plot_function_url = "./api/plot/single_variable"
+    plot_function_url = request.url_for("plot_single_variable")
     return templates.TemplateResponse(
         "single_var.html",
         {

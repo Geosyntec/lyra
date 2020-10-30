@@ -20,21 +20,23 @@ async def get_site_list():
 async def get_sites_db_info(
     site: Optional[str] = None,
     field_list: Optional[List[str]] = None,
-    return_type: Optional[str] = None,
+    return_type: Optional[hydstra_models.ReturnType] = None,
     filter_values: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
 
     if filter_values is None:  # pragma: no branch
         filter_values = {}
-    if return_type is None:
-        return_type = "array"
 
     get_db_info: Dict = {
         "function": "get_db_info",
         "version": "3",
         "params": {
             "table_name": "site",
-            "return_type": return_type,
+            "return_type": getattr(
+                hydstra_models.ReturnType,
+                str(return_type),
+                hydstra_models.ReturnType.array,
+            ),
             "filter_values": filter_values,
         },
     }
@@ -51,19 +53,20 @@ async def get_sites_db_info(
 
 async def get_site_db_info(
     site: str,
-    return_type: Optional[str] = None,
+    return_type: Optional[hydstra_models.ReturnType] = None,
     field_list: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
-
-    if return_type is None:
-        return_type = "array"
 
     get_db_info: Dict = {
         "function": "get_db_info",
         "version": "3",
         "params": {
             "table_name": "site",
-            "return_type": return_type,
+            "return_type": getattr(
+                hydstra_models.ReturnType,
+                str(return_type),
+                hydstra_models.ReturnType.array,
+            ),
             "filter_values": {"station": site},
         },
     }
@@ -133,10 +136,10 @@ async def get_trace(
             "site_list": ",".join(site_list),
             "start_time": start_time,
             # "var_list": ",".join(var_list),
-            "interval": interval,
+            "interval": getattr(hydstra_models.Interval, interval),
             "datasource": datasource,
             "end_time": end_time,
-            "data_type": data_type,
+            "data_type": getattr(hydstra_models.DataType, data_type),
             "recent_points": recent_points,
             "rounding": [
                 {
@@ -229,20 +232,23 @@ async def get_site_variables(
 
 
 async def get_variables_db_info(
-    return_type: Optional[str] = None, filter_values: Optional[Dict] = None,
+    return_type: Optional[hydstra_models.ReturnType] = None,
+    filter_values: Optional[Dict] = None,
 ) -> Dict[str, Any]:
 
     if filter_values is None:
         filter_values = {}
-    if return_type is None:
-        return_type = "array"
 
     get_db_info = {
         "function": "get_db_info",
         "version": "3",
         "params": {
             "table_name": "variable",
-            "return_type": return_type,
+            "return_type": getattr(
+                hydstra_models.ReturnType,
+                str(return_type),
+                hydstra_models.ReturnType.array,
+            ),
             "filter_values": filter_values,
         },
     }

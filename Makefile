@@ -49,6 +49,8 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 	rm -fr .mypy_cache
 
+export COMPOSE_DOCKER_CLI_BUILD=1
+
 build: ## build the docker-stack.yml file
 	docker-compose -f docker-stack.yml build
 
