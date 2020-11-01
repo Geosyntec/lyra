@@ -5,7 +5,7 @@ from fastapi.routing import APIRoute
 
 
 class LyraRequest(Request):
-    def url_for(self, name: str, **path_params: Any) -> str:
+    def relative_url_for(self, name: str, **path_params: Any) -> str:
         router = self.scope["router"]
         url_path = str(router.url_path_for(name, **path_params))
         return url_path
