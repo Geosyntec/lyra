@@ -67,7 +67,7 @@ def make_source(
         _us = "Upstream from" if trace_upstream and is_dt_metric else "from"
         _method = agg_method.title() if agg_method else ""
 
-        label = " ".join([_method, _var_name, "(" + _var_units + ")", _us, _site,])
+        label = f"{_method} {_var_name} ({_var_units}/{interval}) {_us} {_site}"
 
         _ts = t.timeseries_src.assign(label=label).reset_index()
 
