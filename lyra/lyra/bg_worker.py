@@ -1,6 +1,7 @@
 import logging
-import time
 
+from lyra.connections import database
+from lyra.core.config import settings
 from lyra.core.cache import flush
 from lyra.core.celery_app import celery_app
 from lyra.core.errors import SQLQueryError
@@ -17,7 +18,17 @@ from lyra.src.rsb.tasks import (
     rsb_upstream_trace_response,
 )
 
-# from lyra.tasks import build_static_references
+writer_conn_str = database.sql_server_connection_string(
+    user=settings.AZURE_DATABASE_WRITEONLY_USERNAME,
+    password=settings.AZURE_DATABASE_WRITEONLY_PASSWORD,
+    server=settings.AZURE_DATABASE_SERVER,
+    port=settings.AZURE_DATABASE_PORT,
+    db=settings.AZURE_DATABASE_NAME,
+    driver="ODBC Driver 17 for SQL Server",
+    timeout=settings.AZURE_DATABASE_CONNECTION_TIMEOUT,
+)
+
+writer_engine = database.database_engine(connection_string=writer_conn_str)
 
 
 logging.basicConfig(level=logging.INFO)
@@ -41,7 +52,7 @@ def background_ping():
 
 @celery_app.task(acks_late=True, track_started=True)
 def background_update_drooltool_database(update=True):
-    result = update_drooltool_database(update=update)
+    result = update_drooltool_database(engine=writer_engine, update=update)
     return result
 
 

@@ -2,7 +2,6 @@ import logging
 from datetime import datetime
 
 import pandas
-import sqlalchemy
 from sqlalchemy import create_engine
 from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixed
 
@@ -49,8 +48,8 @@ def get_connection_string(settings=settings):
         conn_str = sqlite_connection_string()
     else:
         conn_str = sql_server_connection_string(
-            user=settings.AZURE_DATABASE_USERNAME,
-            password=settings.AZURE_DATABASE_PASSWORD,
+            user=settings.AZURE_DATABASE_READONLY_USERNAME,
+            password=settings.AZURE_DATABASE_READONLY_PASSWORD,
             server=settings.AZURE_DATABASE_SERVER,
             port=settings.AZURE_DATABASE_PORT,
             db=settings.AZURE_DATABASE_NAME,

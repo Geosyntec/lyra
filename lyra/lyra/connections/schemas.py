@@ -49,5 +49,4 @@ def init_all(engine):
 
 
 def drop_all_records(table_name, conn):
-    # with engine.begin() as conn:
     conn.execute(f"delete from {table_name}")
