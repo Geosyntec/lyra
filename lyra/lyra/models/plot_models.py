@@ -23,7 +23,9 @@ class SingleVarSpec(BaseModel):
     @validator("sites", "intervals", "agg_methods", pre=True)
     def expand_flatten(cls, v):
         if v is not None:
-            return flatten_expand_list(v)
+            if isinstance(v, str):
+                v = [v]
+            return [i for i in flatten_expand_list(v) if i]
 
     # @validator("sites")
     # def check_sites(cls, v):
