@@ -140,14 +140,28 @@ def make_chart(source):  # pragma: no cover
 
 
 def single_var_spec_query(
-    variable: Optional[str] = Query(None),
-    start_date: Optional[str] = Query(None),
-    end_date: Optional[str] = Query(None),
-    sites: Optional[List[str]] = Query(None),
-    intervals: Optional[List[str]] = Query(None),
-    trace_upstreams: Optional[List[bool]] = Query(None),
-    agg_methods: Optional[List[str]] = Query(None),
-    string: Optional[str] = Query(None, alias="json"),
+    variable: Optional[str] = Query(None, example="rainfall"),
+    start_date: Optional[str] = Query(None, example="2015-01-01"),
+    end_date: Optional[str] = Query(None, example="2020-01-01"),
+    sites: Optional[List[str]] = Query(None, example=["ELTORO"]),
+    intervals: Optional[List[str]] = Query(None, example=["month"]),
+    trace_upstreams: Optional[List[bool]] = Query(None, example=[False]),
+    agg_methods: Optional[List[str]] = Query(None, example=["tot"]),
+    string: Optional[str] = Query(
+        None,
+        alias="json",
+        description="This field superceedes all other query params.",
+        example="""\
+{
+    "variable": "rainfall",
+    "sites": ["ELTORO"],
+    "start_date": "2015-01-01",
+    "end_date": "2020-01-01",
+    "intervals": ["month"],
+    "trace_upstreams": ["false"],
+    "agg_methods": ["mean"]
+}""",
+    ),
 ) -> SingleVarSpec:
 
     try:

@@ -79,8 +79,15 @@ function setVariable() {
 
 setVariable();
 
-(new URL(window.location.href)).searchParams.forEach((x, y) =>
-    document.getElementById(y).value = x)
+(new URL(window.location.href)).searchParams.forEach(
+	function(x, y) {
+		let item = document.getElementById(y)
+		if (item===null) {
+			return
+		}
+		item.value = x;
+	}
+)
 
 function updateVegaChart(spec, id) {
 	// TODO: clear plot on submit to indicate that it's out of date.
@@ -228,11 +235,34 @@ function getNested(obj, ...args) {
 
 function formToUrl(url, form) {
 	const formData = new FormData(form);
+	const data = JSON.stringify(serializeForm(form));
   	const params = new URLSearchParams(formData);
 
-	return url + "?" + params.toString()
+	// return url + "?" + params.toString()
+	return url+ "?json=" + data
+
 }
 
+var serializeForm = function (form) {
+	var obj = {};
+	var formData = new FormData(form);
+	for (var p of formData) {
+		let key = p[0]
+		let _v = p[1]
+		if (key in obj) {
+			if (!Array.isArray(obj[key])) {
+				let __v = obj[key];
+				obj[key] = [__v];
+			}
+			obj[key].push(_v)
+
+		} else {
+			obj[key] = _v;
+		}
+		
+	}
+	return obj;
+};
 
 async function getJsonResponse(url) {
 
