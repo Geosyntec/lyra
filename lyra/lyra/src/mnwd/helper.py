@@ -107,7 +107,13 @@ def fetch_and_refresh_oc_rsb_geojson_file(
 
     # save a slim version for graph traversal and attribute fetching/filtering.
     file_data = io.BytesIO()
-    file_data.write(gdf.drop(columns=["geometry"]).to_csv(index=False).encode())
+    data = (
+        gdf.assign(rep_pt=lambda df: df.geometry.representative_point())
+        .assign(rep_x=lambda df: df["rep_pt"].x)
+        .assign(rep_y=lambda df: df["rep_pt"].y)
+        .drop(columns=["geometry", "rep_pt"])
+    )
+    file_data.write(data.to_csv(index=False).encode())
 
     azure_fs.put_file_object(
         file_data, "mnwd/drooltool/spatial/rsb_geo_data_latest.csv", share=share
@@ -199,6 +205,7 @@ def get_timeseries_from_dt_metrics(
     agg_method: str = "sum",
     trace_upstream: bool = False,
     engine: Optional[Engine] = None,
+    interval: Optional[str] = "month",
     **kwargs: Any,
 ) -> pandas.DataFrame:
 
@@ -206,23 +213,33 @@ def get_timeseries_from_dt_metrics(
     if trace_upstream:
         catchidns = orjson.loads(rsb_upstream_trace(int(site)))
 
+    if interval == "year":
+        groupby = ["variable", "year"]
+    else:
+        groupby = ["variable", "year", "month"]
+
     result_json = dt_metrics(
         catchidns=catchidns,
         variables=[variable],
-        groupby=["variable", "year", "month"],
+        groupby=groupby,
         agg=agg_method,
         engine=engine,
     )
 
-    df = (
-        pandas.read_json(result_json.decode())
-        .assign(
+    df = pandas.read_json(result_json.decode())
+
+    if interval == "year":
+
+        df = df.assign(
+            date=lambda df: pandas.to_datetime(df["year"].astype(str), format="%Y")
+        ).set_index("date")["value"]
+
+    else:
+        df = df.assign(
             date=lambda df: pandas.to_datetime(
                 df["year"].astype(str) + df["month"].astype(str), format="%Y%m"
             )
-        )
-        .set_index("date")["value"]
-    )
+        ).set_index("date")["value"]
 
     if start_date is not None:
         df = df.loc[start_date:]  # type: ignore

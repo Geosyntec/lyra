@@ -1,9 +1,24 @@
 import importlib
 
+import geopandas
+
 
 def _rsb_geo_file_binary(*args, **kwargs):
     file = importlib.resources.read_binary("lyra.tests.data", "test_rsb_geo.json")
     return file
+
+
+def _rsb_data_file_binary(*args, **kwargs):
+    file = importlib.resources.read_text("lyra.tests.data", "test_rsb_geo.json")
+
+    data = (
+        geopandas.read_file(file)
+        .assign(rep_pt=lambda df: df.geometry.representative_point())
+        .assign(rep_x=lambda df: df["rep_pt"].x)
+        .assign(rep_y=lambda df: df["rep_pt"].y)
+        .drop(columns=["geometry", "rep_pt"])
+    )
+    return data.to_csv(index=False).encode()
 
 
 def _rsb_geo_file(*args, **kwargs):

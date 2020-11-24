@@ -6,6 +6,7 @@ from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixe
 
 import lyra.bg_worker as bg
 from lyra.connections.azure_fs import get_share
+from lyra.connections.database import reconnect_engine
 from lyra.connections.schemas import init_all
 from lyra.core.cache import redis_cache
 from lyra.src.mnwd.tasks import update_drooltool_database
@@ -33,6 +34,7 @@ def init_schemas(engine):
 
 
 def startup_mnwd_drooltool_metrics_database(engine):
+    reconnect_engine(engine)
 
     tables = engine.table_names()
     db_exists = all(t in tables for t in ["DTMetrics", "DTMetricsCategories"])

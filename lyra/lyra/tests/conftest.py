@@ -59,6 +59,11 @@ def mock_rsb_geo_bytestring(monkeypatch):
 
 
 @pytest.fixture
+def mock_rsb_data_bytestring(monkeypatch):
+    monkeypatch.setattr(azure_fs, "get_file_as_bytestring", utils._rsb_data_file_binary)
+
+
+@pytest.fixture
 def mock_get_MNWD_file_obj_metrics(monkeypatch):
     monkeypatch.setattr(helper, "get_MNWD_file_obj", utils._rsb_metrics_file)
 
