@@ -19,6 +19,7 @@ def _fetch_categories_df(engine):
     """
     )
 
+    database.reconnect_engine(engine)
     with engine.begin() as conn:
         cat = pandas.read_sql(qry, con=conn,)
 
@@ -104,6 +105,7 @@ def _fetch_dt_metrics_records(
     cat_json = _fetch_categories_as_json(engine)
     cat = pandas.read_json(cat_json, orient="index").set_index("id")
 
+    database.reconnect_engine(engine)
     with engine.begin() as conn:
         df = pandas.read_sql(
             qry, params=(*user_catch, *user_var, *user_year, *user_month), con=conn,

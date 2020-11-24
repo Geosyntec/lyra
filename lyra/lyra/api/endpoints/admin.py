@@ -44,6 +44,8 @@ async def get_table_content(
     response: Dict = {}
 
     try:
+        database.reconnect_engine(database.engine)
+
         sql_table = sql.table(table)
         order_by = text("id")
         if not ascending:

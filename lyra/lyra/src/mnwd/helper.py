@@ -144,6 +144,8 @@ def set_drooltool_database_with_file(
     if chunksize is None:
         chunksize = len(df)
     status_list: List[bool] = []
+
+    database.reconnect_engine(engine)
     with engine.begin() as conn:
 
         drop_all_records("DTMetrics", conn)
