@@ -7,6 +7,11 @@ from lyra.core.config import config
 from lyra.src.hydstra import helper
 from lyra.src.mnwd.helper import get_timeseries_from_dt_metrics
 
+AGG_REMAP = {
+    "tot": "sum",
+    "cum": "cumsum",
+}
+
 
 class Timeseries(object):
     def __init__(
@@ -81,13 +86,20 @@ class Timeseries(object):
 
     def _init_dt_metrics(self) -> pandas.Series:
         variable = self.cfg["variables"][self.variable]["variable"]
+        agg_method = AGG_REMAP.get(self.agg_method, self.agg_method)
+        self.agg_method = agg_method
+        self.interval = (
+            "month" if self.interval not in ["year", "month"] else self.interval
+        )
+
         timeseries = get_timeseries_from_dt_metrics(
             variable,
             site=self.site,
             start_date=self.start_date,
             end_date=self.end_date,
-            agg_method=self.agg_method,
+            agg_method=agg_method,
             trace_upstream=self.trace_upstream,
+            interval=self.interval,
             **self.kwargs,
         )
         return timeseries

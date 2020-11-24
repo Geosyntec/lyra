@@ -144,9 +144,9 @@ def single_var_spec_query(
     start_date: Optional[str] = Query(None),
     end_date: Optional[str] = Query(None),
     sites: Optional[List[str]] = Query(None),
-    intervals: Optional[List[str]] = Query(None),
+    intervals: Optional[List[hydstra_models.Interval]] = Query(None),
     trace_upstreams: Optional[List[bool]] = Query(None),
-    agg_methods: Optional[List[str]] = Query(None),
+    agg_methods: Optional[List[hydstra_models.DataType]] = Query(None),
     string: Optional[str] = Query(None, alias="json"),
 ) -> SingleVarSpec:
 

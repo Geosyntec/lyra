@@ -61,11 +61,11 @@
 const variables = {{ site_vars | tojson | safe }}
 
 function setVariable() {
-	const site = document.getElementById('sites')
+	const site = document.getElementById('site_list')
 	const var_info = variables[site.options[site.selectedIndex].text]
 	const new_vars = Object.keys(var_info)
 
-	let variable_options = document.getElementById('variable')
+	let variable_options = document.getElementById('variable_opts')
 	while (variable_options.firstChild) {
         variable_options.removeChild(variable_options.firstChild);
     }
@@ -111,7 +111,7 @@ const form = document.getElementById('ts-form');
 const wrapper = $(".add_site");
 const add_button = $(".add_site_button");
 
-let site_picker_html = `<select id="sites" name="sites">`
+let site_picker_html = `<select name="site_list">`
 for (let site in variables) {
 	if (site == "ELTORO") {
 		site_picker_html += `<option selected value=${site}>${site}</option>`
@@ -119,6 +119,7 @@ for (let site in variables) {
 		site_picker_html += `<option value=${site}>${site}</option>`
 	}
 }
+site_picker_html += `<input type="text" name ="sites" value='ELTORO'>`
 site_picker_html += `</select><label for="sites">Site</label>`
 
 
@@ -148,6 +149,13 @@ $(add_button).click(function(e) {
         </select>
         <label for="intervals">Interval</label>
     </div>
+	<div >
+		<select name="trace_upstreams">
+			<option value="true">True</option>
+			<option value="false">False</option>
+		</select>
+		<label for="trace_upstreams">Trace Upstream</label>
+	</div>
     <a href="#" class="delete">Delete</a></div>
 </div>
     

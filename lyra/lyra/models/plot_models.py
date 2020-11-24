@@ -4,6 +4,7 @@ from pydantic import BaseModel, root_validator, validator
 
 from lyra.core.config import config
 from lyra.core.utils import flatten_expand_list
+from lyra.models.hydstra_models import DataType, Interval
 
 cfg = config()
 VALID_VARIABLES = list(cfg["variables"].keys())
