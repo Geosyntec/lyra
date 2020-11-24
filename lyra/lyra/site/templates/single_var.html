@@ -59,6 +59,10 @@
 <script>
 
 const variables = {{ site_vars | tojson | safe }}
+const sequence_keys = {{ sequence_keys | tojson | safe }}
+const form = document.getElementById('ts-form');
+const wrapper = $(".add_site");
+const add_button = $(".add_site_button");
 
 function setVariable() {
 	const site = document.getElementById('site_list')
@@ -79,8 +83,15 @@ function setVariable() {
 
 setVariable();
 
-(new URL(window.location.href)).searchParams.forEach((x, y) =>
-    document.getElementById(y).value = x)
+(new URL(window.location.href)).searchParams.forEach(
+	function(x, y) {
+		let item = document.getElementById(y)
+		if (item===null) {
+			return
+		}
+		item.value = x;
+	}
+)
 
 function updateVegaChart(spec, id) {
 	// TODO: clear plot on submit to indicate that it's out of date.
@@ -104,12 +115,6 @@ function updateVegaChart(spec, id) {
 	        .catch(error => showError(el, error));
 	    })(vegaEmbed);
 }
-
-const form = document.getElementById('ts-form');
-
-
-const wrapper = $(".add_site");
-const add_button = $(".add_site_button");
 
 let site_picker_html = `<select name="site_list">`
 for (let site in variables) {
@@ -170,8 +175,10 @@ $(wrapper).on("click", ".delete", function(e) {
 form.addEventListener('submit', (evt) => {
   	evt.preventDefault();
 
-  	const url = formToUrl("{{ plot_function_url }}", form);
-  	const permalink = formToUrl(window.location.href.split('?')[0], form);
+	const url = formToUrl("{{ plot_function_url }}", form, sequence_keys);
+	console.log(url)
+
+  	const permalink = formToUrl(window.location.href.split('?')[0], form, sequence_keys);
   	var form_notes = document.getElementById('form-notes');
   	form_notes.textContent = ('permalink: ' + permalink);
   	let el = document.getElementById("vis-timeseries");
@@ -234,13 +241,37 @@ function getNested(obj, ...args) {
   return args.reduce((obj, level) => obj && obj[level], obj)
 }
 
-function formToUrl(url, form) {
+function formToUrl(url, form, sequence_keys) {
 	const formData = new FormData(form);
+	const data = JSON.stringify(serializeForm(form, sequence_keys));
   	const params = new URLSearchParams(formData);
 
-	return url + "?" + params.toString()
+	// return url + "?" + params.toString()
+	return url+ "?json=" + data
+
 }
 
+var serializeForm = function (form, sequence_keys) {
+	var obj = {};
+	var formData = new FormData(form);
+	for (var p of formData) {
+		let key = p[0]
+		let _v = p[1]
+
+		if (sequence_keys.includes(key)) {
+			if (key in obj) {
+				obj[key].push(_v)
+			}
+			else {
+				obj[key] = [_v];
+			}
+		} else {
+			obj[key] = _v;
+		}
+		
+	}
+	return obj;
+};
 
 async function getJsonResponse(url) {
 

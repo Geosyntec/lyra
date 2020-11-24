@@ -1,7 +1,7 @@
 <form action="/single_variable" id="ts-form" method="get" enctype="text/plain">
     
     <div >
-        <select id="variable_opts" name="variable_opts"></select>
+        <select id="variable_opts"></select>
         <input id="variable" name="variable"></input>
 
         <label for="variable">Variable</label>
@@ -31,7 +31,7 @@
             {# 
             {% if site_vars %}
             #}
-                <select id="site_list" name="site_list" onchange="setVariable()">
+                <select id="site_list" onchange="setVariable()">
                     {% for site in site_vars %}
                         {% if site == "ELTORO" %}
                             <option selected value={{ site }}>{{ site }}</option>

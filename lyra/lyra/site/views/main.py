@@ -42,6 +42,7 @@ async def site_single_variable(request: Request) -> Response:
 
     sitelist_file = Path(lyra.__file__).parent / "static" / "preferred_variables.json"
     site_vars = json.loads(sitelist_file.read_text())
+    sequence_keys = ["sites", "intervals", "agg_methods", "trace_upstreams"]
 
     plot_function_url = request.url_for("plot_single_variable")
     return templates.TemplateResponse(
@@ -49,6 +50,7 @@ async def site_single_variable(request: Request) -> Response:
         {
             "request": request,
             "site_vars": site_vars,
+            "sequence_keys": sequence_keys,
             "plot_function_url": plot_function_url,
         },
     )
