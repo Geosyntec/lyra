@@ -8,11 +8,13 @@ import yaml
 from pydantic import AnyHttpUrl, BaseSettings, validator
 from typing_extensions import Literal
 
+import lyra
 from lyra.core.io import load_cfg
 
 
 class Settings(BaseSettings):
     # API_V1_STR: str = "/api/v1"
+    VERSION: str = lyra.__version__
     ADMIN_USERNAME: str = ""
     SECRET_KEY: str = secrets.token_urlsafe(32)
     # 60 minutes * 24 hours * 8 days = 8 days
