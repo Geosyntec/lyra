@@ -110,9 +110,7 @@ async function getGeoData(url) {
 }
 
 //fetch the geojson and add it to our geojson layer
-var topo_url = "{{ topo_url }}" || ""
-var geo_url = "{{ geo_url }}" || ""
-getGeoData(topo_url).then(data => tjson.addData(data['data']));
-getGeoData(geo_url).then(data => geojson.addData(data['data']));
+  var topo_url = "{{ topo_url | safe }}" || "";
+  var geo_url = "{{ geo_url | safe }}" || "";
 </script>
 {% endblock %}
