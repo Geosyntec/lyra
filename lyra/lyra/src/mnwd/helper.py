@@ -57,12 +57,12 @@ def fetch_and_refresh_drooltool_metrics_file(
     fname = getattr(file_obj, "ftp_name", "test.json")
 
     azure_fs.put_file_object(
-        file_obj, "mnwd/drooltool/database/drooltool_latest.csv", share=share
+        file_obj, "swn/mnwd/drooltool/database/drooltool_latest.csv", share=share
     )
     logger.info(f"{__file__} {fname}")
 
     azure_fs.put_file_object(
-        file_obj, f"mnwd/drooltool/database/archive/{fname}", share=share
+        file_obj, f"swn/mnwd/drooltool/database/archive/{fname}", share=share
     )
     logger.info(f"{__file__} {fname} archived")
 
@@ -84,12 +84,12 @@ def fetch_and_refresh_oc_rsb_geojson_file(
     fname = getattr(file_obj, "ftp_name", "test.json")
 
     azure_fs.put_file_object(
-        file_obj, "mnwd/drooltool/spatial/rsb_geo_latest.json", share=share
+        file_obj, "swn/mnwd/drooltool/spatial/rsb_geo_latest.json", share=share
     )
     logger.info(f"{__file__} {fname}")
 
     azure_fs.put_file_object(
-        file_obj, f"mnwd/drooltool/spatial/archive/{fname}", share=share
+        file_obj, f"swn/mnwd/drooltool/spatial/archive/{fname}", share=share
     )
     logger.info(f"{__file__} {fname} archived")
 
@@ -101,7 +101,7 @@ def fetch_and_refresh_oc_rsb_geojson_file(
     file_4326.write(gdf.to_json().encode())
 
     azure_fs.put_file_object(
-        file_4326, "mnwd/drooltool/spatial/rsb_geo_4326_latest.json", share=share
+        file_4326, "swn/mnwd/drooltool/spatial/rsb_geo_4326_latest.json", share=share
     )
     logger.info(f"{__file__} rsb_geo_4326_latest")
 
@@ -116,7 +116,7 @@ def fetch_and_refresh_oc_rsb_geojson_file(
     file_data.write(data.to_csv(index=False).encode())
 
     azure_fs.put_file_object(
-        file_data, "mnwd/drooltool/spatial/rsb_geo_data_latest.csv", share=share
+        file_data, "swn/mnwd/drooltool/spatial/rsb_geo_data_latest.csv", share=share
     )
     logger.info(f"{__file__} rsb_geo_data_latest")
 
@@ -133,7 +133,7 @@ def set_drooltool_database_with_file(
 
     if file is None:
         file_obj = azure_fs.get_file_object(
-            "mnwd/drooltool/database/drooltool_latest.csv", share=share
+            "swn/mnwd/drooltool/database/drooltool_latest.csv", share=share
         )
     elif isinstance(file, (str, Path)):
         file_obj = open(file, "rb")

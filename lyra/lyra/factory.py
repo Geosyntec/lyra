@@ -40,12 +40,7 @@ def create_app(settings_override: Optional[Dict[str, Any]] = None) -> FastAPI:
         "/site/static", StaticFiles(directory="lyra/site/static"), name="site/static"
     )
 
-    _settings = settings.copy()
-
-    if settings_override is not None:
-        _settings.update(settings_override)
-
-    setattr(app, "settings", _settings)
+    app.mount("/data", StaticFiles(directory="lyra/data"), name="data")
 
     app.add_middleware(
         CORSMiddleware,

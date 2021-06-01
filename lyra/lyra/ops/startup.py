@@ -49,7 +49,7 @@ def startup_mnwd_drooltool_metrics_database(engine):
             return
 
     share = get_share()
-    fc = share.get_file_client("mnwd/drooltool/database/drooltool_latest.csv")
+    fc = share.get_file_client("swn/mnwd/drooltool/database/drooltool_latest.csv")
 
     try:
         fc.get_file_properties()
@@ -94,6 +94,7 @@ def get_background_worker_connection():
 
 
 def prime_cache():  # pragma: no cover
+    return
     bg.background_rsb_json_response.apply_async()
     bg.background_rsb_data_response.apply_async()
     bg.background_dt_metrics_response.apply_async()

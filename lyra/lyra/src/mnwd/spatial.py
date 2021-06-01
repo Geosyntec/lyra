@@ -6,8 +6,8 @@ import orjson
 import pandas
 import topojson
 
-from lyra.connections import azure_fs
 from lyra.core.cache import cache_decorator
+from lyra.core.utils import pwd
 
 
 def _filter_rsb_df(
@@ -35,9 +35,9 @@ def _rsb_data_bytestring(
     watersheds: Optional[List[str]] = None, catchidns: Optional[List[str]] = None,
 ) -> bytes:
 
-    data = azure_fs.get_file_as_bytestring(
-        "mnwd/drooltool/spatial/rsb_geo_data_latest.csv"
-    )
+    data = (
+        pwd() / "data/mount/swn/mnwd/drooltool/spatial/rsb_geo_data_latest.csv"
+    ).read_bytes()
 
     df = pandas.read_csv(StringIO(data.decode())).pipe(
         _filter_rsb_df, watersheds, catchidns
@@ -56,9 +56,10 @@ def _rsb_geojson_bytestring(
     watersheds: Optional[List[str]] = None,
     catchidns: Optional[List[str]] = None,
 ) -> bytes:
-    data: bytes = azure_fs.get_file_as_bytestring(
-        "mnwd/drooltool/spatial/rsb_geo_4326_latest.json"
-    )
+
+    data = (
+        pwd() / "data/mount/swn/mnwd/drooltool/spatial/rsb_geo_4326_latest.json"
+    ).read_bytes()
 
     if not any([bbox, watersheds, catchidns]):
         return data
