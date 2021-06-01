@@ -75,7 +75,6 @@ call scripts\clean.bat
 goto :eof
 
 :dev-server
-call scripts\build_dev.bat
 docker-compose -f docker-stack.yml run -p 8080:80 -e LOG_LEVEL=debug lyra bash /start-reload.sh
 goto :eof
 
