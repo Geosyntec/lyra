@@ -85,9 +85,9 @@ settings = Settings()
 
 
 def config():
-    with pkg_resources.path("lyra.core", "lyra_config.yml") as p:
-        # cfg = load_cfg(p)
-        cfg = yaml.safe_load(p.read_text())
+
+    cfg_yml = pkg_resources.read_text("lyra.core", "lyra_config.yml")
+    cfg = yaml.safe_load(cfg_yml)
 
     preferred_variables = json.loads(
         pkg_resources.read_text("lyra.static", "preferred_variables.json")
