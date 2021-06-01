@@ -1,0 +1,6 @@
+index,CatchIDN,date,Year,Month,overall_MeterID_count,overall_is_irrig_sum,overall_irrg_area_sqft_sum,overall_irrg_area_sqft_max,overall_irrg_area_sqft_min,overall_irrg_area_sqft_mean,overall_headcount_sum,overall_AMI_sum,overall_indoor_budget_sum,overall_daily_indoor_budget_sum,overall_outdoor_budget_sum
+0,4,2015-02-01,2015,2,8,7.0,106400.0,35060.0,500.0,15200.0,9.0,6,2774.0,43.05565610859729,315.0
+1,4,2015-03-01,2015,3,4,4.0,56130.0,35060.0,1909.0,14032.5,9.0,2,23.0,0.7931034482758621,134.0
+2,4,2015-04-01,2015,4,8,7.0,106400.0,35060.0,500.0,15200.0,9.0,6,2895.0,47.884074941451985,455.0
+3,4,2015-05-01,2015,5,4,4.0,56130.0,35060.0,1909.0,14032.5,9.0,2,25.0,0.7142857142857143,164.0
+4,4,2015-06-01,2015,6,8,4.0,56130.0,35060.0,1909.0,14032.5,9.0,6,20.0,0.7142857142857143,183.0

@@ -5,8 +5,8 @@ import networkx
 import orjson
 import pandas
 
-from lyra.connections import azure_fs
 from lyra.core.cache import cache_decorator
+from lyra.core.utils import pwd
 from lyra.src.network.algorithms import trace_downstream, trace_upstream
 from lyra.src.network.utils import graph_from_df
 
@@ -19,8 +19,9 @@ def construct_rsb_graph_from_mnwd_geojson(
 ) -> networkx.DiGraph:
 
     if file_contents is None:
-        file = "mnwd/drooltool/spatial/rsb_geo_data_latest.csv"
-        file_contents = azure_fs.get_file_as_bytestring(file, share=share).decode()
+        file_contents = (
+            pwd() / "data/mount/swn/mnwd/drooltool/spatial/rsb_geo_data_latest.csv"
+        ).read_text()
 
     if source is None:
         source = "CatchIDN"

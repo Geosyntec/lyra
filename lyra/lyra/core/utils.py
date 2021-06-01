@@ -1,5 +1,6 @@
 import asyncio
 import itertools
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
 import pandas
@@ -7,6 +8,7 @@ from celery.canvas import Signature
 from celery.result import AsyncResult
 from fastapi import Depends, Query, Request
 
+import lyra
 from lyra.core import security
 from lyra.models.response_models import (
     CeleryTaskJSONResponse,
@@ -148,3 +150,7 @@ def infer_freq(index):
 
 def flatten_expand_list(ls: List[str]) -> List[str]:
     return list(itertools.chain.from_iterable([s.split(",") for s in ls]))
+
+
+def pwd():
+    return Path(lyra.__file__).parent
