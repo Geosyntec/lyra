@@ -22,7 +22,7 @@ def get_site_list() -> Dict[str, Any]:
     }
 
     response = asyncio.run(send_request(settings.HYDSTRA_BASE_URL, payload=site_list))
-    result: Dict[str, Any] = response["_return"]
+    result: Dict[str, Any] = response["return"]
 
     return result
 
@@ -35,7 +35,7 @@ def get_swn_site_list() -> Dict[str, Any]:
     }
 
     response = asyncio.run(send_request(settings.HYDSTRA_BASE_URL, payload=site_list))
-    result: Dict[str, Any] = response["_return"]
+    result: Dict[str, Any] = response["return"]
 
     return result
 
@@ -46,7 +46,6 @@ def site_preferred_variables(site_list: List[str]) -> pandas.DataFrame:
         "version": 1,
         "params": {
             "site_list": ",".join(site_list),
-            # "datasource": "A",
             "datasource": "PUBLISH",
             "var_filter": None,
         },
@@ -60,7 +59,7 @@ def site_preferred_variables(site_list: List[str]) -> pandas.DataFrame:
 
     vars_by_site = []
 
-    for blob in promise["_return"]["sites"]:
+    for blob in promise["return"]["sites"]:
         site = blob["site"]
         for variable in blob["variables"]:
             variable["site"] = site

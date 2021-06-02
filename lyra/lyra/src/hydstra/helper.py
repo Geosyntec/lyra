@@ -17,7 +17,7 @@ def to_hydstra_datetime(date: str, time: str = "") -> str:
 def hydstra_trace_to_series(trace):
     """trace is a list of dicts from hydstra
 
-    trace = trace_json['_return']['traces'][0]['trace']
+    trace = trace_json['return']['traces'][0]['trace']
 
     trace[0] = {'v': float, 't': "%Y%m%d%H%M%S"}
 
@@ -74,9 +74,9 @@ async def get_site_variable_as_trace(
         datasource=datasource,
     )
 
-    if len(trace_json.get("_return", {}).get("traces", [])):
+    if len(trace_json.get("return", {}).get("traces", [])):
 
-        return trace_json["_return"]["traces"][0]
+        return trace_json["return"]["traces"][0]
     else:
         logger.error(trace_json)
         return trace_json

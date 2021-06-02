@@ -92,7 +92,7 @@ async def get_datasources(
 @router.get("/sites/variables", response_model=HydstraJSONResponse)
 async def get_variables(
     site_list: Optional[List[str]] = Query(None),
-    datasource: str = "A",
+    datasource: str = "PUBLISH",
     var_filter: Optional[List[str]] = Query(None),
 ) -> Dict:
     response = await hydstra.api.get_variables(
@@ -104,7 +104,7 @@ async def get_variables(
 
 @router.get("/sites/{site}/variables/{variable}", response_model=HydstraJSONResponse)
 async def get_site_variables(
-    site: str, variable: Optional[str] = None, datasource: str = "A",
+    site: str, variable: Optional[str] = None, datasource: str = "PUBLISH",
 ) -> Dict:
     response = await hydstra.api.get_site_variables(
         site=site, datasource=datasource, variable=variable
