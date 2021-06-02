@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import ORJSONResponse
 
 import lyra.bg_worker as bg
-from lyra.core.utils import run_task, run_task_kwargs
+from lyra.core.utils import run_task, run_task_kwargs, local_path
 from lyra.models.response_models import JSONAPIResponse
 
 router = APIRouter(default_response_class=ORJSONResponse)
@@ -54,6 +54,10 @@ async def refresh_cache(kwargs: dict = Depends(run_task_kwargs)) -> JSONAPIRespo
     return await run_task(task, get_route="get_task", **kwargs)
 
 
+@router.get("/data_dir", response_model=JSONAPIResponse)
+async def show_data_directory_contents() -> JSONAPIResponse:
+    response = {"data": list(local_path("data").glob("**/*"))}
+    return response
 # @router.get("/update_rsb_geojson/{task_id}", response_model=RunTaskResponse)
 # async def get_update_rsb_geojson(
 #     task_id: str, kwargs: dict = Depends(run_task_kwargs)
