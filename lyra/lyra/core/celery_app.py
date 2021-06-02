@@ -59,6 +59,11 @@ celery_app.conf.beat_schedule = {
         # on the 12th of each month
         "schedule": crontab(minute=0, hour=0, day_of_month=12),
     },
+    "update-hydstra-site_geo": {
+        "task": "lyra.bg_worker.background_update_hydstra_site_info",
+        # daily at 6am
+        "schedule": crontab(0, "6"),
+    },
 }
 
 # celery_app.conf.timezone = "UTC"
