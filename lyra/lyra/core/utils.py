@@ -152,5 +152,9 @@ def flatten_expand_list(ls: List[str]) -> List[str]:
     return list(itertools.chain.from_iterable([s.split(",") for s in ls]))
 
 
-def pwd():
-    return Path(lyra.__file__).parent
+# def pwd():
+#     return Path(lyra.__file__).parent
+
+
+def local_path(path: str):
+    return Path(lyra.__file__).parent / path

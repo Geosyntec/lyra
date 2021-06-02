@@ -6,7 +6,7 @@ import orjson
 import pandas
 
 from lyra.core.cache import cache_decorator
-from lyra.core.utils import pwd
+from lyra.core import utils
 from lyra.src.network.algorithms import trace_downstream, trace_upstream
 from lyra.src.network.utils import graph_from_df
 
@@ -19,8 +19,8 @@ def construct_rsb_graph_from_mnwd_geojson(
 ) -> networkx.DiGraph:
 
     if file_contents is None:
-        file_contents = (
-            pwd() / "data/mount/swn/mnwd/drooltool/spatial/rsb_geo_data_latest.csv"
+        file_contents = utils.local_path(
+            "data/mount/swn/mnwd/drooltool/spatial/rsb_geo_data_latest.csv"
         ).read_text()
 
     if source is None:
