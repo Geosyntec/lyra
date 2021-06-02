@@ -54,7 +54,7 @@ def test_fetch_and_refresh_oc_rsb_geojson_file(mock_get_MNWD_file_obj_geo, file)
 @pytest.mark.parametrize("agg_method", ["sum", "mean"])
 def test_get_timeseries_from_dt_metrics(
     nocache,
-    mock_rsb_geo_bytestring,
+    mock_rsb_data_path,
     data_engine,
     site,
     variable,
