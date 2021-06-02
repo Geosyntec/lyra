@@ -47,7 +47,7 @@ async def plot_trace(
 
     kwargs["site_list"] = [kwargs.get("site", "ELTORO")]
     kwargs["var_list"] = [kwargs.get("variable", "11")]
-    kwargs["datasource"] = kwargs.get("datasource", "A")
+    kwargs["datasource"] = kwargs.get("datasource", "PUBLISH")
     kwargs["interval_multiplier"] = kwargs.get("multiplier", "1")
     kwargs["recent_points"] = None
 
@@ -57,11 +57,11 @@ async def plot_trace(
 
     response = await get_trace(**kwargs)
 
-    if response.get("_return") is None:
+    if response.get("return") is None:
         msg += f"ERROR in response {response}"
         return {"chart_status": "FAILURE", "message": msg}
 
-    traces = response["_return"]["traces"]
+    traces = response["return"]["traces"]
 
     dfs = []
     for i, trace in enumerate(traces):
