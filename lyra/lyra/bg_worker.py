@@ -1,11 +1,14 @@
 import logging
 
+import asyncio
+
 from lyra.connections import database
 from lyra.core.config import settings
 from lyra.core.cache import flush
 from lyra.core.celery_app import celery_app
 from lyra.core.errors import SQLQueryError
 from lyra.ops import startup
+from lyra.src.hydstra.tasks import get_site_geojson_info
 from lyra.src.mnwd.tasks import (
     dt_metrics_response,
     rsb_data_response,
@@ -111,6 +114,14 @@ def background_rsb_downstream_trace_response(**kwargs):
     if isinstance(result, bytes):
         return result.decode()
     return result
+
+
+@celery_app.task(acks_late=True, track_started=True)
+def background_update_hydstra_site_info(**kwargs):
+
+    asyncio.run(get_site_geojson_info())
+
+    return {"status": "success"}
 
 
 # # -------------------- Nothing -----------------

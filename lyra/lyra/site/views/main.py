@@ -90,11 +90,18 @@ async def get_map(
 
     topo_url = f"./api/regional_subbasins/spatial?f=topojson&timeout=120"
     geo_url = f"./api/regional_subbasins/spatial?f=geojson&timeout=120"
+    sites_url = "./data/mount/swn/hydstra/swn_sites.geojson"
 
     if params:
         topo_url += "&" + urlencode(params, doseq=True)
         geo_url += "&" + urlencode(params, doseq=True)
 
     return templates.TemplateResponse(
-        "map.html", {"request": request, "topo_url": topo_url, "geo_url": geo_url}
+        "map.html",
+        {
+            "request": request,
+            "topo_url": topo_url,
+            "geo_url": geo_url,
+            "sites_url": sites_url,
+        },
     )

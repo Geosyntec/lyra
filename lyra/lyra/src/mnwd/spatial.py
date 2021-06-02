@@ -1,4 +1,3 @@
-from io import StringIO
 from typing import Any, List, Optional, Tuple
 
 import geopandas

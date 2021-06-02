@@ -85,9 +85,22 @@
         fillOpacity: 0.2,
       };
     },
-    // onEachFeature: function(feature, layer) {
-    //   layer.bindPopup('<p>'+feature.properties.CatchIDN+'</p>')
-    // }
+    onEachFeature: function (feature, layer) {
+      let popup_attrs = new Array();
+      popup_attrs.push(
+        feature.properties?.station || feature.properties.CatchIDN
+      );
+      feature.properties?.has_discharge ? popup_attrs.push("Discharge") : null;
+      feature.properties?.has_rainfall ? popup_attrs.push("Rainfall") : null;
+
+      let popup_content = "";
+
+      popup_attrs.forEach((d) => {
+        popup_content += "<p>" + d + "</p>";
+      });
+
+      layer.bindPopup(popup_content);
+    },
   }).addTo(map);
 
   var tjson = L.topoJson(null, {
@@ -117,7 +130,9 @@
   //fetch the geojson and add it to our geojson layer
   var topo_url = "{{ topo_url | safe }}" || "";
   var geo_url = "{{ geo_url | safe }}" || "";
+  var sites_url = "{{ sites_url | safe }}" || "";
   getGeoData(topo_url).then((data) => tjson.addData(data["data"]));
   getGeoData(geo_url).then((data) => geojson.addData(data["data"]));
+  getGeoData(sites_url).then((data) => geojson.addData(data));
 </script>
 {% endblock %}
