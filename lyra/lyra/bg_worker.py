@@ -1,14 +1,12 @@
+import asyncio
 import logging
 
-import asyncio
-
 from lyra.connections import database
-from lyra.core.config import settings
 from lyra.core.cache import flush
 from lyra.core.celery_app import celery_app
-from lyra.core.errors import SQLQueryError
+from lyra.core.config import settings
 from lyra.ops import startup
-from lyra.src.hydstra.tasks import get_site_geojson_info
+from lyra.src.hydstra.tasks import save_site_geojson_info
 from lyra.src.mnwd.tasks import (
     dt_metrics_response,
     rsb_data_response,
@@ -39,7 +37,7 @@ logger = logging.getLogger(__name__)
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_ping():
+def background_ping():  # pragma: no cover
     logger.info("background pinged")
     return True
 
@@ -54,19 +52,19 @@ def background_ping():
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_update_drooltool_database(update=True):
+def background_update_drooltool_database(update=True):  # pragma: no cover
     result = update_drooltool_database(engine=writer_engine, update=update)
     return result
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_update_rsb_geojson():
+def background_update_rsb_geojson():  # pragma: no cover
     result = update_rsb_geojson()
     return result
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_refresh_cache():
+def background_refresh_cache():  # pragma: no cover
     flush()
     startup.prime_cache()
     result = dict(taskname="refresh_cache", succeeded="succeeded")
@@ -74,7 +72,7 @@ def background_refresh_cache():
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_rsb_json_response(**kwargs):
+def background_rsb_json_response(**kwargs):  # pragma: no cover
     result = rsb_spatial_response(**kwargs)
     if isinstance(result, bytes):
         return result.decode()
@@ -82,7 +80,7 @@ def background_rsb_json_response(**kwargs):
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_rsb_data_response(**kwargs):
+def background_rsb_data_response(**kwargs):  # pragma: no cover
     result = rsb_data_response(**kwargs)
     if isinstance(result, bytes):
         return result.decode()
@@ -90,7 +88,7 @@ def background_rsb_data_response(**kwargs):
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_dt_metrics_response(**kwargs):
+def background_dt_metrics_response(**kwargs):  # pragma: no cover
     # try:
     result = dt_metrics_response(**kwargs)
     # except SQLQueryError as e:
@@ -101,7 +99,7 @@ def background_dt_metrics_response(**kwargs):
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_rsb_upstream_trace_response(**kwargs):
+def background_rsb_upstream_trace_response(**kwargs):  # pragma: no cover
     result = rsb_upstream_trace_response(**kwargs)
     if isinstance(result, bytes):
         return result.decode()
@@ -109,7 +107,7 @@ def background_rsb_upstream_trace_response(**kwargs):
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_rsb_downstream_trace_response(**kwargs):
+def background_rsb_downstream_trace_response(**kwargs):  # pragma: no cover
     result = rsb_downstream_trace_response(**kwargs)
     if isinstance(result, bytes):
         return result.decode()
@@ -117,9 +115,9 @@ def background_rsb_downstream_trace_response(**kwargs):
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_update_hydstra_site_info(**kwargs):
+def background_update_hydstra_site_info(**kwargs):  # pragma: no cover
 
-    asyncio.run(get_site_geojson_info())
+    asyncio.run(save_site_geojson_info())
 
     return {"status": "success"}
 
