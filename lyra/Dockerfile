@@ -1,19 +1,19 @@
 
-FROM redis:5.0.9-alpine3.11 as redis
+FROM redis:6.2.4-alpine3.14 as redis
 COPY redis.conf /redis.conf
 CMD ["redis-server", "/redis.conf"]
 
 
-FROM python:3.7-alpine3.11 as flower
+FROM python:3.8.11-alpine3.14 as flower
 RUN apk add --no-cache ca-certificates && update-ca-certificates
-RUN pip install --no-cache-dir redis==3.5.2 flower==0.9.4 celery==4.4.7
+RUN pip install --no-cache-dir redis==3.5.3 flower==1.0.0 celery==5.1.2
 ENV PYTHONUNBUFFERED=1 PYTHONHASHSEED=random PYTHONDONTWRITEBYTECODE=1
 EXPOSE 5555
 USER nobody
-ENTRYPOINT ["flower"]
+CMD ["celery", "flower"]
 
 
-FROM python:3.7-slim-buster as core-runtime
+FROM python:3.8.11-slim-buster as core-runtime
 RUN apt-get update -y \
     && apt-get install -y curl gnupg2 \ 
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
@@ -26,7 +26,7 @@ ENV PYTHONPATH=/lyra
 ENV PATH=/root/.local/bin:$PATH
 
 
-FROM python:3.7-buster as builder
+FROM python:3.8.11-buster as builder
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends gcc g++ unixodbc-dev libspatialindex-dev \ 
     && rm -rf /var/lib/apt/lists/* \
@@ -48,7 +48,7 @@ RUN mkdir /serve \
     -r /requirements_server.txt
 
 
-FROM python:3.7-slim-buster as core-env
+FROM python:3.8.11-slim-buster as core-env
 COPY --from=builder /core /core
 COPY requirements.txt /requirements.txt
 RUN pip install \
@@ -112,3 +112,35 @@ RUN chmod +x /start-reload.sh
 EXPOSE 8888
 EXPOSE 80
 COPY ./lyra /lyra/lyra
+
+
+FROM python:3.8-buster as lyra-edge
+RUN apt-get update -y \
+    && apt-get install -y curl gnupg2 \ 
+    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get update -y \
+    && apt-get install -y --no-install-recommends gcc g++ unixodbc-dev libspatialindex-dev \ 
+    && ACCEPT_EULA=y apt-get install -y --no-install-recommends graphviz libspatialindex-dev unixodbc msodbcsql17 mssql-tools \ 
+    && rm -rf /var/lib/apt/lists/*
+COPY requirements.txt /requirements.txt
+COPY requirements_test.txt /requirements_test.txt
+RUN awk -F"==" '{print $1}' /requirements.txt /requirements_test.txt \
+    > /requirements_edge.txt
+RUN cat requirements_edge.txt
+RUN pip install -r /requirements_edge.txt
+WORKDIR /lyra
+ENV PYTHONPATH=/lyra
+ENV PATH=/root/.local/bin:$PATH
+COPY ./lyra /lyra/lyra
+
+
+FROM lyra-edge as lyra-edge-tests
+CMD ["bash", "-c", "while true; do sleep 1; done"]
+
+
+FROM lyra-edge as celeryworker-edge
+ENV C_FORCE_ROOT=1
+COPY ./scripts/run-worker.sh /run-worker.sh
+RUN chmod +x /run-worker.sh
+CMD ["bash", "/run-worker.sh"]

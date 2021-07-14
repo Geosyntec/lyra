@@ -26,7 +26,7 @@ jobs:
       - name: Install Linters
         run: pip install -r lyra/requirements.txt -r lyra/requirements_test.txt
       - name: Run Linters
-        run: bash scripts/lint.sh 
+        run: bash scripts/lint.sh
   test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -43,10 +43,10 @@ jobs:
         run: |
           bash ./scripts/build_dev.sh
           docker-compose up -d lyra-tests
-              
+
       - name: run tests
         run: docker-compose exec -T lyra-tests coverage run --branch -m pytest -sv -m "not integration"
-          
+
       - name: coverage
         run: |
           docker-compose exec -T lyra-tests coverage report -mi
@@ -56,3 +56,19 @@ jobs:
 
       - name: upload coverage
         uses: codecov/codecov-action@v1
+
+  test-edge:
+    runs-on: ubuntu-latest
+    env:
+      COMPOSE_FILE: docker-stack.yml
+    steps:
+      - uses: actions/checkout@v2
+      - name: build edge stack
+        run: |
+          bash ./scripts/build_edge.sh
+          docker-compose up -d lyra-tests
+      - name: run edge tests
+        continue-on-error: true
+        run: docker-compose exec -T lyra-tests pytest -xsv -m "not integration"
+      - name: Exit
+        run: exit 0

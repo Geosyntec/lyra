@@ -1,12 +1,10 @@
 import importlib.resources as pkg_resources
-import json
 import secrets
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 import yaml
 from pydantic import AnyHttpUrl, BaseSettings, validator
-from typing_extensions import Literal
 
 import lyra
 

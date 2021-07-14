@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  lyra:
+    build:
+      context: ./lyra
+      dockerfile: Dockerfile
+      target: lyra-edge
+  celeryworker:
+    build:
+      context: ./lyra
+      dockerfile: Dockerfile
+      target: celeryworker-edge
+  lyra-tests:
+    build:
+      context: ./lyra
+      dockerfile: Dockerfile
+      target: lyra-edge-tests
+  redis:
+    build:
+      context: ./lyra
+      dockerfile: Dockerfile
+      target: redis
+  flower:
+    build:
+      context: ./lyra
+      dockerfile: Dockerfile
+      target: flower
