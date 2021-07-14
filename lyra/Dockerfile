@@ -19,7 +19,7 @@ RUN apt-get update -y \
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
     && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
     && apt-get update -y \
-    && ACCEPT_EULA=y apt-get install -y --no-install-recommends graphviz=2.40.1-6 libspatialindex-dev unixodbc msodbcsql17 mssql-tools \ 
+    && ACCEPT_EULA=y apt-get install -y --no-install-recommends graphviz libspatialindex-dev unixodbc msodbcsql17 mssql-tools \ 
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /lyra
 ENV PYTHONPATH=/lyra
