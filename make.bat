@@ -46,6 +46,13 @@ for /f "tokens=1,* delims= " %%a in ("%*") do set ALL_BUT_FIRST=%%b
 docker-compose -f docker-stack.yml exec lyra-tests pytest %ALL_BUT_FIRST%
 goto :eof
 
+:coverage
+call make clean
+call make restart
+docker-compose -f docker-stack.yml exec lyra-tests coverage run --branch -m pytest -sv
+docker-compose -f docker-stack.yml exec lyra-tests coverage report -m
+goto :eof
+
 :typecheck
 call make clean
 call make restart
