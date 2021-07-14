@@ -1,5 +1,6 @@
 from typing import Any, Dict, Optional
 
+from brotli_asgi import BrotliMiddleware
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
@@ -20,6 +21,8 @@ def create_app(settings_override: Optional[Dict[str, Any]] = None) -> FastAPI:
     app = FastAPI(
         title="lyra", version=_settings.VERSION, docs_url=None, redoc_url=None
     )
+
+    app.add_middleware(BrotliMiddleware)
 
     setattr(app, "settings", _settings)
 
