@@ -9,7 +9,6 @@ from pydantic import AnyHttpUrl, BaseSettings, validator
 from typing_extensions import Literal
 
 import lyra
-from lyra.core.io import load_cfg
 
 
 class Settings(BaseSettings):
@@ -91,11 +90,11 @@ def config():
     cfg_yml = pkg_resources.read_text("lyra.core", "lyra_config.yml")
     cfg = yaml.safe_load(cfg_yml)
 
-    preferred_variables = json.loads(
-        pkg_resources.read_text("lyra.static", "preferred_variables.json")
-    )
-    # sitelist = json.loads(sitelist_file.read_text())["sites"]
-
-    cfg["preferred_variables"] = preferred_variables
+    cfg["site_path"] = (
+        Path(lyra.__file__).parent / "data/mount/swn/hydstra"
+    ).resolve() / "swn_sites.json"
 
     return cfg
+
+
+cfg = config()

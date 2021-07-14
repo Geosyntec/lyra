@@ -1,8 +1,10 @@
+from typing import Dict
+
 from fastapi import APIRouter, Depends
 from fastapi.responses import ORJSONResponse
 
 import lyra.bg_worker as bg
-from lyra.core.utils import run_task, run_task_kwargs, local_path
+from lyra.core.utils import local_path, run_task, run_task_kwargs
 from lyra.models.response_models import JSONAPIResponse
 
 router = APIRouter(default_response_class=ORJSONResponse)
@@ -63,7 +65,7 @@ async def update_hydstra_site_info(
 
 
 @router.get("/data_dir", response_model=JSONAPIResponse)
-async def show_data_directory_contents() -> JSONAPIResponse:
+async def show_data_directory_contents() -> Dict:
     response = {"data": list(local_path("data").glob("**/*"))}
     return response
 

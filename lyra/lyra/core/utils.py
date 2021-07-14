@@ -19,10 +19,13 @@ from lyra.models.response_models import (
 
 
 async def wait_a_sec_and_see_if_we_can_return_some_data(
-    task: AsyncResult, timeout: Optional[float] = None
+    task: AsyncResult, timeout: Optional[float] = None, exp: Optional[float] = None,
 ) -> None:
     if timeout is None:
-        timeout = 0.1
+        timeout = 0.5
+
+    if exp is None:
+        exp = 1
 
     _max_timeout = 120  # seconds
     timeout = min(timeout, _max_timeout)  # prevent long timeout requests.
@@ -33,6 +36,7 @@ async def wait_a_sec_and_see_if_we_can_return_some_data(
         if task.ready():  # exit even if the task failed
             return
         else:
+            inc *= exp
             t += inc
             await asyncio.sleep(inc)
     return
@@ -156,5 +160,5 @@ def flatten_expand_list(ls: List[str]) -> List[str]:
 #     return Path(lyra.__file__).parent
 
 
-def local_path(path: str):
+def local_path(path: str) -> Path:
     return Path(lyra.__file__).parent / path

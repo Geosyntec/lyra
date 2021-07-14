@@ -8,7 +8,7 @@ from lyra.core.cache import cache_decorator
 PathType = Union[Path, str]
 
 
-@cache_decorator(ex=3600 * 24)  # expires in 24 hours
+@cache_decorator(ex=3600 * 6)  # expires in 6 hours
 def _load_file(filepath: PathType) -> str:
     fp = Path(filepath)
     return fp.read_text(encoding="utf-8")

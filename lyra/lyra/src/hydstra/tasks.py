@@ -1,14 +1,14 @@
-from copy import deepcopy
 import datetime
 import io
 import json
+from copy import deepcopy
 
 import geopandas
 import pandas
+from shapely.ops import nearest_points
 
-from lyra.core import utils
 from lyra.connections import azure_fs
-from lyra.core.config import config
+from lyra.core.config import cfg
 from lyra.src.hydstra import api
 from lyra.src.mnwd import spatial
 from lyra.src.rsb import graph
@@ -56,13 +56,10 @@ async def get_site_geojson_info():
     site_list = (await api.get_swn_site_list())["return"]["sites"]
     variables = (await api.get_variables(site_list, datasource="PUBLISH"))["return"]
     site_geojson = (await api.get_site_geojson(site_list))["return"]
-    cfg = config()
 
     sites = build_swn_variables(variables, cfg)
     site_df = pandas.DataFrame(sites).T
-    sites_with_trace = site_df.query(
-        "has_discharge == True | has_conductivity == True"
-    ).index
+    sites_with_trace = site_df.query("has_discharge | has_conductivity").index
 
     gdf = geopandas.read_file(json.dumps(site_geojson)).set_index("id")
 
@@ -85,7 +82,36 @@ async def get_site_geojson_info():
     us_traced["upstream"] = us_traced.apply(lambda x: trace_each(x["CatchIDN"]), axis=1)
 
     geo_info = gdf.join(us_traced, how="left").join(site_df, how="left").reset_index()
-    path = utils.local_path("data/mount/swn/hydstra").resolve() / "swn_sites.geojson"
+
+    destinations = geo_info.query("has_rainfall").geometry.unary_union
+
+    def near_rain(row, destinations):
+        if row.has_rainfall:
+            return row.geometry
+        try:
+            return nearest_points(row.geometry, destinations)[1]
+        except:
+            return
+
+    geo_info["nearest_rainfall_station_pt"] = geo_info.apply(
+        lambda x: near_rain(x, destinations), axis=1
+    )
+    geo_info["nearest_rainfall_station"] = geo_info.apply(
+        lambda x: geo_info.loc[
+            geo_info.geometry == x.nearest_rainfall_station_pt
+        ].station.values[0],
+        axis=1,
+    )
+
+    geo_info = geo_info.drop(columns=["nearest_rainfall_station_pt"])
+
+    return geo_info
+
+
+async def save_site_geojson_info():  # pragma: no cover
+
+    geo_info = await get_site_geojson_info()
+    path = cfg["site_path"]
 
     geo_info_dct = json.loads(geo_info.to_json())
     ts = datetime.datetime.utcnow().isoformat()
@@ -97,6 +123,4 @@ async def get_site_geojson_info():
     file_obj = io.BytesIO()
     file_obj.write(json.dumps(geo_info_dct).encode())
 
-    azure_fs.put_file_object(file_obj, "swn/hydstra/swn_sites.geojson", share=None)
-
-    pass
+    azure_fs.put_file_object(file_obj, "swn/hydstra/swn_sites.json")

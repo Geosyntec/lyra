@@ -1,4 +1,4 @@
-mnwd:
+mnwd: # TODO Remove this and complete the other DT metrics.
   dt_metrics:
     fields:
       - variable: overall_daily_est_outdoor_budget_overage_per_irrig_area
@@ -12,6 +12,9 @@ mnwd:
       - variable: overall_MeterID_count
         units: count
 
+hydstra:
+  max_quality_flag: 10
+
 variables:
   rainfall:
     name: Rainfall
@@ -23,9 +26,9 @@ variables:
     varto: "11"
     allowed_aggregations:
       - tot
-      - mean
-      - max
-      - min
+      # - mean # hydstra only allows total for rainfall
+      # - max
+      # - min
   discharge:
     name: Discharge
     variable: discharge
@@ -38,15 +41,6 @@ variables:
       - mean
       - max
       - min
-  # outfall_discharge:
-  #   name: Outfall Discharge
-  #   variable: unk
-  #   source: hydstra
-  #   units: cfs
-  #   allowed_aggregations:
-  #     - mean
-  #     - max
-  #     - min
   conductivity:
     name: Conductivity
     variable: conductivity
@@ -64,3 +58,5 @@ variables:
     variable: overall_daily_est_outdoor_budget_overage_sum
     source: dt_metrics
     units: ccf
+    allowed_aggregations:
+      - tot

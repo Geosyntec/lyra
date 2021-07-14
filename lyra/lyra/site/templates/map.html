@@ -131,8 +131,8 @@
   var topo_url = "{{ topo_url | safe }}" || "";
   var geo_url = "{{ geo_url | safe }}" || "";
   var sites_url = "{{ sites_url | safe }}" || "";
-  getGeoData(topo_url).then((data) => tjson.addData(data["data"]));
-  getGeoData(geo_url).then((data) => geojson.addData(data["data"]));
+  getGeoData(topo_url).then((data) => tjson.addData(data));
+  // getGeoData(geo_url).then((data) => geojson.addData(data));
   getGeoData(sites_url).then((data) => geojson.addData(data));
 </script>
 {% endblock %}

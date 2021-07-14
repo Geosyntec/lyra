@@ -25,7 +25,7 @@ wait_seconds = 2
     before=before_log(logger, logging.INFO),
     after=after_log(logger, logging.WARN),
 )
-def init_schemas(engine):
+def init_schemas(engine): # pragma: no cover
     try:
         init_all(engine)
     except Exception as e:
@@ -33,7 +33,7 @@ def init_schemas(engine):
         raise e
 
 
-def startup_mnwd_drooltool_metrics_database(engine):
+def startup_mnwd_drooltool_metrics_database(engine): # pragma: no cover
     reconnect_engine(engine)
 
     tables = engine.table_names()
@@ -71,7 +71,7 @@ def startup_mnwd_drooltool_metrics_database(engine):
     before=before_log(logger, logging.INFO),
     after=after_log(logger, logging.WARN),
 )
-def get_redis_connection():  # TODO
+def get_redis_connection():  # pragma: no cover
     try:
         assert redis_cache.ping()
     except Exception as e:
@@ -85,7 +85,7 @@ def get_redis_connection():  # TODO
     before=before_log(logger, logging.INFO),
     after=after_log(logger, logging.WARN),
 )
-def get_background_worker_connection():
+def get_background_worker_connection():# pragma: no cover
     try:
         bg.background_ping.apply_async().get(timeout=0.2)
     except Exception as e:
@@ -94,8 +94,10 @@ def get_background_worker_connection():
 
 
 def prime_cache():  # pragma: no cover
+
+    # bg.background_rsb_json_response.apply_async()
+    # bg.background_rsb_data_response.apply_async()
+    # bg.background_dt_metrics_response.apply_async()
+    # bg.background_rsb_upstream_trace_response.apply_async(kwargs=dict(catchidn=0))
+
     return
-    bg.background_rsb_json_response.apply_async()
-    bg.background_rsb_data_response.apply_async()
-    bg.background_dt_metrics_response.apply_async()
-    bg.background_rsb_upstream_trace_response.apply_async(kwargs=dict(catchidn=0))

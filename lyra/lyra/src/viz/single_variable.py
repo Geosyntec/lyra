@@ -1,3 +1,4 @@
+import datetime
 from typing import Any, Dict, List, Optional, Union
 
 import altair as alt
@@ -32,16 +33,11 @@ def make_source(
     **kwargs: Any,
 ) -> pandas.DataFrame:
 
-    if start_date is None:
-        start_date = "2010-01-01"
-    if end_date is None:
-        end_date = "2020-01-01"
-
     n = len(sites)
 
     intervals = expand_list(intervals, n, "month")
     agg_methods = expand_list(agg_methods, n, "mean")
-    trace_upstreams = expand_list(trace_upstreams, n, False)
+    trace_upstreams = expand_list(trace_upstreams, n, True)
 
     ts = []
 
@@ -55,7 +51,7 @@ def make_source(
             start_date=start_date,
             end_date=end_date,
             interval=interval,
-            agg_method=agg_method,
+            aggregation_method=agg_method,
             trace_upstream=trace_upstream,
         )
 
@@ -67,7 +63,7 @@ def make_source(
         _var_name = t.variable_info["name"]
         _var_units = t.variable_info["units"]
         _us = "Upstream from" if trace_upstream and is_dt_metric else "from"
-        _method = agg_method.title() if agg_method else ""
+        _method = t.aggregation_method.title() if t.aggregation_method else ""
         _interval = t.interval
 
         label = f"{_method} {_var_name} ({_var_units}/{_interval}) {_us} {_site}"

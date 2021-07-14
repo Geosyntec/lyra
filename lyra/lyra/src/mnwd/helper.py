@@ -12,8 +12,10 @@ from sqlalchemy.engine import Engine
 
 from lyra.connections import azure_fs, database, ftp
 from lyra.connections.schemas import drop_all_records
+from lyra.core.errors import SQLQueryError
 from lyra.core.utils import to_categorical_lookup
 from lyra.src.mnwd.dt_metrics import dt_metrics
+from lyra.src.mnwd.spatial import rsb_spatial
 from lyra.src.rsb.graph import rsb_upstream_trace
 
 logger = logging.getLogger(__name__)
@@ -23,7 +25,6 @@ def _dt_metrics_slim_tidy(
     df: pandas.DataFrame, fields: Optional[List[str]] = None
 ) -> pandas.DataFrame:
 
-    # df = pandas.read_csv(file, index_col=0).drop(columns=["date"])
     ix = ["CatchIDN", "Year", "Month"]
     if fields is None:
         fields = [c for c in df.columns if c not in ix]
@@ -104,6 +105,16 @@ def fetch_and_refresh_oc_rsb_geojson_file(
         file_4326, "swn/mnwd/drooltool/spatial/rsb_geo_4326_latest.json", share=share
     )
     logger.info(f"{__file__} rsb_geo_4326_latest")
+
+    topojson_file = io.BytesIO()
+    topojson_file.write(rsb_spatial())
+
+    azure_fs.put_file_object(
+        topojson_file,
+        "swn/mnwd/drooltool/spatial/rsb_topo_4326_latest.json",
+        share=share,
+    )
+    logger.info(f"{__file__} rsb_topo_4326_latest")
 
     # save a slim version for graph traversal and attribute fetching/filtering.
     file_data = io.BytesIO()
@@ -200,8 +211,8 @@ def set_drooltool_database_with_file(
 def get_timeseries_from_dt_metrics(
     variable: str,
     site: str,
-    start_date: str = None,
-    end_date: str = None,
+    start_date: str,
+    end_date: str,
     agg_method: str = "sum",
     trace_upstream: bool = False,
     engine: Optional[Engine] = None,
@@ -218,32 +229,44 @@ def get_timeseries_from_dt_metrics(
     else:
         groupby = ["variable", "year", "month"]
 
-    result_json = dt_metrics(
-        catchidns=catchidns,
-        variables=[variable],
-        groupby=groupby,
-        agg=agg_method,
-        engine=engine,
-    )
+    try:
 
-    df = pandas.read_json(result_json.decode())
+        result_json = dt_metrics(
+            catchidns=catchidns,
+            variables=[variable],
+            groupby=groupby,
+            agg=agg_method,
+            engine=engine,
+        )
 
-    if interval == "year":
+        df = pandas.read_json(result_json.decode())
 
-        df = df.assign(
-            date=lambda df: pandas.to_datetime(df["year"].astype(str), format="%Y")
-        ).set_index("date")["value"]
+        if interval == "year":
 
-    else:
-        df = df.assign(
-            date=lambda df: pandas.to_datetime(
-                df["year"].astype(str) + df["month"].astype(str), format="%Y%m"
-            )
-        ).set_index("date")["value"]
+            df = df.assign(
+                date=lambda df: pandas.to_datetime(df["year"].astype(str), format="%Y")
+            ).set_index("date")["value"]
 
-    if start_date is not None:
-        df = df.loc[start_date:]  # type: ignore
-    if end_date is not None:
-        df = df.loc[:end_date]  # type: ignore
+        else:
+            df = df.assign(
+                date=lambda df: pandas.to_datetime(
+                    df["year"].astype(str) + df["month"].astype(str), format="%Y%m"
+                )
+            ).set_index("date")["value"]
 
-    return df
+        if start_date is not None:
+            df = df.loc[start_date:]  # type: ignore
+        if end_date is not None:
+            df = df.loc[:end_date]  # type: ignore
+
+    except SQLQueryError:  # this is raised when the query returned is empty.
+        freq = "MS"
+        if interval == "year":
+            freq = "YS"
+        index = pandas.date_range(
+            name="date", start=start_date, end=end_date, freq=freq
+        )
+
+        df = pandas.Series(0, index=index, name="value")
+
+    return df.to_frame()
