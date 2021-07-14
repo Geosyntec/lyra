@@ -25,7 +25,7 @@ wait_seconds = 2
     before=before_log(logger, logging.INFO),
     after=after_log(logger, logging.WARN),
 )
-def init_schemas(engine): # pragma: no cover
+def init_schemas(engine):  # pragma: no cover
     try:
         init_all(engine)
     except Exception as e:
@@ -33,7 +33,7 @@ def init_schemas(engine): # pragma: no cover
         raise e
 
 
-def startup_mnwd_drooltool_metrics_database(engine): # pragma: no cover
+def startup_mnwd_drooltool_metrics_database(engine):  # pragma: no cover
     reconnect_engine(engine)
 
     tables = engine.table_names()
@@ -85,7 +85,7 @@ def get_redis_connection():  # pragma: no cover
     before=before_log(logger, logging.INFO),
     after=after_log(logger, logging.WARN),
 )
-def get_background_worker_connection():# pragma: no cover
+def get_background_worker_connection():  # pragma: no cover
     try:
         bg.background_ping.apply_async().get(timeout=0.2)
     except Exception as e:
