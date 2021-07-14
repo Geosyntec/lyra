@@ -7,7 +7,6 @@ import geopandas
 import numpy
 import orjson
 import pandas
-from azure.storage.fileshare import ShareClient
 from sqlalchemy.engine import Engine
 
 from lyra.connections import azure_fs, database, ftp
@@ -45,7 +44,7 @@ def get_MNWD_file_obj(slug: str) -> IO[bytes]:
 
 def fetch_and_refresh_drooltool_metrics_file(
     file: Optional[Union[str, Path, IO[bytes]]] = None,
-    share: Optional[ShareClient] = None,
+    share: Optional[azure_fs.ShareClient] = None,
 ) -> bool:
     if file is None:
         file_obj = get_MNWD_file_obj("drooltool")
@@ -72,7 +71,7 @@ def fetch_and_refresh_drooltool_metrics_file(
 
 def fetch_and_refresh_oc_rsb_geojson_file(
     file: Optional[Union[str, Path, IO[bytes]]] = None,
-    share: Optional[ShareClient] = None,
+    share: Optional[azure_fs.ShareClient] = None,
 ) -> bool:
     if file is None:
         file_obj = get_MNWD_file_obj("rsb_geo")
@@ -138,7 +137,7 @@ def set_drooltool_database_with_file(
     engine: Engine,
     file: Optional[Union[str, Path, IO[bytes]]] = None,
     fields: Optional[List[str]] = None,
-    share: Optional[ShareClient] = None,
+    share: Optional[azure_fs.ShareClient] = None,
     chunksize: Optional[int] = 20000,
 ) -> bool:
 
