@@ -5,8 +5,8 @@ import networkx
 import orjson
 import pandas
 
-from lyra.core.cache import cache_decorator
 from lyra.core import utils
+from lyra.core.cache import cache_decorator
 from lyra.src.network.algorithms import trace_downstream, trace_upstream
 from lyra.src.network.utils import graph_from_df
 

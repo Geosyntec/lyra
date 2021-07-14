@@ -1,5 +1,5 @@
 from textwrap import dedent
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple
 
 import orjson
 import pandas
@@ -113,7 +113,12 @@ def _fetch_dt_metrics_records(
 
     if df.empty:
         data = dict(
-            catchidn=user_catch, variable=user_var, year=user_year, month=user_month
+            catchidn=user_catch,
+            variable=user_var,
+            year=user_year,
+            month=user_month,
+            qry=qry,
+            con=conn,
         )
         raise SQLQueryError("Error: Bad Query Filters", data)
 
@@ -121,6 +126,7 @@ def _fetch_dt_metrics_records(
         df.merge(cat, on="variable", how="left")
         .assign(variable=lambda df: df["variable_name"])
         .drop(columns=["variable_name"])
+        # .rename(columns={"variable_name": "variable"})
         .to_dict(orient="records")
     )
 

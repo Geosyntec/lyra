@@ -1,6 +1,5 @@
 import numpy
 import pandas
-import pydantic
 import pytest
 
 from lyra.src.timeseries import Timeseries
@@ -11,18 +10,14 @@ def mock_timeseries(periods, freq):
     return pandas.Series(
         data=numpy.random.random(periods) * 10,
         index=pandas.date_range(start="2010-01-01", periods=periods, freq=freq,),
-    )
+        name="value",
+    ).to_frame()
 
 
 @pytest.fixture
 def offline_timeseries(monkeypatch):
     count = 5
-    monkeypatch.setattr(
-        Timeseries, "_init_hydstra", lambda x: mock_timeseries(count, "D")
-    )
-    monkeypatch.setattr(
-        Timeseries, "_init_dt_metrics", lambda x: mock_timeseries(count, "MS")
-    )
+    monkeypatch.setattr(Timeseries, "timeseries", mock_timeseries(count, "MS"))
 
 
 @pytest.mark.parametrize("sites", [["test"], ["test1", "test2"]])
@@ -52,7 +47,7 @@ def test_hydstra_integration_make_source(variable):
 
 
 @pytest.mark.integration
-@pytest.mark.parametrize("sites", [["4"], ["4", "8"]])
+@pytest.mark.parametrize("sites", [["ALISO_STP"], ["ALISO_STP", "ALISO_JERONIMO"]])
 @pytest.mark.parametrize(
     "trace_upstreams", [[False], [False, True], [True], [True, True]]
 )

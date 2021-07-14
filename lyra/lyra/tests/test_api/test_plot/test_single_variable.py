@@ -6,12 +6,12 @@ import pytest
     "route, exp_spec_keys",
     [
         (
-            "/api/plot/single_variable?f=json&variable=urban_drool&start_date=2015-01-01&end_date=2015-04-01&sites=4",
-            ["$schema", "layer"],
+            "/api/plot/single_variable?f=json&variable=urban_drool&start_date=2015-01-01&end_date=2015-04-01&sites=ALISO_STP",
+            ["$schema", "data"],
         ),
         (
-            "/api/plot/single_variable?f=json&variable=urban_drool&start_date=2015-01-01&end_date=2015-04-01&sites=4&sites=8",
-            ["$schema", "layer"],
+            "/api/plot/single_variable?f=json&variable=urban_drool&start_date=2015-01-01&end_date=2015-04-01&sites=ALISO_JERONIMO&sites=ALISO_STP",
+            ["$schema", "data"],
         ),
     ],
 )
@@ -31,12 +31,12 @@ def test_single_variable_spec_integration(client, route, exp_spec_keys):
     "route, exp_spec_keys",
     [
         (
-            "/api/plot/single_variable?f=json&variable=urban_drool&start_date=2015-01-01&end_date=2015-04-01&sites=4",
-            ["$schema", "layer"],
+            "/api/plot/single_variable?f=json&variable=urban_drool&start_date=2015-01-01&end_date=2015-04-01&sites=ALISO_STP",
+            ["$schema", "data"],
         ),
         (
-            "/api/plot/single_variable?f=json&variable=urban_drool&start_date=2015-01-01&end_date=2015-04-01&sites=4&sites=8",
-            ["$schema", "layer"],
+            "/api/plot/single_variable?f=json&variable=urban_drool&start_date=2015-01-01&end_date=2015-04-01&sites=ALISO_JERONIMO&sites=ALISO_STP",
+            ["$schema", "data"],
         ),
     ],
 )
@@ -56,7 +56,7 @@ def test_single_variable_spec(client, route, exp_spec_keys):
 @pytest.mark.parametrize(
     "route",
     [
-        "/api/plot/single_variable/data?{f}&variable=urban_drool&start_date=2015-01-01&end_date=2015-04-01&sites=4",
+        "/api/plot/single_variable/data?{f}&variable=urban_drool&start_date=2015-01-01&end_date=2015-04-01&sites=ALISO_STP",
         "/api/plot/single_variable/data?{f}&variable=discharge&start_date=2015-01-01&end_date=2015-04-01&sites=ALISO_STP",
     ],
 )

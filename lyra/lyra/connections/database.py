@@ -1,9 +1,9 @@
 import logging
 from datetime import datetime
+from typing import Union
 
 import pandas
 from sqlalchemy import create_engine
-
 from sqlalchemy.engine.url import URL
 from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixed
 
@@ -33,21 +33,23 @@ def sql_server_connection_string(
     user: str,
     password: str,
     server: str,
-    port: str,
+    port: Union[str, int],
     db: str,
     driver: str = "ODBC Driver 17 for SQL Server",
     timeout: int = 15,
 ) -> str:  # pragma: no cover
 
-    return URL(
+    url = URL(
         drivername="mssql+pyodbc",
         username=user,
         password=password,
         host=server,
-        port=port,
+        port=str(port),
         database=db,
         query={"driver": driver, "connect_timeout": str(timeout),},
     )
+
+    return str(url)
 
 
 def sqlite_connection_string(filepath: str = "") -> str:  # pragma: no cover
