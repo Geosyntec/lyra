@@ -1,9 +1,9 @@
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
-from azure.storage.fileshare import ShareClient
 from sqlalchemy.engine import Engine
 
+from lyra.connections.azure_fs import ShareClient
 from lyra.connections.database import engine, reconnect_engine
 from lyra.core.cache import cache_decorator
 from lyra.core.config import config

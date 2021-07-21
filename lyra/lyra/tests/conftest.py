@@ -3,9 +3,9 @@ import importlib
 import pytest
 
 from lyra.connections import azure_fs, database, schemas
-from lyra.core import cache
+from lyra.core import cache, utils
 from lyra.src.mnwd import helper
-from lyra.tests import utils
+from lyra.tests import utils as tutils
 
 
 def pytest_configure(config):
@@ -54,25 +54,30 @@ def clearcache():
 
 
 @pytest.fixture
-def mock_rsb_geo_bytestring(monkeypatch):
-    monkeypatch.setattr(azure_fs, "get_file_as_bytestring", utils._rsb_geo_file_binary)
+def mock_rsb_geo_path(monkeypatch):
+    monkeypatch.setattr(utils, "local_path", tutils._rsb_geo_file_path)
+
+
+@pytest.fixture
+def mock_rsb_data_path(monkeypatch):
+    monkeypatch.setattr(utils, "local_path", tutils._rsb_data_file_path)
 
 
 @pytest.fixture
 def mock_get_MNWD_file_obj_metrics(monkeypatch):
-    monkeypatch.setattr(helper, "get_MNWD_file_obj", utils._rsb_metrics_file)
+    monkeypatch.setattr(helper, "get_MNWD_file_obj", tutils._rsb_metrics_file)
 
 
 @pytest.fixture
 def mock_get_MNWD_file_obj_geo(monkeypatch):
-    monkeypatch.setattr(helper, "get_MNWD_file_obj", utils._rsb_geo_file)
+    monkeypatch.setattr(helper, "get_MNWD_file_obj", tutils._rsb_geo_file)
 
 
 @pytest.fixture()
 def mock_azure_get_dt_metrics_file_object(monkeypatch):
-    monkeypatch.setattr(azure_fs, "get_file_object", utils._dt_metrics_file)
+    monkeypatch.setattr(azure_fs, "get_file_object", tutils._dt_metrics_file)
 
 
 @pytest.fixture(autouse=True)
 def mock_azure_put_file_object(monkeypatch):
-    monkeypatch.setattr(azure_fs, "put_file_object", utils._azure_put_file_object)
+    monkeypatch.setattr(azure_fs, "put_file_object", tutils._azure_put_file_object)

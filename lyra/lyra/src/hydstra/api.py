@@ -1,3 +1,4 @@
+import asyncio
 from typing import Any, Dict, List, Optional, Union
 
 from lyra.core import async_requests
@@ -9,7 +10,19 @@ async def get_site_list():
     site_list = {
         "function": "get_site_list",
         "version": 1,
-        "params": {"site_list": "TSFILES(DSOURCES(tscARCHIVE))"},
+        "params": {"site_list": "TABLE(SITE)"},
+    }
+
+    return await async_requests.send_request(
+        settings.HYDSTRA_BASE_URL, payload=site_list
+    )
+
+
+async def get_swn_site_list() -> Dict[str, Any]:
+    site_list = {
+        "function": "get_site_list",
+        "version": 1,
+        "params": {"site_list": "GROUP(SITE_TYPE,SWN_ALISO)"},
     }
 
     return await async_requests.send_request(
@@ -87,7 +100,7 @@ async def get_site_geojson(
 
     if site_list is None:
         site_list_response = await get_site_list()
-        site_list = site_list_response["_return"]["sites"]
+        site_list = site_list_response["return"]["sites"]
 
     if field_list is None:
         field_list = [
@@ -171,7 +184,7 @@ async def get_datasources(
 ) -> Dict[str, Any]:
     if site_list is None:
         site_list_response = await get_site_list()
-        site_list = site_list_response["_return"]["sites"]
+        site_list = site_list_response["return"]["sites"]
 
     get_datasources_by_site: Dict = {
         "function": "get_datasources_by_site",
@@ -189,13 +202,13 @@ async def get_datasources(
 
 async def get_variables(
     site_list: Optional[List[str]] = None,
-    datasource: str = "A",
+    datasource: str = "PUBLISH",
     var_filter: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
 
     if site_list is None:
         site_list_response = await get_site_list()
-        site_list = site_list_response["_return"]["sites"]
+        site_list = site_list_response["return"]["sites"]
 
     get_variable_list = {
         "function": "get_variable_list",
@@ -213,7 +226,7 @@ async def get_variables(
 
 
 async def get_site_variables(
-    site: str, variable: Optional[str] = None, datasource: str = "A",
+    site: str, variable: Optional[str] = None, datasource: str = "PUBLISH",
 ) -> Dict[str, Any]:
 
     get_variable_list = {

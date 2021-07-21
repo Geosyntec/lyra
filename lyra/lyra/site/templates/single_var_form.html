@@ -1,7 +1,9 @@
 <form action="/single_variable" id="ts-form" method="get" enctype="text/plain">
     
     <div >
-        <select id="variable" name="variable"></select>
+        <select id="variable_opts"></select>
+        <input id="variable" name="variable"></input>
+
         <label for="variable">Variable</label>
     </div>   
     <div >
@@ -26,8 +28,10 @@
         <div>
             <hr>
             <div>
+            {# 
             {% if site_vars %}
-                <select id="sites" name="sites" onchange="setVariable()">
+            #}
+                <select id="site_list" onchange="setVariable()">
                     {% for site in site_vars %}
                         {% if site == "ELTORO" %}
                             <option selected value={{ site }}>{{ site }}</option>
@@ -37,9 +41,9 @@
                     }
                     {% endfor %}
                 </select>
-            {% else  %}
+            {# {% else  %} #}
                 <input type="text" name ="sites" id="sites" value='ELTORO'>
-            {% endif %}
+            {# {% endif %} #}
                 <label for="sites">Site</label>
             </div>
             <div >
@@ -60,6 +64,13 @@
                   <option value="year">Yearly</option>
                 </select>
                 <label for="intervals">Interval</label>
+            </div>
+            <div >
+                <select id="trace_upstreams" name="trace_upstreams">
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+                <label for="trace_upstreams">Trace Upstream</label>
             </div>
         </div>
         

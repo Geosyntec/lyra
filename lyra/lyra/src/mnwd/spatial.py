@@ -1,4 +1,3 @@
-from io import StringIO
 from typing import Any, List, Optional, Tuple
 
 import geopandas
@@ -6,7 +5,7 @@ import orjson
 import pandas
 import topojson
 
-from lyra.connections import azure_fs
+from lyra.core import utils
 from lyra.core.cache import cache_decorator
 
 
@@ -35,13 +34,11 @@ def _rsb_data_bytestring(
     watersheds: Optional[List[str]] = None, catchidns: Optional[List[str]] = None,
 ) -> bytes:
 
-    data = azure_fs.get_file_as_bytestring(
-        "mnwd/drooltool/spatial/rsb_geo_data_latest.csv"
+    data = utils.local_path(
+        "data/mount/swn/mnwd/drooltool/spatial/rsb_geo_data_latest.csv"
     )
 
-    df = pandas.read_csv(StringIO(data.decode())).pipe(
-        _filter_rsb_df, watersheds, catchidns
-    )
+    df = pandas.read_csv(data).pipe(_filter_rsb_df, watersheds, catchidns)
 
     return orjson.dumps(df.to_dict(orient="records"))
 
@@ -56,14 +53,15 @@ def _rsb_geojson_bytestring(
     watersheds: Optional[List[str]] = None,
     catchidns: Optional[List[str]] = None,
 ) -> bytes:
-    data: bytes = azure_fs.get_file_as_bytestring(
-        "mnwd/drooltool/spatial/rsb_geo_4326_latest.json"
+
+    data = utils.local_path(
+        "data/mount/swn/mnwd/drooltool/spatial/rsb_geo_4326_latest.json"
     )
 
     if not any([bbox, watersheds, catchidns]):
-        return data
+        return data.read_bytes()
 
-    gdf = geopandas.read_file(data.decode(), bbox=bbox).pipe(
+    gdf = geopandas.read_file(data, bbox=bbox).pipe(
         _filter_rsb_df, watersheds, catchidns
     )
 

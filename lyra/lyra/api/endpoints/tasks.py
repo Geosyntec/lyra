@@ -10,9 +10,7 @@ from lyra.models.response_models import JSONAPIResponse
 router = APIRouter(default_response_class=ORJSONResponse)
 
 
-@router.get(
-    "/{task_id}", tags=["tasks"], response_model=JSONAPIResponse,
-)
+@router.get("/{task_id}", response_model=JSONAPIResponse)
 async def get_task(
     task_id: str, kwargs: dict = Depends(run_task_kwargs)
 ) -> JSONAPIResponse:

@@ -15,9 +15,12 @@ do
     esac
 done
 
-echo "building tagged release: $tag"
-bash scripts/build_prod.sh -t "$tag"
-docker-compose -f docker-stack${tag}.yml push
+if [ -z "$tag" ]
+then 
+    echo "building tagged release: $tag"
+    bash scripts/build_prod.sh -t "$tag"
+    docker-compose -f docker-stack${tag}.yml push
+fi
 
 echo "building UNtagged release (latest)"
 bash scripts/build_prod.sh

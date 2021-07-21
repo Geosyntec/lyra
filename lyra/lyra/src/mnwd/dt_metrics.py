@@ -1,5 +1,5 @@
 from textwrap import dedent
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple
 
 import orjson
 import pandas
@@ -19,6 +19,7 @@ def _fetch_categories_df(engine):
     """
     )
 
+    database.reconnect_engine(engine)
     with engine.begin() as conn:
         cat = pandas.read_sql(qry, con=conn,)
 
@@ -104,6 +105,7 @@ def _fetch_dt_metrics_records(
     cat_json = _fetch_categories_as_json(engine)
     cat = pandas.read_json(cat_json, orient="index").set_index("id")
 
+    database.reconnect_engine(engine)
     with engine.begin() as conn:
         df = pandas.read_sql(
             qry, params=(*user_catch, *user_var, *user_year, *user_month), con=conn,
@@ -111,7 +113,12 @@ def _fetch_dt_metrics_records(
 
     if df.empty:
         data = dict(
-            catchidn=user_catch, variable=user_var, year=user_year, month=user_month
+            catchidn=user_catch,
+            variable=user_var,
+            year=user_year,
+            month=user_month,
+            qry=qry,
+            con=conn,
         )
         raise SQLQueryError("Error: Bad Query Filters", data)
 
@@ -119,6 +126,7 @@ def _fetch_dt_metrics_records(
         df.merge(cat, on="variable", how="left")
         .assign(variable=lambda df: df["variable_name"])
         .drop(columns=["variable_name"])
+        # .rename(columns={"variable_name": "variable"})
         .to_dict(orient="records")
     )
 

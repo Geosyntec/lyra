@@ -1,5 +1,8 @@
 {
   "site_variable_mapping": {
+    "ADKINS_SPUR": {
+      "Rainfall-11.50": "11.50"
+    },
     "AGUACHINON_TORO": {
       "Rainfall-11.50": "11.50",
       "Discharge-262.00": "262.00"
@@ -10,7 +13,7 @@
     },
     "ALISO_JERONIMO": {
       "Rainfall-11.00": "11.00",
-      "Discharge-262.01": "262.01"
+      "Discharge-262.00": "262.00"
     },
     "ALISO_STP": {
       "Discharge-262.00": "262.00"
@@ -18,6 +21,9 @@
     "ANAHEIM_BARBER": {
       "Rainfall-11.00": "11.00",
       "Discharge-262.00": "262.00"
+    },
+    "ANAHEIM_HILLS": {
+      "Rainfall-11.50": "11.50"
     },
     "ANGELUS": {
       "Rainfall-11.50": "11.50"
@@ -152,11 +158,11 @@
     "HOLY_JIM_CYN": {
       "Rainfall-11.50": "11.50"
     },
-    "HORNO_OUT": {
-      "Discharge-262.00": "262.00"
-    },
     "HUNTINGTON": {
       "Rainfall-11.00": "11.00"
+    },
+    "HUNTINGTON_DIVERSION": {
+      "Rainfall-11.50": "11.50"
     },
     "IRVINELAKE": {
       "Rainfall-11.50": "11.50"
@@ -164,11 +170,47 @@
     "IRVINE_JEFFREY": {
       "Rainfall-11.00": "11.00"
     },
-    "J01P27": {
+    "J01_9273_1": {
+      "Discharge-263.00": "263.00"
+    },
+    "J01_9992_1": {
       "Discharge-262.00": "262.00"
+    },
+    "K01_12126_1": {
+      "Discharge-263.00": "263.00"
+    },
+    "K01_12177_1": {
+      "Discharge-263.00": "263.00"
     },
     "KATELLAYARD": {
       "Rainfall-11.00": "11.00"
+    },
+    "L01_724_4": {
+      "Discharge-263.00": "263.00"
+    },
+    "L01_728_5": {
+      "Discharge-263.00": "263.00"
+    },
+    "L01_728_7": {
+      "Discharge-263.00": "263.00"
+    },
+    "L01_766_2": {
+      "Discharge-263.00": "263.00"
+    },
+    "L02_166_2": {
+      "Discharge-263.00": "263.00"
+    },
+    "L03_073_3": {
+      "Discharge-263.00": "263.00"
+    },
+    "L03_074_1": {
+      "Discharge-263.00": "263.00"
+    },
+    "L03_214_2": {
+      "Discharge-263.00": "263.00"
+    },
+    "L03_316_3": {
+      "Discharge-263.00": "263.00"
     },
     "LACOUAQUE": {
       "Rainfall-11.00": "11.00"
@@ -212,6 +254,12 @@
     "LOWERSILVERADO": {
       "Rainfall-11.00": "11.00"
     },
+    "M01_050_4": {
+      "Discharge-263.00": "263.00"
+    },
+    "M01_088_1": {
+      "Discharge-263.00": "263.00"
+    },
     "MARSHBURN": {
       "Rainfall-11.50": "11.50",
       "Discharge-262.00": "262.00"
@@ -241,6 +289,9 @@
       "Rainfall-11.00": "11.00",
       "Discharge-262.01": "262.01"
     },
+    "OC_ALTON": {
+      "Discharge-263.00": "263.00"
+    },
     "ORANGE": {
       "Rainfall-11.01": "11.01"
     },
@@ -256,10 +307,13 @@
     },
     "PETERS": {
       "Rainfall-11.00": "11.00",
-      "Discharge-262.01": "262.01"
+      "Discharge-262.00": "262.00"
     },
     "PICO": {
       "Rainfall-11.00": "11.00"
+    },
+    "POCHE_BEACH": {
+      "Rainfall-11.50": "11.50"
     },
     "PORTOLA": {
       "Rainfall-11.50": "11.50"
@@ -311,6 +365,9 @@
       "Rainfall-11.00": "11.00",
       "Discharge-262.00": "262.00"
     },
+    "SANTAANA_DELHI_NEW": {
+      "Discharge-262.00": "262.00"
+    },
     "SANTAANA_ENG": {
       "Rainfall-11.00": "11.00"
     },
@@ -341,6 +398,9 @@
     "SEGUNDADESHECA": {
       "Rainfall-11.00": "11.00",
       "Discharge-262.01": "262.01"
+    },
+    "SILVERADOMOTORWAY": {
+      "Rainfall-11.50": "11.50"
     },
     "SILVERADO_RS": {
       "Rainfall-11.02": "11.02"
@@ -395,5 +455,5 @@
       "Rainfall-11.00": "11.00"
     }
   },
-  "ts": "2020-09-25T19:28:09.681535"
+  "ts": "2021-05-27T19:33:30.116583"
 }

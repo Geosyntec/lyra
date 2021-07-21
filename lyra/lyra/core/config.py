@@ -1,18 +1,17 @@
 import importlib.resources as pkg_resources
-import json
 import secrets
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 import yaml
 from pydantic import AnyHttpUrl, BaseSettings, validator
-from typing_extensions import Literal
 
-from lyra.core.io import load_cfg
+import lyra
 
 
 class Settings(BaseSettings):
     # API_V1_STR: str = "/api/v1"
+    VERSION: str = lyra.__version__
     ADMIN_USERNAME: str = ""
     SECRET_KEY: str = secrets.token_urlsafe(32)
     # 60 minutes * 24 hours * 8 days = 8 days
@@ -27,8 +26,6 @@ class Settings(BaseSettings):
     AZURE_DATABASE_PORT: int = 9999
     AZURE_DATABASE_CONNECTION_TIMEOUT: int = 5
     AZURE_DATABASE_NAME: str = ""
-    AZURE_DATABASE_USERNAME: str = ""
-    AZURE_DATABASE_PASSWORD: str = ""
     AZURE_DATABASE_READONLY_USERNAME: str = ""
     AZURE_DATABASE_READONLY_PASSWORD: str = ""
     AZURE_DATABASE_WRITEONLY_USERNAME: str = ""
@@ -87,15 +84,15 @@ settings = Settings()
 
 
 def config():
-    with pkg_resources.path("lyra.core", "lyra_config.yml") as p:
-        # cfg = load_cfg(p)
-        cfg = yaml.safe_load(p.read_text())
 
-    preferred_variables = json.loads(
-        pkg_resources.read_text("lyra.static", "preferred_variables.json")
-    )
-    # sitelist = json.loads(sitelist_file.read_text())["sites"]
+    cfg_yml = pkg_resources.read_text("lyra.core", "lyra_config.yml")
+    cfg = yaml.safe_load(cfg_yml)
 
-    cfg["preferred_variables"] = preferred_variables
+    cfg["site_path"] = (
+        Path(lyra.__file__).parent / "data/mount/swn/hydstra"
+    ).resolve() / "swn_sites.json"
 
     return cfg
+
+
+cfg = config()

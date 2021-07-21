@@ -1,9 +1,10 @@
 import logging
 from datetime import datetime
+from typing import Union
 
 import pandas
-import sqlalchemy
 from sqlalchemy import create_engine
+from sqlalchemy.engine.url import URL
 from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixed
 
 from lyra.core.config import settings
@@ -32,12 +33,23 @@ def sql_server_connection_string(
     user: str,
     password: str,
     server: str,
-    port: str,
+    port: Union[str, int],
     db: str,
     driver: str = "ODBC Driver 17 for SQL Server",
     timeout: int = 15,
 ) -> str:  # pragma: no cover
-    return f"mssql+pyodbc://{user}:{password}@{server}:{port}/{db}?driver={driver};connect_timeout={timeout};"
+
+    url = URL(
+        drivername="mssql+pyodbc",
+        username=user,
+        password=password,
+        host=server,
+        port=str(port),
+        database=db,
+        query={"driver": driver, "connect_timeout": str(timeout),},
+    )
+
+    return str(url)
 
 
 def sqlite_connection_string(filepath: str = "") -> str:  # pragma: no cover
@@ -49,26 +61,15 @@ def get_connection_string(settings=settings):
         conn_str = sqlite_connection_string()
     else:
         conn_str = sql_server_connection_string(
-            user=settings.AZURE_DATABASE_USERNAME,
-            password=settings.AZURE_DATABASE_PASSWORD,
+            user=settings.AZURE_DATABASE_READONLY_USERNAME,
+            password=settings.AZURE_DATABASE_READONLY_PASSWORD,
             server=settings.AZURE_DATABASE_SERVER,
             port=settings.AZURE_DATABASE_PORT,
             db=settings.AZURE_DATABASE_NAME,
             driver="ODBC Driver 17 for SQL Server",
             timeout=settings.AZURE_DATABASE_CONNECTION_TIMEOUT,
         )
-        # conn_str = sqlalchemy.engine.url.URL(
-        #     drivername="mssql+pyodbc",
-        #     username=settings.AZURE_DATABASE_USERNAME,
-        #     password=settings.AZURE_DATABASE_PASSWORD,
-        #     host=settings.AZURE_DATABASE_SERVER,
-        #     port=settings.AZURE_DATABASE_PORT,
-        #     database=settings.AZURE_DATABASE_NAME,
-        #     query={
-        #         "driver": "ODBC Driver 17 for SQL Server",
-        #         "connect_timeout": settings.AZURE_DATABASE_CONNECTION_TIMEOUT,
-        #     },
-        # )
+
     return conn_str
 
 

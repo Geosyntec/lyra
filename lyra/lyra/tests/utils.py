@@ -1,11 +1,6 @@
 import importlib
 
 
-def _rsb_geo_file_binary(*args, **kwargs):
-    file = importlib.resources.read_binary("lyra.tests.data", "test_rsb_geo.json")
-    return file
-
-
 def _rsb_geo_file(*args, **kwargs):
     file = importlib.resources.open_binary("lyra.tests.data", "test_rsb_geo.json")
     setattr(file, "ftp_name", "test_rsb_geo.json")
@@ -14,6 +9,11 @@ def _rsb_geo_file(*args, **kwargs):
 
 def _rsb_geo_file_path(*args, **kwargs):
     with importlib.resources.path("lyra.tests.data", "test_rsb_geo.json") as p:
+        return p
+
+
+def _rsb_data_file_path(*args, **kwargs):
+    with importlib.resources.path("lyra.tests.data", "test_rsb_data.csv") as p:
         return p
 
 

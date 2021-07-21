@@ -1,10 +1,12 @@
+import asyncio
 import logging
-import time
 
+from lyra.connections import database
 from lyra.core.cache import flush
 from lyra.core.celery_app import celery_app
-from lyra.core.errors import SQLQueryError
+from lyra.core.config import settings
 from lyra.ops import startup
+from lyra.src.hydstra.tasks import save_site_geojson_info
 from lyra.src.mnwd.tasks import (
     dt_metrics_response,
     rsb_data_response,
@@ -17,7 +19,17 @@ from lyra.src.rsb.tasks import (
     rsb_upstream_trace_response,
 )
 
-# from lyra.tasks import build_static_references
+writer_conn_str = database.sql_server_connection_string(
+    user=settings.AZURE_DATABASE_WRITEONLY_USERNAME,
+    password=settings.AZURE_DATABASE_WRITEONLY_PASSWORD,
+    server=settings.AZURE_DATABASE_SERVER,
+    port=settings.AZURE_DATABASE_PORT,
+    db=settings.AZURE_DATABASE_NAME,
+    driver="ODBC Driver 17 for SQL Server",
+    timeout=settings.AZURE_DATABASE_CONNECTION_TIMEOUT,
+)
+
+writer_engine = database.database_engine(connection_string=writer_conn_str)
 
 
 logging.basicConfig(level=logging.INFO)
@@ -25,7 +37,7 @@ logger = logging.getLogger(__name__)
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_ping():
+def background_ping():  # pragma: no cover
     logger.info("background pinged")
     return True
 
@@ -40,19 +52,19 @@ def background_ping():
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_update_drooltool_database(update=True):
-    result = update_drooltool_database(update=update)
+def background_update_drooltool_database(update=True):  # pragma: no cover
+    result = update_drooltool_database(engine=writer_engine, update=update)
     return result
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_update_rsb_geojson():
+def background_update_rsb_geojson():  # pragma: no cover
     result = update_rsb_geojson()
     return result
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_refresh_cache():
+def background_refresh_cache():  # pragma: no cover
     flush()
     startup.prime_cache()
     result = dict(taskname="refresh_cache", succeeded="succeeded")
@@ -60,7 +72,7 @@ def background_refresh_cache():
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_rsb_json_response(**kwargs):
+def background_rsb_json_response(**kwargs):  # pragma: no cover
     result = rsb_spatial_response(**kwargs)
     if isinstance(result, bytes):
         return result.decode()
@@ -68,7 +80,7 @@ def background_rsb_json_response(**kwargs):
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_rsb_data_response(**kwargs):
+def background_rsb_data_response(**kwargs):  # pragma: no cover
     result = rsb_data_response(**kwargs)
     if isinstance(result, bytes):
         return result.decode()
@@ -76,7 +88,7 @@ def background_rsb_data_response(**kwargs):
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_dt_metrics_response(**kwargs):
+def background_dt_metrics_response(**kwargs):  # pragma: no cover
     # try:
     result = dt_metrics_response(**kwargs)
     # except SQLQueryError as e:
@@ -87,7 +99,7 @@ def background_dt_metrics_response(**kwargs):
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_rsb_upstream_trace_response(**kwargs):
+def background_rsb_upstream_trace_response(**kwargs):  # pragma: no cover
     result = rsb_upstream_trace_response(**kwargs)
     if isinstance(result, bytes):
         return result.decode()
@@ -95,11 +107,19 @@ def background_rsb_upstream_trace_response(**kwargs):
 
 
 @celery_app.task(acks_late=True, track_started=True)
-def background_rsb_downstream_trace_response(**kwargs):
+def background_rsb_downstream_trace_response(**kwargs):  # pragma: no cover
     result = rsb_downstream_trace_response(**kwargs)
     if isinstance(result, bytes):
         return result.decode()
     return result
+
+
+@celery_app.task(acks_late=True, track_started=True)
+def background_update_hydstra_site_info(**kwargs):  # pragma: no cover
+
+    asyncio.run(save_site_geojson_info())
+
+    return {"status": "success"}
 
 
 # # -------------------- Nothing -----------------

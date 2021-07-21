@@ -5,4 +5,5 @@ set -x
 
 black . --check
 isort . --check --diff
-mypy lyra/lyra
+mkdir -p .mypy_cache
+mypy lyra/lyra --install-types --non-interactive

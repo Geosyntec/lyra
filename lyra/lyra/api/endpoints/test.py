@@ -1,0 +1,63 @@
+from typing import Dict, List, Optional
+
+from fastapi import APIRouter, Body
+from fastapi.responses import ORJSONResponse
+from pydantic import BaseModel
+
+from lyra.api.requests import LyraRoute
+
+router = APIRouter(route_class=LyraRoute, default_response_class=ORJSONResponse)
+
+
+class Item(BaseModel):
+    name: str
+    description: Optional[str] = None
+    price: float
+    tax: Optional[float] = None
+
+
+class Items(BaseModel):
+    items: List[Item]
+
+
+@router.post("/items/{item_id}", include_in_schema=False)
+async def update_item(
+    item_id: int,
+    items: Items = Body(
+        ...,
+        # embed=True,
+        # example={
+        #     "name": "Foo",
+        #     "description": "A very nice Item",
+        #     "price": 35.4,
+        #     "tax": 3.2,
+        # },
+        examples={
+            "normal": {
+                "summary": "A normal example",
+                "description": "A **normal** item works correctly.",
+                "value": {
+                    "items": [
+                        {
+                            "name": "Foo",
+                            "description": "A very nice Item",
+                            "price": 35.4,
+                            "tax": 3.2,
+                        }
+                    ]
+                },
+            },
+            "converted": {
+                "summary": "An example with converted data",
+                "description": "FastAPI can convert price `strings` to actual `numbers` automatically",
+                "value": {"name": "Bar", "price": "35.4",},
+            },
+            "invalid": {
+                "summary": "Invalid data is rejected with an error",
+                "value": {"name": "Baz", "price": "thirty five point four",},
+            },
+        },
+    ),
+) -> Dict:
+    results = {"item_id": item_id, **items.dict()}
+    return results

@@ -3,6 +3,7 @@ import logging
 import pandas
 
 # from lyra.core.utils import infer_freq
+from lyra.core.config import cfg
 from lyra.src.hydstra import api
 
 logger = logging.getLogger(__name__)
@@ -17,7 +18,7 @@ def to_hydstra_datetime(date: str, time: str = "") -> str:
 def hydstra_trace_to_series(trace):
     """trace is a list of dicts from hydstra
 
-    trace = trace_json['_return']['traces'][0]['trace']
+    trace = trace_json['return']['traces'][0]['trace']
 
     trace[0] = {'v': float, 't': "%Y%m%d%H%M%S"}
 
@@ -28,9 +29,16 @@ def hydstra_trace_to_series(trace):
         .assign(value=lambda df: df.v.astype(float))
         .set_index("date")
     )
+
+    hyd_ts = df
+    freq = pandas.infer_freq(hyd_ts.index)
+    quality = cfg["hydstra"]["max_quality_flag"]
+    hyd_ts = hyd_ts.query("q<=@quality")[
+        ["value"]
+    ]  # .resample(freq).interpolate('cubic')
     # freq = infer_freq(df.index)
     # df = df.asfreq(freq)
-    return df["value"]
+    return hyd_ts
 
 
 async def get_site_variable_as_trace(
@@ -74,9 +82,9 @@ async def get_site_variable_as_trace(
         datasource=datasource,
     )
 
-    if len(trace_json.get("_return", {}).get("traces", [])):
+    if len(trace_json.get("return", {}).get("traces", [])):
 
-        return trace_json["_return"]["traces"][0]
+        return trace_json["return"]["traces"][0]
     else:
         logger.error(trace_json)
         return trace_json

@@ -41,26 +41,9 @@ class CachedJSONResponse(JSONAPIResponse):
     ts: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
 
 
-class ResponseFormat(str, Enum):
-    json = "json"
-    geojson = "geojson"
-    topojson = "topojson"
-    html = "html"
-
-
-class SpatialResponseFormat(str, Enum):
-    geojson = "geojson"
-    topojson = "topojson"
-
-
-class DataResponseFormat(str, Enum):
-    json = "json"
-    html = "html"
-
-
 class ChartData(BaseModel):
     spec: Optional[Dict[str, Any]] = None
-    message: Optional[str] = None
+    messages: Optional[List[str]] = None
 
 
 class ChartJSONResponse(JSONAPIResponse):

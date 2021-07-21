@@ -1,5 +1,6 @@
 import asyncio
 import itertools
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
 import pandas
@@ -7,6 +8,7 @@ from celery.canvas import Signature
 from celery.result import AsyncResult
 from fastapi import Depends, Query, Request
 
+import lyra
 from lyra.core import security
 from lyra.models.response_models import (
     CeleryTaskJSONResponse,
@@ -17,10 +19,13 @@ from lyra.models.response_models import (
 
 
 async def wait_a_sec_and_see_if_we_can_return_some_data(
-    task: AsyncResult, timeout: Optional[float] = None
+    task: AsyncResult, timeout: Optional[float] = None, exp: Optional[float] = None,
 ) -> None:
     if timeout is None:
-        timeout = 0.1
+        timeout = 0.5
+
+    if exp is None:
+        exp = 1
 
     _max_timeout = 120  # seconds
     timeout = min(timeout, _max_timeout)  # prevent long timeout requests.
@@ -31,6 +36,7 @@ async def wait_a_sec_and_see_if_we_can_return_some_data(
         if task.ready():  # exit even if the task failed
             return
         else:
+            inc *= exp
             t += inc
             await asyncio.sleep(inc)
     return
@@ -148,3 +154,11 @@ def infer_freq(index):
 
 def flatten_expand_list(ls: List[str]) -> List[str]:
     return list(itertools.chain.from_iterable([s.split(",") for s in ls]))
+
+
+# def pwd():
+#     return Path(lyra.__file__).parent
+
+
+def local_path(path: str) -> Path:
+    return Path(lyra.__file__).parent / path

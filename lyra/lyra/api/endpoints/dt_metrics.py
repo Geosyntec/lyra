@@ -11,7 +11,8 @@ from lyra.core.utils import (
     run_task_kwargs,
     wait_a_sec_and_see_if_we_can_return_some_data,
 )
-from lyra.models.response_models import DataResponseFormat, JSONAPIResponse
+from lyra.models.request_models import ResponseFormat
+from lyra.models.response_models import JSONAPIResponse
 from lyra.site.style import render_in_jupyter_notebook_css_style
 
 router = APIRouter(default_response_class=ORJSONResponse)
@@ -21,7 +22,7 @@ router = APIRouter(default_response_class=ORJSONResponse)
     "/", response_model=JSONAPIResponse,
 )
 async def get_dt_metrics(
-    f: DataResponseFormat = DataResponseFormat.json,
+    f: ResponseFormat = ResponseFormat.json,
     catchidns: Optional[List[int]] = Query(
         None, description="Filter by catchidn. Default includes all catchidns"
     ),

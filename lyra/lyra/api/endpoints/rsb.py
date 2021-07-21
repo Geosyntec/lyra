@@ -11,17 +11,14 @@ from lyra.core.utils import (
     run_task_kwargs,
     wait_a_sec_and_see_if_we_can_return_some_data,
 )
-from lyra.models.response_models import (
-    DataResponseFormat,
-    JSONAPIResponse,
-    SpatialResponseFormat,
-)
+from lyra.models.request_models import ResponseFormat, SpatialResponseFormat
+from lyra.models.response_models import JSONAPIResponse
 from lyra.site.style import render_in_jupyter_notebook_css_style
 
 router = APIRouter(default_response_class=ORJSONResponse)
 
 
-@router.get("/spatial", tags=["spatial"], response_model=JSONAPIResponse)
+@router.get("/spatial", response_model=JSONAPIResponse)
 async def get_rsb_spatial(
     f: Optional[SpatialResponseFormat] = SpatialResponseFormat.topojson,
     xmin: Optional[float] = None,
@@ -72,7 +69,7 @@ async def get_rsb_downstream(
 
 @router.get("/", response_model=JSONAPIResponse)
 async def get_rsb_data(
-    f: Optional[DataResponseFormat] = DataResponseFormat.json,
+    f: Optional[ResponseFormat] = ResponseFormat.json,
     watersheds: Optional[List[str]] = Query(None),
     catchidns: Optional[List[str]] = Query(None),
     kwargs: dict = Depends(run_task_kwargs),

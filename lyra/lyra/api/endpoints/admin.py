@@ -14,11 +14,7 @@ from lyra.site.style import render_in_jupyter_notebook_css_style
 router = APIRouter(default_response_class=ORJSONResponse)
 
 
-@router.get(
-    "/tables",
-    dependencies=[Depends(security.authenticate_admin_access)],
-    response_model=ForegroundTaskJSONResponse,
-)
+@router.get("/tables", response_model=ForegroundTaskJSONResponse)
 async def get_table_names(r: Request) -> Dict:
     tables = []
     response: Dict = {}
@@ -32,11 +28,7 @@ async def get_table_names(r: Request) -> Dict:
     return response
 
 
-@router.get(
-    "/tables/{table}",
-    dependencies=[Depends(security.authenticate_admin_access)],
-    response_model=ForegroundTaskJSONResponse,
-)
+@router.get("/tables/{table}", response_model=ForegroundTaskJSONResponse)
 async def get_table_content(
     table: str, limit_to: int = 25, ascending: bool = False, f: str = "json",
 ) -> Union[Dict, HTMLResponse]:
@@ -44,6 +36,8 @@ async def get_table_content(
     response: Dict = {}
 
     try:
+        database.reconnect_engine(database.engine)
+
         sql_table = sql.table(table)
         order_by = text("id")
         if not ascending:
@@ -71,11 +65,7 @@ async def get_table_content(
     return response
 
 
-@router.get(
-    "/clear_cache",
-    dependencies=[Depends(security.authenticate_admin_access)],
-    response_model=ForegroundTaskJSONResponse,
-)
+@router.get("/clear_cache", response_model=ForegroundTaskJSONResponse)
 async def clear_cache() -> Dict:  # pragma: no cover
     cleared = False
     try:
@@ -87,11 +77,7 @@ async def clear_cache() -> Dict:  # pragma: no cover
     return {"data": {"cleared": cleared}}
 
 
-@router.get(
-    "/toggle_cache",
-    dependencies=[Depends(security.authenticate_admin_access)],
-    response_model=ForegroundTaskJSONResponse,
-)
+@router.get("/toggle_cache", response_model=ForegroundTaskJSONResponse)
 async def toggle_cache(enabled: bool = True) -> Dict:
     cache.use_cache(enabled)
 
