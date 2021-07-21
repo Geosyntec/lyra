@@ -179,7 +179,8 @@ class Timeseries(object):
         if source == "hydstra":
             if delay:
                 # need to rate limit hydstra to 1 request per second, unfortunately.
-                # this issue was reported to Hydstra support on 2021-07-12
+                # this issue was reported to Hydstra support on 2021-07-12.
+                # per communication 20201-07-19 this issue has been resolved.
                 await asyncio.sleep(delay)
 
             self.timeseries = await self._init_hydstra()
