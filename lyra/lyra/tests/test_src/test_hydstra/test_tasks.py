@@ -3,6 +3,7 @@ import pytest
 from lyra.src.hydstra import tasks
 
 
+@pytest.mark.integration
 @pytest.mark.asyncio
 async def test_hydstra_get_site_geojson_info():
 
