@@ -121,7 +121,6 @@ def make_timeseries(timeseries: List[Dict[str, Any]], **kwargs: Any,) -> List[An
     for dct in timeseries:
         t = Timeseries(**dct)
         ts.append(t)
-    print(ts)
     asyncio.run(gather_timeseries(ts))
 
     return ts
@@ -158,8 +157,6 @@ def make_plot(
 ) -> alt.TopLevelMixin:
     if method is None:
         method = "linear"
-
-    print(source.label.unique())
 
     x_label, y_label, *_ = source.columns
     source.columns = ["x", "y", "label"]

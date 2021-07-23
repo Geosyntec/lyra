@@ -163,7 +163,6 @@ def single_var_spec_query(
 }""",
     ),
 ) -> SingleVarSpec:
-    print(intervals, agg_methods, end_date)
 
     try:
         if string is not None:

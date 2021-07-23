@@ -211,7 +211,6 @@ def multi_var_schema_query(
     end_date: Optional[str] = Query(None, example="2020-01-01"),
     string: Optional[str] = Query(None, alias="json",),
 ) -> MultiVarSchema:
-    print(dict(request.query_params))
     try:
         if string is not None:
             json_parsed = orjson.loads(string)
@@ -242,8 +241,6 @@ def plot_multi_variable(
     chart_spec = None
     chart_status = None
     msg = []
-
-    # print(req.json(indent=2))
 
     try:
 
