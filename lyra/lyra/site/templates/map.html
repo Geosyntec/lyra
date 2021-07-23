@@ -92,6 +92,12 @@
       );
       feature.properties?.has_discharge ? popup_attrs.push("Discharge") : null;
       feature.properties?.has_rainfall ? popup_attrs.push("Rainfall") : null;
+      feature.properties?.has_water_level
+        ? popup_attrs.push("Water Level")
+        : null;
+      feature.properties?.has_conductivity
+        ? popup_attrs.push("Conductivity")
+        : null;
 
       let popup_content = "";
 

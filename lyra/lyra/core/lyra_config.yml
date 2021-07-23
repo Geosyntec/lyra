@@ -41,6 +41,18 @@ variables:
       - mean
       - max
       - min
+  water_level:
+    name: Water Level
+    variable: water_level
+    source: hydstra
+    units: inches
+    varfrom: ["232.37", "236.34", "232.50"]
+    varfrom_fallback: "236" # use min
+    varto: "236"
+    allowed_aggregations:
+      - mean
+      - max
+      - min
   conductivity:
     name: Conductivity
     variable: conductivity
