@@ -21,7 +21,7 @@ jobs:
 
       - name: Build & Push Images
         run: |
-          tag=m${{ github.event.inputs.tag }}
+          tag=${{ github.event.inputs.tag }}
           bash ./scripts/build_prod.sh -t $tag
           docker-compose -f docker-stack$tag.yml push
           
