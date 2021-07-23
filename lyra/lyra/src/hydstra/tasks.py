@@ -35,9 +35,13 @@ def build_swn_variables(variables, cfg):
     for dct in variables["sites"]:
         site = {}
 
-        d = process_varfroms(dct["variables"], "water_level", cfg)
-        site["water_level_info"] = d
-        site["has_water_level"] = d is not None
+        d = process_varfroms(dct["variables"], "distance_to_water", cfg)
+        site["distance_to_water_info"] = d
+        site["has_distance_to_water"] = d is not None
+
+        d = process_varfroms(dct["variables"], "raw_level", cfg)
+        site["raw_level_info"] = d
+        site["has_raw_level"] = d is not None
 
         d = process_varfroms(dct["variables"], "discharge", cfg)
         site["discharge_info"] = d
