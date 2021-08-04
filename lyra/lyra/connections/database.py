@@ -39,7 +39,7 @@ def sql_server_connection_string(
     timeout: int = 15,
 ) -> str:  # pragma: no cover
 
-    url = URL(
+    url = URL.create(
         drivername="mssql+pyodbc",
         username=user,
         password=password,
