@@ -1,4 +1,4 @@
-from typing import Dict, Optional, Union
+from typing import Dict, List, Optional, Union
 
 import orjson
 from altair.utils.data import MaxRowsError
@@ -235,7 +235,7 @@ def plot_multi_variable(
     req: MultiVarSchema = Depends(multi_var_schema_query),
     f: str = Query("json", regex="json$|html$"),
 ) -> Dict:
-    """Crate Multiple Timeseries Plots
+    """Create Multiple Timeseries Plots
     """
 
     chart_spec = None

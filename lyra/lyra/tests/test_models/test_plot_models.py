@@ -72,6 +72,13 @@ def test_single_var(good_input):
             "interval": "day",
             "aggregation_method": "tot",  # not possible for discharge but should be coerced to 'mean'
         },
+        {
+            "variable": "rainfall",  # doestn't exist at this site, so system returns info for the nearest rain gauge
+            "start_date": "2015-05-05",
+            "site": "ALISO_STP",
+            "interval": "day",
+            "aggregation_method": "tot",
+        },
     ],
 )
 def test_ts_schema(good_input):
@@ -93,13 +100,6 @@ def test_ts_schema(good_input):
             "start_date": "2015-05-05",  # doesn't start on first of month
             "site": "ALISO_STP",
             "interval": "month",
-            "aggregation_method": "tot",
-        },
-        {
-            "variable": "rainfall",  # doestn't exist at this site
-            "start_date": "2015-05-05",
-            "site": "ALISO_STP",
-            "interval": "day",
             "aggregation_method": "tot",
         },
     ],
@@ -132,6 +132,11 @@ def test_ts_schema_raises(bad_input):
             "bad_extra": "whatever",
             "timeseries": [{"site": "ALISO_STP"}, {"site": "ALISO_JERONIMO"}],
         },
+        {
+            # rainfall not available at site, so system falls back to nearest
+            "variable": "rainfall",
+            "timeseries": [{"site": "ALISO_STP"}, {"site": "ALISO_JERONIMO"}],
+        },
     ],
 )
 def test_multi_var_broadcast(good_input):
@@ -157,11 +162,6 @@ def test_multi_var_broadcast(good_input):
         },
         # variable is a required key for timeseries
         {"timeseries": [{"site": "ALISO_STP"}, {"site": "ALISO_JERONIMO"}],},
-        {
-            # rainfall not available at stp
-            "variable": "rainfall",
-            "timeseries": [{"site": "ALISO_STP"}, {"site": "ALISO_JERONIMO"}],
-        },
     ],
 )
 def test_multi_var_raises(bad_input):

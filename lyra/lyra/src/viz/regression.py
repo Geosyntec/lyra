@@ -111,8 +111,13 @@ def regression_ts_label(t: Timeseries) -> str:
     _us = "Upstream from" if t.trace_upstream and is_dt_metric else "from"
     _method = t.aggregation_method.title() if t.aggregation_method else ""
     _interval = t.interval
+    _weather_condition = (
+        f"{t.weather_condition.title()} Weather "
+        if t.weather_condition != "both"
+        else ""
+    )
 
-    return f"{_method} 1 {_interval} {_var_name} ({_var_units}) {_us} {_site}"
+    return f"{_method} 1 {_interval} {_weather_condition}{_var_name} ({_var_units}) {_us} {_site}"
 
 
 def make_timeseries(timeseries: List[Dict[str, Any]], **kwargs: Any,) -> List[Any]:
