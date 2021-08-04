@@ -2,7 +2,6 @@ import logging
 
 import pandas
 
-# from lyra.core.utils import infer_freq
 from lyra.core.config import cfg
 from lyra.src.hydstra import api
 
@@ -31,13 +30,8 @@ def hydstra_trace_to_series(trace):
     )
 
     hyd_ts = df
-    freq = pandas.infer_freq(hyd_ts.index)
     quality = cfg["hydstra"]["max_quality_flag"]
-    hyd_ts = hyd_ts.query("q<=@quality")[
-        ["value"]
-    ]  # .resample(freq).interpolate('cubic')
-    # freq = infer_freq(df.index)
-    # df = df.asfreq(freq)
+    hyd_ts = hyd_ts.query("q<=@quality")["value"]
     return hyd_ts
 
 

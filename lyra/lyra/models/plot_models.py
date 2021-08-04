@@ -368,3 +368,41 @@ class RegressionSchema(MultiVarSchema):
             ), f"inverval must be 'month' or 'year' for drool tool metrics."
 
         return values
+
+
+class DiversionScenarioSchema(BaseModel):
+    site: str
+    start_date: str
+    end_date: str
+    diversion_rate_cfs: float
+    storage_max_depth_ft: Optional[float] = 0.0
+    storage_initial_depth_ft: Optional[float] = 0.0
+    storage_area_sqft: Optional[float] = 0.0
+    infiltration_rate_inhr: Optional[float] = 0.0
+    diversion_months_active: Optional[List[int]] = None
+    diversion_days_active: Optional[List[int]] = None
+    diversion_hours_active: Optional[List[int]] = None
+    operated_weather_condition: Optional[Weather] = None
+    nearest_rainfall_station: Optional[str] = None
+
+    @validator("operated_weather_condition", pre=True, always=True)
+    def set_operated_weather_condition(cls, operated_weather_condition):
+        return operated_weather_condition or "dry"
+
+    @root_validator
+    def check_site(cls, values):
+        ts = TimeseriesSchema(
+            site=values.get("site"),
+            start_date=values.get("start_date"),
+            end_date=values.get("end_date"),
+            nearest_rainfall_station=values.get("nearest_rainfall_station"),
+            weather_condition="both",  # we are initializing discharge timeseries here, not the diversion behavior
+            variable="discharge",
+            aggregation_method="mean",
+            interval="hour",
+        )
+
+        values["ts"] = ts.dict()
+
+        return values
+

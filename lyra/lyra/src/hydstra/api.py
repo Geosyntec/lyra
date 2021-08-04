@@ -148,7 +148,6 @@ async def get_trace(
         "params": {
             "site_list": ",".join(site_list),
             "start_time": start_time,
-            # "var_list": ",".join(var_list),
             "interval": getattr(hydstra_models.Interval, interval),
             "datasource": datasource,
             "end_time": end_time,
