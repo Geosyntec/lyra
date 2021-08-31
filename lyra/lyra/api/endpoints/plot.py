@@ -1,4 +1,4 @@
-from typing import Dict, Optional, Union
+from typing import Dict, List, Optional, Union
 
 import orjson
 from altair.utils.data import MaxRowsError
@@ -11,12 +11,13 @@ from pydantic import ValidationError
 from lyra.api.requests import LyraRoute
 from lyra.core.errors import HydstraIOError
 from lyra.models.plot_models import (
+    DiversionScenarioSchema,
     ListTimeseriesSchema,
     MultiVarSchema,
     RegressionSchema,
 )
 from lyra.models.response_models import ChartJSONResponse
-from lyra.src.viz import multi_variable, regression
+from lyra.src.viz import diversion_scenario, multi_variable, regression
 
 router = APIRouter(route_class=LyraRoute, default_response_class=ORJSONResponse)
 templates = Jinja2Templates(directory="lyra/site/templates")
@@ -235,7 +236,7 @@ def plot_multi_variable(
     req: MultiVarSchema = Depends(multi_var_schema_query),
     f: str = Query("json", regex="json$|html$"),
 ) -> Dict:
-    """Crate Multiple Timeseries Plots
+    """Create Multiple Timeseries Plots
     """
 
     chart_spec = None
@@ -243,7 +244,6 @@ def plot_multi_variable(
     msg = []
 
     try:
-
         ts = multi_variable.make_timeseries(jsonable_encoder(req.timeseries))
         source = multi_variable.make_source(ts)
         warnings = ["\n".join(t.warnings) for t in ts]
@@ -271,7 +271,8 @@ def plot_multi_variable(
 
     if f == "html":
         return templates.TemplateResponse(  # type: ignore
-            "anyspec.html", {"request": request, "response": response,},
+            "anyspec.html",
+            {"request": request, "response": response, "title": "Timeseries"},
         )
 
     return response
@@ -365,7 +366,8 @@ def plot_regression(
 
     if f == "html":
         return templates.TemplateResponse(  # type: ignore
-            "anyspec.html", {"request": request, "response": response,},
+            "anyspec.html",
+            {"request": request, "response": response, "title": "Regression Analysis"},
         )
 
     return response
@@ -388,4 +390,107 @@ def plot_regression_data(
         return PlainTextResponse(csv)
     else:
         _json = jsonable_encoder(regression.make_source_json(source))
+        return ORJSONResponse(_json)
+
+
+### Diversion Scenario
+def diversion_scenario_schema_query(
+    request: Request,
+    site: Optional[str] = Query(None, example="ALISO_STP"),
+    start_date: Optional[str] = Query(None, example="2021-05-01"),
+    end_date: Optional[str] = Query(None, example="2021-08-01"),
+    diversion_rate_cfs: Optional[float] = Query(None, example=3.5),
+    storage_max_depth_ft: Optional[float] = 0.0,
+    storage_initial_depth_ft: Optional[float] = 0.0,
+    storage_area_sqft: Optional[float] = 0.0,
+    infiltration_rate_inhr: Optional[float] = 0.0,
+    diversion_months_active: Optional[List[int]] = Query(None),
+    diversion_days_active: Optional[List[int]] = Query(None),
+    diversion_hours_active: Optional[List[int]] = Query(None),
+    operated_weather_condition: Optional[str] = None,
+    nearest_rainfall_station: Optional[str] = None,
+    string: Optional[str] = Query(None, alias="json",),
+) -> DiversionScenarioSchema:
+    try:
+        if string is not None:
+            json_parsed = orjson.loads(string)
+            rsp = DiversionScenarioSchema(**json_parsed)
+        else:
+            rsp = DiversionScenarioSchema(**dict(request.query_params))  # type: ignore
+
+    except ValidationError as e:
+        raise HTTPException(status_code=422, detail=e.errors())
+
+    return rsp
+
+
+@router.get(
+    "/diversion_scenario", response_model=ChartJSONResponse,
+)
+def plot_diversion_scenario(
+    request: Request,
+    req: DiversionScenarioSchema = Depends(diversion_scenario_schema_query),
+    f: str = Query("json", regex="json$|html$"),
+) -> Dict:
+    """Create Diversion Scenario Plots
+    """
+
+    chart_spec = None
+    chart_status = None
+    msg = []
+
+    try:
+        # ts = multi_variable.make_timeseries(jsonable_encoder(req.timeseries))
+        source = diversion_scenario.make_source(**jsonable_encoder(req))
+        # warnings = ["\n".join(t.warnings) for t in ts]
+        # msg += warnings
+
+        chart = diversion_scenario.make_plot(source)
+        chart_spec = chart.to_dict()
+        chart_status = "SUCCESS"
+
+    except HydstraIOError as e:
+        chart_status = "FAILURE"
+        msg += [str(e)]
+
+    except MaxRowsError:
+        chart_status = "FAILURE"
+        msg += ["max data exceeded. Default max is 5000 data points"]
+
+    chart_pkg = {
+        "spec": chart_spec,
+        "chart_status": chart_status,
+        "messages": msg,
+    }
+
+    response = {"data": chart_pkg}
+
+    if f == "html":
+        return templates.TemplateResponse(  # type: ignore
+            "anyspec.html",
+            {"request": request, "response": response, "title": "Diversion Scenario"},
+        )
+
+    return response
+
+
+@router.get("/diversion_scenario/data")
+def plot_diversion_scenario_data(
+    req: DiversionScenarioSchema = Depends(diversion_scenario_schema_query),
+    f: str = Query("json"),
+) -> Union[ORJSONResponse, PlainTextResponse]:
+
+    try:
+        # ts = multi_variable.make_timeseries(jsonable_encoder(req.timeseries))
+        source = diversion_scenario.make_source(**jsonable_encoder(req))
+        # warnings = ["\n".join(t.warnings) for t in ts]
+
+    except HydstraIOError as e:
+        return ORJSONResponse({"error": str(e)})
+
+    if f == "csv":
+        csv = diversion_scenario.make_source_csv(source)
+        return PlainTextResponse(csv)
+    else:
+        _json = jsonable_encoder(diversion_scenario.make_source_json(source))
         return ORJSONResponse(_json)

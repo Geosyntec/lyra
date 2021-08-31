@@ -33,3 +33,9 @@ class SpatialResponseFormat(str, Enum):
 class ResponseFormat(str, Enum):
     json = "json"
     html = "html"
+
+
+class Weather(str, Enum):
+    both = "both"
+    wet = "wet"
+    dry = "dry"

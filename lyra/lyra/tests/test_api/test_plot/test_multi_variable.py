@@ -47,4 +47,6 @@ example_routes = [
     '/api/plot/multi_variable?f=html&end_date=2021-06-01&timeseries=[{"site":"ALISO_STP","variable":"discharge","interval":"day"},{"site":"ALISO_JERONIMO","variable":"discharge","interval":"day"},{"site":"ALISO_JERONIMO","variable":"rainfall","interval":"day"}]',
     # all combos are supported
     '/api/plot/multi_variable?f=html&end_date=2021-06-01&timeseries=[{"site":"ALISO_JERONIMO","variable":"rainfall","interval":"day"},{"site":"ALISO_STP","variable":"discharge","interval":"day"},{"site":"ALISO_JERONIMO","variable":"discharge","interval":"day"}]',
+    # dry weather vs wet weather
+    '/api/plot/multi_variable?f=html&json={"interval":"day","timeseries":[{"site":"J03_9216_1","variable":"rainfall"},{"site":"J03_9216_1","variable":"discharge","weather_condition":"wet"},{"site":"J03_9216_1","variable":"discharge","weather_condition":"dry"}]}',
 ]

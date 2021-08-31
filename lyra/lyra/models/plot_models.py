@@ -9,7 +9,12 @@ from pydantic import BaseModel, Field, root_validator, validator
 from lyra.core import utils
 from lyra.core.config import cfg
 from lyra.core.io import load_file
-from lyra.models.request_models import AggregationMethod, Interval, RegressionMethod
+from lyra.models.request_models import (
+    AggregationMethod,
+    Interval,
+    RegressionMethod,
+    Weather,
+)
 
 VALID_VARIABLES = list(cfg["variables"].keys())
 
@@ -107,6 +112,7 @@ class TimeseriesBaseSchema(BaseModel):
     start_date: Optional[str] = Field(None, example="2015-01-01")
     end_date: Optional[str] = Field(None, example="2020-01-01")
     interval: Optional[Interval] = None
+    weather_condition: Optional[Weather] = None
 
     @validator("start_date", pre=True, always=True)
     def set_start_date(cls, start_date):
@@ -119,6 +125,10 @@ class TimeseriesBaseSchema(BaseModel):
     @validator("interval", pre=True, always=True)
     def set_interval(cls, interval):
         return interval or "month"
+
+    @validator("weather_condition", pre=True, always=True)
+    def set_weather_condition(cls, weather_condition):
+        return weather_condition or "both"
 
     @root_validator
     def check_date_order(cls, values):
@@ -138,6 +148,7 @@ class TimeseriesSchema(TimeseriesBaseSchema):
     site: str = Field(..., example="ALISO_JERONIMO")
     trace_upstream: Optional[bool] = True
     aggregation_method: Optional[AggregationMethod] = Field(None, example="mean")
+    nearest_rainfall_station: Optional[str] = Field(None, example="ALISO_JERONIMO")
 
     @validator("site")
     def check_site(cls, v):
@@ -166,24 +177,68 @@ class TimeseriesSchema(TimeseriesBaseSchema):
             return True
         return trace_upstream
 
+    @validator("nearest_rainfall_station", pre=True, always=True)
+    def set_nearest_rainfall_station(cls, nearest_rainfall_station):
+        if nearest_rainfall_station is not None:
+            cls.check_site(nearest_rainfall_station)
+        return nearest_rainfall_station
+
+    @root_validator
+    def check_nearest_rainfall_station_if_provided(cls, values):
+        nearest_station = values.get("nearest_rainfall_station")
+
+        if nearest_station is not None:
+
+            site_props = [
+                f["properties"]
+                for f in json.loads(load_file(cfg["site_path"]))["features"]
+            ]
+
+            nearest_site_info: Dict = next(
+                (x for x in site_props if x["station"] == nearest_station), {}
+            )
+            assert nearest_site_info.get(
+                f"has_rainfall"
+            ), f"'rainfall' not found at site {nearest_station!r}."
+
+        return values
+
     @root_validator
     def check_site_variable(cls, values):
         site = values.get("site", r"¯\_(ツ)_/¯")
         variable = values.get("variable", r"¯\_(ツ)_/¯")
         source = cfg.get("variables", {}).get(variable, {}).get("source")
+        nearest_station = values.get("nearest_rainfall_station")
 
         # load_file will cache this so it doesn't happen for frequent requests
         site_props = [
             f["properties"] for f in json.loads(load_file(cfg["site_path"]))["features"]
         ]
-        var_info: Dict = next((x for x in site_props if x["station"] == site), {})
+        site_info: Dict = next((x for x in site_props if x["station"] == site), {})
 
         # we only need to validate that the variable is available for hydstra
         # variables. Dt_metric variables are always available.
         if source == "hydstra":
-            assert var_info.get(
+
+            if variable == "rainfall" and not site_info.get(f"has_{variable}"):
+                nearest_station = (
+                    values.get("nearest_rainfall_station")
+                    or site_info["nearest_rainfall_station"]
+                )
+
+                warnings = values.get("warnings", [])
+                warnings.append(
+                    f"Warning: variable {variable!r} not available for site {site!r}. "
+                    f"Overriding to nearest site {nearest_station!r}"
+                )
+                values["warnings"] = warnings
+                values["site"] = nearest_station
+
+                return values
+
+            assert site_info.get(
                 f"has_{variable}"
-            ), f"'{variable}' not found at site '{site}'."
+            ), f"{variable!r} not found at site {site!r}."
 
         return values
 
@@ -229,6 +284,21 @@ class TimeseriesSchema(TimeseriesBaseSchema):
                 assert (
                     values["start_date"][-5:] == "01-01"
                 ), "Drool Tool yearly intervals must start on the first of the year."
+
+        return values
+
+    @root_validator
+    def check_dt_metric_weather_condition(cls, values):
+        variable = values.get("variable", r"¯\_(ツ)_/¯")
+        source = cfg.get("variables", {}).get(variable, {}).get("source")
+        weather_condition = values.get("weather_condition", "both")
+
+        if source == "dt_metrics" and weather_condition != "both":
+            warnings = values.get("warnings", [])
+            warnings.append(
+                f"Warning: `weather_condition` option is ignored for DT Metrics."
+            )
+            values["warnings"] = warnings
 
         return values
 
@@ -282,13 +352,56 @@ class RegressionSchema(MultiVarSchema):
     def check_interval(cls, values):
         timeseries = values.get("timeseries")
         sources = []
+        intervals = []
 
         for ts in timeseries:
             sources.append(cfg.get("variables", {}).get(ts.variable, {}).get("source"))
+            intervals.append(ts.interval)
+
+        assert all(
+            i == intervals[0] for i in intervals
+        ), f"invervals must be the same for both timeseries. '{intervals[0]}' != '{intervals[1]}'"
 
         if "dt_metrics" in sources:
             assert all(
                 ts.interval in ["month", "year"] for ts in timeseries
             ), f"inverval must be 'month' or 'year' for drool tool metrics."
+
+        return values
+
+
+class DiversionScenarioSchema(BaseModel):
+    site: str
+    start_date: str
+    end_date: str
+    diversion_rate_cfs: float
+    storage_max_depth_ft: Optional[float] = 0.0
+    storage_initial_depth_ft: Optional[float] = 0.0
+    storage_area_sqft: Optional[float] = 0.0
+    infiltration_rate_inhr: Optional[float] = 0.0
+    diversion_months_active: Optional[List[int]] = None
+    diversion_days_active: Optional[List[int]] = None
+    diversion_hours_active: Optional[List[int]] = None
+    operated_weather_condition: Optional[Weather] = None
+    nearest_rainfall_station: Optional[str] = None
+
+    @validator("operated_weather_condition", pre=True, always=True)
+    def set_operated_weather_condition(cls, operated_weather_condition):
+        return operated_weather_condition or "dry"
+
+    @root_validator
+    def check_site(cls, values):
+        ts = TimeseriesSchema(
+            site=values.get("site"),
+            start_date=values.get("start_date"),
+            end_date=values.get("end_date"),
+            nearest_rainfall_station=values.get("nearest_rainfall_station"),
+            weather_condition=Weather.both,  # we are initializing discharge timeseries here, not the diversion behavior
+            variable="discharge",
+            aggregation_method=AggregationMethod.mean,
+            interval=Interval.hour,
+        )
+
+        values["ts"] = ts.dict()
 
         return values

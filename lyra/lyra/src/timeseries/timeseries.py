@@ -13,11 +13,22 @@ from lyra.core.io import load_file
 from lyra.core.utils import local_path
 from lyra.src.hydstra import helper
 from lyra.src.mnwd.helper import get_timeseries_from_dt_metrics
+from lyra.src.timeseries import utils
 
 AGG_REMAP = {
     # hydstra : pandas
     "tot": "sum",
     "cum": "cumsum",
+    "mean": "mean",
+    "max": "max",
+    "min": "min",
+}
+
+INTERVAL_REMAP = {
+    "year": "YS",
+    "month": "MS",
+    "day": "D",
+    "hour": "H",
 }
 
 SWN_SITES_PATH = local_path("data/mount/swn/hydstra").resolve() / "swn_sites.json"
@@ -29,12 +40,14 @@ class Timeseries(object):
         site: str,
         variable: str,
         aggregation_method: str,
-        interval: str = "day",
+        interval: str = None,
         start_date: str = None,  # "yyyy-mm-dd"
         end_date: str = None,
-        trace_upstream: bool = True,
+        trace_upstream: bool = None,
+        weather_condition: str = None,
         hydstra_kwargs: Optional[Dict] = None,
         warnings: Optional[List[Any]] = None,
+        nearest_rainfall_station: Optional[str] = None,
         **kwargs: Any,
     ) -> None:
         self.site = site
@@ -44,9 +57,11 @@ class Timeseries(object):
             end_date
             or datetime.datetime.now(pytz.timezone("US/Pacific")).date().isoformat()
         )
-        self.interval = interval
+        self.interval = interval or "month"
         self.aggregation_method = aggregation_method
-        self.trace_upstream = trace_upstream
+        self.trace_upstream = True if trace_upstream is None else trace_upstream
+        self.weather_condition = weather_condition or "both"
+
         self.cfg = cfg
         self.variable_info = self.cfg["variables"].get(self.variable, {})
         allowed_aggs = self.variable_info["allowed_aggregations"]
@@ -58,13 +73,17 @@ class Timeseries(object):
         self.warnings = warnings or []
 
         # load_file will cache this so it doesn't happen for frequent requests
-        all_props: List[Any] = [
+        self.all_props: List[Any] = [
             f["properties"]
             for f in json.loads(load_file(self.cfg["site_path"]))["features"]
         ]
 
         self.site_props: Dict[str, Any] = next(
-            (x for x in all_props if x["station"] == site), {}
+            (x for x in self.all_props if x["station"] == site), {}
+        )
+
+        self.nearest_rainfall_station = nearest_rainfall_station or self.site_props.get(
+            "nearest_rainfall_station", "not_set"
         )
 
         self.hydstra_kwargs: Dict[str, Any] = hydstra_kwargs or {}
@@ -73,6 +92,9 @@ class Timeseries(object):
         # properties
         self._timeseries = None
         self._timeseries_src = None
+        self._nearest_rainfall_station_props: Optional[Dict[str, Any]] = None
+        self._nearest_rainfall_ts: Optional[Timeseries] = None
+        self._weather_condition_series = None
         self.label = self.__repr__()
 
     def __repr__(self):
@@ -82,9 +104,14 @@ class Timeseries(object):
         _var_units = self.variable_info["units"]
         _us = "Upstream from" if self.trace_upstream and is_dt_metric else "from"
         _method = self.aggregation_method.title() if self.aggregation_method else ""
+        _weather_condition = (
+            f"{self.weather_condition.title()} Weather "
+            if self.weather_condition != "both"
+            else ""
+        )
 
         repr = (
-            f"{_method} 1 {self.interval} {_var_name} ({_var_units}) {_us} "
+            f"{_method} 1 {self.interval} {_weather_condition}{_var_name} ({_var_units}) {_us} "
             f"{self.site} from {self.start_date} to {self.end_date}"
         )
 
@@ -108,10 +135,66 @@ class Timeseries(object):
             )
         return self._timeseries_src
 
+    @property
+    def nearest_rainfall_station_props(self):
+        if self._nearest_rainfall_station_props is None:
+            self._nearest_rainfall_station_props = next(
+                (
+                    x
+                    for x in self.all_props
+                    if x["station"] == self.nearest_rainfall_station
+                ),
+                {},
+            )
+        return self._nearest_rainfall_station_props
+
+    def get_nearest_rainfall_ts(self):
+        if self._nearest_rainfall_ts is None:
+            _ = asyncio.run(self.get_nearest_rainfall_ts_async())
+
+        return self._nearest_rainfall_ts
+
+    async def get_nearest_rainfall_ts_async(self):
+        if self._nearest_rainfall_ts is None:
+
+            rainfall_inputs = dict(
+                site=self.nearest_rainfall_station,
+                variable="rainfall",
+                start_date=self.start_date,
+                end_date=self.end_date,
+                interval="hour",
+                aggregation_method="tot",
+            )
+
+            self._nearest_rainfall_ts = Timeseries(**rainfall_inputs)  # type: ignore
+            await self._nearest_rainfall_ts.init_ts()
+
+        return self._nearest_rainfall_ts
+
+    @property
+    def weather_condition_series(self):
+        if all(
+            [
+                self.variable == "rainfall",
+                self.interval == "hour",
+                self._weather_condition_series is None,
+            ]
+        ):
+            self._weather_condition_series = utils.identify_dry_weather(
+                self.timeseries.value
+            )
+
+        return self._weather_condition_series
+
     async def _init_hydstra(self) -> pandas.Series:
         hyd_variable_info: Dict[str, Any] = self.site_props.get(
             self.variable + "_info", {}
         )
+
+        interval = self.interval
+
+        if self.weather_condition != "both":
+            interval = "hour"
 
         inputs = dict(
             site=self.site,
@@ -119,7 +202,7 @@ class Timeseries(object):
             varto=hyd_variable_info["varto"],
             start_date=self.start_date,
             end_date=self.end_date,
-            interval=self.interval,
+            interval=interval,
             agg_method=self.aggregation_method,
             **self.hydstra_kwargs,
         )
@@ -145,7 +228,30 @@ class Timeseries(object):
         if not trace:  # pragma: no cover
             raise ValueError(f"inputs failed: {inputs}")
 
-        return helper.hydstra_trace_to_series(trace)
+        hydstra_result = helper.hydstra_trace_to_series(trace).to_frame()
+
+        # this will block the async await... but so it goes.
+        return await self.process_weather_condition(hydstra_result)
+
+    async def process_weather_condition(self, df):
+        if self.weather_condition == "both":
+            return df
+
+        if self.weather_condition == "dry":
+            q = "is_dry"
+        else:
+            q = "~is_dry"
+
+        nearest_rain_ts = await self.get_nearest_rainfall_ts_async()
+
+        result = (
+            df.join(nearest_rain_ts.weather_condition_series["is_dry"])
+            .query(q)[["value"]]
+            .resample(INTERVAL_REMAP[self.interval])
+            .aggregate(AGG_REMAP[self.aggregation_method])
+        )
+
+        return result
 
     async def _init_dt_metrics(self) -> pandas.Series:
         variable = self.variable_info["variable"]
@@ -183,10 +289,10 @@ class Timeseries(object):
                 # per communication 20201-07-19 this issue has been resolved.
                 await asyncio.sleep(delay)
 
-            self.timeseries = await self._init_hydstra()
+            self._timeseries = await self._init_hydstra()
 
         elif source == "dt_metrics":
-            self.timeseries = await self._init_dt_metrics()
+            self._timeseries = await self._init_dt_metrics()
 
         else:  # pragma: no cover
             raise NotImplementedError(

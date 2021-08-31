@@ -4,7 +4,7 @@ from typing import Union
 
 import pandas
 from sqlalchemy import create_engine
-from sqlalchemy.engine.url import URL
+from sqlalchemy.engine import URL
 from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixed
 
 from lyra.core.config import settings
@@ -39,7 +39,7 @@ def sql_server_connection_string(
     timeout: int = 15,
 ) -> str:  # pragma: no cover
 
-    url = URL(
+    url = URL.create(
         drivername="mssql+pyodbc",
         username=user,
         password=password,
