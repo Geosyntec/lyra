@@ -39,4 +39,3 @@ class Weather(str, Enum):
     both = "both"
     wet = "wet"
     dry = "dry"
-

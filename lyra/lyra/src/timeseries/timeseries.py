@@ -92,8 +92,8 @@ class Timeseries(object):
         # properties
         self._timeseries = None
         self._timeseries_src = None
-        self._nearest_rainfall_station_props = None
-        self._nearest_rainfall_ts = None
+        self._nearest_rainfall_station_props: Optional[Dict[str, Any]] = None
+        self._nearest_rainfall_ts: Optional[Timeseries] = None
         self._weather_condition_series = None
         self.label = self.__repr__()
 
@@ -138,7 +138,7 @@ class Timeseries(object):
     @property
     def nearest_rainfall_station_props(self):
         if self._nearest_rainfall_station_props is None:
-            self._nearest_rainfall_station_props: Dict[str, Any] = next(
+            self._nearest_rainfall_station_props = next(
                 (
                     x
                     for x in self.all_props
@@ -166,7 +166,7 @@ class Timeseries(object):
                 aggregation_method="tot",
             )
 
-            self._nearest_rainfall_ts = Timeseries(**rainfall_inputs)
+            self._nearest_rainfall_ts = Timeseries(**rainfall_inputs)  # type: ignore
             await self._nearest_rainfall_ts.init_ts()
 
         return self._nearest_rainfall_ts

@@ -396,13 +396,12 @@ class DiversionScenarioSchema(BaseModel):
             start_date=values.get("start_date"),
             end_date=values.get("end_date"),
             nearest_rainfall_station=values.get("nearest_rainfall_station"),
-            weather_condition="both",  # we are initializing discharge timeseries here, not the diversion behavior
+            weather_condition=Weather.both,  # we are initializing discharge timeseries here, not the diversion behavior
             variable="discharge",
-            aggregation_method="mean",
-            interval="hour",
+            aggregation_method=AggregationMethod.mean,
+            interval=Interval.hour,
         )
 
         values["ts"] = ts.dict()
 
         return values
-

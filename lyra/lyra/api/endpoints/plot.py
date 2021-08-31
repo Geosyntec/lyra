@@ -11,13 +11,13 @@ from pydantic import ValidationError
 from lyra.api.requests import LyraRoute
 from lyra.core.errors import HydstraIOError
 from lyra.models.plot_models import (
+    DiversionScenarioSchema,
     ListTimeseriesSchema,
     MultiVarSchema,
     RegressionSchema,
-    DiversionScenarioSchema,
 )
 from lyra.models.response_models import ChartJSONResponse
-from lyra.src.viz import multi_variable, regression, diversion_scenario
+from lyra.src.viz import diversion_scenario, multi_variable, regression
 
 router = APIRouter(route_class=LyraRoute, default_response_class=ORJSONResponse)
 templates = Jinja2Templates(directory="lyra/site/templates")
@@ -397,16 +397,16 @@ def plot_regression_data(
 def diversion_scenario_schema_query(
     request: Request,
     site: Optional[str] = Query(None, example="ALISO_STP"),
-    start_date: Optional[str] = Query(None, example="2015-01-01"),
-    end_date: Optional[str] = Query(None, example="2020-01-01"),
+    start_date: Optional[str] = Query(None, example="2021-05-01"),
+    end_date: Optional[str] = Query(None, example="2021-08-01"),
     diversion_rate_cfs: Optional[float] = Query(None, example=3.5),
     storage_max_depth_ft: Optional[float] = 0.0,
     storage_initial_depth_ft: Optional[float] = 0.0,
     storage_area_sqft: Optional[float] = 0.0,
     infiltration_rate_inhr: Optional[float] = 0.0,
-    diversion_months_active: Optional[List[int]] = None,
-    diversion_days_active: Optional[List[int]] = None,
-    diversion_hours_active: Optional[List[int]] = None,
+    diversion_months_active: Optional[List[int]] = Query(None),
+    diversion_days_active: Optional[List[int]] = Query(None),
+    diversion_hours_active: Optional[List[int]] = Query(None),
     operated_weather_condition: Optional[str] = None,
     nearest_rainfall_station: Optional[str] = None,
     string: Optional[str] = Query(None, alias="json",),
@@ -416,10 +416,7 @@ def diversion_scenario_schema_query(
             json_parsed = orjson.loads(string)
             rsp = DiversionScenarioSchema(**json_parsed)
         else:
-            rsp = DiversionScenarioSchema(
-                **dict(request.query_params)
-                # timeseries=timeseries, start_date=start_date, end_date=end_date,
-            )
+            rsp = DiversionScenarioSchema(**dict(request.query_params))  # type: ignore
 
     except ValidationError as e:
         raise HTTPException(status_code=422, detail=e.errors())

@@ -4,7 +4,7 @@ from typing import Union
 
 import pandas
 from sqlalchemy import create_engine
-from sqlalchemy.engine.url import URL
+from sqlalchemy.engine import URL
 from tenacity import after_log, before_log, retry, stop_after_attempt, wait_fixed
 
 from lyra.core.config import settings

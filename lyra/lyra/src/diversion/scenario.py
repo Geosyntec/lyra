@@ -1,5 +1,5 @@
-from typing import Any, Dict
 import asyncio
+from typing import Any, Dict, List, Optional
 
 import pandas
 
@@ -123,24 +123,24 @@ def run_diversion_scenario(
     return results
 
 
-async def gather_timeseries(ts: Timeseries):
+async def gather_timeseries(ts: Timeseries) -> None:
 
     await asyncio.gather(ts.init_ts(), ts.get_nearest_rainfall_ts_async())
 
 
 def simulate_diversion(
     ts: Dict[str, Any],
-    diversion_rate_cfs,
-    storage_max_depth_ft=0.0,
-    storage_initial_depth_ft=0.0,
-    storage_area_sqft=0.0,
-    infiltration_rate_inhr=0.0,
-    operated_weather_condition="dry",
-    diversion_months_active=None,
-    diversion_days_active=None,
-    diversion_hours_active=None,
-    **kwargs,
-):
+    diversion_rate_cfs: float,
+    storage_max_depth_ft: float = 0.0,
+    storage_initial_depth_ft: float = 0.0,
+    storage_area_sqft: float = 0.0,
+    infiltration_rate_inhr: float = 0.0,
+    operated_weather_condition: str = "dry",
+    diversion_months_active: Optional[List[int]] = None,
+    diversion_days_active: Optional[List[int]] = None,
+    diversion_hours_active: Optional[List[int]] = None,
+    **kwargs: Optional[Dict],
+) -> pandas.DataFrame:
 
     initial_pool_volume = storage_initial_depth_ft * storage_area_sqft
     max_pool_volume = storage_max_depth_ft * storage_area_sqft  # cubic feet

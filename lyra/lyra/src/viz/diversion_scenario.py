@@ -3,8 +3,8 @@ from typing import Any, Dict, List
 import altair as alt
 import pandas
 
-from lyra.src.timeseries import utils
 from lyra.src.diversion import simulate_diversion
+from lyra.src.timeseries import utils
 
 
 def make_source_json(source: pandas.DataFrame) -> List[Dict[str, Any]]:
@@ -13,8 +13,7 @@ def make_source_json(source: pandas.DataFrame) -> List[Dict[str, Any]]:
 
 
 def make_source_csv(source: pandas.DataFrame) -> str:
-    # site = ",".join(source["site"].unique())
-    # variable = ",".join(source["variable"].unique())
+
     csv = (
         source.reindex(columns=["date", "variable", "value"])
         .pivot(index="date", columns="variable", values="value")
@@ -27,8 +26,8 @@ def make_source_csv(source: pandas.DataFrame) -> str:
     return pkg
 
 
-def make_source(**kwargs) -> pandas.DataFrame:
-    df = simulate_diversion(**kwargs).reset_index().melt(id_vars="date")
+def make_source(**kwargs: Dict) -> pandas.DataFrame:
+    df = simulate_diversion(**kwargs).reset_index().melt(id_vars="date")  # type: ignore
     return df
 
 
