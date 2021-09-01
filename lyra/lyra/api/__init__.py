@@ -6,6 +6,7 @@ from lyra.api.endpoints import (
     deprecated,
     dt_metrics,
     hydstra,
+    info,
     plot,
     rsb,
     spatial,
@@ -24,6 +25,7 @@ api_router.include_router(
     prefix="/tasks",
     tags=["tasks", "jobs", "drooltool", "hydstra", "plot", "rsb"],
 )
+api_router.include_router(info.router, tags=["info"])
 
 
 # debug and util routes
