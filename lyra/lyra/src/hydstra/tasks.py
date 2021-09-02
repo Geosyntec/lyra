@@ -2,6 +2,7 @@ import datetime
 import io
 import json
 from copy import deepcopy
+import pytz
 
 import geopandas
 import pandas
@@ -9,7 +10,7 @@ from shapely.ops import nearest_points
 
 from lyra.connections import azure_fs
 from lyra.core.config import cfg
-from lyra.src.hydstra import api
+from lyra.src.hydstra import api, helper
 from lyra.src.mnwd import spatial
 from lyra.src.rsb import graph
 
@@ -30,9 +31,9 @@ def process_varfroms(varlist, var, cfg):
             return v
 
 
-def build_swn_variables(variables, cfg):
+async def build_swn_variables(variables, cfg):
     sites = {}
-    for dct in variables["sites"]:
+    for i, dct in enumerate(variables["sites"]):
         site = {}
 
         d = process_varfroms(dct["variables"], "distance_to_water", cfg)
@@ -44,8 +45,26 @@ def build_swn_variables(variables, cfg):
         site["has_raw_level"] = d is not None
 
         d = process_varfroms(dct["variables"], "discharge", cfg)
-        site["discharge_info"] = d
-        site["has_discharge"] = d is not None
+
+        if d is not None:  # check if mapping is possible
+            end_datetime = datetime.datetime.now(pytz.timezone("US/Pacific"))
+            start_datetime = end_datetime - datetime.timedelta(days=90)
+            inputs = dict(
+                site=dct["site"],
+                varfrom=d["varfrom"],
+                varto=d["varto"],
+                interval="day",
+                start_date=start_datetime.date().isoformat(),
+                end_date=end_datetime.date().isoformat(),
+            )
+            timeseries_details = await helper.get_site_variable_as_trace(**inputs)
+
+            if timeseries_details.get("trace"):
+                site["discharge_info"] = d
+                site["has_discharge"] = d is not None
+            else:  # assume no rating table thus no discharge data
+                site["discharge_info"] = None
+                site["has_discharge"] = False
 
         d = process_varfroms(dct["variables"], "rainfall", cfg)
         site["rainfall_info"] = d
@@ -65,7 +84,7 @@ async def get_site_geojson_info():
     variables = (await api.get_variables(site_list, datasource="PUBLISH"))["return"]
     site_geojson = (await api.get_site_geojson(site_list))["return"]
 
-    sites = build_swn_variables(variables, cfg)
+    sites = await build_swn_variables(variables, cfg)
     site_df = pandas.DataFrame(sites).T
     sites_with_trace = site_df.query("has_discharge | has_conductivity").index
 
