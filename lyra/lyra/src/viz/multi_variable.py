@@ -69,8 +69,11 @@ def make_source(ts: List[Timeseries]) -> pandas.DataFrame:
 
 def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
 
+    source = source.rename(columns={"date": "Date"})  # for display purposes
+
     vstack = []
     height = 300
+    width = 400
     variables = source.variable.unique()
     if len(variables) > 1:
         height = 150
@@ -80,7 +83,7 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
     for var in variables:
 
         data = source.query("variable==@var").pipe(
-            utils.drop_runs_tidy, groupby=["label"]
+            utils.drop_runs_tidy, groupby=["label"], date_col="Date"
         )
         var_info = cfg.get("variables", {}).get(var)
 
@@ -93,7 +96,7 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
             alt.Chart(data)
             .mark_line(interpolate=interpolate)
             .encode(
-                x="date:T",
+                x="Date:T",
                 y=alt.Y(
                     "value:Q",
                     title=f"{var_info['name']} ({var_info['units']})",
@@ -102,17 +105,17 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
                 color=alt.Color("label:N", sort=variables),
                 opacity=alt.condition(legend_selection, alt.value(1), alt.value(0.2)),
             )
-            .properties(height=height)
+            .properties(height=height, width=width)
         )
 
         nearest = alt.selection(
-            type="single", nearest=True, on="mouseover", fields=["date"], empty="none"
+            type="single", nearest=True, on="mouseover", fields=["Date"], empty="none"
         )
 
         selectors = (
             alt.Chart(data)
             .mark_point()
-            .encode(x="date:T", y="value:Q", opacity=alt.value(0),)
+            .encode(x="Date:T", y="value:Q", opacity=alt.value(0),)
             .add_selection(nearest)
         )
 
@@ -130,7 +133,7 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
         rules = (
             alt.Chart(data)
             .mark_rule(color="gray")
-            .encode(x="date:T",)
+            .encode(x="Date:T",)
             .transform_filter(nearest)
         )
 
@@ -146,5 +149,5 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
             color="independent",  # color=independant will separate the legends
             x="shared",
         )
-        .configure_legend(labelLimit=0)
+        .configure_legend(labelLimit=0, orient="top", direction="vertical", title=None)
     )

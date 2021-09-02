@@ -165,9 +165,11 @@ def make_plot(
 
     x_label, y_label, *_ = source.columns
     source.columns = ["x", "y", "label"]
+    width = 400
+    height = 400
 
     chart = (
-        alt.Chart(source.query('label=="data"'), width=300, height=300)
+        alt.Chart(source.query('label=="data"'), width=width, height=height)
         .mark_point(filled=True)
         .encode(
             x=alt.X(
@@ -224,4 +226,9 @@ def make_plot(
 
         yoff += 15
 
-    return (chart + outlier + line) + alt.layer(*params)
+    full_chart = (chart + outlier + line) + alt.layer(*params).configure_legend(
+        labelLimit=0, orient="top", direction="vertical", title=None
+    )
+
+    return full_chart
+
