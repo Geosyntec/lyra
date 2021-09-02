@@ -15,6 +15,7 @@ from lyra.src.hydstra import helper
 from lyra.src.mnwd.helper import get_timeseries_from_dt_metrics
 from lyra.src.timeseries import utils
 
+
 AGG_REMAP = {
     # hydstra : pandas
     "tot": "sum",
@@ -214,19 +215,28 @@ class Timeseries(object):
             if num == 220:
                 raise HydstraIOError(f"{timeseries_details['error_msg']}", data=inputs)
 
-        if not timeseries_details.get("trace"):
-            inputs["varfrom"] = hyd_variable_info["varfrom_fallback"]
-            self.warnings.append(
-                f"Warning: variable '{hyd_variable_info['varfrom']}' not available. "
-                f"Falling back to '{hyd_variable_info['varfrom_fallback']}'"
-            )
+            if num == 124:
+                self.warnings.append(
+                    f'Warning: No conversion or rating table for {hyd_variable_info["varfrom"]} '
+                    f'to {hyd_variable_info["varfrom"]}'
+                )
+                return pandas.DataFrame([])
 
-            timeseries_details = await helper.get_site_variable_as_trace(**inputs)
+            if num == 125:
+
+                # if not timeseries_details.get("trace"):
+                inputs["varfrom"] = hyd_variable_info["varfrom_fallback"]
+                self.warnings.append(
+                    f"Warning: variable '{hyd_variable_info['varfrom']}' not available. "
+                    f"Falling back to '{hyd_variable_info['varfrom_fallback']}'"
+                )
+
+                timeseries_details = await helper.get_site_variable_as_trace(**inputs)
 
         trace = timeseries_details.get("trace")
 
         if not trace:  # pragma: no cover
-            raise ValueError(f"inputs failed: {inputs}")
+            raise ValueError(f"inputs failed: {inputs}, {timeseries_details}")
 
         hydstra_result = helper.hydstra_trace_to_series(trace).to_frame()
 
