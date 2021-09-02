@@ -3,6 +3,7 @@ import io
 import json
 from copy import deepcopy
 import pytz
+import logging
 
 import geopandas
 import pandas
@@ -13,6 +14,8 @@ from lyra.core.config import cfg
 from lyra.src.hydstra import api, helper
 from lyra.src.mnwd import spatial
 from lyra.src.rsb import graph
+
+logger = logging.getLogger(__file__)
 
 
 def process_varfroms(varlist, var, cfg):
@@ -45,6 +48,8 @@ async def build_swn_variables(variables, cfg):
         site["has_raw_level"] = d is not None
 
         d = process_varfroms(dct["variables"], "discharge", cfg)
+        site["discharge_info"] = d
+        site["has_discharge"] = d is not None
 
         if d is not None:  # check if mapping is possible
             end_datetime = datetime.datetime.now(pytz.timezone("US/Pacific"))
@@ -59,12 +64,17 @@ async def build_swn_variables(variables, cfg):
             )
             timeseries_details = await helper.get_site_variable_as_trace(**inputs)
 
-            if timeseries_details.get("trace"):
-                site["discharge_info"] = d
-                site["has_discharge"] = d is not None
-            else:  # assume no rating table thus no discharge data
+            error_num = timeseries_details.get("error_num")
+
+            if error_num != 0:
+                logger.info(
+                    f'found NO DATA @ {dct["site"]}. response: {timeseries_details}'
+                )
                 site["discharge_info"] = None
                 site["has_discharge"] = False
+
+            if error_num == 124:
+                site["missing_rating_table"] = True
 
         d = process_varfroms(dct["variables"], "rainfall", cfg)
         site["rainfall_info"] = d
