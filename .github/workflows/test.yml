@@ -57,6 +57,12 @@ jobs:
       - name: upload coverage
         uses: codecov/codecov-action@v1
 
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.ACR_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
       - name: Push latest if tests run
         run: |
           echo building and pushing latest images
