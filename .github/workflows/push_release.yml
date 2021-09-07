@@ -34,7 +34,7 @@ jobs:
         if: (env.rtag == env.libtag)
         run: |
           echo building and pushing versioned and latest images
-          bash ./scripts/push_release.sh
+          bash ./scripts/push_release.sh -t $rtag
 
       - name: Push Tagged Release Image 
         if: (!(env.rtag == env.libtag))
