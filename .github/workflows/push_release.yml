@@ -33,8 +33,12 @@ jobs:
       - name: Push Versioned Image and Update Latest
         if: (env.rtag == env.libtag)
         run: |
-          echo building and pushing versioned and latest images
-          bash ./scripts/push_release.sh -t $rtag
+          echo building and pushing versioned images
+          bash ./scripts/build_prod.sh -t $rtag
+          docker-compose -f docker-stack$rtag.yml push
+          echo building and pushing versioned images
+          bash ./scripts/build_prod.sh
+          docker-compose -f docker-stack.yml push
 
       - name: Push Tagged Release Image 
         if: (!(env.rtag == env.libtag))
