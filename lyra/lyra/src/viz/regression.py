@@ -231,4 +231,3 @@ def make_plot(
     )
 
     return full_chart
-

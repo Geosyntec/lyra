@@ -15,7 +15,6 @@ from lyra.src.hydstra import helper
 from lyra.src.mnwd.helper import get_timeseries_from_dt_metrics
 from lyra.src.timeseries import utils
 
-
 AGG_REMAP = {
     # hydstra : pandas
     "tot": "sum",
