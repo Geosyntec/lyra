@@ -35,6 +35,11 @@ class ResponseFormat(str, Enum):
     html = "html"
 
 
+class ResponseDataFormat(str, Enum):
+    json = "json"
+    csv = "csv"
+
+
 class Weather(str, Enum):
     both = "both"
     wet = "wet"

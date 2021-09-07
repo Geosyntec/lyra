@@ -16,6 +16,14 @@ from lyra.models.plot_models import (
     MultiVarSchema,
     RegressionSchema,
 )
+from lyra.models.request_models import (
+    AggregationMethod,
+    Interval,
+    RegressionMethod,
+    ResponseDataFormat,
+    ResponseFormat,
+    Weather,
+)
 from lyra.models.response_models import ChartJSONResponse
 from lyra.src.viz import diversion_scenario, multi_variable, regression
 
@@ -40,6 +48,9 @@ def timeseries_schema_query(
     except ValidationError as e:
         raise HTTPException(status_code=422, detail=e.errors())
 
+    except orjson.JSONDecodeError as e:
+        raise HTTPException(status_code=422, detail=str(e))
+
     return rsp
 
 
@@ -47,7 +58,7 @@ def timeseries_schema_query(
 def plot_timeseries_with_GET(
     request: Request,
     req: MultiVarSchema = Depends(timeseries_schema_query),
-    f: str = Query("json", regex="json$|html$"),
+    f: ResponseFormat = Query("json"),
 ) -> Dict:
     chart_spec = None
     chart_status = None
@@ -91,7 +102,7 @@ def plot_timeseries_with_GET(
 @router.post("/timeseries", response_model=ChartJSONResponse)
 def plot_timeseries_with_POST(
     request: Request,
-    f: str = Query("json", regex="json$|html$"),
+    f: ResponseFormat = Query("json"),
     timeseries: ListTimeseriesSchema = Body(
         ...,
         examples={
@@ -208,6 +219,12 @@ def multi_var_schema_query(
         None,
         example='[{"site":"ALISO_STP","variable":"discharge"},{"site":"ALISO_JERONIMO","variable":"discharge"}]',
     ),
+    site: Optional[str] = Query(None, example="ALISO_JERONIMO"),
+    interval: Optional[Interval] = Query("month"),
+    weather_condition: Optional[Weather] = Query("both"),
+    aggregation_method: Optional[AggregationMethod] = Query("mean"),
+    trace_upstream: Optional[bool] = Query(True),
+    nearest_rainfall_station: Optional[str] = Query(None, example="ALISO_JERONIMO"),
     start_date: Optional[str] = Query(None, example="2015-01-01"),
     end_date: Optional[str] = Query(None, example="2020-01-01"),
     string: Optional[str] = Query(None, alias="json",),
@@ -225,6 +242,9 @@ def multi_var_schema_query(
     except ValidationError as e:
         raise HTTPException(status_code=422, detail=e.errors())
 
+    except orjson.JSONDecodeError as e:
+        raise HTTPException(status_code=422, detail=str(e))
+
     return rsp
 
 
@@ -234,9 +254,18 @@ def multi_var_schema_query(
 def plot_multi_variable(
     request: Request,
     req: MultiVarSchema = Depends(multi_var_schema_query),
-    f: str = Query("json", regex="json$|html$"),
+    f: ResponseFormat = Query("json"),
 ) -> Dict:
     """Create Multiple Timeseries Plots
+
+    ### Examples
+    
+    **as query**
+    * api/plot/multi_variable?start_date=2020-03-01&timeseries=[{"site":"ALISO_STP","variable":"urban_drool"},{"site":"ALISO_JERONIMO","variable":"discharge"}]
+    
+    **as blob**
+    * api/plot/multi_variable?json={"start_date":"2020-03-01","timeseries":[{"site":"ALISO_STP","variable":"urban_drool"},{"site":"ALISO_JERONIMO","variable":"discharge"}]}
+    * api/plot/multi_variable?json={"start_date":"2020-03-01","end_date":"2021-05-01","site":"ALISO_JERONIMO","timeseries":[{"variable":"rainfall"},{"variable":"discharge"}]}
     """
 
     chart_spec = None
@@ -280,7 +309,8 @@ def plot_multi_variable(
 
 @router.get("/multi_variable/data")
 def plot_multi_variable_data(
-    req: MultiVarSchema = Depends(multi_var_schema_query), f: str = Query("json"),
+    req: MultiVarSchema = Depends(multi_var_schema_query),
+    f: ResponseDataFormat = Query("json", description="Data format of the response"),
 ) -> Union[ORJSONResponse, PlainTextResponse]:
 
     try:
@@ -302,14 +332,15 @@ def plot_multi_variable_data(
 ## regressions
 def regression_schema_query(
     request: Request,
+    interval: Optional[Interval] = Query("day"),
+    weather_condition: Optional[Weather] = Query("both"),
+    regression_method: Optional[RegressionMethod] = Query("linear"),
+    start_date: Optional[str] = Query(None, example="2019-01-01"),
+    end_date: Optional[str] = Query(None, example="2020-01-01"),
     timeseries: Optional[str] = Query(
         None,
         example='[{"site":"ALISO_STP","variable":"discharge"},{"site":"ALISO_JERONIMO","variable":"discharge"}]',
     ),
-    interval: Optional[str] = Query("month"),
-    regression_method: Optional[str] = Query("linear"),
-    start_date: Optional[str] = Query(None, example="2015-01-01"),
-    end_date: Optional[str] = Query(None, example="2020-01-01"),
     string: Optional[str] = Query(None, alias="json",),
 ) -> RegressionSchema:
     try:
@@ -322,6 +353,9 @@ def regression_schema_query(
     except ValidationError as e:
         raise HTTPException(status_code=422, detail=e.errors())
 
+    except orjson.JSONDecodeError as e:
+        raise HTTPException(status_code=422, detail=str(e))
+
     return rsp
 
 
@@ -331,8 +365,18 @@ def regression_schema_query(
 def plot_regression(
     request: Request,
     req: RegressionSchema = Depends(regression_schema_query),
-    f: str = Query("json"),
+    f: ResponseFormat = Query("json"),
 ) -> Dict:
+    """Create Pair-Wise Regression Plot
+
+    ### Examples
+    
+    **as query**
+    * api/plot/regression?start_date=2019-01-01&interval=day&site=ALISO_JERONIMO&weather_condition=wet&timeseries=[{"variable":"rainfall"},{"variable":"discharge"}]
+    
+    **as blob**
+    * api/plot/regression?json={"start_date":"2019-01-01","site":"ALISO_JERONIMO","interval":"day","weather_condition":"wet","timeseries":[{"variable":"rainfall"},{"variable":"discharge"}]}
+    """
 
     chart_spec = None
     chart_status = None
@@ -375,7 +419,8 @@ def plot_regression(
 
 @router.get("/regression/data")
 def plot_regression_data(
-    req: RegressionSchema = Depends(regression_schema_query), f: str = Query("json"),
+    req: RegressionSchema = Depends(regression_schema_query),
+    f: ResponseDataFormat = Query("json", description="Data format of the response"),
 ) -> Union[ORJSONResponse, PlainTextResponse]:
     try:
         ts = regression.make_timeseries(**jsonable_encoder(req))
@@ -421,6 +466,9 @@ def diversion_scenario_schema_query(
     except ValidationError as e:
         raise HTTPException(status_code=422, detail=e.errors())
 
+    except orjson.JSONDecodeError as e:
+        raise HTTPException(status_code=422, detail=str(e))
+
     return rsp
 
 
@@ -430,7 +478,7 @@ def diversion_scenario_schema_query(
 def plot_diversion_scenario(
     request: Request,
     req: DiversionScenarioSchema = Depends(diversion_scenario_schema_query),
-    f: str = Query("json", regex="json$|html$"),
+    f: ResponseFormat = Query("json"),
 ) -> Dict:
     """Create Diversion Scenario Plots
     """
@@ -477,7 +525,7 @@ def plot_diversion_scenario(
 @router.get("/diversion_scenario/data")
 def plot_diversion_scenario_data(
     req: DiversionScenarioSchema = Depends(diversion_scenario_schema_query),
-    f: str = Query("json"),
+    f: ResponseDataFormat = Query("json", description="Data format of the response"),
 ) -> Union[ORJSONResponse, PlainTextResponse]:
 
     try:
