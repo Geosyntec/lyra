@@ -226,7 +226,7 @@ def make_plot(
 
         yoff += 15
 
-    full_chart = (chart + outlier + line) + alt.layer(*params).configure_legend(
+    full_chart = ((chart + outlier + line) + alt.layer(*params)).configure_legend(
         labelLimit=0, orient="top", direction="vertical", title=None
     )
 
