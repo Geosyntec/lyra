@@ -263,7 +263,7 @@ class Timeseries(object):
         return result
 
     async def _init_dt_metrics(self) -> pandas.Series:
-        variable = self.variable_info["variable"]
+        variable = self.variable_info["varfrom"]
         catchidn = self.site_props["CatchIDN"]
         self.aggregation_method = "tot"
         self.interval = (

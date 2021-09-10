@@ -118,6 +118,7 @@ def background_rsb_downstream_trace_response(**kwargs):  # pragma: no cover
 def background_update_hydstra_site_info(**kwargs):  # pragma: no cover
 
     asyncio.run(save_site_geojson_info())
+    flush()
 
     return {"status": "success"}
 

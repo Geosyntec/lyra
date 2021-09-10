@@ -13,7 +13,9 @@ from lyra.connections import azure_fs
 from lyra.core.config import cfg
 from lyra.src.hydstra import api, helper
 from lyra.src.mnwd import spatial
+from lyra.src.mnwd.dt_metrics import dt_metrics
 from lyra.src.rsb import graph
+from lyra.src.timeseries import Timeseries
 
 logger = logging.getLogger(__file__)
 
@@ -53,7 +55,7 @@ async def build_swn_variables(variables, cfg):
 
         if d is not None:  # check if mapping is possible
             end_datetime = datetime.datetime.now(pytz.timezone("US/Pacific"))
-            start_datetime = end_datetime - datetime.timedelta(days=90)
+            start_datetime = end_datetime - datetime.timedelta(days=30 * 6)
             inputs = dict(
                 site=dct["site"],
                 varfrom=d["varfrom"],
@@ -70,10 +72,10 @@ async def build_swn_variables(variables, cfg):
                 logger.info(
                     f'found NO DATA @ {dct["site"]}. response: {timeseries_details}'
                 )
-                site["discharge_info"] = None
-                site["has_discharge"] = False
 
             if error_num == 124:
+                site["discharge_info"] = None
+                site["has_discharge"] = False
                 site["missing_rating_table"] = True
 
         d = process_varfroms(dct["variables"], "rainfall", cfg)
@@ -87,6 +89,78 @@ async def build_swn_variables(variables, cfg):
         sites[dct["site"]] = site
 
     return sites
+
+
+def hystra_format_dt(dt):
+    return dt.date().isoformat().replace("-", "") + "000000"
+
+
+def get_catchidns_with_dt_metrics():
+    dt = datetime.datetime.now().date()
+    y = dt.year
+    records = dt_metrics(
+        variables=["overall_MeterID_count"], groupby=["sum"], years=range(2015, y)
+    )
+    _df = pandas.DataFrame(json.loads(records))
+    catchidns = _df.catchidn.unique()
+
+    return catchidns
+
+
+async def process_dt_metrics(s, upstream, catchidns, dt_metrics):
+
+    site_dct = {}
+    if not upstream:
+        print(f"site {s} has no upstream catchidns")
+        for m in dt_metrics:
+            site_dct[f"has_{m}"] = False
+            site_dct[f"{m}_info"] = None
+        return site_dct
+
+    upstream = json.loads(upstream)
+    if not any(c in catchidns for c in upstream):
+        print(f"site {s} has no drool tool results")
+        for m in dt_metrics:
+            site_dct[f"has_{m}"] = False
+            site_dct[f"{m}_info"] = None
+        return site_dct
+
+    try:
+        ts = Timeseries(
+            variable="urban_drool",
+            site=s,
+            aggregation_method="tot",
+            start_date="2015-01-01",
+        )
+        await ts.init_ts()
+        series = ts.timeseries
+        start, end = (
+            hystra_format_dt(series.index[0]),
+            hystra_format_dt(series.index[-1]),
+        )
+
+        for m in dt_metrics:
+            site_dct[f"has_{m}"] = True
+
+            _info = deepcopy(cfg["variables"][m])
+            _info["period_start"] = start
+            _info["period_end"] = end
+            _info["variable"] = m
+
+            site_dct[f"{m}_info"] = _info
+        return site_dct
+
+    except Exception as e:
+        print(s)
+        raise e
+
+
+def trace_each(val):
+    try:
+        return json.loads(graph.rsb_upstream_trace(int(val)))
+    except Exception as e:
+        print(f"skipping {val} because {e}")
+        return []
 
 
 async def get_site_geojson_info():
@@ -110,17 +184,52 @@ async def get_site_geojson_info():
         .astype({"CatchIDN": "Int64"})
     )
 
-    def trace_each(val):
-        try:
-            return graph.rsb_upstream_trace(int(val)).decode()
-        except:
-            return
+    to_trace = us_traced["CatchIDN"].dropna().astype(int).unique()
+    traced = {c: trace_each(c) for c in to_trace}
 
-    us_traced["upstream"] = us_traced.apply(lambda x: trace_each(x["CatchIDN"]), axis=1)
+    geo_info = (
+        gdf.join(us_traced, how="left")
+        .join(site_df, how="left")
+        .assign(upstream=lambda df: df["CatchIDN"].map(traced))
+    )
 
-    geo_info = gdf.join(us_traced, how="left").join(site_df, how="left").reset_index()
+    catchidns = get_catchidns_with_dt_metrics()
 
-    destinations = geo_info.query("has_rainfall").geometry.unary_union
+    metrics = list(
+        filter(
+            lambda x: cfg["variables"][x]["source"] == "dt_metrics",
+            cfg["variables"].keys(),
+        )
+    )
+
+    ls = []
+    for i, r in geo_info.iterrows():
+        station = r.station
+        upstream = r.upstream
+
+        dct = await process_dt_metrics(station, upstream, catchidns, metrics)
+        dct["station"] = station
+
+        ls.append(dct)
+    ls_df = pandas.DataFrame(ls)
+    geo_info = geo_info.merge(ls_df, on="station")
+
+    ls = []
+    variables = cfg["variables"].keys()
+    for i, r in geo_info.iterrows():
+        var = [i + "_info" for i in variables if getattr(r, f"has_{i}")]
+        ls.append({"station": r.station, "variables": var})
+    ls_df = pandas.DataFrame(ls)
+    geo_info = geo_info.merge(ls_df, on="station")
+
+    destinations = geo_info.query("has_rainfall")
+
+    # limit to just the sites with a reading in the last 6 months.
+    dt = datetime.datetime.now() - datetime.timedelta(days=30 * 6)
+    ix = [
+        info["period_end"] > hystra_format_dt(dt) for info in destinations.rainfall_info
+    ]
+    destinations = destinations.loc[ix].geometry.unary_union
 
     def near_rain(row, destinations):
         if row.has_rainfall:

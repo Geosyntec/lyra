@@ -79,8 +79,17 @@ variables:
       - min
   urban_drool:
     name: Estimated Urban Drool
-    variable: overall_daily_est_outdoor_budget_overage_sum
+    variable: urban_drool
+    varfrom: overall_daily_est_outdoor_budget_overage_sum
     source: dt_metrics
     units: ccf
+    allowed_aggregations:
+      - tot
+  mnwd_meter_count:
+    name: MNWD Meter Count
+    variable: mnwd_meter_count
+    varfrom: overall_MeterID_count
+    source: dt_metrics
+    units: count
     allowed_aggregations:
       - tot
