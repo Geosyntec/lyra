@@ -15,7 +15,6 @@ from lyra.src.hydstra import api, helper
 from lyra.src.mnwd import spatial
 from lyra.src.mnwd.dt_metrics import dt_metrics
 from lyra.src.rsb import graph
-from lyra.src.timeseries import Timeseries
 
 logger = logging.getLogger(__file__)
 
@@ -107,39 +106,49 @@ def get_catchidns_with_dt_metrics():
     return catchidns
 
 
-async def process_dt_metrics(s, upstream, catchidns, dt_metrics):
+async def process_dt_metrics(s, upstream, catchidns, metrics):
 
     site_dct = {}
+
     if not upstream:
         print(f"site {s} has no upstream catchidns")
-        for m in dt_metrics:
+        for m in metrics:
             site_dct[f"has_{m}"] = False
             site_dct[f"{m}_info"] = None
         return site_dct
 
-    upstream = json.loads(upstream)
     if not any(c in catchidns for c in upstream):
         print(f"site {s} has no drool tool results")
-        for m in dt_metrics:
+        for m in metrics:
             site_dct[f"has_{m}"] = False
             site_dct[f"{m}_info"] = None
         return site_dct
 
     try:
-        ts = Timeseries(
-            variable="urban_drool",
-            site=s,
-            aggregation_method="tot",
-            start_date="2015-01-01",
+        dt = datetime.datetime.now().date()
+        y = dt.year
+
+        records = dt_metrics(
+            catchidns=upstream,
+            variables=["overall_MeterID_count"],
+            groupby=["sum"],
+            years=range(2015, y),
         )
-        await ts.init_ts()
-        series = ts.timeseries
+        series = (
+            pandas.DataFrame(json.loads(records))
+            .assign(
+                date=lambda df: pandas.to_datetime(
+                    df["year"].astype(str) + df["month"].astype(str), format="%Y%m"
+                )
+            )
+            .set_index("date")["value"]
+        )
         start, end = (
             hystra_format_dt(series.index[0]),
             hystra_format_dt(series.index[-1]),
         )
 
-        for m in dt_metrics:
+        for m in metrics:
             site_dct[f"has_{m}"] = True
 
             _info = deepcopy(cfg["variables"][m])
@@ -164,22 +173,19 @@ def trace_each(val):
 
 
 async def get_site_geojson_info():
-    site_list = (await api.get_swn_site_list())["return"]["sites"]
+    site_list = set((await api.get_swn_site_list())["return"]["sites"])
     variables = (await api.get_variables(site_list, datasource="PUBLISH"))["return"]
     site_geojson = (await api.get_site_geojson(site_list))["return"]
 
     sites = await build_swn_variables(variables, cfg)
     site_df = pandas.DataFrame(sites).T
-    sites_with_trace = site_df.query("has_discharge | has_conductivity").index
 
     gdf = geopandas.read_file(json.dumps(site_geojson)).set_index("id")
 
     rsbs = geopandas.read_file(json.dumps(spatial.rsb_geojson()))
 
     us_traced = (
-        geopandas.sjoin(
-            gdf.loc[sites_with_trace], rsbs[["CatchIDN", "geometry"]], how="left"
-        )
+        geopandas.sjoin(gdf, rsbs[["CatchIDN", "geometry"]], how="left")
         .reindex(columns=["CatchIDN"])
         .astype({"CatchIDN": "Int64"})
     )
@@ -206,6 +212,9 @@ async def get_site_geojson_info():
     for i, r in geo_info.iterrows():
         station = r.station
         upstream = r.upstream
+
+        if not isinstance(upstream, list):
+            upstream = None
 
         dct = await process_dt_metrics(station, upstream, catchidns, metrics)
         dct["station"] = station

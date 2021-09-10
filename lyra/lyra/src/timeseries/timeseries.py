@@ -2,7 +2,7 @@ import asyncio
 import datetime
 import json
 from functools import partial
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 import pandas
 import pytz
@@ -207,30 +207,54 @@ class Timeseries(object):
             **self.hydstra_kwargs,
         )
 
-        timeseries_details = await helper.get_site_variable_as_trace(**inputs)
+        async def process_hydstra_errors(**inputs: Dict) -> Union[str, Dict]:
+            """recursive helper function to try to get hydstra data and 
+            handle errors when they occur
 
-        if "error_msg" in timeseries_details.keys():
-            num = timeseries_details["error_num"]
-            if num == 220:
-                raise HydstraIOError(f"{timeseries_details['error_msg']}", data=inputs)
+            uses globals: self
+            
+            """
+            timeseries_details = await helper.get_site_variable_as_trace(**inputs)
 
-            if num == 124:
-                self.warnings.append(
-                    f'Warning: No conversion or rating table for {hyd_variable_info["varfrom"]} '
-                    f'to {hyd_variable_info["varfrom"]}'
-                )
-                return pandas.DataFrame([])
+            if "error_msg" in timeseries_details.keys():
+                num = timeseries_details["error_num"]
+                if num == 220:
+                    raise HydstraIOError(
+                        f"{timeseries_details['error_msg']}", data=inputs
+                    )
 
-            if num == 125:
+                if num == 124:
+                    self.warnings.append(
+                        f'Warning: No conversion or rating table for "{hyd_variable_info["varfrom"]}" '
+                        f'to "{hyd_variable_info["varfrom"]}"'
+                    )
+                    return "empty"
 
-                # if not timeseries_details.get("trace"):
-                inputs["varfrom"] = hyd_variable_info["varfrom_fallback"]
-                self.warnings.append(
-                    f"Warning: variable '{hyd_variable_info['varfrom']}' not available. "
-                    f"Falling back to '{hyd_variable_info['varfrom_fallback']}'"
-                )
+                if num == 126:
+                    self.warnings.append(
+                        f'Warning: No data within requested period for variable "{self.variable}" '
+                        f'at site "{self.site}"'
+                    )
+                    return "empty"
 
-                timeseries_details = await helper.get_site_variable_as_trace(**inputs)
+                if num == 125:
+
+                    # if not timeseries_details.get("trace"):
+                    inputs["varfrom"] = hyd_variable_info["varfrom_fallback"]
+                    self.warnings.append(
+                        f"Warning: variable '{hyd_variable_info['varfrom']}' not available. "
+                        f"Falling back to '{hyd_variable_info['varfrom_fallback']}'"
+                    )
+
+                    # retry
+                    return await process_hydstra_errors(**inputs)
+
+            return timeseries_details
+
+        timeseries_details = await process_hydstra_errors(**inputs)
+
+        if timeseries_details == "empty":
+            return pandas.DataFrame([])
 
         trace = timeseries_details.get("trace")
 
