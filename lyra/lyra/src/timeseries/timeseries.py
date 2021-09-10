@@ -207,7 +207,7 @@ class Timeseries(object):
             **self.hydstra_kwargs,
         )
 
-        async def process_hydstra_errors(**inputs: Dict) -> Union[str, Dict]:
+        async def process_hydstra_errors(**inputs: Dict) -> Any:
             """recursive helper function to try to get hydstra data and 
             handle errors when they occur
 
