@@ -1,5 +1,5 @@
 import asyncio
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, Iterable, Optional, Union
 
 from lyra.core import async_requests
 from lyra.core.config import settings
@@ -32,7 +32,7 @@ async def get_swn_site_list() -> Dict[str, Any]:
 
 async def get_sites_db_info(
     site: Optional[str] = None,
-    field_list: Optional[List[str]] = None,
+    field_list: Optional[Iterable[str]] = None,
     return_type: Optional[hydstra_models.ReturnType] = None,
     filter_values: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
@@ -67,7 +67,7 @@ async def get_sites_db_info(
 async def get_site_db_info(
     site: str,
     return_type: Optional[hydstra_models.ReturnType] = None,
-    field_list: Optional[List[str]] = None,
+    field_list: Optional[Iterable[str]] = None,
 ) -> Dict[str, Any]:
 
     get_db_info: Dict = {
@@ -93,8 +93,8 @@ async def get_site_db_info(
 
 
 async def get_site_geojson(
-    site_list: Optional[List[str]] = None,
-    field_list: Optional[List[str]] = None,
+    site_list: Optional[Iterable[str]] = None,
+    field_list: Optional[Iterable[str]] = None,
     get_elev: Optional[int] = 0,
 ) -> Dict[str, Any]:
 
@@ -128,7 +128,7 @@ async def get_site_geojson(
 
 
 async def get_trace(
-    site_list: List[str],
+    site_list: Iterable[str],
     start_time: str,
     interval: hydstra_models.Interval,
     datasource: str,
@@ -136,7 +136,7 @@ async def get_trace(
     data_type: hydstra_models.DataType,
     interval_multiplier: int = 1,
     recent_points: Optional[int] = None,
-    var_list: Optional[Union[str, List[str]]] = None,
+    var_list: Optional[Union[str, Iterable[str]]] = None,
     varto: Optional[str] = None,
     varfrom: Optional[str] = None,
     **kwargs: Optional[Dict[str, Any]],
@@ -179,7 +179,8 @@ async def get_trace(
 
 
 async def get_datasources(
-    site_list: Optional[List[str]] = None, ts_classes: Optional[List[str]] = None,
+    site_list: Optional[Iterable[str]] = None,
+    ts_classes: Optional[Iterable[str]] = None,
 ) -> Dict[str, Any]:
     if site_list is None:
         site_list_response = await get_site_list()
@@ -200,9 +201,9 @@ async def get_datasources(
 
 
 async def get_variables(
-    site_list: Optional[List[str]] = None,
+    site_list: Optional[Iterable[str]] = None,
     datasource: str = "PUBLISH",
-    var_filter: Optional[List[str]] = None,
+    var_filter: Optional[Iterable[str]] = None,
 ) -> Dict[str, Any]:
 
     if site_list is None:

@@ -3,6 +3,7 @@ import io
 import json
 import logging
 from copy import deepcopy
+from typing import Any, Dict
 
 import geopandas
 import pandas
@@ -108,7 +109,7 @@ def get_catchidns_with_dt_metrics():
 
 async def process_dt_metrics(s, upstream, catchidns, metrics):
 
-    site_dct = {}
+    site_dct: Dict[str, Any] = {}
 
     if not upstream:
         print(f"site {s} has no upstream catchidns")
