@@ -136,6 +136,10 @@ def make_source(ts: List[Timeseries], method: Optional[str] = None) -> pandas.Da
     tx, ty, *_ = ts
     for t in [tx, ty]:
         t.label = regression_ts_label(t)
+    if tx.label == ty.label:
+        for t, tag in zip([tx, ty], [" (x)", " (y)"]):
+            t.label += tag
+
     x = tx.timeseries_src.assign(
         outlier_x=lambda df: numpy.abs(zscore(df["value"])) > 6
     ).rename(columns={"value": tx.label})
