@@ -227,8 +227,12 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
         .add_selection(brush)
     )
 
-    p = alt.vconcat(
-        precip_layer, vol_layer, loss_rate_layer, cumul_layer, rate_layer, sel_chart
-    ).resolve_scale(color="independent",)
+    p = (
+        alt.vconcat(
+            precip_layer, vol_layer, loss_rate_layer, cumul_layer, rate_layer, sel_chart
+        )
+        .resolve_scale(color="independent",)
+        .configure_legend(labelLimit=0, orient="top", direction="vertical", title=None)
+    )
 
     return p
