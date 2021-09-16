@@ -127,7 +127,7 @@ async def process_dt_metrics(s, upstream, catchidns, metrics):
 
     try:
         dt = datetime.datetime.now().date()
-        y = dt.year
+        y = dt.year + 1
 
         records = dt_metrics(
             catchidns=upstream,
@@ -145,8 +145,8 @@ async def process_dt_metrics(s, upstream, catchidns, metrics):
             .set_index("date")["value"]
         )
         start, end = (
-            hystra_format_dt(series.index[0]),
-            hystra_format_dt(series.index[-1]),
+            hystra_format_dt(series.index.min()),
+            hystra_format_dt(series.index.max()),
         )
 
         for m in metrics:
@@ -226,9 +226,22 @@ async def get_site_geojson_info():
 
     ls = []
     variables = cfg["variables"].keys()
-    for i, r in geo_info.iterrows():
+    for _, r in geo_info.iterrows():
         var = [i + "_info" for i in variables if getattr(r, f"has_{i}")]
-        ls.append({"station": r.station, "variables": var})
+        variables_regression = [
+            i
+            for i in var
+            if not any(v in i for v in ["raw_level", "distance_to_water"])
+        ]
+        variables_diversion_scenario = [i for i in var if "discharge" in i]
+        ls.append(
+            {
+                "station": r.station,
+                "variables": var,
+                "variables_regression": variables_regression,
+                "variables_diversion_scenario": variables_diversion_scenario,
+            }
+        )
     ls_df = pandas.DataFrame(ls)
     geo_info = geo_info.merge(ls_df, on="station")
 
