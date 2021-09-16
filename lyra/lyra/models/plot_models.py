@@ -304,7 +304,7 @@ class TimeseriesSchema(TimeseriesBaseSchema):
 
 
 class ListTimeseriesSchema(BaseModel):
-    timeseries: Union[List[TimeseriesSchema], str]
+    timeseries: List[TimeseriesSchema]
 
     @validator("timeseries", pre=True, always=True)
     def check_timeseries(cls, v):
