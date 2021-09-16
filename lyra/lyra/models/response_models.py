@@ -44,6 +44,7 @@ class CachedJSONResponse(JSONAPIResponse):
 class ChartData(BaseModel):
     spec: Optional[Dict[str, Any]] = None
     messages: Optional[List[str]] = None
+    table: Optional[Any] = None
 
 
 class ChartJSONResponse(JSONAPIResponse):

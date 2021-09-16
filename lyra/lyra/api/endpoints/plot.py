@@ -493,6 +493,8 @@ def plot_diversion_scenario(
         # warnings = ["\n".join(t.warnings) for t in ts]
         # msg += warnings
 
+        table = diversion_scenario.make_summary_table(source)
+
         chart = diversion_scenario.make_plot(source)
         chart_spec = chart.to_dict()
         chart_status = "SUCCESS"
@@ -509,6 +511,7 @@ def plot_diversion_scenario(
         "spec": chart_spec,
         "chart_status": chart_status,
         "messages": msg,
+        "table": table,
     }
 
     response = {"data": chart_pkg}

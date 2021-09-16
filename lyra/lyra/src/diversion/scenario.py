@@ -153,11 +153,11 @@ def simulate_diversion(
 
     rg_ts = discharge_ts.get_nearest_rainfall_ts()
 
-    precip_depth_ts = pandas.Series(rg_ts.timeseries["value"], name="precip_depth")
+    precip_depth_ts = pandas.Series(rg_ts.timeseries["value"], name="rainfall_depth")
 
     if operated_weather_condition == "both":
         diversion_active_bool_series = pandas.Series(
-            True, index=discharge_ts.timeseries.index
+            True, index=rg_ts.weather_condition_series.index
         )
     else:
         if operated_weather_condition == "dry":

@@ -1,6 +1,7 @@
 from typing import Any, Dict, List
 
 import altair as alt
+import numpy
 import pandas
 
 from lyra.src.diversion import simulate_diversion
@@ -31,6 +32,41 @@ def make_source(**kwargs: Dict) -> pandas.DataFrame:
     return df
 
 
+def make_summary_table(df):
+    table = {
+        "column_names": None,
+        "records": [],
+    }
+    inflow_vol = df.query('variable == "inflow_volume"')["value"].sum()
+    diversion_vol = df.query('variable == "diverted_volume"')["value"].sum()
+    diverted_pct = diversion_vol / inflow_vol * 100
+
+    records = [
+        {
+            "label": "Total Inflow Volume (cuft)",
+            "units": "cuft",
+            "value": float(numpy.round(inflow_vol, 2)),
+            "description": f"Total volume entering the diversion during the scenario.",
+        },
+        {
+            "label": "Total Diverted Volume (cuft)",
+            "units": "cuft",
+            "value": float(numpy.round(diversion_vol, 2)),
+            "description": f"Total volume diverted during this scenario.",
+        },
+        {
+            "label": r"% of Inflow Diverted",
+            "units": "%",
+            "value": float(numpy.round(diverted_pct, 1)),
+            "description": f"Diverted volume as percentage of inflow volume.",
+        },
+    ]
+
+    table["records"] = records
+
+    return table
+
+
 def make_layer(
     source, fields, xlim=None, ylim=None, text_sigfigs=3, ylabel=None, interpolate=None,
 ):
@@ -41,8 +77,12 @@ def make_layer(
         type="single", nearest=True, on="mouseover", fields=["date"], empty="none"
     )
 
-    plot_src = source.query("variable in @fields").pipe(
-        utils.drop_runs_tidy, value_col="value", groupby="variable"
+    title_fields = {s: s.title().replace("_", " ") for s in fields}
+
+    plot_src = (
+        source.query("variable in @fields")
+        .assign(variable=lambda df: df["variable"].replace(title_fields))
+        .pipe(utils.drop_runs_tidy, value_col="value", groupby="variable")
     )
 
     if ylim is None:
@@ -65,7 +105,11 @@ def make_layer(
         .encode(
             x=_x,
             y=_y,  # alt.Y("value:Q", title=ylabel),
-            color=alt.Color("variable", sort=fields, legend=alt.Legend(title=None)),
+            color=alt.Color(
+                "variable",
+                sort=list(title_fields.values()),
+                legend=alt.Legend(title=None),
+            ),
         )
     )
 
@@ -101,7 +145,7 @@ def make_layer(
 def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
     brush = alt.selection(type="interval", encodings=["x"])
 
-    _precip_vars = ["precip_depth"]
+    _precip_vars = ["rainfall_depth"]
     precip_gp = make_layer(
         source,
         _precip_vars,
