@@ -184,6 +184,9 @@ def plot_timeseries_with_POST(
         warnings = ["\n".join(t.warnings) for t in ts]
         msg += warnings
 
+        if source.empty:
+            msg.append("Warning: No data to display.")
+
         chart = multi_variable.make_plot(source)
         chart_spec = chart.to_dict()
         chart_status = "SUCCESS"
@@ -277,6 +280,9 @@ def plot_multi_variable(
         source = multi_variable.make_source(ts)
         warnings = ["\n".join(t.warnings) for t in ts]
         msg += warnings
+
+        if source.empty:
+            msg.append("Warning: No data to display.")
 
         chart = multi_variable.make_plot(source)
         chart_spec = chart.to_dict()
@@ -388,6 +394,9 @@ def plot_regression(
         warnings = ["\n".join(t.warnings) for t in ts]
         msg += warnings
 
+        if source.empty:
+            msg.append("Warning: No data to display.")
+
         chart = regression.make_plot(source, method=req.regression_method)
         chart_spec = chart.to_dict()
         chart_status = "SUCCESS"
@@ -492,6 +501,9 @@ def plot_diversion_scenario(
         source = diversion_scenario.make_source(**jsonable_encoder(req))
         # warnings = ["\n".join(t.warnings) for t in ts]
         # msg += warnings
+
+        if source.empty:
+            msg.append("Warning: No data to display.")
 
         table = diversion_scenario.make_summary_table(source)
 
