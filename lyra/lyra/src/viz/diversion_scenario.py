@@ -39,25 +39,25 @@ def make_summary_table(df):
     }
     inflow_vol = df.query('variable == "inflow_volume"')["value"].sum()
     diversion_vol = df.query('variable == "diverted_volume"')["value"].sum()
-    diverted_pct = diversion_vol / inflow_vol * 100
+    diverted_pct = diversion_vol / inflow_vol
 
     records = [
         {
             "label": "Total Inflow Volume (cuft)",
             "units": "cuft",
-            "value": float(numpy.round(inflow_vol, 2)),
+            "value": f"{ inflow_vol : 0,.0f}",
             "description": f"Total volume entering the diversion during the scenario.",
         },
         {
             "label": "Total Diverted Volume (cuft)",
             "units": "cuft",
-            "value": float(numpy.round(diversion_vol, 2)),
+            "value": f"{ diversion_vol : 0,.0f}",
             "description": f"Total volume diverted during this scenario.",
         },
         {
             "label": r"% of Inflow Diverted",
             "units": "%",
-            "value": float(numpy.round(diverted_pct, 1)),
+            "value": f"{ diverted_pct : 0.1%}",
             "description": f"Diverted volume as percentage of inflow volume.",
         },
     ]
