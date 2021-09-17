@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Optional
 
 import pandas
 
-from lyra.src.timeseries import Timeseries
+from lyra.src.timeseries import Timeseries, utils
 
 
 def active_system_timeseries(
@@ -136,6 +136,9 @@ def simulate_diversion(
     storage_area_sqft: float = 0.0,
     infiltration_rate_inhr: float = 0.0,
     operated_weather_condition: str = "dry",
+    rainfall_event_depth_threshold: float = 0.1,
+    event_separation_hrs: float = 6.0,
+    after_rain_delay_hrs: float = 72.0,
     diversion_months_active: Optional[List[int]] = None,
     diversion_days_active: Optional[List[int]] = None,
     diversion_hours_active: Optional[List[int]] = None,
@@ -160,10 +163,16 @@ def simulate_diversion(
             True, index=rg_ts.weather_condition_series.index
         )
     else:
+        dw = utils.identify_dry_weather(
+            rg_ts.timeseries["value"],
+            min_event_depth=rainfall_event_depth_threshold,
+            event_separation_hrs=event_separation_hrs,
+            after_rain_delay_hrs=after_rain_delay_hrs,
+        )
         if operated_weather_condition == "dry":
-            diversion_active_bool_series = rg_ts.weather_condition_series["is_dry"]
+            diversion_active_bool_series = dw["is_dry"]
         else:
-            diversion_active_bool_series = ~rg_ts.weather_condition_series["is_dry"]
+            diversion_active_bool_series = ~dw["is_dry"]
 
     active_ts = active_system_timeseries(
         diversion_active_bool_series,

@@ -379,6 +379,9 @@ class DiversionScenarioSchema(BaseModel):
     storage_initial_depth_ft: Optional[float] = 0.0
     storage_area_sqft: Optional[float] = 0.0
     infiltration_rate_inhr: Optional[float] = 0.0
+    rainfall_event_depth_threshold: Optional[float] = 0.1
+    event_separation_hrs: Optional[float] = 6.0
+    after_rain_delay_hrs: Optional[float] = 72.0
     diversion_months_active: Optional[List[int]] = None
     diversion_days_active: Optional[List[int]] = None
     diversion_hours_active: Optional[List[int]] = None
