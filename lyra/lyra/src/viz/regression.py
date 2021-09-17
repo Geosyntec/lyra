@@ -14,8 +14,8 @@ HOWS = {
             rSquared='format(datum.rSquared,".2f")',
             equation='\
             "y = "+\
-            format(datum.coef[0],".2f") + " + " + \
-            format(datum.coef[1],".2f") + "x" \
+            format(datum.coef[0],".4f") + " + " + \
+            format(datum.coef[1],".4f") + "x" \
             ',
         ),
     },
@@ -24,9 +24,9 @@ HOWS = {
             rSquared='format(datum.rSquared,".2f")',
             equation='\
             "y = "+\
-            format(datum.coef[0],".2f") + " + " + \
-            format(datum.coef[1],".2f") + "x + " + \
-            format(datum.coef[2],".2f") + "x\u00B2" \
+            format(datum.coef[0],".4f") + " + " + \
+            format(datum.coef[1],".4f") + "x + " + \
+            format(datum.coef[2],".4f") + "x\u00B2" \
             ',
         ),
     },
@@ -35,10 +35,10 @@ HOWS = {
             rSquared='format(datum.rSquared,".2f")',
             equation='\
             "y = "+\
-            format(datum.coef[0],".2f") + " + " + \
-            format(datum.coef[1],".2f") + "x + " + \
-            format(datum.coef[2],".2f") + "x\u00B2" + \
-            format(datum.coef[3],".2f") + "x\u00B3" \
+            format(datum.coef[0],".4f") + " + " + \
+            format(datum.coef[1],".4f") + "x + " + \
+            format(datum.coef[2],".4f") + "x\u00B2" + \
+            format(datum.coef[3],".4f") + "x\u00B3" \
             ',
         ),
     },
@@ -47,8 +47,8 @@ HOWS = {
             rSquared='format(datum.rSquared,".2f")',
             equation='\
             "y = "+\
-            format(datum.coef[0],".2f") + " * e^(" + \
-            format(datum.coef[1],".2f") + " * x)" \
+            format(datum.coef[0],".4f") + " * e^(" + \
+            format(datum.coef[1],".4f") + " * x)" \
             ',
         ),
     },
@@ -57,8 +57,8 @@ HOWS = {
             rSquared='format(datum.rSquared,".2f")',
             equation='\
             "y = "+\
-            format(datum.coef[0],".2f") + " * x^" + \
-            format(datum.coef[1],".2f") \
+            format(datum.coef[0],".4f") + " * x^" + \
+            format(datum.coef[1],".4f") \
             ',
         ),
     },
@@ -67,8 +67,8 @@ HOWS = {
             rSquared='format(datum.rSquared,".2f")',
             equation='\
             "y = "+\
-            format(datum.coef[0],".2f") + " * " + \
-            format(datum.coef[1],".2f") + "x" \
+            format(datum.coef[0],".4f") + " * " + \
+            format(datum.coef[1],".4f") + "x" \
             ',
         ),
     },
@@ -76,22 +76,11 @@ HOWS = {
 
 
 def make_source_json(source: pandas.DataFrame) -> List[Dict[str, Any]]:
-    # source = source.reindex(columns=["date", "value", "label"])
     result: List[Dict[str, Any]] = source.reset_index().to_dict(orient="records")
     return result
 
 
 def make_source_csv(source: pandas.DataFrame) -> str:
-    # site = ",".join(source["site"].unique())
-    # variable = ",".join(source["variable"].unique())
-    # csv = (
-    #     source.reindex(columns=["date", "label", "value"])
-    #     .pivot(index="date", columns="label", values="value")
-    #     .reset_index()
-    #     .to_csv(index=False)
-    # )
-
-    # pkg = "\n".join([site, variable, csv])
 
     return source.reset_index().to_csv(index=False)
 
@@ -140,21 +129,14 @@ def make_source(ts: List[Timeseries], method: Optional[str] = None) -> pandas.Da
         for t, tag in zip([tx, ty], [" (x)", " (y)"]):
             t.label += tag
 
-    x = tx.timeseries_src.assign(
-        outlier_x=lambda df: numpy.abs(zscore(df["value"])) > 6
-    ).rename(columns={"value": tx.label})
-    y = ty.timeseries_src.assign(
-        outlier_y=lambda df: numpy.abs(zscore(df["value"])) > 6
-    ).rename(columns={"value": ty.label})
+    x = tx.timeseries_src.rename(columns={"value": tx.label})
+    y = ty.timeseries_src.rename(columns={"value": ty.label})
+
     source = (
         pandas.concat([x, y], axis=1)
         .dropna()
-        .assign(
-            label=lambda df: numpy.where(
-                df["outlier_x"] | df["outlier_y"], "outlier (zscore > 6)", "data"
-            )
-        )
-    )[[tx.label, ty.label, "label"]]
+        .assign(label="Data")[[tx.label, ty.label, "label"]]
+    )
 
     if method in ["log", "pow", "exp"]:
         source = source.loc[~(source <= 0).any(axis=1)]
@@ -172,8 +154,20 @@ def make_plot(
     width = 400
     height = 400
 
-    chart = (
-        alt.Chart(source.query('label=="data"'), width=width, height=height)
+    source = source.assign(tooltip="")
+
+    if not source.empty:
+        source = source.assign(
+            tooltip=lambda df: (
+                df["x"].round(2).apply(str) + ", " + df["y"].round(2).apply(str)
+            )
+        )
+
+    nearest = alt.selection_single(on="mouseover", empty="none")
+
+    points = (
+        alt.Chart(source)
+        .properties(height=height, width=width)
         .mark_point(filled=True)
         .encode(
             x=alt.X(
@@ -186,32 +180,31 @@ def make_plot(
                 title=split_keep_delim(y_label, ")"),
                 scale=alt.Scale(domain=(0, source["y"].max() * 1.05)),
             ),
-            color="label:N",
-            opacity=alt.value(0.5),
+            color=alt.condition(nearest, alt.value("orange"), "label:N",),
+            opacity=alt.condition(nearest, alt.value(0.9), alt.value(0.5),),
+            size=alt.condition(nearest, alt.value(150), alt.value(75)),
+            tooltip="tooltip",
         )
     )
 
-    outlier = (
-        alt.Chart(source.query('label!="data"'))
-        .mark_point(filled=True)
-        .encode(x="x:Q", y="y:Q", color="label:N", opacity=alt.value(0.8))
-    )
-
     line = (
-        chart.transform_regression(on="x", regression="y", method=method)
+        alt.Chart(source)
+        .transform_regression(on="x", regression="y", method=method)
         .mark_line(clip=True,)
-        .encode(color=alt.value("firebrick"), opacity=alt.value(1))
+        .encode(x="x:Q", y="y:Q", color=alt.value("firebrick"), opacity=alt.value(1))
     )
 
-    regression = chart.transform_regression(
-        "x", "y", method=method, params=True
-    ).transform_calculate(**HOWS[method]["calculate"])
+    regression = (
+        alt.Chart(source)
+        .transform_regression("x", "y", method=method, params=True)
+        .transform_calculate(**HOWS[method]["calculate"])
+    )
 
     params = []
-    yoff = chart.height + 60
-    xoff = chart.width / 2
-    for label, val in [("R\u00B2:", "rSquared"), ("equation: ", "equation")]:
-        p = regression.mark_text(align="right", text=label).encode(
+    yoff = height + 60
+    xoff = width / 8
+    for label, val in [("R\u00B2:", "rSquared"), ("Equation: ", "equation")]:
+        p = regression.mark_text(align="right", text=label, clip=False).encode(
             x=alt.value(xoff),
             y=alt.value(yoff),  # pixels from left  # pixels from top
             opacity=alt.value(1),
@@ -219,7 +212,7 @@ def make_plot(
         )
         params.append(p)
 
-        p = regression.mark_text(align="left", lineBreak="\n").encode(
+        p = regression.mark_text(align="left", lineBreak="\n", clip=False).encode(
             x=alt.value(xoff + 4),  # pixels from left
             y=alt.value(yoff),  # pixels from top
             text=f"{val}:N",
@@ -230,8 +223,13 @@ def make_plot(
 
         yoff += 15
 
-    full_chart = ((chart + outlier + line) + alt.layer(*params)).configure_legend(
-        labelLimit=0, orient="top", direction="vertical", title=None
+    chart = points.add_selection(nearest) + line
+    annotation = alt.layer(*params)
+
+    full_chart = (
+        (chart + annotation)
+        .configure_legend(labelLimit=0, orient="top", direction="vertical", title=None)
+        .interactive()
     )
 
     return full_chart

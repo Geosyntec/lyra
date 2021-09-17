@@ -290,6 +290,7 @@ class Timeseries(object):
 
         result = (
             df.join(nearest_rain_ts.weather_condition_series["is_dry"], how="left")
+            .fillna({"is_dry": True})
             .query(q)[["value"]]
             .resample(INTERVAL_REMAP[self.interval])
             .aggregate(AGG_REMAP[self.aggregation_method])
