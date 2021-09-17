@@ -18,6 +18,7 @@ hydstra:
 variables:
   rainfall:
     name: Rainfall
+    description: Measured at this station or the nearest rainfall gauge.
     variable: rainfall
     source: hydstra
     units: inches
@@ -31,6 +32,7 @@ variables:
       # - min
   discharge:
     name: Discharge
+    description: Measured at this station.
     variable: discharge
     source: hydstra
     units: cfs
@@ -43,6 +45,7 @@ variables:
       - min
   distance_to_water:
     name: Distance to Water
+    description: Measured at this station.
     variable: distance_to_water
     source: hydstra
     units: inches
@@ -55,6 +58,7 @@ variables:
       - min
   raw_level:
     name: Raw Level
+    description: Measured at this station.
     variable: raw_level
     source: hydstra
     units: feet
@@ -67,6 +71,7 @@ variables:
       - min
   conductivity:
     name: Conductivity
+    description: Measured at this station.
     variable: conductivity
     source: hydstra
     units: "µS"
@@ -79,6 +84,7 @@ variables:
       - min
   urban_drool:
     name: Estimated Urban Drool
+    description: Accumulated from Regional Subbasins upstream of this station.
     variable: urban_drool
     varfrom: overall_daily_est_outdoor_budget_overage_sum
     source: dt_metrics
@@ -87,6 +93,7 @@ variables:
       - tot
   mnwd_meter_count:
     name: MNWD Meter Count
+    description: Accumulated from Regional Subbasins upstream of this station.
     variable: mnwd_meter_count
     varfrom: overall_MeterID_count
     source: dt_metrics
