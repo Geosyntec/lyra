@@ -114,8 +114,8 @@ def mock_get_trace(monkeypatch):
 @pytest.mark.asyncio
 async def test_hydstra_get_trace_integration():
     rsp = await api.get_trace(
-        site_list=["ELTORO"],
-        var_list=["11"],
+        site_list="ELTORO",
+        var_list="11",
         start_time="20100101000000",
         end_time="20200101000000",
         interval="year",
@@ -129,8 +129,8 @@ async def test_hydstra_get_trace_integration():
 @pytest.mark.asyncio
 async def test_hydstra_get_trace(mock_get_trace):
     rsp = await api.get_trace(
-        site_list=["ELTORO"],
-        var_list=["11"],
+        site_list="ELTORO",
+        var_list="11",
         start_time="20100101000000",
         end_time="20200101000000",
         interval="year",
