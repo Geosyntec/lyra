@@ -43,8 +43,8 @@ async def plot_trace(
             kwargs.pop(d), kwargs.pop(d.replace("date", "time"), "0")
         )
 
-    kwargs["site_list"] = [kwargs.get("site", "ELTORO")]
-    kwargs["var_list"] = [kwargs.get("variable", "11")]
+    kwargs["site_list"] = kwargs.get("site", "ELTORO")
+    kwargs["var_list"] = kwargs.get("variable", "11")
     kwargs["datasource"] = kwargs.get("datasource", "PUBLISH")
     kwargs["interval_multiplier"] = kwargs.get("multiplier", "1")
     kwargs["recent_points"] = None

@@ -126,9 +126,9 @@ async def get_trace(
     recent_points: Optional[int] = None,
 ) -> Dict:
     response = await hydstra.api.get_trace(
-        site_list=site_list,
+        site_list=",".join(site_list),
         start_time=start_time,
-        var_list=var_list,
+        var_list=",".join(var_list),
         interval=interval,
         datasource=datasource,
         end_time=end_time,

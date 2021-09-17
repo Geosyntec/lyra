@@ -1,7 +1,7 @@
-import asyncio
-from typing import Any, Dict, Iterable, Optional, Union
+from typing import Any, Dict, Iterable, Optional
 
 from lyra.core import async_requests
+from lyra.core.async_cache import async_ttl
 from lyra.core.config import settings
 from lyra.models import hydstra_models
 
@@ -127,8 +127,9 @@ async def get_site_geojson(
     )
 
 
+@async_ttl(time_to_live=3600, maxsize=128)
 async def get_trace(
-    site_list: Iterable[str],
+    site_list: str,
     start_time: str,
     interval: hydstra_models.Interval,
     datasource: str,
@@ -136,7 +137,7 @@ async def get_trace(
     data_type: hydstra_models.DataType,
     interval_multiplier: int = 1,
     recent_points: Optional[int] = None,
-    var_list: Optional[Union[str, Iterable[str]]] = None,
+    var_list: Optional[str] = None,
     varto: Optional[str] = None,
     varfrom: Optional[str] = None,
     **kwargs: Optional[Dict[str, Any]],
@@ -146,7 +147,7 @@ async def get_trace(
         "function": "get_ts_traces",
         "version": 2,
         "params": {
-            "site_list": ",".join(site_list),
+            "site_list": site_list,
             "start_time": start_time,
             "interval": getattr(hydstra_models.Interval, interval),
             "datasource": datasource,
@@ -166,8 +167,6 @@ async def get_trace(
     }
 
     if var_list is not None:
-        if isinstance(var_list, list):
-            var_list = ",".join(var_list)
         ts_trace["params"]["var_list"] = var_list
     else:
         ts_trace["params"]["varfrom"] = varfrom

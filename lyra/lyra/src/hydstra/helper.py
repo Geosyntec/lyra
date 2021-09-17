@@ -66,7 +66,7 @@ async def get_site_variable_as_trace(
         datasource = "PUBLISH"
 
     trace_json = await api.get_trace(
-        site_list=[site],
+        site_list=site,
         start_time=start_date,
         end_time=end_date,
         varfrom=varfrom,
