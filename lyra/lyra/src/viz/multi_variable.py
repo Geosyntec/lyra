@@ -100,7 +100,7 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
                 y=alt.Y(
                     "value:Q",
                     title=f"{var_info['name']} ({var_info['units']})",
-                    scale=alt.Scale(domain=(0, data["value"].max() * 1.05)),
+                    scale=alt.Scale(domain=(0, data["value"].max() * 1.1)),
                 ),
                 color=alt.Color("label:N", sort=variables),
                 opacity=alt.condition(legend_selection, alt.value(1), alt.value(0.2)),
@@ -125,8 +125,15 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
         )
 
         # Draw text labels near the points, and highlight based on selection
+        ymax = data["value"].max()
+        if ymax < 1:
+            num_fmt = ",.3f"
+        elif ymax < 100:
+            num_fmt = ",.1f"
+        else:
+            num_fmt = ",.0f"
         text = line.mark_text(align="left", dx=5, dy=-5).encode(
-            text=alt.condition(nearest, "value:Q", alt.value(" "), format=",.1f")
+            text=alt.condition(nearest, "value:Q", alt.value(" "), format=num_fmt)
         )
 
         # Draw a rule at the location of the selection

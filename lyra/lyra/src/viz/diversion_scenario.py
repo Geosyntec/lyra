@@ -88,7 +88,7 @@ def make_layer(
     if ylim is None:
         _y = alt.Y(
             "value:Q",
-            scale=alt.Scale(domain=(0, plot_src["value"].max() * 1.05)),
+            scale=alt.Scale(domain=(0, plot_src["value"].max() * 1.10)),
             title=ylabel,
         )
     else:
