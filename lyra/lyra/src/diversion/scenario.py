@@ -181,7 +181,7 @@ def simulate_diversion(
         hours_active=diversion_hours_active,
     )
 
-    inflow_ts = discharge_ts.timeseries.value.asfreq("H").interpolate("cubic")
+    inflow_ts = discharge_ts.timeseries.value.asfreq("H").interpolate("linear")
 
     results = run_diversion_scenario(
         inflow_ts,
