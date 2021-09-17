@@ -277,8 +277,19 @@ class Timeseries(object):
 
         nearest_rain_ts = await self.get_nearest_rainfall_ts_async()
 
+        rain_start_date = nearest_rain_ts.timeseries.index.min()
+        rain_end_date = nearest_rain_ts.timeseries.index.max()
+
+        if rain_start_date > df.index.min() or rain_end_date > df.index.max():
+            df = df.loc[(df.index >= rain_start_date) & (df.index <= rain_end_date)]
+
+            self.warnings.append(
+                f"Warning: Setting date range to start_date={df.index.min().isoformat()} and end_date={df.index.max().isoformat()} "
+                f'at site "{self.site}" to support determination of weather_condition = {self.weather_condition}.'
+            )
+
         result = (
-            df.join(nearest_rain_ts.weather_condition_series["is_dry"])
+            df.join(nearest_rain_ts.weather_condition_series["is_dry"], how="left")
             .query(q)[["value"]]
             .resample(INTERVAL_REMAP[self.interval])
             .aggregate(AGG_REMAP[self.aggregation_method])
