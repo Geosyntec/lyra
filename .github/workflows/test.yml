@@ -45,7 +45,7 @@ jobs:
           docker-compose up -d lyra-tests
 
       - name: run tests
-        run: docker-compose exec -T lyra-tests coverage run --branch -m pytest -sv -m "not integration"
+        run: docker-compose exec -T -e LYRA_HYDSTRA_BASE_URL=${{ secrets.LYRA_HYDSTRA_BASE_URL }} lyra-tests coverage run --branch -m pytest -sv -m "not integration"
 
       - name: coverage
         run: |
@@ -81,6 +81,6 @@ jobs:
           docker-compose up -d lyra-tests
       - name: run edge tests
         continue-on-error: true
-        run: docker-compose exec -T lyra-tests pytest -xsv -m "not integration"
+        run: docker-compose exec -T -e LYRA_HYDSTRA_BASE_URL=${{ secrets.LYRA_HYDSTRA_BASE_URL }} lyra-tests pytest -xsv -m "not integration"
       - name: Exit
         run: exit 0
