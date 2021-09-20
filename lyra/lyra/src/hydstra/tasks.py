@@ -24,16 +24,21 @@ def process_varfroms(varlist, var, cfg):
     var_cfg = cfg["variables"][var]
     varfroms = var_cfg["varfrom"]
     varfrom_fallback = var_cfg["varfrom_fallback"]
+
     for v in deepcopy(varlist):
         for vfrom in varfroms:
             if v["variable"] == vfrom:
-                v.update(var_cfg)
-                v["varfrom"] = vfrom
-                return v
+                out = deepcopy(v)
+                out.update(var_cfg)
+                out["varfrom"] = vfrom
+                return out
+
+    for v in deepcopy(varlist):
         if int(float((v["variable"]))) == int(varfrom_fallback):
-            v.update(var_cfg)
-            v["varfrom"] = vfrom
-            return v
+            out = deepcopy(v)
+            out.update(var_cfg)
+            out["varfrom"] = vfrom
+            return out
 
 
 async def build_swn_variables(variables, cfg):
