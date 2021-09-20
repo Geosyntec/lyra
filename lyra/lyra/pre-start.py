@@ -1,6 +1,6 @@
 import logging
 
-from lyra.connections.database import writer_engine, reconnect_engine
+from lyra.connections.database import engine, reconnect_engine, writer_engine
 from lyra.core.config import settings
 from lyra.ops import startup
 
@@ -10,8 +10,8 @@ logger = logging.getLogger(__name__)
 
 def init() -> None:
 
-    reconnect_engine(writer_engine)
-    logger.info(f"engine: {writer_engine.url}\ntables: {writer_engine.table_names()}")
+    reconnect_engine(engine)
+    logger.info(f"engine: {engine.url}\ntables: {engine.table_names()}")
     startup.init_schemas(writer_engine)
     startup.startup_mnwd_drooltool_metrics_database(writer_engine)
 

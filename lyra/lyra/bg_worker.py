@@ -18,7 +18,6 @@ from lyra.src.rsb.tasks import (
     rsb_upstream_trace_response,
 )
 
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
