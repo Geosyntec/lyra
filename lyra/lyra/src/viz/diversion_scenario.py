@@ -33,32 +33,62 @@ def make_source(**kwargs: Dict) -> pandas.DataFrame:
 
 
 def make_summary_table(df):
-    table = {
+    table: dict = {
         "column_names": None,
         "records": [],
     }
     inflow_vol = df.query('variable == "inflow_volume"')["value"].sum()
-    diversion_vol = df.query('variable == "diverted_volume"')["value"].sum()
-    diverted_pct = diversion_vol / inflow_vol
+    diverted_vol = df.query('variable == "diverted_volume"')["value"].sum()
+    diverted_pct = diverted_vol / inflow_vol
+
+    infiltrated_vol = df.query('variable == "infiltrated_volume"')["value"].sum()
+    infiltrated_pct = infiltrated_vol / inflow_vol
+
+    bypassed_vol = df.query('variable == "bypassed_volume"')["value"].sum()
+    bypassed_pct = bypassed_vol / inflow_vol
 
     records = [
         {
             "label": "Total Inflow Volume (cuft)",
             "units": "cuft",
-            "value": f"{ inflow_vol : 0,.0f}",
+            "value": f"{ inflow_vol : 0,.0f}".strip(),
             "description": f"Total volume entering the diversion during the scenario.",
         },
         {
             "label": "Total Diverted Volume (cuft)",
             "units": "cuft",
-            "value": f"{ diversion_vol : 0,.0f}",
+            "value": f"{ diverted_vol : 0,.0f}".strip(),
             "description": f"Total volume diverted during this scenario.",
         },
         {
             "label": r"% of Inflow Diverted",
             "units": "%",
-            "value": f"{ diverted_pct : 0.1%}",
+            "value": f"{ diverted_pct : 0.1%}".strip(),
             "description": f"Diverted volume as percentage of inflow volume.",
+        },
+        {
+            "label": "Total Infiltrated Volume (cuft)",
+            "units": "cuft",
+            "value": f"{ infiltrated_vol : 0,.0f}".strip(),
+            "description": f"Total volume infiltrated during this scenario.",
+        },
+        {
+            "label": r"% of Inflow Infiltrated",
+            "units": "%",
+            "value": f"{ infiltrated_pct : 0.1%}".strip(),
+            "description": f"Infiltrated volume as percentage of inflow volume.",
+        },
+        {
+            "label": "Total Bypassd Volume (cuft)",
+            "units": "cuft",
+            "value": f"{ bypassed_vol : 0,.0f}".strip(),
+            "description": f"Total volume bypassed during this scenario.",
+        },
+        {
+            "label": r"% of Inflow Bypassd",
+            "units": "%",
+            "value": f"{ bypassed_pct : 0.1%}".strip(),
+            "description": f"Bypassed volume as percentage of inflow volume.",
         },
     ]
 
@@ -68,7 +98,16 @@ def make_summary_table(df):
 
 
 def make_layer(
-    source, fields, xlim=None, ylim=None, text_sigfigs=3, ylabel=None, interpolate=None,
+    source,
+    fields,
+    xlim=None,
+    ylim=None,
+    text_sigfigs=3,
+    ylabel=None,
+    interpolate=None,
+    reverse_y=False,
+    width=600,
+    height=100,
 ):
 
     if interpolate is None:
@@ -88,11 +127,15 @@ def make_layer(
     if ylim is None:
         _y = alt.Y(
             "value:Q",
-            scale=alt.Scale(domain=(0, plot_src["value"].max() * 1.10)),
+            scale=alt.Scale(
+                domain=(0, plot_src["value"].max() * 1.10), reverse=reverse_y
+            ),
             title=ylabel,
         )
     else:
-        _y = alt.Y("value:Q", scale=alt.Scale(domain=ylim), title=ylabel,)
+        _y = alt.Y(
+            "value:Q", scale=alt.Scale(domain=ylim, reverse=reverse_y), title=ylabel
+        )
 
     if xlim is None:
         _x = alt.X("date:T")
@@ -101,6 +144,7 @@ def make_layer(
 
     base = (
         alt.Chart(plot_src)
+        .properties(width=width, height=height)
         .mark_line(interpolate=interpolate)
         .encode(
             x=_x,
@@ -119,10 +163,8 @@ def make_layer(
         .add_selection(nearest)
     )
 
-    points = (
-        base.mark_point()
-        .encode(opacity=alt.condition(nearest, alt.value(1), alt.value(0)),)
-        .properties(width=600, height=100)
+    points = base.mark_point().encode(
+        opacity=alt.condition(nearest, alt.value(1), alt.value(0)),
     )
 
     # Draw text labels near the points, and highlight based on selection
@@ -156,7 +198,17 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
     )
 
     precip_layer = alt.layer(
-        *[i.encode(alt.X("date:T", scale=alt.Scale(domain=brush)),) for i in precip_gp]
+        *[
+            i.encode(
+                alt.X(
+                    "date:T",
+                    scale=alt.Scale(domain=brush),
+                    title=" ",
+                    axis=alt.Axis(labels=False),
+                )
+            )
+            for i in precip_gp
+        ]
     )
 
     _vol_vars = ["storage_volume"]
@@ -165,7 +217,17 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
     )
 
     vol_layer = alt.layer(
-        *[i.encode(alt.X("date:T", scale=alt.Scale(domain=brush)),) for i in vol_gp]
+        *[
+            i.encode(
+                alt.X(
+                    "date:T",
+                    scale=alt.Scale(domain=brush),
+                    title=" ",
+                    axis=alt.Axis(labels=False),
+                )
+            )
+            for i in vol_gp
+        ]
     )
 
     _loss_rate_vars = ["diversion_rate", "infiltration_rate"]
@@ -175,25 +237,35 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
 
     loss_rate_layer = alt.layer(
         *[
-            i.encode(alt.X("date:T", scale=alt.Scale(domain=brush)),)
+            i.encode(
+                alt.X(
+                    "date:T",
+                    scale=alt.Scale(domain=brush),
+                    title=" ",
+                    axis=alt.Axis(labels=False),
+                )
+            )
             for i in loss_rate_gp
         ]
     )
 
-    _rate_vars = ["inflow_rate", "discharge_rate"]
+    _rate_vars = ["inflow_rate", "bypass_rate"]
     rate_gp = make_layer(
         source, _rate_vars, xlim=None, ylim=None, ylabel=["Flowrate", "(cfs)"]
     )
 
     rate_layer = alt.layer(
-        *[i.encode(alt.X("date:T", scale=alt.Scale(domain=brush)),) for i in rate_gp]
+        *[
+            i.encode(alt.X("date:T", scale=alt.Scale(domain=brush), title=" "))
+            for i in rate_gp
+        ]
     )
 
     _cumul_vars = [
         "inflow_volume",
         "diverted_volume",
         "infiltrated_volume",
-        "discharged_volume",
+        "bypassed_volume",
     ]
     cumsum_source = (
         source.query("variable in @_cumul_vars")
@@ -217,13 +289,54 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
     )
 
     cumul_layer = alt.layer(
-        *[i.encode(alt.X("date:T", scale=alt.Scale(domain=brush)),) for i in cumul_gp]
+        *[
+            i.encode(
+                alt.X(
+                    "date:T",
+                    scale=alt.Scale(domain=brush),
+                    title=" ",
+                    axis=alt.Axis(labels=False),
+                )
+            )
+            for i in cumul_gp
+        ]
+    )
+
+    sel_chart_height = 60
+    discharge = alt.layer(
+        make_layer(
+            source,
+            _rate_vars,
+            xlim=None,
+            ylim=None,
+            ylabel=["Flowrate (cfs)"],
+            height=sel_chart_height,
+        )[0]
+    )
+    precip = alt.layer(
+        make_layer(
+            source,
+            _precip_vars,
+            xlim=None,
+            ylim=None,
+            ylabel=["Depth (inches)"],
+            interpolate="step-after",
+            reverse_y=True,
+            height=sel_chart_height,
+        )[0]
     )
 
     sel_chart = (
-        alt.layer(*rate_gp)
-        .properties(height=60)
+        alt.layer(precip, discharge)
+        .properties(
+            title=alt.TitleParams(
+                "Click and drag to select date-range",
+                color=alt.Value("dimgray"),
+                dy=sel_chart_height / 1.5,
+            ),
+        )
         .encode(opacity=alt.value(0.5))
+        .resolve_scale(y="independent")
         .add_selection(brush)
     )
 
@@ -232,7 +345,8 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
             precip_layer, vol_layer, loss_rate_layer, cumul_layer, rate_layer, sel_chart
         )
         .resolve_scale(color="independent",)
-        .configure_legend(labelLimit=0, orient="top", direction="vertical", title=None)
+        .configure_concat(spacing=2)
+        # .configure_legend(labelLimit=0, orient="top", direction="vertical", title=None)
     )
 
     return p

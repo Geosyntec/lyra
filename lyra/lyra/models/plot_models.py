@@ -386,11 +386,18 @@ class DiversionScenarioSchema(BaseModel):
     diversion_days_active: Optional[List[int]] = None
     diversion_hours_active: Optional[List[int]] = None
     operated_weather_condition: Optional[Weather] = None
+    rainfall_event_shutdown: Optional[bool] = None
     nearest_rainfall_station: Optional[str] = None
 
     @validator("operated_weather_condition", pre=True, always=True)
     def set_operated_weather_condition(cls, operated_weather_condition):
         return operated_weather_condition or "dry"
+
+    @validator("rainfall_event_shutdown", pre=True, always=True)
+    def set_rainfall_event_shutdown(cls, rainfall_event_shutdown):
+        if rainfall_event_shutdown is None:
+            rainfall_event_shutdown = True
+        return rainfall_event_shutdown
 
     @root_validator
     def check_site(cls, values):

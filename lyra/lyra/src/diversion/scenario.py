@@ -112,8 +112,8 @@ def run_diversion_scenario(
             "infiltration_rate": _infiltration_rate,
             "diverted_volume": _diverted_volume,
             "diversion_rate": _diversion_rate,
-            "discharged_volume": _discharged_volume,
-            "discharge_rate": _discharge_rate,
+            "bypassed_volume": _discharged_volume,
+            "bypass_rate": _discharge_rate,
             "storage_volume": _pool_volume,
         }
     )
@@ -135,7 +135,8 @@ def simulate_diversion(
     storage_initial_depth_ft: float = 0.0,
     storage_area_sqft: float = 0.0,
     infiltration_rate_inhr: float = 0.0,
-    operated_weather_condition: str = "dry",
+    # operated_weather_condition: str = "dry",
+    rainfall_event_shutdown: bool = True,
     rainfall_event_depth_threshold: float = 0.1,
     event_separation_hrs: float = 6.0,
     after_rain_delay_hrs: float = 72.0,
@@ -158,21 +159,19 @@ def simulate_diversion(
 
     precip_depth_ts = pandas.Series(rg_ts.timeseries["value"], name="rainfall_depth")
 
-    if operated_weather_condition == "both":
-        diversion_active_bool_series = pandas.Series(
-            True, index=rg_ts.weather_condition_series.index
-        )
-    else:
+    if rainfall_event_shutdown:
         dw = utils.identify_dry_weather(
             rg_ts.timeseries["value"],
             min_event_depth=rainfall_event_depth_threshold,
             event_separation_hrs=event_separation_hrs,
             after_rain_delay_hrs=after_rain_delay_hrs,
         )
-        if operated_weather_condition == "dry":
-            diversion_active_bool_series = dw["is_dry"]
-        else:
-            diversion_active_bool_series = ~dw["is_dry"]
+
+        diversion_active_bool_series = dw["is_dry"]
+    else:
+        diversion_active_bool_series = pandas.Series(
+            True, index=rg_ts.weather_condition_series.index
+        )
 
     active_ts = active_system_timeseries(
         diversion_active_bool_series,
