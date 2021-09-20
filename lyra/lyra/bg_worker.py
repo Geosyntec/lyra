@@ -1,10 +1,9 @@
 import asyncio
 import logging
 
-from lyra.connections import database
+from lyra.connections.database import writer_engine
 from lyra.core.cache import flush
 from lyra.core.celery_app import celery_app
-from lyra.core.config import settings
 from lyra.ops import startup
 from lyra.src.hydstra.tasks import save_site_geojson_info
 from lyra.src.mnwd.tasks import (
@@ -18,18 +17,6 @@ from lyra.src.rsb.tasks import (
     rsb_downstream_trace_response,
     rsb_upstream_trace_response,
 )
-
-writer_conn_str = database.sql_server_connection_string(
-    user=settings.AZURE_DATABASE_WRITEONLY_USERNAME,
-    password=settings.AZURE_DATABASE_WRITEONLY_PASSWORD,
-    server=settings.AZURE_DATABASE_SERVER,
-    port=settings.AZURE_DATABASE_PORT,
-    db=settings.AZURE_DATABASE_NAME,
-    driver="ODBC Driver 17 for SQL Server",
-    timeout=settings.AZURE_DATABASE_CONNECTION_TIMEOUT,
-)
-
-writer_engine = database.database_engine(connection_string=writer_conn_str)
 
 
 logging.basicConfig(level=logging.INFO)

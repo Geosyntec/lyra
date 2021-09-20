@@ -115,3 +115,15 @@ def update_with_log(df, table, conn, message="", **kwargs):
 
 
 engine = database_engine()  # each bg task will have its own engine
+
+writer_conn_str = sql_server_connection_string(
+    user=settings.AZURE_DATABASE_WRITEONLY_USERNAME,
+    password=settings.AZURE_DATABASE_WRITEONLY_PASSWORD,
+    server=settings.AZURE_DATABASE_SERVER,
+    port=settings.AZURE_DATABASE_PORT,
+    db=settings.AZURE_DATABASE_NAME,
+    driver="ODBC Driver 17 for SQL Server",
+    timeout=settings.AZURE_DATABASE_CONNECTION_TIMEOUT,
+)
+
+writer_engine = database_engine(connection_string=writer_conn_str)
