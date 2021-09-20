@@ -46,6 +46,7 @@ class Settings(BaseSettings):
 
     FORCE_FOREGROUND: bool = False
     FORCE_TASK_SCHEDULER_TO_FIVE_MINUTE_INTERVAL: bool = False
+    ENABLE_BEAT_SCHEDULE: bool = False
 
     HYDSTRA_BASE_URL: str = ""
 

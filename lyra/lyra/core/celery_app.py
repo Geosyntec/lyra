@@ -1,7 +1,13 @@
+import logging
 import os
 
 from celery import Celery
 from celery.schedules import crontab
+
+from lyra.core.config import settings
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/0")
 CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND", "redis://localhost:6379/0")
@@ -33,38 +39,44 @@ celery_app.conf.update(
 # crontab(0, 0, month_of_year='*/3') ==> Execute every day on the first month of every quarter.
 
 
-celery_app.conf.beat_schedule = {
-    ## this task is for demonstration purposes.
-    # "add-every-3-mins": {
-    #     "task": "lyra.bg_worker.add",
-    #     "schedule": 3 * 60,
-    #     "args": (16, 16),
-    # },
-    # "update-static-references": { ## this task has no effect when run in background in v0.1.16
-    #     "task": "lyra.bg_worker.background_build_static_references",
-    #     # daily at midnight
-    #     "schedule": crontab(minute=0, hour=0),
-    # },
-    "update-drooltool-database": {
-        "task": "lyra.bg_worker.background_update_drooltool_database",
-        # daily at midnight
-        # "schedule": crontab(minute=0, hour=0),
-        # on the 12th of each month
-        "schedule": crontab(minute=0, hour=0, day_of_month=12),
-    },
-    "update-drooltool-rsb_geo": {
-        "task": "lyra.bg_worker.background_update_rsb_geojson",
-        # daily at midnight
-        # "schedule": crontab(minute=0, hour=0),
-        # on the 12th of each month
-        "schedule": crontab(minute=0, hour=0, day_of_month=12),
-    },
-    "update-hydstra-site_geo": {
-        "task": "lyra.bg_worker.background_update_hydstra_site_info",
-        # daily at 6am
-        "schedule": crontab(0, "6"),
-    },
-}
+if settings.ENABLE_BEAT_SCHEDULE:
+    logger.info("setting up celery beat task schedules...")
+    celery_app.conf.beat_schedule = {
+        ## this task is for demonstration purposes.
+        # "add-every-3-mins": {
+        #     "task": "lyra.bg_worker.add",
+        #     "schedule": 3 * 60,
+        #     "args": (16, 16),
+        # },
+        # "update-static-references": { ## this task has no effect when run in background in v0.1.16
+        #     "task": "lyra.bg_worker.background_build_static_references",
+        #     # daily at midnight
+        #     "schedule": crontab(minute=0, hour=0),
+        # },
+        "update-drooltool-database": {
+            "task": "lyra.bg_worker.background_update_drooltool_database",
+            # daily at midnight
+            # "schedule": crontab(minute=0, hour=0),
+            # on the 12th of each month
+            "schedule": crontab(minute=0, hour=0, day_of_month=12),
+        },
+        "update-drooltool-rsb_geo": {
+            "task": "lyra.bg_worker.background_update_rsb_geojson",
+            # daily at midnight
+            # "schedule": crontab(minute=0, hour=0),
+            # on the 12th of each month
+            "schedule": crontab(minute=0, hour=0, day_of_month=12),
+        },
+        "update-hydstra-site_geo": {
+            "task": "lyra.bg_worker.background_update_hydstra_site_info",
+            # daily at 6am
+            "schedule": crontab(0, "6"),
+        },
+    }
+
+else:
+    logger.info("development environment; celery beat tasks are DISABLED...")
+
 
 # celery_app.conf.timezone = "UTC"
 celery_app.conf.timezone = "US/Pacific"
