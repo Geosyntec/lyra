@@ -1,6 +1,7 @@
+import datetime
+
 from .key import KEY
 from .lru import LRU
-import datetime
 
 
 class AsyncTTL:
@@ -37,7 +38,9 @@ class AsyncTTL:
             )
             super().__setitem__(key, (value, ttl_value))
 
-    def __init__(self, time_to_live=60, maxsize=1024, skip_args: int = 0):
+    def __init__(
+        self, time_to_live: float = 60, maxsize: float = 1024, skip_args: int = 0
+    ) -> None:
         """
         :param time_to_live: Use time_to_live as None for non expiring cache
         :param maxsize: Use maxsize as None for unlimited size cache

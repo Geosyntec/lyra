@@ -1,6 +1,3 @@
-from typing import Any
-
-
 class KEY:
     def __init__(self, *args, **kwargs):
         self.args = args
@@ -10,7 +7,7 @@ class KEY:
         return hash(self) == hash(obj)
 
     def __hash__(self):
-        def _hash(param: Any):
+        def _hash(param):
             if isinstance(param, tuple):
                 return tuple(map(_hash, param))
             if isinstance(param, dict):

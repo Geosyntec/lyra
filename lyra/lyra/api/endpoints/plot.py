@@ -237,10 +237,7 @@ def multi_var_schema_query(
             json_parsed = orjson.loads(string)
             rsp = MultiVarSchema(**json_parsed)
         else:
-            rsp = MultiVarSchema(
-                **dict(request.query_params)
-                # timeseries=timeseries, start_date=start_date, end_date=end_date,
-            )
+            rsp = MultiVarSchema(**dict(request.query_params))  # type: ignore
 
     except ValidationError as e:
         raise HTTPException(status_code=422, detail=e.errors())
