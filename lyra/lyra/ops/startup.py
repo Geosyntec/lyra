@@ -33,7 +33,7 @@ def init_schemas(engine):  # pragma: no cover
         raise e
 
 
-def startup_mnwd_drooltool_metrics_database(engine):  # pragma: no cover
+def check_mnwd_drooltool_metrics_database_has_data(engine):  # pragma: no cover
     reconnect_engine(engine)
 
     tables = engine.table_names()
@@ -46,8 +46,13 @@ def startup_mnwd_drooltool_metrics_database(engine):  # pragma: no cover
         if len(df) > 0:
             logger.info("DTMetrics table exists and has data")
             logger.info("... exiting drool tool metrics startup")
-            return
+            return True
 
+    return False
+
+
+def populate_mnwd_drooltool_metrics_database(engine):  # pragma: no cover
+    reconnect_engine(engine)
     share = get_share()
     fc = share.get_file_client("swn/mnwd/drooltool/database/drooltool_latest.csv")
 
@@ -63,6 +68,14 @@ def startup_mnwd_drooltool_metrics_database(engine):  # pragma: no cover
     update_drooltool_database(
         engine=engine, file=None, update=update,
     )
+
+
+def startup_mnwd_drooltool_metrics_database(engine, writer_engine):
+
+    db_has_data_already = check_mnwd_drooltool_metrics_database_has_data(engine)
+
+    if not db_has_data_already:
+        populate_mnwd_drooltool_metrics_database(writer_engine)
 
 
 @retry(

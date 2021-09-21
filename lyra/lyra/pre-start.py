@@ -13,7 +13,7 @@ def init() -> None:
     reconnect_engine(engine)
     logger.info(f"engine: {engine.url}\ntables: {engine.table_names()}")
     startup.init_schemas(writer_engine)
-    startup.startup_mnwd_drooltool_metrics_database(writer_engine)
+    startup.startup_mnwd_drooltool_metrics_database(engine, writer_engine)
 
     if not settings.FORCE_FOREGROUND:
         startup.get_redis_connection()
