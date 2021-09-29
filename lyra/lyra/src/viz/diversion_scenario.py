@@ -1,7 +1,6 @@
 from typing import Any, Dict, List
 
 import altair as alt
-import numpy
 import pandas
 
 from lyra.src.diversion import simulate_diversion
@@ -49,13 +48,13 @@ def make_summary_table(df):
 
     records = [
         {
-            "label": "Total Inflow Volume (cuft)",
+            "label": "Total Inflow Volume",
             "units": "cuft",
             "value": f"{ inflow_vol : 0,.0f}".strip(),
             "description": f"Total volume entering the diversion during the scenario.",
         },
         {
-            "label": "Total Diverted Volume (cuft)",
+            "label": "Total Diverted Volume",
             "units": "cuft",
             "value": f"{ diverted_vol : 0,.0f}".strip(),
             "description": f"Total volume diverted during this scenario.",
@@ -67,7 +66,7 @@ def make_summary_table(df):
             "description": f"Diverted volume as percentage of inflow volume.",
         },
         {
-            "label": "Total Infiltrated Volume (cuft)",
+            "label": "Total Infiltrated Volume",
             "units": "cuft",
             "value": f"{ infiltrated_vol : 0,.0f}".strip(),
             "description": f"Total volume infiltrated during this scenario.",
@@ -79,7 +78,7 @@ def make_summary_table(df):
             "description": f"Infiltrated volume as percentage of inflow volume.",
         },
         {
-            "label": "Total Bypassd Volume (cuft)",
+            "label": "Total Bypassd Volume",
             "units": "cuft",
             "value": f"{ bypassed_vol : 0,.0f}".strip(),
             "description": f"Total volume bypassed during this scenario.",
