@@ -17,6 +17,13 @@ async def get_site_list() -> Dict:
     return {"data": response}
 
 
+@router.get("/swn_sites", response_model=HydstraJSONResponse)
+async def get_swn_site_list() -> Dict:
+    response = await hydstra.api.get_swn_site_list()
+
+    return {"data": response}
+
+
 @router.get("/sites/info", response_model=HydstraJSONResponse)
 @router.post("/sites/info", response_model=HydstraJSONResponse)
 async def get_sites_db_info(
