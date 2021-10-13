@@ -186,7 +186,11 @@ async def get_site_geojson_info():
     sites = await build_swn_variables(variables, cfg)
     site_df = pandas.DataFrame(sites).T
 
-    gdf = geopandas.read_file(json.dumps(site_geojson)).set_index("id")
+    gdf = (
+        geopandas.read_file(json.dumps(site_geojson))
+        .loc[lambda df: ~df["id"].isnull()]
+        .set_index("id")
+    )
 
     rsbs = geopandas.read_file(json.dumps(spatial.rsb_geojson()))
 
