@@ -261,7 +261,24 @@ class Timeseries(object):
         if not trace:  # pragma: no cover
             raise ValueError(f"inputs failed: {inputs}, {timeseries_details}")
 
-        hydstra_result = helper.hydstra_trace_to_series(trace).to_frame()
+        hydstra_result = helper.hydstra_trace_to_series(trace)
+
+        quality = self.cfg["hydstra"]["max_quality_flag"]
+        questionable_data = hydstra_result.query("q>@quality")
+        ds, de = (
+            questionable_data.index.min().date(),
+            questionable_data.index.max().date(),
+        )
+        flags = questionable_data.q.unique()
+
+        self.warnings.append(
+            f"Warning: Some data is flagged for poor quality for {self.variable} at {self.site} "
+            f"between {ds} and {de} and {len(questionable_data)} data points have been omitted. "
+            f"Hydstra data quality flags for the omitted "
+            f"data points include: [{', '.join((str(i) for i in flags))}]. "
+        )
+
+        hydstra_result = hydstra_result.query("q<=@quality")
 
         # this will block the async await... but so it goes.
         return await self.process_weather_condition(hydstra_result)

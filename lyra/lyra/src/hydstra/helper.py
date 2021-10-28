@@ -29,10 +29,7 @@ def hydstra_trace_to_series(trace):
         .set_index("date")
     )
 
-    hyd_ts = df
-    quality = cfg["hydstra"]["max_quality_flag"]
-    hyd_ts = hyd_ts.query("q<=@quality")["value"]
-    return hyd_ts
+    return df
 
 
 async def get_site_variable_as_trace(
