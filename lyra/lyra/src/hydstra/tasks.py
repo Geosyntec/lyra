@@ -268,7 +268,8 @@ async def get_site_geojson_info():
             return row.geometry
         try:
             return nearest_points(row.geometry, destinations)[1]
-        except:
+        except Exception as e:
+            logger.warning(str(e))
             return
 
     geo_info["nearest_rainfall_station_pt"] = geo_info.apply(
