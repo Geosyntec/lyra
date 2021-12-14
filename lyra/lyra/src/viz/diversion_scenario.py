@@ -27,8 +27,12 @@ def make_source_csv(source: pandas.DataFrame) -> str:
 
 
 def make_source(**kwargs: Dict) -> pandas.DataFrame:
-    df = simulate_diversion(**kwargs)  # type: ignore
-    df: pandas.DataFrame = df.reset_index().melt(id_vars="date").round(4)
+    df = (
+        simulate_diversion(**kwargs)  # type: ignore
+        .reset_index()
+        .melt(id_vars="date")
+        .round(4)
+    )
     return df
 
 
