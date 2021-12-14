@@ -26,7 +26,7 @@ def test_mnwd_ftp():
 @pytest.mark.integration
 def test_azure_get_file_as_bytestring(nocache):
     file = azure_fs.get_file_as_bytestring(
-        "mnwd/drooltool/spatial/rsb_geo_data_latest.csv", share=None
+        "swn/mnwd/drooltool/spatial/rsb_geo_data_latest.csv", share=None
     )
 
     assert len(file) > 50
