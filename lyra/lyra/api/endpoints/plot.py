@@ -279,14 +279,21 @@ def plot_multi_variable(
         hyd_start = time.perf_counter()
         ts = multi_variable.make_timeseries(jsonable_encoder(req.timeseries))
         hyd_end = time.perf_counter()
+
+        source_start = time.perf_counter()
         source = multi_variable.make_source(ts)
+        source_end = time.perf_counter()
+
         warnings = ["\n".join(t.warnings) for t in ts]
         msg += warnings
 
         if source.empty:
             msg.append("Warning: No data to display.")
 
+        plot_start = time.perf_counter()
         chart = multi_variable.make_plot(source)
+        plot_end = time.perf_counter()
+
         chart_spec = chart.to_dict()
         chart_status = "SUCCESS"
 
@@ -304,11 +311,14 @@ def plot_multi_variable(
         "messages": msg,
     }
 
-
     response = {
         "data": chart_pkg,
-        "hydstra_time_seconds": hyd_end - hyd_start, 
-        "request_time_seconds": time.perf_counter() - req_start,
+        "timings": {
+            "hydstra_time_seconds": hyd_end - hyd_start,
+            "source_time_seconds": source_end - source_start,
+            "plot_time_seconds": plot_end - plot_start,
+            "request_time_seconds": time.perf_counter() - req_start,
+        },
     }
 
     if f == "html":

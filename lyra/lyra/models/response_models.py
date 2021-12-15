@@ -19,8 +19,7 @@ class JSONAPIResponse(BaseModel):
     task_id: Optional[str] = None
     result_route: Optional[str] = None
     expires_after: Optional[int] = None
-    request_time_seconds: Optional[float] = None
-    hydstra_time_seconds: Optional[float] = None
+    timings: Optional[Dict] = None
 
 
 class ForegroundTaskJSONResponse(JSONAPIResponse):
