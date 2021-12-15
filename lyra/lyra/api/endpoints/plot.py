@@ -1,3 +1,4 @@
+import time
 from typing import Dict, List, Optional, Union
 
 import orjson
@@ -268,12 +269,16 @@ def plot_multi_variable(
     * api/plot/multi_variable?json={"start_date":"2020-03-01","end_date":"2021-05-01","site":"ALISO_JERONIMO","timeseries":[{"variable":"rainfall"},{"variable":"discharge"}]}
     """
 
+    req_start = time.perf_counter()
+
     chart_spec = None
     chart_status = None
     msg = []
 
     try:
+        hyd_start = time.perf_counter()
         ts = multi_variable.make_timeseries(jsonable_encoder(req.timeseries))
+        hyd_end = time.perf_counter()
         source = multi_variable.make_source(ts)
         warnings = ["\n".join(t.warnings) for t in ts]
         msg += warnings
@@ -299,7 +304,12 @@ def plot_multi_variable(
         "messages": msg,
     }
 
-    response = {"data": chart_pkg}
+
+    response = {
+        "data": chart_pkg,
+        "hydstra_time_seconds": hyd_end - hyd_start, 
+        "request_time_seconds": time.perf_counter() - req_start,
+    }
 
     if f == "html":
         return templates.TemplateResponse(  # type: ignore

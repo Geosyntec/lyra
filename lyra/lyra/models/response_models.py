@@ -19,6 +19,8 @@ class JSONAPIResponse(BaseModel):
     task_id: Optional[str] = None
     result_route: Optional[str] = None
     expires_after: Optional[int] = None
+    request_time_seconds: Optional[float] = None
+    hydstra_time_seconds: Optional[float] = None
 
 
 class ForegroundTaskJSONResponse(JSONAPIResponse):
@@ -45,6 +47,7 @@ class ChartData(BaseModel):
     spec: Optional[Dict[str, Any]] = None
     messages: Optional[List[str]] = None
     table: Optional[Any] = None
+    chart_status: str = "SUCCESS"
 
 
 class ChartJSONResponse(JSONAPIResponse):
