@@ -92,36 +92,33 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
         if var == "rainfall":
             interpolate = "step-after"
 
+        base = alt.Chart(data).encode(x="Date:T")
+
         line = (
-            alt.Chart(data)
-            .mark_line(interpolate=interpolate)
+            base.mark_line(interpolate=interpolate)
             .encode(
-                x="Date:T",
                 y=alt.Y(
                     "value:Q",
                     title=f"{var_info['name']} ({var_info['units']})",
                     scale=alt.Scale(domain=(0, data["value"].max() * 1.1)),
                 ),
                 color=alt.Color("label:N", sort=variables),
-                opacity=alt.condition(legend_selection, alt.value(1), alt.value(0.2)),
+                opacity=alt.condition(legend_selection, alt.value(0.8), alt.value(0.2)),
             )
             .properties(height=height, width=width)
         )
 
-        nearest = alt.selection(
-            type="single", nearest=True, on="mouseover", fields=["Date"], empty="none"
-        )
-
-        selectors = (
-            alt.Chart(data)
-            .mark_point()
-            .encode(x="Date:T", y="value:Q", opacity=alt.value(0),)
-            .add_selection(nearest)
+        nearest = alt.selection_single(
+            nearest=True,
+            on="mouseover",
+            fields=["Date"],
+            empty="none",
+            clear="mouseout",
         )
 
         # Draw points on the line, and highlight based on selection
-        points = line.mark_point().encode(
-            opacity=alt.condition(nearest, alt.value(1), alt.value(0))
+        points = (
+            line.mark_point().transform_filter(nearest).encode(opacity=alt.value(1))
         )
 
         # Draw text labels near the points, and highlight based on selection
@@ -132,21 +129,25 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
             num_fmt = ",.1f"
         else:
             num_fmt = ",.0f"
-        text = line.mark_text(align="left", dx=5, dy=-5).encode(
-            text=alt.condition(nearest, "value:Q", alt.value(" "), format=num_fmt)
+        text = (
+            line.mark_text(align="right", dx=-7, dy=-7, fontStyle="bold")
+            .transform_filter(nearest)
+            .encode(text=alt.Text("value:Q", format=num_fmt), opacity=alt.value(1))
         )
 
         # Draw a rule at the location of the selection
-        rules = (
-            alt.Chart(data)
-            .mark_rule(color="gray")
-            .encode(x="Date:T",)
-            .transform_filter(nearest)
+        rule = (
+            base.mark_rule()
+            .encode(
+                opacity=alt.condition(nearest, alt.value(0.3), alt.value(0)),
+                tooltip=[alt.Tooltip("Date", format="%b %-d, %Y@%H:%M"),],
+            )
+            .add_selection(nearest)
         )
 
-        chart: alt.LayerChart = alt.layer(
-            line, selectors, points, rules, text,
-        ).add_selection(legend_selection)
+        chart: alt.LayerChart = alt.layer(line, points, rule, text).add_selection(
+            legend_selection
+        )
 
         vstack.append(chart)
 
