@@ -407,7 +407,7 @@ def plot_regression(
 
     try:
         ts = regression.make_timeseries(**jsonable_encoder(req))
-        source = regression.make_source(ts)
+        source = regression.make_source(ts, method=req.regression_method)
         warnings = ["\n".join(t.warnings) for t in ts]
         msg += warnings
 
@@ -450,7 +450,7 @@ def plot_regression_data(
 ) -> Union[ORJSONResponse, PlainTextResponse]:
     try:
         ts = regression.make_timeseries(**jsonable_encoder(req))
-        source = regression.make_source(ts)
+        source = regression.make_source(ts, method=req.regression_method)
         warnings = ["\n".join(t.warnings) for t in ts]
 
     except HydstraIOError as e:

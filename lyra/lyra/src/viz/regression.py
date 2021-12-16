@@ -2,9 +2,7 @@ import asyncio
 from typing import Any, Dict, List, Optional
 
 import altair as alt
-import numpy
 import pandas
-from scipy.stats import zscore
 
 from lyra.src.timeseries import Timeseries, gather_timeseries
 
@@ -76,13 +74,13 @@ HOWS = {
 
 
 def make_source_json(source: pandas.DataFrame) -> List[Dict[str, Any]]:
-    result: List[Dict[str, Any]] = source.reset_index().to_dict(orient="records")
+    result: List[Dict[str, Any]] = source.to_dict(orient="records")
     return result
 
 
 def make_source_csv(source: pandas.DataFrame) -> str:
 
-    return source.reset_index().to_csv(index=False)
+    return source.to_csv(index=False)
 
 
 def split_keep_delim(string, delim):
@@ -115,6 +113,7 @@ def make_timeseries(timeseries: List[Dict[str, Any]], **kwargs: Any,) -> List[An
     for dct in timeseries:
         t = Timeseries(**dct)
         ts.append(t)
+
     asyncio.run(gather_timeseries(ts))
 
     return ts
@@ -136,10 +135,12 @@ def make_source(ts: List[Timeseries], method: Optional[str] = None) -> pandas.Da
         pandas.concat([x, y], axis=1)
         .dropna()
         .assign(label="Data")[[tx.label, ty.label, "label"]]
+        .reset_index()
     )
 
     if method in ["log", "pow", "exp"]:
-        source = source.loc[~(source <= 0).any(axis=1)]
+        source = source.loc[~(source[[tx.label, ty.label]] <= 0).any(axis=1)]
+
     return source
 
 
@@ -149,21 +150,12 @@ def make_plot(
     if method is None:
         method = "linear"
 
-    x_label, y_label, *_ = source.columns
-    source.columns = ["x", "y", "label"]
+    _, x_label, y_label, *_ = source.columns
+    source.columns = ["date", "x", "y", "label"]
     width = 400
     height = 400
 
-    source = source.assign(tooltip="")
-
-    if not source.empty:
-        source = source.assign(
-            tooltip=lambda df: (
-                df["x"].round(2).apply(str) + ", " + df["y"].round(2).apply(str)
-            )
-        )
-
-    nearest = alt.selection_single(on="mouseover", empty="none")
+    nearest = alt.selection_single(on="mouseover", empty="none", clear="mouseout")
 
     points = (
         alt.Chart(source)
@@ -183,7 +175,11 @@ def make_plot(
             color=alt.condition(nearest, alt.value("orange"), "label:N",),
             opacity=alt.condition(nearest, alt.value(0.9), alt.value(0.5),),
             size=alt.condition(nearest, alt.value(150), alt.value(75)),
-            tooltip="tooltip",
+            tooltip=[
+                alt.Tooltip("date", format="%b %-d, %Y@%H:%M", title="Date"),
+                alt.Tooltip("x"),
+                alt.Tooltip("y"),
+            ],
         )
     )
 
@@ -223,7 +219,16 @@ def make_plot(
 
         yoff += 15
 
-    chart = points.add_selection(nearest) + line
+    chart = alt.layer(points.add_selection(nearest) + line).properties(
+        title=alt.TitleParams(
+            ["Click and drag to pan", "Scroll to zoom"],
+            align="right",
+            baseline="top",
+            color=alt.Value("lightgray"),
+            dy=25,
+            dx=width / 2,
+        ),
+    )
     annotation = alt.layer(*params)
 
     full_chart = (
