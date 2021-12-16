@@ -294,8 +294,10 @@ def plot_multi_variable(
         chart = multi_variable.make_plot(source)
         plot_end = time.perf_counter()
 
+        chart_spec_start = time.perf_counter()
         chart_spec = chart.to_dict()
         chart_status = "SUCCESS"
+        chart_spec_end = time.perf_counter()
 
     except HydstraIOError as e:
         chart_status = "FAILURE"
@@ -317,6 +319,7 @@ def plot_multi_variable(
             "hydstra_time_seconds": hyd_end - hyd_start,
             "source_time_seconds": source_end - source_start,
             "plot_time_seconds": plot_end - plot_start,
+            "chart_spec_time_seconds": chart_spec_end - chart_spec_start,
             "request_time_seconds": time.perf_counter() - req_start,
         },
     }
