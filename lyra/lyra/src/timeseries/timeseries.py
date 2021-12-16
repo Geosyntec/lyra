@@ -273,11 +273,9 @@ class Timeseries(object):
             flags = questionable_data.q.unique()
 
             self.warnings.append(
-                f"Warning: Some data is flagged by Hydstra for data quality for "
-                f"{self.variable} at {self.site}. These observations occur "
-                f"between {ds} and {de} and {len(questionable_data)} data points have been flagged. "
-                f"Hydstra data quality flags for these "
-                f"data points include: {', '.join((str(i) for i in flags))}. "
+                f"{len(questionable_data)} data points have Hydstra data quality "
+                f"flags for {self.variable} at {self.site} between {ds} and {de}. "
+                f"Quality flags include: {', '.join((str(i) for i in flags))}."
             )
 
         # this will block the async await... but so it goes.
