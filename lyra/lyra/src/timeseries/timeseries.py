@@ -276,7 +276,7 @@ class Timeseries(object):
                 f"Warning: Some data is flagged by Hydstra for data quality for "
                 f"{self.variable} at {self.site}. These observations occur "
                 f"between {ds} and {de} and {len(questionable_data)} data points have been flagged. "
-                f"Hydstra data quality flags for the omitted "
+                f"Hydstra data quality flags for these "
                 f"data points include: {', '.join((str(i) for i in flags))}. "
             )
 
