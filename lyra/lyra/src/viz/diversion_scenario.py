@@ -4,7 +4,6 @@ import altair as alt
 import pandas
 
 from lyra.src.diversion import simulate_diversion
-from lyra.src.timeseries import utils
 
 
 def make_source_json(source: pandas.DataFrame) -> List[Dict[str, Any]]:
@@ -116,16 +115,20 @@ def make_layer(
 
     if interpolate is None:
         interpolate = alt.Undefined
-    nearest = alt.selection(
-        type="single", nearest=True, on="mouseover", fields=["date"], empty="none"
+
+    nearest = alt.selection_single(
+        nearest=True, on="mouseover", fields=["date"], empty="none", clear="mouseout",
     )
 
     title_fields = {s: s.title().replace("_", " ") for s in fields}
 
     plot_src = (
-        source.query("variable in @fields")
-        .assign(variable=lambda df: df["variable"].replace(title_fields))
-        .pipe(utils.drop_runs_tidy, value_col="value", groupby="variable")
+        source.query("variable in @fields").assign(
+            variable=lambda df: df["variable"].replace(title_fields)
+        )
+        ## Don't tidy up, we need values at every 'rule' so that the tool tip is correct.
+        ## inefficient, but accurate.
+        # .pipe(utils.drop_runs_tidy, value_col="value", groupby=["variable"])
     )
 
     if ylim is None:
@@ -146,46 +149,36 @@ def make_layer(
     else:
         _x = alt.X("date:T", scale=alt.Scale(domain=xlim))
 
-    base = (
-        alt.Chart(plot_src)
-        .properties(width=width, height=height)
-        .mark_line(interpolate=interpolate)
-        .encode(
-            x=_x,
-            y=_y,  # alt.Y("value:Q", title=ylabel),
-            color=alt.Color(
-                "variable",
-                sort=list(title_fields.values()),
-                legend=alt.Legend(title=None),
-            ),
-        )
+    base = alt.Chart(plot_src).properties(width=width, height=height).encode(x=_x)
+
+    lines = base.mark_line(interpolate=interpolate).encode(
+        y=_y,
+        color=alt.Color(
+            "variable", sort=list(title_fields.values()), legend=alt.Legend(title=None),
+        ),
     )
 
-    selectors = (
-        base.mark_point()
-        .encode(x="date:T", y="value:Q", opacity=alt.value(0),)
+    points = lines.mark_point().transform_filter(nearest).encode(opacity=alt.value(1))
+
+    # Draw text labels near the points, and highlight based on selection
+
+    tt_labels = sorted(plot_src.variable.unique())
+
+    rule = (
+        base.transform_pivot("variable", value="value", groupby=["date"])
+        .mark_rule()
+        .encode(
+            opacity=alt.condition(nearest, alt.value(0.3), alt.value(0)),
+            tooltip=[alt.Tooltip("date", format="%b %-d, %Y@%H:%M", title="Date"),]
+            + [
+                alt.Tooltip(c, type="quantitative", format=f",.{text_sigfigs}r")
+                for c in tt_labels
+            ],
+        )
         .add_selection(nearest)
     )
 
-    points = base.mark_point().encode(
-        opacity=alt.condition(nearest, alt.value(1), alt.value(0)),
-    )
-
-    # Draw text labels near the points, and highlight based on selection
-    text = base.mark_text(align="left", dx=5, dy=-5).encode(
-        text=alt.condition(
-            nearest, "value:N", alt.value(" "), format=f",.{text_sigfigs}r"
-        )
-    )
-
-    rules = (
-        alt.Chart(plot_src)
-        .mark_rule(color="gray")
-        .encode(x="date:T",)
-        .transform_filter(nearest)
-    )
-
-    return base, selectors, rules, points, text
+    return lines, points, rule
 
 
 def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
