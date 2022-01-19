@@ -226,14 +226,14 @@ class Timeseries(object):
                 if num == 124:
                     self.warnings.append(
                         f'Warning: No conversion or rating table for "{hyd_variable_info["varfrom"]}" '
-                        f'to "{hyd_variable_info["varfrom"]}"'
+                        f'to "{hyd_variable_info["varfrom"]}".'
                     )
                     return "empty"
 
                 if num == 126:
                     self.warnings.append(
                         f'Warning: No data within requested period for variable "{self.variable}" '
-                        f'at site "{self.site}"'
+                        f'at site "{self.site}".'
                     )
                     return "empty"
 
@@ -242,8 +242,8 @@ class Timeseries(object):
                     # if not timeseries_details.get("trace"):
                     inputs["varfrom"] = hyd_variable_info["varfrom_fallback"]
                     self.warnings.append(
-                        f"Warning: variable '{hyd_variable_info['varfrom']}' not available. "
-                        f"Falling back to '{hyd_variable_info['varfrom_fallback']}'"
+                        f"Warning: Variable '{hyd_variable_info['varfrom']}' not available. "
+                        f"Falling back to '{hyd_variable_info['varfrom_fallback']}'."
                     )
 
                     # retry

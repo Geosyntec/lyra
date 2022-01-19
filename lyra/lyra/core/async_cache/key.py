@@ -18,3 +18,6 @@ class KEY:
                 return str(param)
 
         return hash(_hash(self.args) + _hash(self.kwargs))
+
+    def __repr__(self):
+        return f"KEY({self.args}, {self.kwargs})"

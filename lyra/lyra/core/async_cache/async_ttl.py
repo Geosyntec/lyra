@@ -1,7 +1,10 @@
 import datetime
+import logging
 
 from .key import KEY
 from .lru import LRU
+
+logger = logging.getLogger(__name__)
 
 
 class AsyncTTL:
@@ -53,8 +56,10 @@ class AsyncTTL:
         async def wrapper(*args, **kwargs):
             key = KEY(args[self.skip_args :], kwargs)
             if key in self.ttl:
+                logger.info(f"cache hit key: {key}")
                 val = self.ttl[key]
             else:
+                logger.info(f"cache miss key: {key}")
                 self.ttl[key] = await func(*args, **kwargs)
                 val = self.ttl[key]
 
