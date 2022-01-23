@@ -1,29 +1,8 @@
-import ftplib
 import io
-import ssl
 from typing import IO, List, Optional
 
+from lyra.connections.ftp_tls import ImplicitFTP_TLS  # type: ignore[attr-defined]
 from lyra.core.config import settings
-
-
-class ImplicitFTP_TLS(ftplib.FTP_TLS):
-    """FTP_TLS subclass that automatically wraps sockets in SSL to support implicit FTPS."""
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._sock = None
-
-    @property
-    def sock(self):
-        """Return the socket."""
-        return self._sock
-
-    @sock.setter
-    def sock(self, value):
-        """When modifying the socket, ensure that it is ssl wrapped."""
-        if value is not None and not isinstance(value, ssl.SSLSocket):
-            value = self.context.wrap_socket(value)
-        self._sock = value
 
 
 def ftp(location, username, password, directory=None):
@@ -61,7 +40,7 @@ def mnwd_ftp():
     return conn
 
 
-def get_file_object(ftp: ftplib.FTP, filename: str) -> IO[bytes]:
+def get_file_object(ftp: ImplicitFTP_TLS, filename: str) -> IO[bytes]:
     """returns the filename as an open bytes file object"""
     file = io.BytesIO()
     ftp.retrbinary("RETR " + filename, file.write)
@@ -78,11 +57,13 @@ def get_latest_file_from_list(file_list: List[str], slug: Optional[str] = None) 
     return latest
 
 
-def get_latest_filename_from_ftp(ftp: ftplib.FTP, slug: Optional[str] = None) -> str:
+def get_latest_filename_from_ftp(
+    ftp: ImplicitFTP_TLS, slug: Optional[str] = None
+) -> str:
     return get_latest_file_from_list(ftp.nlst(), slug)
 
 
-def get_latest_file_as_object(ftp: ftplib.FTP, fileslug: str) -> IO[bytes]:
+def get_latest_file_as_object(ftp: ImplicitFTP_TLS, fileslug: str) -> IO[bytes]:
 
     latest = get_latest_filename_from_ftp(ftp, fileslug)
     file = get_file_object(ftp, latest)
