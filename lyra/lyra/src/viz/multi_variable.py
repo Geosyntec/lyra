@@ -15,8 +15,6 @@ def make_source_json(source: pandas.DataFrame) -> List[Dict[str, Any]]:
 
 
 def make_source_csv(source: pandas.DataFrame) -> str:
-    site = ",".join(source["site"].unique())
-    variable = ",".join(source["variable"].unique())
     csv = (
         source.reindex(columns=["date", "label", "value"])
         .pivot(index="date", columns="label", values="value")
@@ -24,9 +22,7 @@ def make_source_csv(source: pandas.DataFrame) -> str:
         .to_csv(index=False)
     )
 
-    pkg = "\n".join([site, variable, csv])
-
-    return pkg
+    return csv
 
 
 def multi_var_ts_label(t: Timeseries) -> str:

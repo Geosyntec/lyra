@@ -20,9 +20,7 @@ def make_source_csv(source: pandas.DataFrame) -> str:
         .to_csv(index=False)
     )
 
-    pkg = "\n".join([csv])
-
-    return pkg
+    return csv
 
 
 def make_source(**kwargs: Dict) -> pandas.DataFrame:
@@ -132,11 +130,11 @@ def make_layer(
     )
 
     if ylim is None:
+        _ymax = plot_src["value"].max() * 1.10 or 1
+
         _y = alt.Y(
             "value:Q",
-            scale=alt.Scale(
-                domain=(0, plot_src["value"].max() * 1.10), reverse=reverse_y
-            ),
+            scale=alt.Scale(domain=(0, _ymax), reverse=reverse_y),
             title=ylabel,
         )
     else:
@@ -328,7 +326,7 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
         .properties(
             title=alt.TitleParams(
                 "Click and drag to select date-range",
-                color=alt.Value("dimgray"),
+                color="dimgray",
                 dy=sel_chart_height / 1.5,
             ),
         )
