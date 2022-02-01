@@ -1,19 +1,31 @@
 
-FROM redis:6.2.4-alpine3.14 as redis
+FROM redis:6.2.6-alpine3.15 as redis
 COPY redis.conf /redis.conf
 CMD ["redis-server", "/redis.conf"]
 
 
-FROM python:3.8.11-alpine3.14 as flower
-RUN apk add --no-cache ca-certificates && update-ca-certificates
-RUN pip install --no-cache-dir redis==3.5.3 flower==1.0.0 celery==5.1.2
+FROM python:3.9-alpine3.15 as flower
+RUN apk add --no-cache ca-certificates tzdata && update-ca-certificates
+RUN pip install --no-cache-dir redis==4.1.0 flower==1.0.0 celery==5.2.3
 ENV PYTHONUNBUFFERED=1 PYTHONHASHSEED=random PYTHONDONTWRITEBYTECODE=1
+ENV FLOWER_DATA_DIR=/data 
+ENV PYTHONPATH=${FLOWER_DATA_DIR}
+WORKDIR $FLOWER_DATA_DIR
+# Add a user with an explicit UID/GID and create necessary directories
+ENV IMG_USER=flower
+RUN set -eux; \
+    addgroup -g 1000 ${IMG_USER}; \
+    adduser -u 1000 -G ${IMG_USER} ${IMG_USER} -D; \
+    mkdir -p "$FLOWER_DATA_DIR"; \
+    chown ${IMG_USER}:${IMG_USER} "$FLOWER_DATA_DIR"
+USER ${IMG_USER}
+VOLUME $FLOWER_DATA_DIR
+# Default port
 EXPOSE 5555
-USER nobody
 CMD ["celery", "flower"]
 
 
-FROM python:3.8.11-slim-buster as core-runtime
+FROM python:3.9.10-slim-buster as core-runtime
 RUN apt-get update -y \
     && apt-get install -y curl gnupg2 \ 
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
@@ -23,10 +35,10 @@ RUN apt-get update -y \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /lyra
 ENV PYTHONPATH=/lyra
-ENV PATH=/root/.local/bin:$PATH
+ENV PATH=/opt/venv/bin:$PATH
 
 
-FROM python:3.8.11-buster as builder
+FROM python:3.9.10-buster as builder
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends gcc g++ unixodbc-dev libspatialindex-dev \ 
     && rm -rf /var/lib/apt/lists/* \
@@ -48,11 +60,13 @@ RUN mkdir /serve \
     -r /requirements_server.txt
 
 
-FROM python:3.8.11-slim-buster as core-env
+FROM python:3.9.10-slim-buster as core-env
 COPY --from=builder /core /core
 COPY requirements.txt /requirements.txt
+RUN python -m venv /opt/venv
+# Make sure we use the virtualenv:
+ENV PATH=/opt/venv/bin:$PATH
 RUN pip install \
-    --user \
     --no-index \
     --no-cache-dir \
     --find-links=/core \
@@ -61,19 +75,26 @@ RUN pip install \
 
 
 FROM core-runtime as celeryworker
-COPY --from=core-env /root/.local /root/.local
-ENV C_FORCE_ROOT=1
-COPY ./scripts/run-worker.sh /run-worker.sh
-RUN chmod +x /run-worker.sh
+# Add a user with an explicit UID/GID and create necessary directories
+ENV IMG_USER=celeryworker
+RUN addgroup --gid 1000 ${IMG_USER} \
+    && adduser --system --disabled-password --uid 1000 --gid 1000 ${IMG_USER} \
+    && chown -R ${IMG_USER}:${IMG_USER} /lyra 
+USER ${IMG_USER}
+COPY --from=core-env --chown=${IMG_USER} /opt/venv /opt/venv
+COPY --chown=${IMG_USER} ./scripts/run-worker.sh /run-worker.sh
+RUN chmod gu+x /run-worker.sh
 CMD ["bash", "/run-worker.sh"]
-COPY ./lyra /lyra/lyra
+COPY --chown=${IMG_USER} ./lyra /lyra/lyra
 
 
 FROM core-env as test-env
 COPY requirements_test.txt /requirements_test.txt
 COPY --from=builder /tsts /tsts
+RUN python -m venv /opt/venv
+# Make sure we use the virtualenv:
+ENV PATH=/opt/venv/bin:$PATH
 RUN pip install \
-    --user \
     --no-index \
     --no-cache-dir \
     --find-links=/tsts \
@@ -82,7 +103,7 @@ RUN pip install \
 
 
 FROM core-runtime as lyra-tests
-COPY --from=test-env /root/.local /root/.local
+COPY --from=test-env /opt/venv /opt/venv
 COPY .coveragerc /lyra/.coveragerc
 ## This will make the container wait, doing nothing, but alive
 CMD ["bash", "-c", "while true; do sleep 1; done"]
@@ -93,8 +114,10 @@ COPY ./lyra /lyra/lyra
 FROM core-env as server-env
 COPY requirements_server.txt /requirements_server.txt
 COPY --from=builder /serve /serve
+RUN python -m venv /opt/venv
+# Make sure we use the virtualenv:
+ENV PATH=/opt/venv/bin:$PATH
 RUN pip install \
-    --user \
     --no-index \
     --no-cache-dir \
     --find-links=/serve \
@@ -103,7 +126,7 @@ RUN pip install \
 
 
 FROM core-runtime as lyra
-COPY --from=server-env /root/.local /root/.local
+COPY --from=server-env /opt/venv /opt/venv
 COPY gunicorn_conf.py /gunicorn_conf.py
 COPY ./scripts/start.sh /start.sh
 RUN chmod +x /start.sh
@@ -114,7 +137,7 @@ EXPOSE 80
 COPY ./lyra /lyra/lyra
 
 
-FROM python:3.8-buster as lyra-edge
+FROM python:3.9-buster as lyra-edge
 RUN apt-get update -y \
     && apt-get install -y curl gnupg2 \ 
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
@@ -131,7 +154,6 @@ RUN cat requirements_edge.txt
 RUN pip install -r /requirements_edge.txt
 WORKDIR /lyra
 ENV PYTHONPATH=/lyra
-ENV PATH=/root/.local/bin:$PATH
 COPY ./lyra /lyra/lyra
 
 

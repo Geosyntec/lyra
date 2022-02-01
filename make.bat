@@ -61,7 +61,8 @@ goto :eof
 
 :develop
 call make clean
-call bash scripts/build_dev.sh
+call scripts/build_dev.bat
+call make build
 goto :eof
 
 :prod

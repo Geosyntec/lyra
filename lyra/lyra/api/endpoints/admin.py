@@ -1,13 +1,12 @@
-from textwrap import dedent
 from typing import Dict, Union
 
 import pandas
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse, ORJSONResponse
-from sqlalchemy import desc, select, sql, text
+from sqlalchemy import desc, inspect, select, sql, text
 
 from lyra.connections import database
-from lyra.core import cache, security
+from lyra.core import cache
 from lyra.models.response_models import ForegroundTaskJSONResponse
 from lyra.site.style import render_in_jupyter_notebook_css_style
 
@@ -19,7 +18,8 @@ async def get_table_names(r: Request) -> Dict:
     tables = []
     response: Dict = {}
     try:
-        tables = database.engine.table_names()
+        insp = inspect(database.engine)
+        tables = insp.get_table_names()
     except Exception as e:
         response["errors"] = [str(e)]
         return response

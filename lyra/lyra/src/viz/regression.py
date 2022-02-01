@@ -224,7 +224,7 @@ def make_plot(
             ["Click and drag to pan", "Scroll to zoom"],
             align="right",
             baseline="top",
-            color=alt.Value("lightgray"),
+            color="lightgray",
             dy=25,
             dx=width / 2,
         ),

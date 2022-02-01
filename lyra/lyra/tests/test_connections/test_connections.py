@@ -1,4 +1,5 @@
 import pytest
+from sqlalchemy import inspect
 
 from lyra.connections import azure_fs, database, ftp
 
@@ -7,7 +8,9 @@ from lyra.connections import azure_fs, database, ftp
 def test_connected_database_engine():
     engine = database.database_engine()
     database.reconnect_engine(engine)
-    assert len(engine.table_names()) > 1
+    insp = inspect(engine)
+    tables = insp.get_table_names()
+    assert len(tables) > 1, tables
 
 
 @pytest.mark.integration
@@ -20,7 +23,7 @@ def test_azure_share():
 def test_mnwd_ftp():
     with ftp.mnwd_ftp() as conn:
         files = conn.nlst()
-    assert len(files) > 0
+    assert len(files) > 0, files
 
 
 @pytest.mark.integration
