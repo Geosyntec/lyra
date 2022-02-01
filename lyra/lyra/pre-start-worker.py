@@ -1,5 +1,7 @@
 import logging
 
+from sqlalchemy import inspect
+
 from lyra.connections.database import engine, reconnect_engine
 from lyra.core.config import settings
 from lyra.ops import startup
@@ -11,7 +13,8 @@ logger = logging.getLogger(__name__)
 def init() -> None:  # pragma: no cover
 
     reconnect_engine(engine)
-    logger.info(f"engine: {engine.url}\ntables: {engine.table_names()}")
+    insp = inspect(engine)
+    logger.info(f"engine: {engine.url}\ntables: {insp.get_table_names()}")
 
     if not settings.FORCE_FOREGROUND:
         startup.get_redis_connection()
