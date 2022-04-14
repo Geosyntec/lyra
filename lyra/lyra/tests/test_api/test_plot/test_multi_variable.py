@@ -97,7 +97,7 @@ def test_multi_variable_spec_integration_422(client, route, err):
 @pytest.mark.parametrize(
     "route",
     [
-        'api/plot/multi_variable?f=%s&json={"start_date":"2021-04-01","end_date":"2021-09-16","interval":"day","weather_condition":"%s","regression_method":"linear","timeseries":[{"variable":"discharge","site":"ALISO_STP","aggregation_method":"mean"},{"variable":"rainfall","site":"ALISO_STP","aggregation_method":"tot"}]}',
+        '/api/plot/multi_variable?f=%s&json={"start_date":"2021-04-01","end_date":"2021-09-16","interval":"day","weather_condition":"%s","regression_method":"linear","timeseries":[{"variable":"discharge","site":"ALISO_STP","aggregation_method":"mean"},{"variable":"rainfall","site":"ALISO_STP","aggregation_method":"tot"}]}',
     ],
 )
 def test_multi_variable_should_not_fail(client, route, f, weather):
@@ -111,7 +111,7 @@ def test_multi_variable_should_not_fail(client, route, f, weather):
 @pytest.mark.parametrize(
     "route",
     [
-        'api/plot/multi_variable/data?f=%s&json={"start_date":"2021-04-01","end_date":"2021-09-16","interval":"day","weather_condition":"%s","regression_method":"linear","timeseries":[{"variable":"discharge","site":"ALISO_STP","aggregation_method":"mean"},{"variable":"rainfall","site":"ALISO_STP","aggregation_method":"tot"}]}',
+        '/api/plot/multi_variable/data?f=%s&json={"start_date":"2021-04-01","end_date":"2021-09-16","interval":"day","weather_condition":"%s","regression_method":"linear","timeseries":[{"variable":"discharge","site":"ALISO_STP","aggregation_method":"mean"},{"variable":"rainfall","site":"ALISO_STP","aggregation_method":"tot"}]}',
     ],
 )
 def test_multi_variable_data_should_not_fail(client, route, f, weather):

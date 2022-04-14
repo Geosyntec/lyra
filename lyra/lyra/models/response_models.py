@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, List, Optional
 
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
@@ -43,7 +43,7 @@ class CachedJSONResponse(JSONAPIResponse):
 
 class ChartData(BaseModel):
     spec: Optional[Dict[str, Any]] = None
-    messages: Optional[Iterable[str]] = None
+    messages: Optional[List[str]] = None
     table: Optional[Any] = None
     chart_status: Optional[str] = None
 

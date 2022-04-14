@@ -319,7 +319,7 @@ def plot_multi_variable(
     chart_pkg = {
         "spec": chart_spec,
         "chart_status": chart_status,
-        "messages": msg,
+        "messages": list(set(msg)),
     }
 
     response = {
