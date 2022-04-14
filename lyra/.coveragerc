@@ -2,9 +2,15 @@
 [run]
 source = lyra
 branch = True
-omit = */pre-start*.py
+omit = 
+    **/_no_git*
 
 [report]
 include = lyra/*.py
 ignore_errors = True
 skip_empty = True
+omit = 
+    */pre-start*.py
+    *deprecated*
+    *bg_*
+    **/endpoints/admin.py

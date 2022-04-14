@@ -60,7 +60,7 @@ def plot_timeseries_with_GET(
     request: Request,
     req: MultiVarSchema = Depends(timeseries_schema_query),
     f: ResponseFormat = Query("json"),
-) -> Dict:
+) -> Dict:  # pragma: no cover
     chart_spec = None
     chart_status = None
     msg = []
@@ -174,7 +174,7 @@ def plot_timeseries_with_POST(
             },
         },
     ),
-) -> Dict:
+) -> Dict:  # pragma: no cover
     chart_spec = None
     chart_status = None
     msg = []
@@ -233,7 +233,7 @@ def multi_var_schema_query(
     end_date: Optional[str] = Query(None, example="2020-01-01"),
     string: Optional[str] = Query(None, alias="json",),
 ) -> MultiVarSchema:
-    try:
+    try:  # pragma: no branch
         if string is not None:
             json_parsed = orjson.loads(string)
             rsp = MultiVarSchema(**json_parsed)
@@ -275,7 +275,7 @@ def plot_multi_variable(
     chart_status = None
     msg = []
 
-    try:
+    try:  # pragma: no branch
         hyd_start = time.perf_counter()
         ts = multi_variable.make_timeseries(jsonable_encoder(req.timeseries))
         hyd_end = time.perf_counter()
@@ -339,7 +339,7 @@ def plot_multi_variable_data(
     f: ResponseDataFormat = Query("json", description="Data format of the response"),
 ) -> Union[ORJSONResponse, PlainTextResponse]:
 
-    try:
+    try:  # pragma: no branch
         ts = multi_variable.make_timeseries(jsonable_encoder(req.timeseries))
         source = multi_variable.make_source(ts)
         warnings = ["\n".join(t.warnings) for t in ts]
@@ -369,7 +369,7 @@ def regression_schema_query(
     ),
     string: Optional[str] = Query(None, alias="json",),
 ) -> RegressionSchema:
-    try:
+    try:  # pragma: no branch
         if string is not None:
             json_parsed = orjson.loads(string)
             rsp = RegressionSchema(**json_parsed)
@@ -408,7 +408,7 @@ def plot_regression(
     chart_status = None
     msg = []
 
-    try:
+    try:  # pragma: no branch
         ts = regression.make_timeseries(**jsonable_encoder(req))
         source = regression.make_source(ts, method=req.regression_method)
         warnings = ["\n".join(t.warnings) for t in ts]
@@ -451,7 +451,7 @@ def plot_regression_data(
     req: RegressionSchema = Depends(regression_schema_query),
     f: ResponseDataFormat = Query("json", description="Data format of the response"),
 ) -> Union[ORJSONResponse, PlainTextResponse]:
-    try:
+    try:  # pragma: no branch
         ts = regression.make_timeseries(**jsonable_encoder(req))
         source = regression.make_source(ts, method=req.regression_method)
         warnings = ["\n".join(t.warnings) for t in ts]
@@ -488,7 +488,7 @@ def diversion_scenario_schema_query(
     nearest_rainfall_station: Optional[str] = None,
     string: Optional[str] = Query(None, alias="json",),
 ) -> DiversionScenarioSchema:
-    try:
+    try:  # pragma: no branch
         if string is not None:
             json_parsed = orjson.loads(string)
             rsp = DiversionScenarioSchema(**json_parsed)
@@ -519,7 +519,7 @@ def plot_diversion_scenario(
     chart_status = None
     msg = []
 
-    try:
+    try:  # pragma: no branch
         # ts = multi_variable.make_timeseries(jsonable_encoder(req.timeseries))
         source = diversion_scenario.make_source(**jsonable_encoder(req))
         # warnings = ["\n".join(t.warnings) for t in ts]
@@ -566,7 +566,7 @@ def plot_diversion_scenario_data(
     f: ResponseDataFormat = Query("json", description="Data format of the response"),
 ) -> Union[ORJSONResponse, PlainTextResponse]:
 
-    try:
+    try:  # pragma: no branch
         # ts = multi_variable.make_timeseries(jsonable_encoder(req.timeseries))
         source = diversion_scenario.make_source(**jsonable_encoder(req))
         # warnings = ["\n".join(t.warnings) for t in ts]

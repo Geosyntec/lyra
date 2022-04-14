@@ -34,6 +34,13 @@ def update_drooltool_database(
     fields = None
     if fields_from_config:
         fields = [dct["variable"] for dct in cfg["mnwd"]["dt_metrics"]["fields"]]
+        # metrics = list(
+        #     filter(
+        #         lambda x: cfg["variables"][x]["source"] == "dt_metrics",
+        #         cfg["variables"],
+        #     )
+        # )
+        # fields = [cfg["variables"][m]['varfrom'] for m in metrics]
 
     reconnect_engine(engine)  # may have to reconnect and login to wake from sleep.
 
