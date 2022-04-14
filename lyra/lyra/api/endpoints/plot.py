@@ -70,7 +70,7 @@ def plot_timeseries_with_GET(
         source = multi_variable.make_source(ts)
 
         warnings = ["\n".join(t.kwargs.get("warnings", [])) for t in ts]
-        msg += warnings
+        msg += [w for w in warnings if w]
 
         chart = multi_variable.make_plot(source)
         chart_spec = chart.to_dict()
@@ -183,7 +183,7 @@ def plot_timeseries_with_POST(
         ts = multi_variable.make_timeseries(jsonable_encoder(timeseries.timeseries))
         source = multi_variable.make_source(ts)
         warnings = ["\n".join(t.warnings) for t in ts]
-        msg += warnings
+        msg += [w for w in warnings if w]
 
         if source.empty:
             msg.append("Warning: No data to display.")
@@ -273,6 +273,7 @@ def plot_multi_variable(
 
     chart_spec = None
     chart_status = None
+    timings = {}
     msg = []
 
     try:  # pragma: no branch
@@ -285,19 +286,27 @@ def plot_multi_variable(
         source_end = time.perf_counter()
 
         warnings = ["\n".join(t.warnings) for t in ts]
-        msg += warnings
+        msg += [w for w in warnings if w]
 
         if source.empty:
             msg.append("Warning: No data to display.")
+        else:
+            plot_start = time.perf_counter()
+            chart = multi_variable.make_plot(source)
+            plot_end = time.perf_counter()
 
-        plot_start = time.perf_counter()
-        chart = multi_variable.make_plot(source)
-        plot_end = time.perf_counter()
+            chart_spec_start = time.perf_counter()
+            chart_spec = chart.to_dict()
+            chart_status = "SUCCESS"
+            chart_spec_end = time.perf_counter()
 
-        chart_spec_start = time.perf_counter()
-        chart_spec = chart.to_dict()
-        chart_status = "SUCCESS"
-        chart_spec_end = time.perf_counter()
+            timings = {
+                "hydstra_time_seconds": hyd_end - hyd_start,
+                "source_time_seconds": source_end - source_start,
+                "plot_time_seconds": plot_end - plot_start,
+                "chart_spec_time_seconds": chart_spec_end - chart_spec_start,
+                "request_time_seconds": time.perf_counter() - req_start,
+            }
 
     except HydstraIOError as e:
         chart_status = "FAILURE"
@@ -315,13 +324,7 @@ def plot_multi_variable(
 
     response = {
         "data": chart_pkg,
-        "timings": {
-            "hydstra_time_seconds": hyd_end - hyd_start,
-            "source_time_seconds": source_end - source_start,
-            "plot_time_seconds": plot_end - plot_start,
-            "chart_spec_time_seconds": chart_spec_end - chart_spec_start,
-            "request_time_seconds": time.perf_counter() - req_start,
-        },
+        "timings": timings,
     }
 
     if f == "html":
@@ -342,7 +345,7 @@ def plot_multi_variable_data(
     try:  # pragma: no branch
         ts = multi_variable.make_timeseries(jsonable_encoder(req.timeseries))
         source = multi_variable.make_source(ts)
-        warnings = ["\n".join(t.warnings) for t in ts]
+        # warnings = ["\n".join(t.warnings) for t in ts]
 
     except HydstraIOError as e:
         return ORJSONResponse({"error": str(e)})
@@ -403,7 +406,6 @@ def plot_regression(
     **as blob**
     * api/plot/regression?json={"start_date":"2019-01-01","site":"ALISO_JERONIMO","interval":"day","weather_condition":"wet","timeseries":[{"variable":"rainfall"},{"variable":"discharge"}]}
     """
-
     chart_spec = None
     chart_status = None
     msg = []
@@ -412,14 +414,17 @@ def plot_regression(
         ts = regression.make_timeseries(**jsonable_encoder(req))
         source = regression.make_source(ts, method=req.regression_method)
         warnings = ["\n".join(t.warnings) for t in ts]
-        msg += warnings
+        msg += [w for w in warnings if w]
 
-        if source.empty:
-            msg.append("Warning: No data to display.")
-
-        chart = regression.make_plot(source, method=req.regression_method)
-        chart_spec = chart.to_dict()
-        chart_status = "SUCCESS"
+        if source.empty:  # pragma: no cover
+            msg.append(
+                "Warning: No data to display. Consider reviewing this query in the Time Series Tool "
+                "to ensure data is available for the selected stations, variables, and date range."
+            )
+        else:
+            chart = regression.make_plot(source, method=req.regression_method)
+            chart_spec = chart.to_dict()
+            chart_status = "SUCCESS"
 
     except HydstraIOError as e:
         chart_status = "FAILURE"
@@ -432,7 +437,7 @@ def plot_regression(
     chart_pkg = {
         "spec": chart_spec,
         "chart_status": chart_status,
-        "messages": msg,
+        "messages": list(set(msg)),
     }
 
     response = {"data": chart_pkg}
@@ -454,7 +459,7 @@ def plot_regression_data(
     try:  # pragma: no branch
         ts = regression.make_timeseries(**jsonable_encoder(req))
         source = regression.make_source(ts, method=req.regression_method)
-        warnings = ["\n".join(t.warnings) for t in ts]
+        # warnings = ["\n".join(t.warnings) for t in ts]
 
     except HydstraIOError as e:
         return ORJSONResponse({"error": str(e)})
@@ -517,6 +522,7 @@ def plot_diversion_scenario(
 
     chart_spec = None
     chart_status = None
+    table = None
     msg = []
 
     try:  # pragma: no branch
@@ -525,14 +531,14 @@ def plot_diversion_scenario(
         # warnings = ["\n".join(t.warnings) for t in ts]
         # msg += warnings
 
-        if source.empty:
+        if source.empty:  # pragma: no cover
             msg.append("Warning: No data to display.")
+        else:
+            table = diversion_scenario.make_summary_table(source)
 
-        table = diversion_scenario.make_summary_table(source)
-
-        chart = diversion_scenario.make_plot(source)
-        chart_spec = chart.to_dict()
-        chart_status = "SUCCESS"
+            chart = diversion_scenario.make_plot(source)
+            chart_spec = chart.to_dict()
+            chart_status = "SUCCESS"
 
     except HydstraIOError as e:
         chart_status = "FAILURE"
@@ -545,7 +551,7 @@ def plot_diversion_scenario(
     chart_pkg = {
         "spec": chart_spec,
         "chart_status": chart_status,
-        "messages": msg,
+        "messages": list(set(msg)),
         "table": table,
     }
 

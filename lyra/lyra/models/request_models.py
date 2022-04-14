@@ -23,6 +23,7 @@ class RegressionMethod(str, Enum):
     exp = "exp"
     pow = "pow"
     log = "log"
+    none = "none"
 
 
 class SpatialResponseFormat(str, Enum):

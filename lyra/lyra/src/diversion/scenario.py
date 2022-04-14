@@ -149,7 +149,7 @@ def simulate_diversion(
     initial_pool_volume = storage_initial_depth_ft * storage_area_sqft
     max_pool_volume = storage_max_depth_ft * storage_area_sqft  # cubic feet
     infiltration_rate_cfs = infiltration_rate_inhr / 12 / 3600 * storage_area_sqft
-    inc = 3600
+    inc = 3600  # seconds
 
     discharge_ts = Timeseries(**ts)
 
