@@ -124,7 +124,7 @@ class Timeseries(object):
         return self._timeseries
 
     @timeseries.setter
-    def timeseries(self, timeseries):
+    def timeseries(self, timeseries):  # pragma: no cover
         self._timeseries = timeseries
 
     @property
@@ -136,7 +136,7 @@ class Timeseries(object):
         return self._timeseries_src
 
     @property
-    def nearest_rainfall_station_props(self):
+    def nearest_rainfall_station_props(self):  # pragma: no cover
         if self._nearest_rainfall_station_props is None:
             self._nearest_rainfall_station_props = next(
                 (
@@ -239,7 +239,6 @@ class Timeseries(object):
 
                 if num == 125:
 
-                    # if not timeseries_details.get("trace"):
                     inputs["varfrom"] = hyd_variable_info["varfrom_fallback"]
                     self.warnings.append(
                         f"Warning: Variable '{hyd_variable_info['varfrom']}' not available. "

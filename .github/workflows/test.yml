@@ -24,7 +24,9 @@ jobs:
         with:
           python-version: 3.8
       - name: Install Linters
-        run: pip install -r lyra/requirements.txt -r lyra/requirements_test.txt
+        run: |
+          pip install click==8.0.4
+          pip install -r lyra/requirements.txt -r lyra/requirements_test.txt
       - name: Run Linters
         run: bash scripts/lint.sh
   test:

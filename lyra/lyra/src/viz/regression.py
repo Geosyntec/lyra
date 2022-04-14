@@ -131,6 +131,9 @@ def make_source(ts: List[Timeseries], method: Optional[str] = None) -> pandas.Da
     x = tx.timeseries_src.rename(columns={"value": tx.label})
     y = ty.timeseries_src.rename(columns={"value": ty.label})
 
+    if any([x.empty, y.empty]):
+        return pandas.DataFrame([])
+
     source = (
         pandas.concat([x, y], axis=1)
         .dropna()
@@ -157,7 +160,7 @@ def make_plot(
 
     nearest = alt.selection_single(on="mouseover", empty="none", clear="mouseout")
 
-    points = (
+    base = (
         alt.Chart(source)
         .properties(height=height, width=width)
         .mark_point(filled=True)
@@ -175,64 +178,75 @@ def make_plot(
             color=alt.condition(nearest, alt.value("orange"), "label:N",),
             opacity=alt.condition(nearest, alt.value(0.9), alt.value(0.5),),
             size=alt.condition(nearest, alt.value(150), alt.value(75)),
+        )
+    )
+
+    chart = alt.layer(
+        base.add_selection(nearest),
+        base.transform_filter(nearest).encode(
             tooltip=[
                 alt.Tooltip("date", format="%b %-d, %Y@%H:%M", title="Date"),
                 alt.Tooltip("x"),
                 alt.Tooltip("y"),
             ],
-        )
-    )
-
-    line = (
-        alt.Chart(source)
-        .transform_regression(on="x", regression="y", method=method)
-        .mark_line(clip=True,)
-        .encode(x="x:Q", y="y:Q", color=alt.value("firebrick"), opacity=alt.value(1))
-    )
-
-    regression = (
-        alt.Chart(source)
-        .transform_regression("x", "y", method=method, params=True)
-        .transform_calculate(**HOWS[method]["calculate"])
-    )
-
-    params = []
-    yoff = height + 60
-    xoff = width / 8
-    for label, val in [("R\u00B2:", "rSquared"), ("Equation: ", "equation")]:
-        p = regression.mark_text(align="right", text=label, clip=False).encode(
-            x=alt.value(xoff),
-            y=alt.value(yoff),  # pixels from left  # pixels from top
-            opacity=alt.value(1),
-            color=alt.value("black"),
-        )
-        params.append(p)
-
-        p = regression.mark_text(align="left", lineBreak="\n", clip=False).encode(
-            x=alt.value(xoff + 4),  # pixels from left
-            y=alt.value(yoff),  # pixels from top
-            text=f"{val}:N",
-            opacity=alt.value(1),
-            color=alt.value("black"),
-        )
-        params.append(p)
-
-        yoff += 15
-
-    chart = alt.layer(points.add_selection(nearest) + line).properties(
-        title=alt.TitleParams(
-            ["Click and drag to pan", "Scroll to zoom"],
-            align="right",
-            baseline="top",
-            color="lightgray",
-            dy=25,
-            dx=width / 2,
         ),
     )
-    annotation = alt.layer(*params)
+
+    if method != "none":
+
+        line = (
+            alt.Chart(source)
+            .transform_regression(on="x", regression="y", method=method)
+            .mark_line(clip=True)
+            .encode(
+                x="x:Q", y="y:Q", color=alt.value("firebrick"), opacity=alt.value(1)
+            )
+        )
+
+        regression = (
+            alt.Chart(source)
+            .transform_regression("x", "y", method=method, params=True)
+            .transform_calculate(**HOWS[method]["calculate"])
+        )
+
+        params = []
+        yoff = height + 60
+        xoff = width / 8
+        for label, val in [("R\u00B2:", "rSquared"), ("Equation: ", "equation")]:
+            p = regression.mark_text(align="right", text=label, clip=False).encode(
+                x=alt.value(xoff),
+                y=alt.value(yoff),  # pixels from left  # pixels from top
+                opacity=alt.value(1),
+                color=alt.value("black"),
+            )
+            params.append(p)
+
+            p = regression.mark_text(align="left", lineBreak="\n", clip=False).encode(
+                x=alt.value(xoff + 4),  # pixels from left
+                y=alt.value(yoff),  # pixels from top
+                text=f"{val}:N",
+                opacity=alt.value(1),
+                color=alt.value("black"),
+            )
+            params.append(p)
+
+            yoff += 15
+
+        annotation = alt.layer(*params)
+
+        chart += line + annotation
 
     full_chart = (
-        (chart + annotation)
+        chart.properties(
+            title=alt.TitleParams(
+                ["Click and drag to pan", "Scroll to zoom"],
+                align="right",
+                baseline="top",
+                color="lightgray",
+                dy=25,
+                dx=width / 2,
+            ),
+        )
         .configure_legend(labelLimit=0, orient="top", direction="vertical", title=None)
         .interactive()
     )

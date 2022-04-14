@@ -1,5 +1,4 @@
 from datetime import datetime
-from enum import Enum
 from typing import Any, Dict, List, Optional
 
 from fastapi.responses import JSONResponse
@@ -46,7 +45,7 @@ class ChartData(BaseModel):
     spec: Optional[Dict[str, Any]] = None
     messages: Optional[List[str]] = None
     table: Optional[Any] = None
-    chart_status: str = "SUCCESS"
+    chart_status: Optional[str] = None
 
 
 class ChartJSONResponse(JSONAPIResponse):
