@@ -216,6 +216,13 @@ class Timeseries(object):
             """
             timeseries_details = await helper.get_site_variable_as_trace(**inputs)
 
+            if timeseries_details is None:
+                self.warnings.append(
+                    "Hydstra Database is temporarily unavailable. See "
+                    "http://hydstra.ocpublicworks.com/web.htm for most recent data available."
+                )
+                return "empty"
+
             if "error_msg" in timeseries_details.keys():
                 num = timeseries_details["error_num"]
                 if num == 220:
