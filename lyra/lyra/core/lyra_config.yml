@@ -68,10 +68,10 @@ variables:
       - min
   conductivity:
     name: Conductivity
-    description: Conductivity (µS) as measured at this station.
+    description: Conductivity (µS/cm) as measured at this station.
     variable: conductivity
     source: hydstra
-    units: "µS"
+    units: "µS/cm"
     varfrom: ["821.37", "822.37"]
     varfrom_fallback: "821" # use min
     varto: "821"
