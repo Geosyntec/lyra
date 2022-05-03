@@ -73,7 +73,8 @@ async def get_site_variable_as_trace(
         datasource=datasource,
     )
 
-    if trace_json is None: return trace_json
+    if trace_json is None:
+        return trace_json
 
     if len(trace_json.get("return", {}).get("traces", [])):
 
