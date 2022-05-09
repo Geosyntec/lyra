@@ -14,6 +14,8 @@ CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND", "redis://localhost:63
 
 celery_app = Celery("tasks", backend=CELERY_RESULT_BACKEND, broker=CELERY_BROKER_URL)
 
+logger.info(f"broker: {CELERY_BROKER_URL}; backend: {CELERY_RESULT_BACKEND}")
+
 celery_app.conf.update(
     task_serializer="json",
     accept_content=["json"],  # Ignore other content

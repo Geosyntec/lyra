@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 set -e
 
-echo "prestart found"
+echo "prestart worker found"
 python /lyra/lyra/pre-start-worker.py
-echo "prestart complete"
+echo "prestart worker complete"
