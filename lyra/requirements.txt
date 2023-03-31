@@ -13,7 +13,7 @@ pygeos==0.12.0
 celery==5.2.3
 jinja2==3.0.3
 requests==2.27.1
-redis==4.1.2
+redis==4.4.4
 pyyaml==6.0
 fastapi==0.72.0
 orjson==3.6.5
