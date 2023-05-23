@@ -12,7 +12,7 @@ shapely==1.8.0
 pygeos==0.12.0
 celery==5.2.3
 jinja2==3.0.3
-requests==2.27.1
+requests==2.31.0
 redis==4.1.2
 pyyaml==6.0
 fastapi==0.72.0
