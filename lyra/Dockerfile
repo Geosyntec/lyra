@@ -25,20 +25,20 @@ EXPOSE 5555
 CMD ["celery", "flower"]
 
 
-FROM python:3.9.10-slim-buster as core-runtime
+FROM python:3.9.10-slim-bullseye as core-runtime
 RUN apt-get update -y \
-    && apt-get install -y curl gnupg2 \ 
+    && apt-get install -y curl gnupg2 \
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
     && apt-get update -y \
-    && ACCEPT_EULA=y apt-get install -y --no-install-recommends graphviz libspatialindex-dev unixodbc msodbcsql17 mssql-tools \ 
+    && ACCEPT_EULA=y apt-get install -y --no-install-recommends graphviz libspatialindex-dev unixodbc msodbcsql17 mssql-tools \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /lyra
 ENV PYTHONPATH=/lyra
 ENV PATH=/opt/venv/bin:$PATH
 
 
-FROM python:3.9.10-buster as builder
+FROM python:3.9.10-bullseye as builder
 RUN apt-get update -y \
     && apt-get install -y --no-install-recommends gcc g++ unixodbc-dev libspatialindex-dev \ 
     && rm -rf /var/lib/apt/lists/* \
@@ -60,7 +60,7 @@ RUN mkdir /serve \
     -r /requirements_server.txt
 
 
-FROM python:3.9.10-slim-buster as core-env
+FROM python:3.9.10-slim-bullseye as core-env
 COPY --from=builder /core /core
 COPY requirements.txt /requirements.txt
 RUN python -m venv /opt/venv
@@ -137,14 +137,14 @@ EXPOSE 80
 COPY ./lyra /lyra/lyra
 
 
-FROM python:3.9-buster as lyra-edge
+FROM python:3.9-bullseye as lyra-edge
 RUN apt-get update -y \
-    && apt-get install -y curl gnupg2 \ 
+    && apt-get install -y curl gnupg2 \
     && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
     && apt-get update -y \
-    && apt-get install -y --no-install-recommends gcc g++ unixodbc-dev libspatialindex-dev \ 
-    && ACCEPT_EULA=y apt-get install -y --no-install-recommends graphviz libspatialindex-dev unixodbc msodbcsql17 mssql-tools \ 
+    && apt-get install -y --no-install-recommends gcc g++ unixodbc-dev libspatialindex-dev \
+    && ACCEPT_EULA=y apt-get install -y --no-install-recommends graphviz libspatialindex-dev unixodbc msodbcsql17 mssql-tools \
     && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt /requirements.txt
 COPY requirements_test.txt /requirements_test.txt

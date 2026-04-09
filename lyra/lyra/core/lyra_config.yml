@@ -81,10 +81,10 @@ variables:
       - min
   urban_drool:
     name: Estimated Urban Drool
-    description: Estimate of Monthly Urban Drool (centum cubic feet) accumulated from Regional Subbasins upstream of this station.
+    description: Monthly estimate of Urban Drool (centum cubic feet per day) accumulated from Regional Subbasins upstream of this station.
     variable: urban_drool
     varfrom: overall_daily_est_outdoor_budget_overage_sum
     source: dt_metrics
-    units: ccf
+    units: "ccf/day"
     allowed_aggregations:
       - tot
