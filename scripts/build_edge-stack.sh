@@ -7,6 +7,5 @@ docker compose \
 -f docker-compose.shared.depends.yml \
 -f docker-compose.shared.env.yml \
 -f docker-compose.shared.ports.yml \
--f docker-compose.dev.command.yml \
--f docker-compose.dev.volumes.yml \
+-f docker-compose.dev.yml \
 config > docker-stack.yml
