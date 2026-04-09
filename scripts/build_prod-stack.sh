@@ -12,7 +12,7 @@ done
 export LYRA_VERSION=$tag
 echo "setting image '$LYRA_VERSION' from tag '$tag'"
 
-docker-compose \
+docker compose \
 -f docker-compose.shared.build.yml \
 -f docker-compose.shared.depends.yml \
 -f docker-compose.shared.env.yml \

@@ -12,4 +12,4 @@ do
 done
 
 bash scripts/build_prod-stack.sh -t "$tag"
-docker-compose -f docker-stack${tag}.yml build
+docker compose -f docker-stack${tag}.yml build

@@ -3,7 +3,5 @@
 set -e
 set -x
 
-black . --check --diff
-isort . --check --diff
-mkdir -p .mypy_cache
-mypy lyra/lyra --install-types --non-interactive
+ruff check ./lyra/lyra --diff
+ruff format ./lyra/lyra --diff

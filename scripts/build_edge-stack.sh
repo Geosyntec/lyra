@@ -2,7 +2,7 @@
 
 set -e
 
-docker-compose \
+docker compose \
 -f docker-compose.edge.build.yml \
 -f docker-compose.shared.depends.yml \
 -f docker-compose.shared.env.yml \

@@ -10,7 +10,7 @@ from lyra.tests import utils as tutils
 
 def pytest_configure(config):
     config.addinivalue_line(
-        "markers", "integration: mark test as requireing a data connection"
+        "markers", "integration: mark test as requiring a data connection"
     )
 
 

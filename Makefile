@@ -40,7 +40,7 @@ clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
-	find . -name '__pycache__' -exec rm -fr {} +
+# 	find . -name '__pycache__' -exec rm -fr {} +
 
 clean-test: ## remove test and coverage artifacts
 	rm -fr .tox/
@@ -52,27 +52,32 @@ clean-test: ## remove test and coverage artifacts
 export COMPOSE_DOCKER_CLI_BUILD=1
 
 stack:
-	docker-compose \
+	docker compose \
 	-f docker-compose.shared.build.yml \
 	-f docker-compose.shared.depends.yml \
 	-f docker-compose.shared.env.yml \
 	-f docker-compose.shared.ports.yml \
-	-f docker-compose.dev.command.yml \
-	-f docker-compose.dev.volumes.yml \
+	-f docker-compose.dev.yml \
 	config > docker-stack.yml
 
 build: ## build the docker-stack.yml file
-	docker-compose -f docker-stack.yml build
+	docker compose -f docker-stack.yml build
 
 restart: ## restart the redis server and the background workers
-	docker-compose -f docker-stack.yml restart redis celeryworker
+	docker compose -f docker-stack.yml restart redis celeryworker
+
+lint:
+	bash scripts/lint.sh
 
 test: clean ## run tests quickly with the default Python
-	bash scripts/test.sh -xsv
+	bash scripts/test.sh -sv -m "not integration"
+
+test-integration: clean ## run tests quickly with the default Python
+	bash scripts/test.sh -sv
 
 coverage: clean restart ## check code coverage quickly with the default Python
-	docker-compose -f docker-stack.yml exec lyra-tests coverage run -m pytest -x
-	docker-compose -f docker-stack.yml exec lyra-tests coverage report -mi
+	docker compose -f docker-stack.yml exec lyra-tests coverage run --branch -m pytest -x
+	docker compose -f docker-stack.yml exec lyra-tests coverage report -mi
 
 typecheck: clean ## run static type checker
 	mypy lyra/lyra
@@ -81,16 +86,16 @@ develop: clean ## build the development environment and launch containers in bac
 	bash scripts/build_dev.sh
 	
 up: ## bring up the containers
-	docker-compose -f docker-stack.yml up
+	docker compose -f docker-stack.yml up
 
 up-d: ## bring up the containers in '-d' mode 
-	docker-compose -f docker-stack.yml up -d
+	docker compose -f docker-stack.yml up -d
 
 down: ## bring down the containers and detach volumes
-	docker-compose -f docker-stack.yml down -v
+	docker compose -f docker-stack.yml down -v
 
 dev-server: ## start a development server
-	docker-compose -f docker-stack.yml run -p 8080:80 lyra bash /start-reload.sh
+	docker compose -f docker-stack.yml run -p 8080:80 lyra bash /start-reload.sh
 
 release: ## push production images to registry
 	bash scripts/push_release.sh

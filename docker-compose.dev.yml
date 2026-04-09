@@ -1,5 +1,8 @@
 services:
   lyra:
+    command: /start-reload.sh
+    ports:
+      - 8080:80
     volumes:
       - ./lyra/lyra:/lyra/lyra
   celeryworker:

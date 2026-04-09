@@ -7,10 +7,10 @@ import pytest
     "route",
     [
         (
-            '/api/plot/regression?f=json&timeseries=[{"site":"ALISO_STP","variable":"discharge"},{"site":"ALISO_JERONIMO","variable":"discharge"}]'
+            '/api/plot/regression?f=json&start_date=2022-01-01&end_date=2023-01-01&timeseries=[{"site":"ALISO_STP","variable":"discharge"},{"site":"ALISO_JERONIMO","variable":"discharge"}]'
         ),
         (
-            "/api/plot/regression?f=json&timeseries=["
+            "/api/plot/regression?f=json&start_date=2022-01-01&end_date=2023-01-01&timeseries=["
             '{"site":"ALISO_STP","variable":"urban_drool"},'
             '{"site":"ALISO_JERONIMO","variable":"discharge"}'
             "]"
@@ -32,13 +32,13 @@ def test_regression_spec_integration(client, route, regression_method):
 example_routes = """
     # regressions default to linear
     /api/plot/regression?f=html&end_date=2021-06-01&interval=day&timeseries=[{"site":"ALISO_STP","variable":"discharge"},{"site":"ALISO_JERONIMO","variable":"rainfall"}]
-    
+
     #
     /api/plot/regression?f=html&start_date=2019-01-01&end_date=2021-06-01&interval=month&timeseries=[{"site":"ALISO_STP","variable":"discharge"},{"site":"ALISO_JERONIMO","variable":"discharge"}]
-    
+
     # multiple regression methods are supported
     /api/plot/regression?f=html&regression_method=log&start_date=2019-01-01&end_date=2021-06-01&interval=month&timeseries=[{"site":"ALISO_STP","variable":"discharge"},{"site":"ALISO_JERONIMO","variable":"discharge"}]
-    
+
     # works as json
     /api/plot/regression?f=html&json={"regression_method":"log","start_date":"2000-01-01","end_date":"2021-06-01","interval":"month","timeseries":[{"site":"ALISO_STP","variable":"discharge"},{"site":"ALISO_JERONIMO","variable":"discharge"}]}
 
