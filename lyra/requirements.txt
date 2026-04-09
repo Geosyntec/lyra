@@ -23,6 +23,6 @@ rtree==0.9.7
 aiohttp==3.8.1
 sqlalchemy==1.4.29
 azure-storage-file-share==12.6.0
-pyodbc==4.0.32
+pyodbc
 python-dotenv==0.19.2
 brotli-asgi==1.1.0

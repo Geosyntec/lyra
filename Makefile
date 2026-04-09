@@ -51,6 +51,16 @@ clean-test: ## remove test and coverage artifacts
 
 export COMPOSE_DOCKER_CLI_BUILD=1
 
+stack:
+	docker-compose \
+	-f docker-compose.shared.build.yml \
+	-f docker-compose.shared.depends.yml \
+	-f docker-compose.shared.env.yml \
+	-f docker-compose.shared.ports.yml \
+	-f docker-compose.dev.command.yml \
+	-f docker-compose.dev.volumes.yml \
+	config > docker-stack.yml
+
 build: ## build the docker-stack.yml file
 	docker-compose -f docker-stack.yml build
 
@@ -70,14 +80,17 @@ typecheck: clean ## run static type checker
 develop: clean ## build the development environment and launch containers in background
 	bash scripts/build_dev.sh
 	
-up: ## bring up the containers in '-d' mode 
+up: ## bring up the containers
+	docker-compose -f docker-stack.yml up
+
+up-d: ## bring up the containers in '-d' mode 
 	docker-compose -f docker-stack.yml up -d
 
 down: ## bring down the containers and detach volumes
 	docker-compose -f docker-stack.yml down -v
 
 dev-server: ## start a development server
-	docker-compose -f docker-stack.yml run -p 8080:80 -e LOG_LEVEL=DEBUG lyra bash /start-reload.sh
+	docker-compose -f docker-stack.yml run -p 8080:80 lyra bash /start-reload.sh
 
 release: ## push production images to registry
 	bash scripts/push_release.sh

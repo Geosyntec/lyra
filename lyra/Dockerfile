@@ -34,6 +34,8 @@ RUN apt-get update -y \
     && ACCEPT_EULA=y apt-get install -y --no-install-recommends graphviz libspatialindex-dev unixodbc msodbcsql17 mssql-tools \
     && rm -rf /var/lib/apt/lists/*
 WORKDIR /lyra
+COPY ./scripts /
+RUN find . -name "*.sh" -exec chmod +x {} +
 ENV PYTHONPATH=/lyra
 ENV PATH=/opt/venv/bin:$PATH
 
@@ -79,11 +81,9 @@ FROM core-runtime as celeryworker
 ENV IMG_USER=celeryworker
 RUN addgroup --gid 1000 ${IMG_USER} \
     && adduser --system --disabled-password --uid 1000 --gid 1000 ${IMG_USER} \
-    && chown -R ${IMG_USER}:${IMG_USER} /lyra 
+    && chown -R ${IMG_USER}:${IMG_USER} ./ 
 USER ${IMG_USER}
 COPY --from=core-env --chown=${IMG_USER} /opt/venv /opt/venv
-COPY --chown=${IMG_USER} ./scripts/run-worker.sh /run-worker.sh
-RUN chmod gu+x /run-worker.sh
 CMD ["bash", "/run-worker.sh"]
 COPY --chown=${IMG_USER} ./lyra /lyra/lyra
 
@@ -128,10 +128,6 @@ RUN pip install \
 FROM core-runtime as lyra
 COPY --from=server-env /opt/venv /opt/venv
 COPY gunicorn_conf.py /gunicorn_conf.py
-COPY ./scripts/start.sh /start.sh
-RUN chmod +x /start.sh
-COPY ./scripts/start-reload.sh /start-reload.sh
-RUN chmod +x /start-reload.sh
 EXPOSE 8888
 EXPOSE 80
 COPY ./lyra /lyra/lyra
@@ -146,6 +142,8 @@ RUN apt-get update -y \
     && apt-get install -y --no-install-recommends gcc g++ unixodbc-dev libspatialindex-dev \
     && ACCEPT_EULA=y apt-get install -y --no-install-recommends graphviz libspatialindex-dev unixodbc msodbcsql17 mssql-tools \
     && rm -rf /var/lib/apt/lists/*
+COPY ./scripts /
+RUN find . -name "*.sh" -exec chmod +x {} +
 COPY requirements.txt /requirements.txt
 COPY requirements_test.txt /requirements_test.txt
 RUN awk -F"==" '{print $1}' /requirements.txt /requirements_test.txt \
@@ -163,6 +161,4 @@ CMD ["bash", "-c", "while true; do sleep 1; done"]
 
 FROM lyra-edge as celeryworker-edge
 ENV C_FORCE_ROOT=1
-COPY ./scripts/run-worker.sh /run-worker.sh
-RUN chmod +x /run-worker.sh
 CMD ["bash", "/run-worker.sh"]
