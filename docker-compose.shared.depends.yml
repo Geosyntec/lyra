@@ -1,11 +1,10 @@
-version: '3.7'
 services:
   lyra:
     depends_on:
       - redis
       - celeryworker
   celeryworker:
-    depends_on: 
+    depends_on:
       - redis
   lyra-tests:
     depends_on:
