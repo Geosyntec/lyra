@@ -2,7 +2,7 @@ import asyncio
 import datetime
 import json
 from functools import partial
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 import pandas
 import pytz
@@ -156,7 +156,6 @@ class Timeseries(object):
 
     async def get_nearest_rainfall_ts_async(self):
         if self._nearest_rainfall_ts is None:
-
             rainfall_inputs = dict(
                 site=self.nearest_rainfall_station,
                 variable="rainfall",
@@ -208,11 +207,11 @@ class Timeseries(object):
         )
 
         async def process_hydstra_errors(**inputs: Dict) -> Any:
-            """recursive helper function to try to get hydstra data and 
+            """recursive helper function to try to get hydstra data and
             handle errors when they occur
 
             uses globals: self
-            
+
             """
             timeseries_details = await helper.get_site_variable_as_trace(**inputs)
 
@@ -245,7 +244,6 @@ class Timeseries(object):
                     return "empty"
 
                 if num == 125:
-
                     inputs["varfrom"] = hyd_variable_info["varfrom_fallback"]
                     self.warnings.append(
                         f"Warning: Variable '{hyd_variable_info['varfrom']}' not available. "
@@ -269,8 +267,8 @@ class Timeseries(object):
 
         hydstra_result = helper.hydstra_trace_to_series(trace)
 
-        quality = self.cfg["hydstra"]["max_quality_flag"]
-        questionable_data = hydstra_result.query("q > @quality")
+        _quality = self.cfg["hydstra"]["max_quality_flag"]
+        questionable_data = hydstra_result.query("q > @_quality")
         if not questionable_data.empty:
             ds, de = (
                 questionable_data.index.min().date(),

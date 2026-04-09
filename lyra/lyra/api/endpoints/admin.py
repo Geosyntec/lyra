@@ -30,9 +30,11 @@ async def get_table_names(r: Request) -> Dict:
 
 @router.get("/tables/{table}", response_model=ForegroundTaskJSONResponse)
 async def get_table_content(
-    table: str, limit_to: int = 25, ascending: bool = False, f: str = "json",
+    table: str,
+    limit_to: int = 25,
+    ascending: bool = False,
+    f: str = "json",
 ) -> Union[Dict, HTMLResponse]:
-    data: Dict = {}
     response: Dict = {}
 
     try:
@@ -71,7 +73,7 @@ async def clear_cache() -> Dict:  # pragma: no cover
     try:
         cache.flush()
         cleared = True
-    except Exception as e:
+    except Exception:
         pass
 
     return {"data": {"cleared": cleared}}

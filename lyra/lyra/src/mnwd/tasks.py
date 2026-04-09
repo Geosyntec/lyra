@@ -55,7 +55,8 @@ def update_drooltool_database(
 
 
 def update_rsb_geojson(
-    file: Optional[Union[str, Path]] = None, share: Optional[ShareClient] = None,
+    file: Optional[Union[str, Path]] = None,
+    share: Optional[ShareClient] = None,
 ) -> Dict:
     succeeded = fetch_and_refresh_oc_rsb_geojson_file(file=file, share=share)
     response = dict(taskname="update_rsb_geojson", succeeded=succeeded)

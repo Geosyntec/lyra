@@ -1,5 +1,4 @@
 def render_in_jupyter_notebook_css_style(df):
-
     """
     From https://stackoverflow.com/a/49687866/2007153
 

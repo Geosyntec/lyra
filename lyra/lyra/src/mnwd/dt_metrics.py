@@ -12,7 +12,7 @@ from lyra.core.errors import SQLQueryError
 
 def _fetch_categories_df(engine):
     qry = dedent(
-        f"""\
+        """\
     select
         *
     from [DTMetricsCategories]
@@ -21,7 +21,10 @@ def _fetch_categories_df(engine):
 
     database.reconnect_engine(engine)
     with engine.begin() as conn:
-        cat = pandas.read_sql(qry, con=conn,)
+        cat = pandas.read_sql(
+            qry,
+            con=conn,
+        )
 
     return cat
 
@@ -52,25 +55,45 @@ def _dt_metrics_query(
         rev_cat[value["variable_name"]] = value["variable"]
 
     if catchidns is None:
-        catchidns_str, user_catch = "1=?", [1,]
+        catchidns_str, user_catch = (
+            "1=?",
+            [
+                1,
+            ],
+        )
     else:
         user_catch = catchidns
         catchidns_str = "or ".join(["catchidn = ? " for _ in catchidns])
 
     if variables is None:
-        variables_str, user_var = "1=?", [1,]
+        variables_str, user_var = (
+            "1=?",
+            [
+                1,
+            ],
+        )
     else:
         user_var = [rev_cat[i] for i in variables]
         variables_str = "or ".join(["variable = ? " for _ in variables])
 
     if years is None:
-        years_str, user_year = "1=?", [1,]
+        years_str, user_year = (
+            "1=?",
+            [
+                1,
+            ],
+        )
     else:
         user_year = years
         years_str = "or ".join(["year = ? " for _ in years])
 
     if months is None:
-        months_str, user_month = "1=?", [1,]
+        months_str, user_month = (
+            "1=?",
+            [
+                1,
+            ],
+        )
     else:
         user_month = months
         months_str = "or ".join(["month = ? " for _ in months])
@@ -108,7 +131,9 @@ def _fetch_dt_metrics_records(
     database.reconnect_engine(engine)
     with engine.begin() as conn:
         df = pandas.read_sql(
-            qry, params=(*user_catch, *user_var, *user_year, *user_month), con=conn,
+            qry,
+            params=(*user_catch, *user_var, *user_year, *user_month),
+            con=conn,
         )
 
     if df.empty:
@@ -152,7 +177,9 @@ def fetch_dt_metrics_as_json(
 
 
 def agg_dt_metrics_df(
-    records: pandas.DataFrame, agg: str, groupby: Optional[List[str]] = None,
+    records: pandas.DataFrame,
+    agg: str,
+    groupby: Optional[List[str]] = None,
 ) -> pandas.DataFrame:
 
     if groupby is None:

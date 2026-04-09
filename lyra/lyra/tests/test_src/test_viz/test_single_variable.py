@@ -9,7 +9,11 @@ from lyra.src.viz import single_variable
 def mock_timeseries(periods, freq):
     return pandas.Series(
         data=numpy.random.random(periods) * 10,
-        index=pandas.date_range(start="2010-01-01", periods=periods, freq=freq,),
+        index=pandas.date_range(
+            start="2010-01-01",
+            periods=periods,
+            freq=freq,
+        ),
         name="value",
     ).to_frame()
 
@@ -24,7 +28,10 @@ def offline_timeseries(monkeypatch):
 @pytest.mark.parametrize("variable", ["discharge", "rainfall", "urban_drool"])
 def test_make_source(offline_timeseries, sites, variable):
 
-    src = single_variable.make_source(variable=variable, sites=sites,)
+    src = single_variable.make_source(
+        variable=variable,
+        sites=sites,
+    )
     assert len(src["site"].unique()) == len(sites), "sites must be stacked"
     assert len(src) == len(sites) * 5  # same as count in monkeypatch
     assert len(src["variable"].unique()) == 1, "only one variable allowed"

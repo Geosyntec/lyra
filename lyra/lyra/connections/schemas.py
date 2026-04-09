@@ -8,7 +8,6 @@ Base = declarative_base()
 
 
 class TableChangeLog(Base):
-
     __tablename__ = "TableChangeLog"
 
     id = Column(Integer, primary_key=True)
@@ -20,7 +19,6 @@ class TableChangeLog(Base):
 
 
 class DTMetrics(Base):
-
     __tablename__ = "DTMetrics"
 
     id = Column(Integer, primary_key=True)
@@ -34,7 +32,6 @@ class DTMetrics(Base):
 
 
 class DTMetricsCategories(Base):
-
     __tablename__ = "DTMetricsCategories"
 
     id = Column(Integer, primary_key=True)

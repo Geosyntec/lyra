@@ -163,15 +163,11 @@ def set_drooltool_database_with_file(
 
     database.reconnect_engine(engine)
     with engine.begin() as conn:
-
         drop_all_records("DTMetrics", conn)
         drop_all_records("DTMetricsCategories", conn)
         for k, g in df.groupby(numpy.arange(len(df)) // chunksize):
-
             _tsql_chunk = int(numpy.floor(2000 / len(g.columns)))
-            _msg = (
-                f"chunk #{k}; rows {k*chunksize}-{k*chunksize + min(len(g), chunksize)}"
-            )
+            _msg = f"chunk #{k}; rows {k * chunksize}-{k * chunksize + min(len(g), chunksize)}"
 
             status1 = database.update_with_log(
                 g,
@@ -229,7 +225,6 @@ def get_timeseries_from_dt_metrics(
         groupby = ["variable", "year", "month"]
 
     try:
-
         result_json = dt_metrics(
             catchidns=catchidns,
             variables=[variable],
@@ -241,7 +236,6 @@ def get_timeseries_from_dt_metrics(
         df = pandas.read_json(result_json.decode())
 
         if interval == "year":
-
             df = df.assign(
                 date=lambda df: pandas.to_datetime(df["year"].astype(str), format="%Y")
             ).set_index("date")["value"]

@@ -1,6 +1,6 @@
 import json
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional
 
 import orjson
 import pytz
@@ -54,17 +54,17 @@ class SingleVarSpec(BaseModel):
             var_info: Dict = next((x for x in site_props if x["station"] == site), {})
 
             valid_sites = [d["station"] for d in site_props]
-            assert (
-                site in valid_sites
-            ), f"'{site}' is not valid. \n\tOptions are: {valid_sites}"
+            assert site in valid_sites, (
+                f"'{site}' is not valid. \n\tOptions are: {valid_sites}"
+            )
 
             if source == "hydstra":
-                assert (
-                    site in valid_sites
-                ), f"'{site}' is not valid. \n\tOptions are: {valid_sites}"
-                assert var_info.get(
-                    f"has_{variable}"
-                ), f"'{variable}' not found at site '{site}'"
+                assert site in valid_sites, (
+                    f"'{site}' is not valid. \n\tOptions are: {valid_sites}"
+                )
+                assert var_info.get(f"has_{variable}"), (
+                    f"'{variable}' not found at site '{site}'"
+                )
 
         return values
 
@@ -166,9 +166,9 @@ class TimeseriesSchema(TimeseriesBaseSchema):
     def check_variable(cls, v):
         valid_variables = list(cfg["variables"].keys())
 
-        assert (
-            v in valid_variables
-        ), f"invalid variable: `{v}`. \n\tOptions are: {valid_variables}"
+        assert v in valid_variables, (
+            f"invalid variable: `{v}`. \n\tOptions are: {valid_variables}"
+        )
         return v
 
     @validator("trace_upstream", pre=True, always=True)
@@ -188,7 +188,6 @@ class TimeseriesSchema(TimeseriesBaseSchema):
         nearest_station = values.get("nearest_rainfall_station")
 
         if nearest_station is not None:
-
             site_props = [
                 f["properties"]
                 for f in json.loads(load_file(cfg["site_path"]))["features"]
@@ -197,9 +196,9 @@ class TimeseriesSchema(TimeseriesBaseSchema):
             nearest_site_info: Dict = next(
                 (x for x in site_props if x["station"] == nearest_station), {}
             )
-            assert nearest_site_info.get(
-                f"has_rainfall"
-            ), f"'rainfall' not found at site {nearest_station!r}."
+            assert nearest_site_info.get("has_rainfall"), (
+                f"'rainfall' not found at site {nearest_station!r}."
+            )
 
         return values
 
@@ -219,7 +218,6 @@ class TimeseriesSchema(TimeseriesBaseSchema):
         # we only need to validate that the variable is available for hydstra
         # variables. Dt_metric variables are always available.
         if source == "hydstra":
-
             if variable == "rainfall" and not site_info.get(f"has_{variable}"):
                 nearest_station = (
                     values.get("nearest_rainfall_station")
@@ -236,9 +234,9 @@ class TimeseriesSchema(TimeseriesBaseSchema):
 
                 return values
 
-            assert site_info.get(
-                f"has_{variable}"
-            ), f"{variable!r} not found at site {site!r}."
+            assert site_info.get(f"has_{variable}"), (
+                f"{variable!r} not found at site {site!r}."
+            )
 
         return values
 
@@ -254,7 +252,7 @@ class TimeseriesSchema(TimeseriesBaseSchema):
 
         assert len(allowed_aggs) >= 1, f"no data for {variable}."
 
-        if not agg in allowed_aggs:
+        if agg not in allowed_aggs:
             default_agg = allowed_aggs[0]
 
             warnings = values.get("warnings", [])
@@ -274,16 +272,15 @@ class TimeseriesSchema(TimeseriesBaseSchema):
         source = cfg.get("variables", {}).get(variable, {}).get("source")
 
         if source == "dt_metrics":
-
             if values["interval"] == "month":
-                assert (
-                    values["start_date"][-2:] == "01"
-                ), "Drool Tool monthly intervals must start on the first of the month."
+                assert values["start_date"][-2:] == "01", (
+                    "Drool Tool monthly intervals must start on the first of the month."
+                )
 
             if values["interval"] == "year":
-                assert (
-                    values["start_date"][-5:] == "01-01"
-                ), "Drool Tool yearly intervals must start on the first of the year."
+                assert values["start_date"][-5:] == "01-01", (
+                    "Drool Tool yearly intervals must start on the first of the year."
+                )
 
         return values
 
@@ -296,7 +293,7 @@ class TimeseriesSchema(TimeseriesBaseSchema):
         if source == "dt_metrics" and weather_condition != "both":
             warnings = values.get("warnings", [])
             warnings.append(
-                f"Warning: `weather_condition` option is ignored for DT Metrics."
+                "Warning: `weather_condition` option is ignored for DT Metrics."
             )
             values["warnings"] = warnings
 
@@ -343,9 +340,9 @@ class RegressionSchema(MultiVarSchema):
 
     @validator("timeseries", pre=True, always=True)
     def check_len_timeseries(cls, timeseries):
-        assert (
-            len(timeseries) == 2
-        ), f"two (2) timeseries are required but {len(timeseries)} were sent."
+        assert len(timeseries) == 2, (
+            f"two (2) timeseries are required but {len(timeseries)} were sent."
+        )
         return timeseries
 
     @root_validator
@@ -358,14 +355,14 @@ class RegressionSchema(MultiVarSchema):
             sources.append(cfg.get("variables", {}).get(ts.variable, {}).get("source"))
             intervals.append(ts.interval)
 
-        assert all(
-            i == intervals[0] for i in intervals
-        ), f"invervals must be the same for both timeseries. '{intervals[0]}' != '{intervals[1]}'"
+        assert all(i == intervals[0] for i in intervals), (
+            f"invervals must be the same for both timeseries. '{intervals[0]}' != '{intervals[1]}'"
+        )
 
         if "dt_metrics" in sources:
-            assert all(
-                ts.interval in ["month", "year"] for ts in timeseries
-            ), f"inverval must be 'month' or 'year' for drool tool metrics."
+            assert all(ts.interval in ["month", "year"] for ts in timeseries), (
+                "inverval must be 'month' or 'year' for drool tool metrics."
+            )
 
         return values
 

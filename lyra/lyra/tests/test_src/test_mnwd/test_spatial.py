@@ -5,7 +5,8 @@ from lyra.src.mnwd import spatial
 
 
 def test_rsb_geojson(
-    nocache, mock_rsb_geo_path,
+    nocache,
+    mock_rsb_geo_path,
 ):
     rsb = spatial.rsb_geojson()
     features = rsb["features"]
@@ -13,7 +14,8 @@ def test_rsb_geojson(
 
 
 def test_rsb_topojson(
-    nocache, mock_rsb_geo_path,
+    nocache,
+    mock_rsb_geo_path,
 ):
     rsb = spatial.rsb_topojson()
     features = rsb["objects"]["data"]["geometries"]
@@ -24,7 +26,11 @@ def test_rsb_topojson(
 @pytest.mark.parametrize("watersheds", [None, "Aliso"])
 @pytest.mark.parametrize("format", ["topojson", "geojson", "error"])
 def test_rsb_spatial(
-    nocache, mock_rsb_geo_path, format, catchidns, watersheds,
+    nocache,
+    mock_rsb_geo_path,
+    format,
+    catchidns,
+    watersheds,
 ):
     if format == "error":
         with pytest.raises(ValueError):
@@ -46,6 +52,6 @@ def test_rsb_spatial(
         if catchidns is not None:
             assert n == len(catchidns)
         else:
-            assert (
-                n == 10
-            ), "there are 10 catchidn's in the test graph, all are in Aliso"
+            assert n == 10, (
+                "there are 10 catchidn's in the test graph, all are in Aliso"
+            )

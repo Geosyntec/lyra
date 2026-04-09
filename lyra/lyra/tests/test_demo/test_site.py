@@ -10,7 +10,7 @@ import pytest
         "/redoc",
         "/test_cors",
         "/map",
-        "/map?catchidns=4" "/timeseries",
+        "/map?catchidns=4/timeseries",
         "/single_variable",
     ],
 )

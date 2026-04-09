@@ -19,7 +19,9 @@ from lyra.models.response_models import (
 
 
 async def wait_a_sec_and_see_if_we_can_return_some_data(
-    task: AsyncResult, timeout: Optional[float] = None, exp: Optional[float] = None,
+    task: AsyncResult,
+    timeout: Optional[float] = None,
+    exp: Optional[float] = None,
 ) -> None:
     if timeout is None:
         timeout = 0.5

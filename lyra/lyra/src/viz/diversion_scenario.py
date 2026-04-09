@@ -52,44 +52,44 @@ def make_summary_table(df):
         {
             "label": "Total Inflow Volume",
             "units": "cuft",
-            "value": f"{ inflow_vol : 0,.0f}".strip(),
-            "description": f"Total volume entering the diversion during the scenario.",
+            "value": f"{inflow_vol: 0,.0f}".strip(),
+            "description": "Total volume entering the diversion during the scenario.",
         },
         {
             "label": "Total Diverted Volume",
             "units": "cuft",
-            "value": f"{ diverted_vol : 0,.0f}".strip(),
-            "description": f"Total volume diverted during this scenario.",
+            "value": f"{diverted_vol: 0,.0f}".strip(),
+            "description": "Total volume diverted during this scenario.",
         },
         {
             "label": r"% of Inflow Diverted",
             "units": "%",
-            "value": f"{ diverted_pct : 0.1%}".strip(),
-            "description": f"Diverted volume as percentage of inflow volume.",
+            "value": f"{diverted_pct: 0.1%}".strip(),
+            "description": "Diverted volume as percentage of inflow volume.",
         },
         {
             "label": "Total Infiltrated Volume",
             "units": "cuft",
-            "value": f"{ infiltrated_vol : 0,.0f}".strip(),
-            "description": f"Total volume infiltrated during this scenario.",
+            "value": f"{infiltrated_vol: 0,.0f}".strip(),
+            "description": "Total volume infiltrated during this scenario.",
         },
         {
             "label": r"% of Inflow Infiltrated",
             "units": "%",
-            "value": f"{ infiltrated_pct : 0.1%}".strip(),
-            "description": f"Infiltrated volume as percentage of inflow volume.",
+            "value": f"{infiltrated_pct: 0.1%}".strip(),
+            "description": "Infiltrated volume as percentage of inflow volume.",
         },
         {
             "label": "Total Bypassd Volume",
             "units": "cuft",
-            "value": f"{ bypassed_vol : 0,.0f}".strip(),
-            "description": f"Total volume bypassed during this scenario.",
+            "value": f"{bypassed_vol: 0,.0f}".strip(),
+            "description": "Total volume bypassed during this scenario.",
         },
         {
             "label": r"% of Inflow Bypassd",
             "units": "%",
-            "value": f"{ bypassed_pct : 0.1%}".strip(),
-            "description": f"Bypassed volume as percentage of inflow volume.",
+            "value": f"{bypassed_pct: 0.1%}".strip(),
+            "description": "Bypassed volume as percentage of inflow volume.",
         },
     ]
 
@@ -115,7 +115,11 @@ def make_layer(
         interpolate = alt.Undefined
 
     nearest = alt.selection_single(
-        nearest=True, on="mouseover", fields=["date"], empty="none", clear="mouseout",
+        nearest=True,
+        on="mouseover",
+        fields=["date"],
+        empty="none",
+        clear="mouseout",
     )
 
     title_fields = {s: s.title().replace("_", " ") for s in fields}
@@ -152,7 +156,9 @@ def make_layer(
     lines = base.mark_line(interpolate=interpolate).encode(
         y=_y,
         color=alt.Color(
-            "variable", sort=list(title_fields.values()), legend=alt.Legend(title=None),
+            "variable",
+            sort=list(title_fields.values()),
+            legend=alt.Legend(title=None),
         ),
     )
 
@@ -167,7 +173,9 @@ def make_layer(
         .mark_rule()
         .encode(
             opacity=alt.condition(nearest, alt.value(0.3), alt.value(0)),
-            tooltip=[alt.Tooltip("date", format="%b %-d, %Y@%H:%M", title="Date"),]
+            tooltip=[
+                alt.Tooltip("date", format="%b %-d, %Y@%H:%M", title="Date"),
+            ]
             + [
                 alt.Tooltip(c, type="quantitative", format=f",.{text_sigfigs}r")
                 for c in tt_labels
@@ -339,7 +347,9 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
         alt.vconcat(
             precip_layer, vol_layer, loss_rate_layer, cumul_layer, rate_layer, sel_chart
         )
-        .resolve_scale(color="independent",)
+        .resolve_scale(
+            color="independent",
+        )
         .configure_concat(spacing=2)
         # .configure_legend(labelLimit=0, orient="top", direction="vertical", title=None)
     )

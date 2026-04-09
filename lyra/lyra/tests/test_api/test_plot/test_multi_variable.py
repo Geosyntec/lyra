@@ -82,7 +82,7 @@ example_routes = [
 )
 def test_multi_variable_spec_integration_422(client, route, err):
 
-    get_response = client.get(route)
+    _get_response = client.get(route)
     # assert get_response.status_code == 422, get_response.content
 
     # rjson = get_response.json()

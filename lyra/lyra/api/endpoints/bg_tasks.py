@@ -12,7 +12,8 @@ router = APIRouter(default_response_class=ORJSONResponse)
 
 @router.get("/update_drooltool_database", response_model=JSONAPIResponse)
 async def update_drooltool_database(
-    update: bool = True, kwargs: dict = Depends(run_task_kwargs),
+    update: bool = True,
+    kwargs: dict = Depends(run_task_kwargs),
 ) -> JSONAPIResponse:  # pragma: no cover
     task = bg.background_update_drooltool_database.s(update=update)
     return await run_task(task, get_route="get_task", **kwargs)

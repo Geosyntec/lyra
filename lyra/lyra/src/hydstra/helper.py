@@ -2,7 +2,6 @@ import logging
 
 import pandas
 
-from lyra.core.config import cfg
 from lyra.src.hydstra import api
 
 logger = logging.getLogger(__name__)
@@ -77,7 +76,6 @@ async def get_site_variable_as_trace(
         return trace_json
 
     if len(trace_json.get("return", {}).get("traces", [])):
-
         return trace_json["return"]["traces"][0]
     else:
         logger.error(trace_json)

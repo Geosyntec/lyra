@@ -13,7 +13,7 @@ class SQLQueryError(Exception):
 class HydstraIOError(Exception):
     """Raised when hydstra fails with:
     EInOutError exception raised in WebModule1DefaultHandlerAction: I/O error 32
-    
+
     """
 
     def __init__(self, message: str, data: dict):

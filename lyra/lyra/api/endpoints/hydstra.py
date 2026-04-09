@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import Dict, List, Optional
 
 from fastapi import APIRouter, Body, Query
 from fastapi.responses import ORJSONResponse
@@ -32,7 +32,10 @@ async def get_sites_db_info(
     return_type: hydstra_models.ReturnType = hydstra_models.ReturnType.array,
 ) -> Dict:
     response = await hydstra.api.get_sites_db_info(
-        site=site, field_list=field_list, return_type=return_type, filter_values=None,
+        site=site,
+        field_list=field_list,
+        return_type=return_type,
+        filter_values=None,
     )
 
     return {"data": response}
@@ -45,7 +48,9 @@ async def get_site_db_info(
     field_list: Optional[List[str]] = Query(None),
 ) -> Dict:
     response = await hydstra.api.get_site_db_info(
-        site=site, return_type=return_type, field_list=field_list,
+        site=site,
+        return_type=return_type,
+        field_list=field_list,
     )
 
     return {"data": response}
@@ -56,7 +61,14 @@ async def get_site_geojson(
     site_list: Optional[List[str]] = Query(None),
     field_list: Optional[List[str]] = Query(
         None,
-        example=["station", "latitude", "longitude", "stntype", "stname", "shortname",],
+        example=[
+            "station",
+            "latitude",
+            "longitude",
+            "stntype",
+            "stname",
+            "shortname",
+        ],
     ),
     get_elev: Optional[int] = 0,
 ) -> Dict:
@@ -94,7 +106,9 @@ async def get_variables(
 
 @router.get("/sites/{site}/variables/{variable}", response_model=HydstraJSONResponse)
 async def get_site_variables(
-    site: str, variable: Optional[str] = None, datasource: str = "PUBLISH",
+    site: str,
+    variable: Optional[str] = None,
+    datasource: str = "PUBLISH",
 ) -> Dict:
     response = await hydstra.api.get_site_variables(
         site=site, datasource=datasource, variable=variable
@@ -137,7 +151,8 @@ async def get_variables_db_info(
     filter_values: Optional[Dict] = Body({}, example={"active": True}),
 ) -> Dict:
     response = await hydstra.api.get_variables_db_info(
-        return_type=return_type, filter_values=filter_values,
+        return_type=return_type,
+        filter_values=filter_values,
     )
 
     return {"data": response}

@@ -40,7 +40,6 @@ def check_mnwd_drooltool_metrics_database_has_data(engine):  # pragma: no cover
     db_exists = all(t in tables for t in ["DTMetrics", "DTMetricsCategories"])
 
     if db_exists:
-
         with engine.begin() as conn:
             df = pandas.read_sql("select top 1 * from DTMetrics", con=conn)
         if len(df) > 0:
@@ -66,7 +65,9 @@ def populate_mnwd_drooltool_metrics_database(engine):  # pragma: no cover
 
     logger.info("initializing DTMetrics database table")
     update_drooltool_database(
-        engine=engine, file=None, update=update,
+        engine=engine,
+        file=None,
+        update=update,
     )
 
 

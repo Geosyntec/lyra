@@ -1,4 +1,4 @@
-from typing import List, Optional, Union
+from typing import List, Optional
 
 import orjson
 import pandas
@@ -76,7 +76,8 @@ async def get_rsb_data(
 ) -> JSONAPIResponse:
 
     task = bg.background_rsb_data_response.s(
-        watersheds=watersheds, catchidns=catchidns,
+        watersheds=watersheds,
+        catchidns=catchidns,
     )
 
     if f == "html":

@@ -12,7 +12,10 @@ def test_graph(nocache, mock_rsb_data_path):
 
 @pytest.mark.parametrize(
     "node, exp",
-    [(10, [10, 23, 328, 214, 213, 278, 211, 212, 216, 210]), (328, [328, 214, 213]),],
+    [
+        (10, [10, 23, 328, 214, 213, 278, 211, 212, 216, 210]),
+        (328, [328, 214, 213]),
+    ],
 )
 def test_upstream_from(nocache, mock_rsb_data_path, node, exp):
     us = orjson.loads(graph.rsb_upstream_trace(node))

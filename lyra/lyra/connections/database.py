@@ -46,7 +46,10 @@ def sql_server_connection_string(
         host=server,
         port=str(port),
         database=db,
-        query={"driver": driver, "connect_timeout": str(timeout),},
+        query={
+            "driver": driver,
+            "connect_timeout": str(timeout),
+        },
     )
 
     return str(url)
@@ -81,7 +84,11 @@ def database_engine(connection_string=None, settings=settings):
 
 def update_with_log(df, table, conn, message="", **kwargs):
 
-    record = dict(status="success", table_name=table, date_initiated=datetime.utcnow(),)
+    record = dict(
+        status="success",
+        table_name=table,
+        date_initiated=datetime.utcnow(),
+    )
 
     try:
         # with engine.begin() as conn:

@@ -41,9 +41,9 @@ async def test_hydstra_get_sites_db_info_integration(site):
     if site is None:
         assert len(rsp["return"]["rows"]) > 20, "there should be a lot of these"
     else:
-        assert (
-            rsp["return"]["rows"][0]["station"] == site
-        ), "this should filter to the requested site"
+        assert rsp["return"]["rows"][0]["station"] == site, (
+            "this should filter to the requested site"
+        )
 
 
 @pytest.mark.asyncio
@@ -58,13 +58,13 @@ async def test_hydstra_get_sites_db_info(mock_get_sites_db_info):
 async def test_hydstra_get_site_db_info_integration(site):
     rsp = await api.get_site_db_info(site=site)
     if site is None:
-        assert (
-            len(rsp["return"]["rows"]) == 0
-        ), "'None' is not a valid site filter, so empty return."
+        assert len(rsp["return"]["rows"]) == 0, (
+            "'None' is not a valid site filter, so empty return."
+        )
     else:
-        assert (
-            rsp["return"]["rows"][0]["station"] == site
-        ), "this should filter to the requested site"
+        assert rsp["return"]["rows"][0]["station"] == site, (
+            "this should filter to the requested site"
+        )
 
 
 @pytest.mark.asyncio
@@ -91,9 +91,9 @@ async def test_hydstra_get_site_geojson_integration(site_list):
     if site_list is None:
         assert len(rsp["return"]["features"]) > 20, "there should be a lot of these"
     else:
-        assert len(rsp["return"]["features"]) == len(
-            site_list
-        ), "this should filter to the requested site"
+        assert len(rsp["return"]["features"]) == len(site_list), (
+            "this should filter to the requested site"
+        )
 
 
 @pytest.mark.asyncio

@@ -15,9 +15,9 @@ def test_dt_metrics(client_no_cache):
     assert response.status_code == 200
     data = response.json().get("data")
 
-    assert (
-        len(data) == 12
-    ), "should be 1 year of monthly data for 1 variable and at 1 site."
+    assert len(data) == 12, (
+        "should be 1 year of monthly data for 1 variable and at 1 site."
+    )
 
 
 @pytest.mark.integration

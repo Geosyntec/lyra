@@ -19,14 +19,17 @@ def get_share(
 ):
 
     share = ShareClient(
-        account_url=account_url, share_name=share_name, credential=credential,
+        account_url=account_url,
+        share_name=share_name,
+        credential=credential,
     )
 
     return share
 
 
 def make_azure_fileclient(
-    filepath: str, share: Optional[ShareClient] = None,
+    filepath: str,
+    share: Optional[ShareClient] = None,
 ) -> ShareFileClient:  # pragma: no cover
     """Create full path to `filepath` even if it doesn't exist on the share yet.
 

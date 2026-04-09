@@ -24,7 +24,7 @@ HOWS = {
             "y = "+\
             format(datum.coef[0],".4f") + " + " + \
             format(datum.coef[1],".4f") + "x + " + \
-            format(datum.coef[2],".4f") + "x\u00B2" \
+            format(datum.coef[2],".4f") + "x\u00b2" \
             ',
         ),
     },
@@ -35,8 +35,8 @@ HOWS = {
             "y = "+\
             format(datum.coef[0],".4f") + " + " + \
             format(datum.coef[1],".4f") + "x + " + \
-            format(datum.coef[2],".4f") + "x\u00B2" + \
-            format(datum.coef[3],".4f") + "x\u00B3" \
+            format(datum.coef[2],".4f") + "x\u00b2" + \
+            format(datum.coef[3],".4f") + "x\u00b3" \
             ',
         ),
     },
@@ -107,7 +107,10 @@ def regression_ts_label(t: Timeseries) -> str:
     return f"{_method} 1 {_interval} {_weather_condition}{_var_name} ({_var_units}) {_us} {_site}"
 
 
-def make_timeseries(timeseries: List[Dict[str, Any]], **kwargs: Any,) -> List[Any]:
+def make_timeseries(
+    timeseries: List[Dict[str, Any]],
+    **kwargs: Any,
+) -> List[Any]:
 
     ts = []
     for dct in timeseries:
@@ -175,8 +178,16 @@ def make_plot(
                 title=split_keep_delim(y_label, ")"),
                 scale=alt.Scale(domain=(0, source["y"].max() * 1.05)),
             ),
-            color=alt.condition(nearest, alt.value("orange"), "label:N",),
-            opacity=alt.condition(nearest, alt.value(0.9), alt.value(0.5),),
+            color=alt.condition(
+                nearest,
+                alt.value("orange"),
+                "label:N",
+            ),
+            opacity=alt.condition(
+                nearest,
+                alt.value(0.9),
+                alt.value(0.5),
+            ),
             size=alt.condition(nearest, alt.value(150), alt.value(75)),
         )
     )
@@ -193,7 +204,6 @@ def make_plot(
     )
 
     if method != "none":
-
         line = (
             alt.Chart(source)
             .transform_regression(on="x", regression="y", method=method)
@@ -212,7 +222,7 @@ def make_plot(
         params = []
         yoff = height + 60
         xoff = width / 8
-        for label, val in [("R\u00B2:", "rSquared"), ("Equation: ", "equation")]:
+        for label, val in [("R\u00b2:", "rSquared"), ("Equation: ", "equation")]:
             p = regression.mark_text(align="right", text=label, clip=False).encode(
                 x=alt.value(xoff),
                 y=alt.value(yoff),  # pixels from left  # pixels from top

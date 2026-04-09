@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
 import orjson
 import pandas
@@ -19,7 +19,8 @@ router = APIRouter(default_response_class=ORJSONResponse)
 
 
 @router.get(
-    "/", response_model=JSONAPIResponse,
+    "/",
+    response_model=JSONAPIResponse,
 )
 async def get_dt_metrics(
     f: ResponseFormat = ResponseFormat.json,

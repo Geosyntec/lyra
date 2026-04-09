@@ -7,8 +7,10 @@ def drop_runs(df, value_col=None):
         value_col = "value"
     df = (
         df.assign(
-            _thin=lambda df: df[value_col].eq(df[value_col].shift(1))
-            & df[value_col].eq(df[value_col].shift(-1))
+            _thin=lambda df: (
+                df[value_col].eq(df[value_col].shift(1))
+                & df[value_col].eq(df[value_col].shift(-1))
+            )
         )
         .query("not _thin")
         .drop(columns=["_thin"])

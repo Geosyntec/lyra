@@ -1,8 +1,6 @@
 import pytest
 
 # from osgeo import gdal, ogr, osr
-from fiona.ogrext import ItemsIterator, Iterator, KeysIterator
-from geopandas import GeoDataFrame
 
 # from lyra.core.config import settings
 # from lyra.connections.database import get_connection_string

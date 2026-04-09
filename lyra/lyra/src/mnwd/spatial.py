@@ -18,9 +18,9 @@ def _filter_rsb_df(
     _q = []
 
     if watersheds is not None:
-        _q.append(f"Watershed in @watersheds")
+        _q.append("Watershed in @watersheds")
     if catchidns is not None:
-        _q.append(f"CatchIDN in @catchidns")
+        _q.append("CatchIDN in @catchidns")
 
     if _q:
         query = " & ".join(_q)
@@ -31,7 +31,8 @@ def _filter_rsb_df(
 
 @cache_decorator(ex=3600 * 24)  # expires in 24 hours
 def _rsb_data_bytestring(
-    watersheds: Optional[List[str]] = None, catchidns: Optional[List[str]] = None,
+    watersheds: Optional[List[str]] = None,
+    catchidns: Optional[List[str]] = None,
 ) -> bytes:
 
     data = utils.local_path(
@@ -135,7 +136,9 @@ def rsb_spatial(
     data: bytes = orjson.dumps(None)
     if f == "geojson":
         data = _rsb_geojson_bytestring(
-            bbox=bbox, watersheds=watersheds, catchidns=catchidns,
+            bbox=bbox,
+            watersheds=watersheds,
+            catchidns=catchidns,
         )
 
     elif f == "topojson":

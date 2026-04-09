@@ -5,7 +5,7 @@ import altair as alt
 import orjson
 import pandas
 from altair.utils.data import MaxRowsError
-from fastapi import APIRouter, Body, Depends, HTTPException, Query, Request
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import ORJSONResponse, PlainTextResponse
 from fastapi.templating import Jinja2Templates
@@ -73,10 +73,9 @@ async def plot_trace(
             .assign(values=lambda df: df.v.astype(float))
             .assign(label="-".join([site, var]))
             .assign(
-                _thin=lambda df: df["values"]
-                - df["values"].shift(1)
-                + df["values"].shift(-1)
-                != 0.0
+                _thin=lambda df: (
+                    df["values"] - df["values"].shift(1) + df["values"].shift(-1) != 0.0
+                )
             )
             .query("_thin")
             .reindex(columns=["date", "values", "label"])
@@ -106,13 +105,21 @@ def make_chart(source):  # pragma: no cover
     line = alt.Chart(source).mark_line().encode(x="date:T", y="values:Q", color="label")
 
     nearest = alt.selection(
-        type="single", nearest=True, on="mouseover", fields=["date"], empty="none",
+        type="single",
+        nearest=True,
+        on="mouseover",
+        fields=["date"],
+        empty="none",
     )
 
     selectors = (
         alt.Chart(source)
         .mark_point()
-        .encode(x="date:T", y="values:Q", opacity=alt.value(0),)
+        .encode(
+            x="date:T",
+            y="values:Q",
+            opacity=alt.value(0),
+        )
         .add_selection(nearest)
     )
 
@@ -185,7 +192,8 @@ def single_var_spec_query(
 
 
 @router.get(
-    "/single_variable", response_model=ChartJSONResponse,  # include_in_schema=False
+    "/single_variable",
+    response_model=ChartJSONResponse,  # include_in_schema=False
 )
 def plot_single_variable(
     request: Request,
@@ -222,13 +230,19 @@ def plot_single_variable(
 
     if f == "html":
         return templates.TemplateResponse(  # type: ignore
-            "anyspec.html", {"request": request, "response": response,},
+            "anyspec.html",
+            {
+                "request": request,
+                "response": response,
+            },
         )
 
     return response
 
 
-@router.get("/single_variable/data",)  # include_in_schema=False
+@router.get(
+    "/single_variable/data",
+)  # include_in_schema=False
 def plot_single_variable_data(
     req: SingleVarSpec = Depends(single_var_spec_query), f: str = Query("json")
 ) -> Union[ORJSONResponse, PlainTextResponse]:

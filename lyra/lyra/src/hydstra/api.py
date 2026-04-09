@@ -188,7 +188,9 @@ async def get_datasources(
     get_datasources_by_site: Dict = {
         "function": "get_datasources_by_site",
         "version": 1,
-        "params": {"site_list": ",".join(site_list),},
+        "params": {
+            "site_list": ",".join(site_list),
+        },
     }
 
     if ts_classes is not None:
@@ -225,7 +227,9 @@ async def get_variables(
 
 
 async def get_site_variables(
-    site: str, variable: Optional[str] = None, datasource: str = "PUBLISH",
+    site: str,
+    variable: Optional[str] = None,
+    datasource: str = "PUBLISH",
 ) -> Dict[str, Any]:
 
     get_variable_list = {

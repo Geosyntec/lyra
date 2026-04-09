@@ -43,7 +43,10 @@ def multi_var_ts_label(t: Timeseries) -> str:
     return f"{_method} 1 {_interval} {_weather_condition}{_var_name} ({_var_units}) {_us} {_site}"
 
 
-def make_timeseries(timeseries: List[Dict[str, Any]], **kwargs: Any,) -> List[Any]:
+def make_timeseries(
+    timeseries: List[Dict[str, Any]],
+    **kwargs: Any,
+) -> List[Any]:
 
     ts = []
     for dct in timeseries:
@@ -77,7 +80,6 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
     legend_selection = alt.selection_multi(fields=["label"], bind="legend")
 
     for var in variables:
-
         data = source.query("variable==@var").pipe(
             utils.drop_runs_tidy, groupby=["label"], date_col="Date"
         )
@@ -136,7 +138,9 @@ def make_plot(source: pandas.DataFrame) -> alt.TopLevelMixin:
             base.mark_rule()
             .encode(
                 opacity=alt.condition(nearest, alt.value(0.3), alt.value(0)),
-                tooltip=[alt.Tooltip("Date", format="%b %-d, %Y@%H:%M"),],
+                tooltip=[
+                    alt.Tooltip("Date", format="%b %-d, %Y@%H:%M"),
+                ],
             )
             .add_selection(nearest)
         )

@@ -1,7 +1,6 @@
 import json
 from pathlib import Path
 from typing import List, Optional
-from urllib.parse import urlencode
 
 from fastapi import APIRouter, Query, Request, Response
 from fastapi.templating import Jinja2Templates
@@ -95,9 +94,9 @@ async def get_map(
 
     params = {k: v for k, v in params.items() if v is not None}
 
-    topo_url = f"./api/spatial/regional_subbasins?f=topojson"
+    topo_url = "./api/spatial/regional_subbasins?f=topojson"
     # topo_url = f"./data/mount/swn/mnwd/drooltool/spatial/rsb_topo_4326_latest.json"
-    geo_url = f"./api/spatial/regional_subbasins?f=geojson"
+    geo_url = "./api/spatial/regional_subbasins?f=geojson"
     sites_url = "./api/spatial/site_info"
 
     # if params:

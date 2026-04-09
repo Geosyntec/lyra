@@ -1,4 +1,3 @@
-import datetime
 from typing import Any, Dict, List, Optional, Union
 
 import altair as alt
@@ -7,13 +6,13 @@ import pandas
 from lyra.src.timeseries import Timeseries
 
 
-def expand_list(l: Optional[List[Any]], n: int, default: Any) -> List[Any]:
-    if l is None:
+def expand_list(ls: Optional[List[Any]], n: int, default: Any) -> List[Any]:
+    if ls is None:
         return [default] * n
 
-    while len(l) < n:
-        l.append(l[-1])
-    return l
+    while len(ls) < n:
+        ls.append(ls[-1])
+    return ls
 
 
 def dispatch(**kwargs: Any) -> alt.TopLevelMixin:
@@ -44,7 +43,6 @@ def make_source(
     for site, interval, agg_method, trace_upstream in zip(
         sites, intervals, agg_methods, trace_upstreams
     ):
-
         t = Timeseries(
             site=site,
             variable=variable,
@@ -111,7 +109,11 @@ def make_plot(source: Union[str, pandas.DataFrame]) -> alt.TopLevelMixin:
     selectors = (
         alt.Chart(source)
         .mark_point()
-        .encode(x="date:T", y="value:Q", opacity=alt.value(0),)
+        .encode(
+            x="date:T",
+            y="value:Q",
+            opacity=alt.value(0),
+        )
         .add_selection(nearest)
     )
 
@@ -129,7 +131,9 @@ def make_plot(source: Union[str, pandas.DataFrame]) -> alt.TopLevelMixin:
     rules = (
         alt.Chart(source)
         .mark_rule(color="gray")
-        .encode(x="date:T",)
+        .encode(
+            x="date:T",
+        )
         .transform_filter(nearest)
     )
 

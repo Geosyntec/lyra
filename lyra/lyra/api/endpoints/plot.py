@@ -31,13 +31,17 @@ from lyra.src.viz import diversion_scenario, multi_variable, regression
 router = APIRouter(route_class=LyraRoute, default_response_class=ORJSONResponse)
 templates = Jinja2Templates(directory="lyra/site/templates")
 
+
 ### Timeseries
 def timeseries_schema_query(
     timeseries: Optional[str] = Query(
         None,
         example='[{"site":"ALISO_STP","variable":"discharge"},{"site":"ALISO_JERONIMO","variable":"discharge"}]',
     ),
-    string: Optional[str] = Query(None, alias="json",),
+    string: Optional[str] = Query(
+        None,
+        alias="json",
+    ),
 ) -> MultiVarSchema:
     try:
         if string is not None:
@@ -94,7 +98,11 @@ def plot_timeseries_with_GET(
 
     if f == "html":
         return templates.TemplateResponse(  # type: ignore
-            "anyspec.html", {"request": request, "response": response,},
+            "anyspec.html",
+            {
+                "request": request,
+                "response": response,
+            },
         )
 
     return response
@@ -126,8 +134,14 @@ def plot_timeseries_with_POST(
                 "description": "A **normal** multiple timeseries works correctly",
                 "value": {
                     "timeseries": [
-                        {"site": "ALISO_JERONIMO", "variable": "discharge",},
-                        {"site": "ALISO_STP", "variable": "discharge",},
+                        {
+                            "site": "ALISO_JERONIMO",
+                            "variable": "discharge",
+                        },
+                        {
+                            "site": "ALISO_STP",
+                            "variable": "discharge",
+                        },
                     ]
                 },
             },
@@ -210,7 +224,11 @@ def plot_timeseries_with_POST(
 
     if f == "html":
         return templates.TemplateResponse(  # type: ignore
-            "anyspec.html", {"request": request, "response": response,},
+            "anyspec.html",
+            {
+                "request": request,
+                "response": response,
+            },
         )
 
     return response
@@ -231,7 +249,10 @@ def multi_var_schema_query(
     nearest_rainfall_station: Optional[str] = Query(None, example="ALISO_JERONIMO"),
     start_date: Optional[str] = Query(None, example="2015-01-01"),
     end_date: Optional[str] = Query(None, example="2020-01-01"),
-    string: Optional[str] = Query(None, alias="json",),
+    string: Optional[str] = Query(
+        None,
+        alias="json",
+    ),
 ) -> MultiVarSchema:
     try:  # pragma: no branch
         if string is not None:
@@ -250,7 +271,8 @@ def multi_var_schema_query(
 
 
 @router.get(
-    "/multi_variable", response_model=ChartJSONResponse,
+    "/multi_variable",
+    response_model=ChartJSONResponse,
 )
 def plot_multi_variable(
     request: Request,
@@ -260,10 +282,10 @@ def plot_multi_variable(
     """Create Multiple Timeseries Plots
 
     ### Examples
-    
+
     **as query**
     * api/plot/multi_variable?start_date=2020-03-01&timeseries=[{"site":"ALISO_STP","variable":"urban_drool"},{"site":"ALISO_JERONIMO","variable":"discharge"}]
-    
+
     **as blob**
     * api/plot/multi_variable?json={"start_date":"2020-03-01","timeseries":[{"site":"ALISO_STP","variable":"urban_drool"},{"site":"ALISO_JERONIMO","variable":"discharge"}]}
     * api/plot/multi_variable?json={"start_date":"2020-03-01","end_date":"2021-05-01","site":"ALISO_JERONIMO","timeseries":[{"variable":"rainfall"},{"variable":"discharge"}]}
@@ -370,7 +392,10 @@ def regression_schema_query(
         None,
         example='[{"site":"ALISO_STP","variable":"discharge"},{"site":"ALISO_JERONIMO","variable":"discharge"}]',
     ),
-    string: Optional[str] = Query(None, alias="json",),
+    string: Optional[str] = Query(
+        None,
+        alias="json",
+    ),
 ) -> RegressionSchema:
     try:  # pragma: no branch
         if string is not None:
@@ -389,7 +414,8 @@ def regression_schema_query(
 
 
 @router.get(
-    "/regression", response_model=ChartJSONResponse,
+    "/regression",
+    response_model=ChartJSONResponse,
 )
 def plot_regression(
     request: Request,
@@ -399,10 +425,10 @@ def plot_regression(
     """Create Pair-Wise Regression Plot
 
     ### Examples
-    
+
     **as query**
     * api/plot/regression?start_date=2019-01-01&interval=day&site=ALISO_JERONIMO&weather_condition=wet&timeseries=[{"variable":"rainfall"},{"variable":"discharge"}]
-    
+
     **as blob**
     * api/plot/regression?json={"start_date":"2019-01-01","site":"ALISO_JERONIMO","interval":"day","weather_condition":"wet","timeseries":[{"variable":"rainfall"},{"variable":"discharge"}]}
     """
@@ -491,7 +517,10 @@ def diversion_scenario_schema_query(
     diversion_days_active: Optional[List[int]] = Query(None),
     diversion_hours_active: Optional[List[int]] = Query(None),
     nearest_rainfall_station: Optional[str] = None,
-    string: Optional[str] = Query(None, alias="json",),
+    string: Optional[str] = Query(
+        None,
+        alias="json",
+    ),
 ) -> DiversionScenarioSchema:
     try:  # pragma: no branch
         if string is not None:
@@ -510,15 +539,15 @@ def diversion_scenario_schema_query(
 
 
 @router.get(
-    "/diversion_scenario", response_model=ChartJSONResponse,
+    "/diversion_scenario",
+    response_model=ChartJSONResponse,
 )
 def plot_diversion_scenario(
     request: Request,
     req: DiversionScenarioSchema = Depends(diversion_scenario_schema_query),
     f: ResponseFormat = Query("json"),
 ) -> Dict:
-    """Create Diversion Scenario Plots
-    """
+    """Create Diversion Scenario Plots"""
 
     chart_spec = None
     chart_status = None

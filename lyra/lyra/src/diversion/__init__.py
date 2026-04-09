@@ -1,1 +1,1 @@
-from lyra.src.diversion.scenario import simulate_diversion
+from lyra.src.diversion.scenario import simulate_diversion as simulate_diversion

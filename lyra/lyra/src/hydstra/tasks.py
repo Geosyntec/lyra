@@ -75,7 +75,7 @@ async def build_swn_variables(variables, cfg):
 
             if error_num != 0:
                 logger.info(
-                    f'found NO DATA @ {dct["site"]}. response: {timeseries_details}'
+                    f"found NO DATA @ {dct['site']}. response: {timeseries_details}"
                 )
 
             if error_num == 124:

@@ -122,8 +122,14 @@ def test_ts_schema_raises(bad_input):
         },
         {
             "timeseries": [
-                {"site": "ALISO_STP", "variable": "discharge",},
-                {"site": "ALISO_JERONIMO", "variable": "discharge",},
+                {
+                    "site": "ALISO_STP",
+                    "variable": "discharge",
+                },
+                {
+                    "site": "ALISO_JERONIMO",
+                    "variable": "discharge",
+                },
             ],
         },
         {
@@ -161,7 +167,9 @@ def test_multi_var_broadcast(good_input):
             # missing timeseries key
         },
         # variable is a required key for timeseries
-        {"timeseries": [{"site": "ALISO_STP"}, {"site": "ALISO_JERONIMO"}],},
+        {
+            "timeseries": [{"site": "ALISO_STP"}, {"site": "ALISO_JERONIMO"}],
+        },
     ],
 )
 def test_multi_var_raises(bad_input):
