@@ -279,11 +279,12 @@ class Timeseries(object):
             self.warnings.append(
                 f"{len(questionable_data)} data points have Hydstra data quality "
                 f"flags for {self.variable} at {self.site} between {ds} and {de}. "
-                f"Quality flags include: {', '.join((str(i) for i in flags))}."
+                f"Quality flags include: {', '.join((str(i) for i in flags))}. "
+                f"Data with flags higher than 150 are omitted."
             )
 
         # this will block the async await... but so it goes.
-        return await self.process_weather_condition(hydstra_result)
+        return await self.process_weather_condition(hydstra_result.query("q < 150"))
 
     async def process_weather_condition(self, df):
         if self.weather_condition == "both":
